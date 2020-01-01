@@ -1,7 +1,8 @@
 ## 天文会议系统文档目录
 
-[用例](./doc/Usecase.md)
-[需求](./doc/requirement.md)
+[用例](./doc/Usecase.md)  
+[需求](./doc/requirement.md)  
+[E-R](./doc/ER.md)
 
 ### 部署
 * 软件环境准备：Python3,pip  

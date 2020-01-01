@@ -1,0 +1,6 @@
+@startuml
+
+Meeting }|..|| User
+Meeting }|..|| Admin
+
+@enduml
