@@ -1,6 +1,27 @@
 @startuml
-
-Meeting }|..|| User
-Meeting }|..|| Admin
+entity meeting{
+    * register
+    * reviewer
+    * statu
+    --
+    * title
+    * location
+    * start_date
+    * end_date
+    * url
+    * introduction
+}
+entity user {
+    * id
+    * name
+    * email
+    * address
+    * phone
+    --
+    role
+}
+entity admin
+meeting }|..|| user
+meeting }|..|| admin
 
 @enduml
