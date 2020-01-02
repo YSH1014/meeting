@@ -5,7 +5,7 @@
 [E-R](./doc/ER.md)
 
 ### 部署
-* 软件环境准备：Python3,pip  
+* 软件环境准备：Python3,pip,postgre数据库    
 * 安装virtualenv: ```python3 -m pip install virtualenv```
 * 建立virtualenv:```python3 -m virtualenv virtualenv```
 * 使用virtualenv的python环境：```. virtualenv/bin/activate```
