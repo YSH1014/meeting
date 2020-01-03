@@ -10,7 +10,7 @@ class RoleType(Enum):
     ROOT = 2
 
 
-class MeetingStatuType(Enum):
+class MeetingStatusType(Enum):
     REGISTED = auto()  # 已注册，待审核
     APPROVED = auto()  # 审核通过
     UNAPPROVED = auto()  # 审核未通过
@@ -41,11 +41,11 @@ def load_user(id):
     return User.query.get(int(id))
 
 
-class Meeting():
+class Meeting(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     register = db.Column(db.Integer, db.ForeignKey('User.id'), nullable=False)
     reviewer = db.Column(db.Integer, db.ForeignKey('User.id'))
-    statau = db.Column(db.Enum(MeetingStatuType))
+    status = db.Column(db.Enum(MeetingStatusType))
     title = db.Column(db.String(100))
     location = db.Column(db.String(200))
     start_date = db.Column(db.DateTime)

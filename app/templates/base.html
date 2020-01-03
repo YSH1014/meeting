@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Bootstrap 实例</title>
+    <title>中国天文学会议信息系统</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
@@ -38,7 +38,7 @@
             <a href="{{ url_for('index') }}">返回首页</a>
             {% if current_user.is_anonymous %}
             <a href="{{ url_for('login') }}">登录</a>
-            <a href="{{ url_for('registe') }}">注册</a>
+            <a href="{{ url_for('register') }}">注册</a>
             {% else %}
             你好，<a>{{ current_user.username }}</a>
             <a href="{{ url_for('logout') }}">退出</a>
@@ -48,14 +48,11 @@
     <div class="row clearfix">
         <div class="col-md-3 column">
 
-            <button>最新注册</button>
-            </br>
-            <button onclick="getMeeting(7)">接下来一周</button>
-            </br>
-            <button>本月</button>
-            </br>
-            <button>下一月</button>
-            </br>
+
+            <p>
+                <a href={{ url_for('register_meeting') }}>注册新会议</a>
+            </p>
+
         </div>
         <div class="col-md-9 column">
 

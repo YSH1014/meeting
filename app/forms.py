@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, DateTimeField, TextAreaField
 from wtforms.validators import DataRequired, EqualTo, Email
-
+from flask_login import current_user
 
 class LoginForm(FlaskForm):
     email = StringField('email', validators=[DataRequired(), Email()])
@@ -10,7 +10,7 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Sign In')
 
 
-class RegisteForm(FlaskForm):
+class RegisterForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     password2 = PasswordField('Password', validators=[DataRequired(), EqualTo('password')])
@@ -20,14 +20,17 @@ class RegisteForm(FlaskForm):
     submit = SubmitField('注册')
 
 
-class RegisteMeetingForm(FlaskForm):
+class RegisterMeetingForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
     location = StringField('location', validators=[DataRequired()])
     start_date = DateTimeField('Start DateTime', validators=[DataRequired()])
     end_date = DateTimeField('End Date Time', validators=[DataRequired()])
     introduction = TextAreaField('Introduction')
+    url = StringField('URL')
 
-    # 联系方式，若勾选“使用我的联系方式”则自动填写
+    # 默认自动填写
     name = StringField('Name', validators=[DataRequired()])
-    email = StringField('Email', validators=[DataRequired(), Email])
+    email = StringField('Email', validators=[DataRequired(), Email()])
     phone = StringField('Phone Number + 86', validators=[DataRequired()])
+
+    submit = SubmitField('提交')

@@ -1,9 +1,9 @@
 from app import app
 from app import db
 from flask import render_template, redirect, url_for, flash
-from app.forms import LoginForm, RegisteForm, RegisteMeetingForm
+from app.forms import LoginForm, RegisterForm, RegisterMeetingForm
 from flask_login import current_user, login_user, logout_user, login_required
-from app.models import User, load_user, RoleType, MeetingStatuType
+from app.models import User, load_user, RoleType, MeetingStatusType, Meeting
 import sqlalchemy.exc
 
 
@@ -48,12 +48,12 @@ def logout():
     return render_template('index.html')
 
 
-@app.route('/registe', methods=['Get', 'Post'])
-def registe():
+@app.route('/register', methods=['Get', 'Post'])
+def register():
     if current_user.is_authenticated:
         flash('您已登录')
         return redirect(url_for('index'))
-    form = RegisteForm()
+    form = RegisterForm()
     if form.validate_on_submit():
         user = User(
             username=form.username.data,
@@ -67,8 +67,33 @@ def registe():
             db.session.add(user)
             db.session.commit()
             flash('Congratulations, you are now a registered user!')
-            return redirect(url_for('login')) #注册成功，返回登录界面
+            return redirect(url_for('login'))  # 注册成功，返回登录界面
         except sqlalchemy.exc.IntegrityError as e:
             flash('注册失败，请检查Email或手机是否已被注册')
-    #输入无效或添加用户发生异常（Email重复等原因），返回注册界面
-    return render_template('registe.html', title='Register', form=form)
+    # 输入无效或添加用户发生异常（Email重复等原因），返回注册界面
+    return render_template('register.html', title='Register', form=form)
+
+
+@app.route('/registerMeeting', methods=['Get', 'Post'])
+@login_required
+def register_meeting():
+    form = RegisterMeetingForm()
+    if form.validate_on_submit():
+        meeting = Meeting(
+            register=current_user.id,
+            status=MeetingStatusType.REGISTED,
+            title=form.title.data,
+            location=form.location.data,
+            url=form.url.data,
+            start_date=form.start_date.data,
+            end_date=form.end_date.data,
+
+            email=form.email.data,
+            phone=form.phone.data,
+   #         introduction=form.introduction.data
+        )
+        return 'successsful'
+
+    else:
+        return render_template('registerMeeting.html', form=form)
+
