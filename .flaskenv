@@ -1,1 +1,2 @@
 FLASK_APP=meeting.py
+FLASK_ENV=development
