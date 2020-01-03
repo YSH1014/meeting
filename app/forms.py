@@ -14,8 +14,9 @@ class RegisteForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     password2 = PasswordField('Password', validators=[DataRequired(), EqualTo('password')])
-    email = StringField('Email', validators=[DataRequired(), Email])
-    phone = StringField('Phone Number + 86', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    phone = StringField('PhoneNumber+86', validators=[DataRequired()])
+    address = StringField('Address')
     submit = SubmitField('注册')
 
 

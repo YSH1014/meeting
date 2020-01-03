@@ -5,9 +5,9 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 
 class RoleType(Enum):
-    USER = auto()
-    ADMIN = auto()
-    ROOT = auto()
+    USER = 0
+    ADMIN = 1
+    ROOT = 2
 
 
 class MeetingStatuType(Enum):

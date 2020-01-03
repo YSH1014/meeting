@@ -38,6 +38,7 @@
             <a href="{{ url_for('index') }}">返回首页</a>
             {% if current_user.is_anonymous %}
             <a href="{{ url_for('login') }}">登录</a>
+            <a href="{{ url_for('registe') }}">注册</a>
             {% else %}
             你好，<a>{{ current_user.username }}</a>
             <a href="{{ url_for('logout') }}">退出</a>
