@@ -43,14 +43,14 @@ def load_user(id):
 
 class Meeting(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    register = db.Column(db.Integer, db.ForeignKey('User.id'), nullable=False)
-    reviewer = db.Column(db.Integer, db.ForeignKey('User.id'))
+    register = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    reviewer = db.Column(db.Integer, db.ForeignKey('user.id'))
     status = db.Column(db.Enum(MeetingStatusType))
     title = db.Column(db.String(100))
     location = db.Column(db.String(200))
     start_date = db.Column(db.DateTime)
     end_date = db.Column(db.DateTime)
     url = db.Column(db.String(200))
-    email = db.Column(db.String(120), index=True, unique=True, nullable=False)
-    phone = db.Column(db.String(20), index=True, unique=True, nullable=False)
+    email = db.Column(db.String(120), nullable=False)
+    phone = db.Column(db.String(20), nullable=False)
     introduction = db.Column(db.String(500))

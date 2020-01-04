@@ -6,13 +6,6 @@ from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, load_user, RoleType, MeetingStatusType, Meeting
 import sqlalchemy.exc
 
-
-@app.route('/')
-@app.route('/index')
-def index():
-    return render_template('index.html')
-
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
@@ -72,28 +65,4 @@ def register():
             flash('注册失败，请检查Email或手机是否已被注册')
     # 输入无效或添加用户发生异常（Email重复等原因），返回注册界面
     return render_template('register.html', title='Register', form=form)
-
-
-@app.route('/registerMeeting', methods=['Get', 'Post'])
-@login_required
-def register_meeting():
-    form = RegisterMeetingForm()
-    if form.validate_on_submit():
-        meeting = Meeting(
-            register=current_user.id,
-            status=MeetingStatusType.REGISTED,
-            title=form.title.data,
-            location=form.location.data,
-            url=form.url.data,
-            start_date=form.start_date.data,
-            end_date=form.end_date.data,
-
-            email=form.email.data,
-            phone=form.phone.data,
-   #         introduction=form.introduction.data
-        )
-        return 'successsful'
-
-    else:
-        return render_template('registerMeeting.html', form=form)
 
