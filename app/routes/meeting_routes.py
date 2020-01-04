@@ -15,6 +15,7 @@ def register_meeting():
             register=current_user.id,
             status=MeetingStatusType.REGISTED,
             title=form.title.data,
+            short_name = form.short_name.data,
             location=form.location.data,
             url=form.url.data,
             start_date=form.start_date.data,
@@ -37,8 +38,8 @@ def register_meeting():
 
 @app.route("/meetings")
 def meetings():
-    meetings = Meeting.query.all()
-    return render_template('meetings.html', meetings=meetings)
+    all_meetings = Meeting.query.all()
+    return render_template('meetings.html', meetings=all_meetings)
 
 
 @app.route("/meetingInfo")

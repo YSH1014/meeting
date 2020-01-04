@@ -10,6 +10,13 @@
         <span style="color: red;">[{{ error }}]</span>
         {% endfor %}
     </p>
+     <p>
+        {{ form.short_name.label }}<br>
+        {{ form.short_name(size=32) }}<br>
+        {% for error in form.short_name.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
     <p>
         {{ form.location.label }}<br>
         {{ form.location(size=32) }}<br>
@@ -34,7 +41,7 @@
 
     <p>
         {{ form.introduction.label }}<br>
-        {{ form.introduction(size=32) }}<br>
+        {{ form.introduction(size=80) }}<br>
         {% for error in form.introduction.errors %}
         <span style="color: red;">[{{ error }}]</span>
         {% endfor %}

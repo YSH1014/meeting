@@ -11,26 +11,27 @@ class LoginForm(FlaskForm):
 
 
 class RegisterForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired()])
-    password2 = PasswordField('Password', validators=[DataRequired(), EqualTo('password')])
+    username = StringField('姓名', validators=[DataRequired()])
+    password = PasswordField('密码', validators=[DataRequired()])
+    password2 = PasswordField('重新输入密码', validators=[DataRequired(), EqualTo('password')])
     email = StringField('Email', validators=[DataRequired(), Email()])
-    phone = StringField('PhoneNumber+86', validators=[DataRequired()])
-    address = StringField('Address')
+    phone = StringField('电话号码+86', validators=[DataRequired()])
+    address = StringField('地址')
     submit = SubmitField('注册')
 
 
 class RegisterMeetingForm(FlaskForm):
-    title = StringField('Title', validators=[DataRequired()])
-    location = StringField('location', validators=[DataRequired()])
-    start_date = DateTimeField('Start DateTime', validators=[DataRequired()])
-    end_date = DateTimeField('End Date Time', validators=[DataRequired()])
-    introduction = TextAreaField('Introduction')
-    url = StringField('URL')
+    title = StringField('会议题目', validators=[DataRequired()])
+    short_name = StringField('会议简称')
+    location = StringField('会议地点', validators=[DataRequired()])
+    start_date = DateTimeField('会议开始时间 格式形如："2020-1-1 12:00:00"', validators=[DataRequired()])
+    end_date = DateTimeField('会议结束时间', validators=[DataRequired()])
+    introduction = TextAreaField('会议简介')
+    url = StringField('会议链接')
 
     # 默认自动填写
-    name = StringField('Name', validators=[DataRequired()])
+    name = StringField('联系人姓名', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
-    phone = StringField('Phone Number + 86', validators=[DataRequired()])
+    phone = StringField('电话+ 86', validators=[DataRequired()])
 
     submit = SubmitField('提交')

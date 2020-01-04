@@ -47,6 +47,7 @@ class Meeting(db.Model):
     reviewer = db.Column(db.Integer, db.ForeignKey('user.id'))
     status = db.Column(db.Enum(MeetingStatusType))
     title = db.Column(db.String(100))
+    short_name = db.Column(db.String(30))
     location = db.Column(db.String(200))
     start_date = db.Column(db.DateTime)
     end_date = db.Column(db.DateTime)
