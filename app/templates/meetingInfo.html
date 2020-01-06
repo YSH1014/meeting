@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+    <p> 标题： {{ meeting.title }} </p><br>
+    <p> 简称： {{meeting.short_name }} </p><br>
+    <p> 简介： {{meeting.introduction }}</p><br>
+    <p>联系方式： {{meeting.email}},{{meeting.phone}}</p>
+    <br>
+    <p> 状态：
+        {{meeting.status}}
+    <p>
+
+    {% if current_user.role.__str__() == 'RoleType.ADMIN' %}
+    {% if meeting.status.__str__() == 'MeetingStatusType.REGISTED' %}
+        <a href="{{ url_for('approve',id=meeting.id) }}"> 通过审核 </a>
+
+        <a href="{{ url_for('unapprove',id=meeting.id) }}"> 不通过</a>
+    {% endif %}
+    {% endif %}
+
+{% endblock %}
+{% block admin %}
+{% endblock %}

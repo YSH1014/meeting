@@ -5,11 +5,27 @@ from app.forms import LoginForm, RegisterForm, RegisterMeetingForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, load_user, RoleType, MeetingStatusType, Meeting
 import sqlalchemy.exc
-from app.security import admin_required
+from app.security import admin_required, user_required, root_required
 
 
+@root_required
 @app.route('/users')
-#@admin_required
 def users():
     allusers = User.query.all()
     return render_template('users.html', users=allusers)
+
+
+@root_required
+@app.route('/set_as_admin/<int:id>')
+def set_as_admin(id):
+    User.query.get(id).role = RoleType.ADMIN
+    db.session.commit()
+    return redirect( url_for('users'))
+
+
+@root_required
+@app.route('/cancel_admin/<int:id>')
+def cancel_admin(id):
+    User.query.get(id).role = RoleType.USER
+    db.session.commit()
+    return redirect( url_for('users'))
