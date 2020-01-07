@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+{% blcok title %}
+{{meeting.short_name}}会议详情
+{% endblock %}
 {% block content %}
 <div class="card meetings-card">
     <div class="card-body meeting-intro">
@@ -25,25 +28,22 @@
                   <div class="col-sm-1">编号</div>
                   <div class="col-sm-11">6317</div>
                 </div>
-              </blockquote>
-    </div>
-    </div>
-    <p> 标题： {{ meeting.title }} </p><br>
-    <p> 简称： {{meeting.short_name }} </p><br>
-    <p> 简介： {{meeting.introduction }}</p><br>
-    <p>联系方式： {{meeting.email}},{{meeting.phone}}</p>
-    <br>
+              </bloc  {% if current_user.role.__str__() == 'RoleType.ADMIN' %}
     <p> 状态：
         {{meeting.status}}
     <p>
-
-    {% if current_user.role.__str__() == 'RoleType.ADMIN' %}
     {% if meeting.status.__str__() == 'MeetingStatusType.REGISTED' %}
         <a href="{{ url_for('approve',id=meeting.id) }}"> 通过审核 </a>
 
         <a href="{{ url_for('unapprove',id=meeting.id) }}"> 不通过</a>
     {% endif %}
-    {% endif %}
+    {% endif %}kquote>
+    </div>
+    </div>
+
+
+
+
 
 
 {% endblock %}
