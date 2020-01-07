@@ -12,3 +12,8 @@ import sqlalchemy.exc
 def index():
     return render_template('index.html')
 
+
+@app.route('/error/<message>')
+def error(message):
+    return render_template('error.html',message = message)
+

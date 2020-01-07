@@ -109,9 +109,27 @@
                             class="nav-link meeting-sidebar-navlink" href={{ url_for("meetings") }}>New Meetings</a>
                     </li>
                     <li class="nav-item list-group-item meeting-sidebar-item"><a
-                            class="nav-link meeting-sidebar-navlink" href="#">2021 Meetings</a></li>
+                            class="nav-link meeting-sidebar-navlink" href={{
+                            url_for(
+                        "meetings",
+                        start_year = 2021,
+                        start_month = 1,
+                        start_day = 1,
+                        end_year = 2021,
+                        end_month = 12,
+                        end_day = 31
+                        )}}>2021 Meetings</a></li>
                     <li class="nav-item list-group-item meeting-sidebar-item"><a
-                            class="nav-link meeting-sidebar-navlink" href="#">2020 Meetings</a></li>
+                            class="nav-link meeting-sidebar-navlink" href={{
+                            url_for(
+                        "meetings",
+                        start_year = 2020,
+                        start_month = 1,
+                        start_day = 1,
+                        end_year = 2020,
+                        end_month = 12,
+                        end_day = 31
+                        )}}>2020 Meetings</a></li>
                     <li class="dropdown-divider"></li>
                     <li class="nav-item list-group-item meeting-sidebar-subtitle"><img src={{url_for('static'
                                                                                        ,filename="u/img/meetings-img/navbarSubtitleIcon.png"
@@ -170,6 +188,7 @@
     var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
     g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
   })();
+
 
 
 
