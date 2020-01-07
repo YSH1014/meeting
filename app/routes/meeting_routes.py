@@ -12,7 +12,9 @@ from app.security import user_required
 @app.route('/registerMeeting', methods=['Get', 'Post'])
 @user_required
 def register_meeting():
-    form = RegisterMeetingForm()
+    form = RegisterMeetingForm(email=current_user.email,
+                               phone=current_user.phone,
+                               contact=current_user.username)
     if form.validate_on_submit():
         meeting = Meeting(
             register=current_user.id,
@@ -23,7 +25,9 @@ def register_meeting():
             url=form.url.data,
             start_date=form.start_date.data,
             end_date=form.end_date.data,
+            key_words=form.key_words.data,
 
+            contact = form.contact.data,
             email=form.email.data,
             phone=form.phone.data,
             introduction=form.introduction.data

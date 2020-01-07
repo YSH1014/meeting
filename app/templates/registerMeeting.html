@@ -51,6 +51,13 @@
                 {% endfor %}
             </p>
             <p>
+                {{ form.key_words.label }}<br>
+                {{ form.key_words(size=32) }}<br>
+                {% for error in form.key_words.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
                 {{ form.url.label }}<br>
                 {{ form.url(size=32) }}<br>
                 {% for error in form.url.errors %}
@@ -58,9 +65,9 @@
                 {% endfor %}
             </p>
             <p>
-                {{ form.name.label }}<br>
-                {{ form.name(size=32) }}<br>
-                {% for error in form.name.errors %}
+                {{ form.contact.label }}<br>
+                {{ form.contact(size=32) }}<br>
+                {% for error in form.contact.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
             </p>
