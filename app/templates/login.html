@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
+{% block title %}
+登录
+{% endblock %}
 {% block content %}
-
-     <h1>Sign In</h1>
+<div class="card meetings-card">
+    <div class="card-body meeting-intro">
     <form action="" method="post" >
         {{ form.hidden_tag() }}
         <p>
@@ -15,4 +18,6 @@
         <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
         <p>{{ form.submit() }}</p>
     </form>
+    </div>
+</div>
 {% endblock %}

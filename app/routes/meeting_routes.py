@@ -58,4 +58,5 @@ def meetings_week():
 @app.route("/meetingInfo/<int:id>")
 def meetingInfo(id):
     meeting = Meeting.query.get(id)
-    return render_template('meetingInfo.html', meeting=meeting)
+    register = User.query.get(meeting.register)
+    return render_template('meetingInfo.html', meeting=meeting,register=register)
