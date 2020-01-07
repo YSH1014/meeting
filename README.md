@@ -11,3 +11,12 @@
 * 建立virtualenv:```python3 -m virtualenv virtualenv```
 * 使用virtualenv的python环境：```. virtualenv/bin/activate```
 * 安装运行必备包```pip install -r requirements.txt```
+* 初始数据库：
+```
+flask db init
+flask db migrate
+flask db upgrade
+```
+* 建立root用户
+``` python generate_root.py```
+* 运行 ```flask run```
