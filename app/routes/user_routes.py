@@ -4,7 +4,9 @@ from flask import render_template, redirect, url_for, flash
 from app.forms import LoginForm, RegisterForm, RegisterMeetingForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, load_user, RoleType, MeetingStatusType, Meeting
+from app.security import user_required
 import sqlalchemy.exc
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -26,7 +28,7 @@ def login():
 
 
 @app.route('/userInfo')
-@login_required
+@user_required
 def userInfo():
     # 用户未登录，重定向到登录界面
     if not current_user.is_authenticated:
@@ -36,6 +38,7 @@ def userInfo():
 
 
 @app.route('/logout')
+@user_required
 def logout():
     logout_user()
     return render_template('index.html')

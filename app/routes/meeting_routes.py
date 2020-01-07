@@ -6,10 +6,11 @@ from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, load_user, RoleType, MeetingStatusType, Meeting
 import sqlalchemy.exc
 from datetime import datetime,timedelta
+from app.security import user_required
 
 
 @app.route('/registerMeeting', methods=['Get', 'Post'])
-@login_required
+@user_required
 def register_meeting():
     form = RegisterMeetingForm()
     if form.validate_on_submit():

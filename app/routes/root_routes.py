@@ -8,23 +8,23 @@ import sqlalchemy.exc
 from app.security import admin_required, user_required, root_required
 
 
-@root_required
 @app.route('/users')
+@root_required
 def users():
     allusers = User.query.all()
     return render_template('users.html', users=allusers)
 
 
-@root_required
 @app.route('/set_as_admin/<int:id>')
+@root_required
 def set_as_admin(id):
     User.query.get(id).role = RoleType.ADMIN
     db.session.commit()
     return redirect( url_for('users'))
 
 
-@root_required
 @app.route('/cancel_admin/<int:id>')
+@root_required
 def cancel_admin(id):
     User.query.get(id).role = RoleType.USER
     db.session.commit()
