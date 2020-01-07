@@ -1,0 +1,31 @@
+@startuml
+
+
+actor root
+actor admin
+actor user
+actor tourist
+
+
+usecase browse
+usecase holdMeeting
+usecase cancelMeeting
+usecase review
+usecase addAdmin
+usecase deleteAdmin
+
+
+
+admin <|-- root
+user  <|-- admin
+tourist <|-- user
+
+
+
+tourist->browse
+user->holdMeeting
+user->cancelMeeting
+admin->review
+root->addAdmin
+root->deleteAdmin
+@enduml

@@ -1,0 +1,31 @@
+@startuml
+entity meeting会议{
+    * id       主键，唯一标识
+    * register 注册者
+    * reviewer 审核者
+    * status 状态：包括 已注册（待审核）、审核通过、审核未通过、已过期 四种
+    --
+    * title 会议主题
+    * location 会议场地位置
+    * start_date 开始时间
+    * end_date 结束时间
+    * url 会议网站链接
+    * introduction 会议简介
+    --
+    * name 联系人姓名
+    * email 联系人邮箱
+    * address 联系人地址
+    * phone 联系人电话
+
+}
+entity user {
+    * id 唯一标识
+    * password_hash 密码哈希值
+    * name 姓名
+    * email 邮箱
+    * address 地址
+    * phone电话
+    --
+    role 角色（包括普通用户、管理员、超级管理员三种）
+}
+@enduml
