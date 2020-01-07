@@ -8,16 +8,16 @@ import sqlalchemy.exc
 from app.security import admin_required
 
 
-@admin_required
 @app.route('/approve/<int:id>')
+@admin_required
 def approve(id):
     meeting = Meeting.query.get(id)
     meeting.status = MeetingStatusType.APPROVED
     db.session.commit()
     return redirect(url_for('meetingInfo',id=id))
 
-@admin_required
 @app.route('/unapprove/<int:id>')
+@admin_required
 def unapprove(id):
     meeting = Meeting.query.get(id)
     meeting.status = MeetingStatusType.UNAPPROVED

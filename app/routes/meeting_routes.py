@@ -6,12 +6,15 @@ from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, load_user, RoleType, MeetingStatusType, Meeting
 import sqlalchemy.exc
 from datetime import datetime,timedelta
+from app.security import user_required
 
 
 @app.route('/registerMeeting', methods=['Get', 'Post'])
-@login_required
+@user_required
 def register_meeting():
-    form = RegisterMeetingForm()
+    form = RegisterMeetingForm(email=current_user.email,
+                               phone=current_user.phone,
+                               contact=current_user.username)
     if form.validate_on_submit():
         meeting = Meeting(
             register=current_user.id,
@@ -22,7 +25,9 @@ def register_meeting():
             url=form.url.data,
             start_date=form.start_date.data,
             end_date=form.end_date.data,
+            key_words=form.key_words.data,
 
+            contact = form.contact.data,
             email=form.email.data,
             phone=form.phone.data,
             introduction=form.introduction.data
@@ -31,7 +36,7 @@ def register_meeting():
             db.session.add(meeting)
             db.session.commit()
             flash('Congratulations, you are now a registered user!')
-            return render_template("meetingInfo.html", meeting=meeting)
+            return redirect(url_for("meetingInfo", id=meeting.id))
         except sqlalchemy.exc.IntegrityError as e:
             flash('注册失败，请检查信息是否完整')
 
@@ -58,4 +63,5 @@ def meetings_week():
 @app.route("/meetingInfo/<int:id>")
 def meetingInfo(id):
     meeting = Meeting.query.get(id)
-    return render_template('meetingInfo.html', meeting=meeting)
+    register = User.query.get(meeting.register)
+    return render_template('meetingInfo.html', meeting=meeting,register=register)

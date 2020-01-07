@@ -35,6 +35,9 @@ class User(UserMixin, db.Model):
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
+    def set_role(self,role):
+        self.role = role
+
 
 @login.user_loader
 def load_user(id):
@@ -45,13 +48,16 @@ class Meeting(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     register = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     reviewer = db.Column(db.Integer, db.ForeignKey('user.id'))
-    status = db.Column(db.Enum(MeetingStatusType))
-    title = db.Column(db.String(100))
+    status = db.Column(db.Enum(MeetingStatusType),nullable=False)
+    title = db.Column(db.String(100),nullable=False)
     short_name = db.Column(db.String(30))
     location = db.Column(db.String(200))
-    start_date = db.Column(db.DateTime)
-    end_date = db.Column(db.DateTime)
+    start_date = db.Column(db.Date,nullable=False)
+    end_date = db.Column(db.Date,nullable=False)
     url = db.Column(db.String(200))
+    key_words = db.Column(db.String(100))
+
+    contact = db.Column(db.String(30))
     email = db.Column(db.String(120), nullable=False)
     phone = db.Column(db.String(20), nullable=False)
     introduction = db.Column(db.String(500))
