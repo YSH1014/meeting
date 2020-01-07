@@ -44,7 +44,7 @@ def meetings():
         all_meetings = Meeting.query.all()
         return render_template('meetings.html', meetings=all_meetings)
     else:
-        all_meetings = Meeting.query.all()
+        all_meetings = Meeting.query.filter(Meeting.status==MeetingStatusType.APPROVED)
         return render_template('meetings.html', meetings=all_meetings)
 
 
@@ -52,7 +52,7 @@ def meetings():
 def meetings_week():
     current_time = datetime.utcnow()
     week_after = current_time + timedelta(weeks=1)
-    all_meetings = db.session.query(Meeting).filter(current_time < Meeting.start_date ).filter(Meeting.start_date<week_after).all()
+    all_meetings = db.session.query(Meeting).filter(Meeting.status==MeetingStatusType.APPROVED).filter(current_time < Meeting.start_date ).filter(Meeting.start_date<week_after).all()
     return render_template('meetings.html', meetings=all_meetings)
 
 @app.route("/meetingInfo/<int:id>")
