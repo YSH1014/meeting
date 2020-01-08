@@ -31,9 +31,19 @@
               </blockquote>
               {% if current_user.role.__str__() == 'RoleType.ADMIN' %}
     <p> 状态：
-        {{meeting.status}}
-    <p>
-    {% if meeting.status.__str__() == 'MeetingStatusType.REGISTED' %}
+        {% if meeting.status.__str__()=='MeetingStatusType.REGISTERED' %}
+            已注册，待审核。
+        {% elif meeting.status.__str__()=='MeetingStatusType.APPROVED' %}
+            审核通过。
+        {% elif meeting.status.__str__() == 'MeetingStatusType.UNAPPROVED' %}
+            审核未通过。
+        {% elif meeting.status.__str__() == 'MeetingStatusType.OUTDUE' %}
+            已过期。
+        {% else %}
+            ...
+        {% endif %}
+    </p>
+    {% if meeting.status.__str__() == 'MeetingStatusType.REGISTERED' %}
         <a href="{{ url_for('approve',id=meeting.id) }}"> 通过审核 </a>
 
         <a href="{{ url_for('unapprove',id=meeting.id) }}"> 不通过</a>

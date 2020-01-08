@@ -24,7 +24,7 @@ class RegisterMeetingForm(FlaskForm):
     title = StringField('会议题目', validators=[DataRequired()])
     short_name = StringField('会议简称')
     location = StringField('会议地点', validators=[DataRequired()])
-    start_date = DateField('会议开始时间 格式形如："2020-1-1" ', validators=[DataRequired()])
+    start_date = DateField('会议开始时间', validators=[DataRequired()])
     end_date = DateField('会议结束时间', validators=[DataRequired()])
     introduction = TextAreaField('会议简介')
     url = StringField('会议链接')

@@ -9,35 +9,35 @@
             {{ form.hidden_tag() }}
             <p>
                 {{ form.title.label(class='form_label') }}
-                {{ form.title(size=32) }}<br>
+                {{ form.title(class=form_input) }}<br>
                 {% for error in form.title.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
             </p>
             <p>
                 {{ form.short_name.label(class='form_label') }}
-                {{ form.short_name(size=32) }}<br>
+                {{ form.short_name(class=form_input) }}<br>
                 {% for error in form.short_name.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
             </p>
             <p>
                 {{ form.location.label(class='form_label') }}
-                {{ form.location(size=32) }}<br>
+                {{ form.location(class=form_input) }}<br>
                 {% for error in form.location.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
             </p>
             <p>
                 {{ form.start_date.label(class='form_label') }}
-                {{ form.start_date(size=32) }}<br>
+                {{ form.start_date(class=form_input,type="date") }}<br>
                 {% for error in form.start_date.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
             </p>
             <p>
                 {{ form.end_date.label(class='form_label') }}
-                {{ form.end_date(size=32) }}<br>
+                {{ form.end_date(class=form_input,type="date") }}<br>
                 {% for error in form.end_date.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
@@ -45,28 +45,28 @@
 
             <p>
                 {{ form.introduction.label(class='form_label') }}
-                {{ form.introduction(size=80) }}<br>
+                {{ form.introduction(class=form_input) }}<br>
                 {% for error in form.introduction.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
             </p>
             <p>
                 {{ form.key_words.label(class='form_label') }}
-                {{ form.key_words(size=32) }}<br>
+                {{ form.key_words(class=form_input) }}<br>
                 {% for error in form.key_words.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
             </p>
             <p>
                 {{ form.url.label(class='form_label') }}
-                {{ form.url(size=32) }}<br>
+                {{ form.url(class=form_input) }}<br>
                 {% for error in form.url.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
             </p>
             <p>
                 {{ form.contact.label(class='form_label') }}
-                {{ form.contact(size=32) }}<br>
+                {{ form.contact(class=form_input) }}<br>
                 {% for error in form.contact.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
@@ -74,7 +74,7 @@
 
             <p>
                 {{ form.email.label(class='form_label') }}
-                {{ form.email(size=32) }}<br>
+                {{ form.email(class=form_input) }}<br>
                 {% for error in form.email.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
@@ -82,7 +82,7 @@
 
             <p>
                 {{ form.phone.label(class='form_label') }}
-                {{ form.phone(size=32) }}<br>
+                {{ form.phone(class=form_input) }}<br>
                 {% for error in form.phone.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
