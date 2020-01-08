@@ -5,9 +5,9 @@ from flask_login import current_user
 
 class LoginForm(FlaskForm):
     email = StringField('email', validators=[DataRequired(), Email()])
-    password = PasswordField('Password', validators=[DataRequired()])
-    remember_me = BooleanField('Remember Me')
-    submit = SubmitField('Sign In')
+    password = PasswordField('密码', validators=[DataRequired()])
+    remember_me = BooleanField('记住我')
+    submit = SubmitField('登录')
 
 
 class RegisterForm(FlaskForm):

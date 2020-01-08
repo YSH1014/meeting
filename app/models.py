@@ -11,7 +11,7 @@ class RoleType(Enum):
 
 
 class MeetingStatusType(Enum):
-    REGISTED = auto()  # 已注册，待审核
+    REGISTERED = auto()  # 已注册，待审核
     APPROVED = auto()  # 审核通过
     UNAPPROVED = auto()  # 审核未通过
     OUTDUE = auto()  # 过期

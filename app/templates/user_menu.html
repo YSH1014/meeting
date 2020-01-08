@@ -1,0 +1,39 @@
+<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLNG"
+                                 role="button" data-toggle="dropdown" aria-haspopup="true"
+                                 aria-expanded="false"> <img class="languageImg" src={{url_for('static'
+                                                             ,filename="u/img/index-img/zhongwen.png" )}}
+                                                             alt=".."></a>
+    <div class="dropdown-menu indexDropdownMenu" aria-labelledby="navbarDropdownLNG"
+         style="min-width: 20px;"><a class="dropdown-item" href="#"><img class="languageImg"
+                                                                         src={{url_for('static'
+                                                                         ,filename="u/img/index-img/zhongwen.png"
+                                                                         )}} alt=".."></a> <a
+            class="dropdown-item" href="#"><img class="languageImg" src={{url_for('static'
+                                                ,filename="u/img/index-img/yingwen.png" )}} alt=".."></a>
+    </div>
+</li>
+
+{% if current_user.is_anonymous %}
+<!-- 未登录，显示登录注册两个框 -->
+<li class="nav-item"><a class="nav-link index-topNav-link" href={{ url_for('login') }}>登录</a></li>
+<li class="nav-item"><a class="nav-link index-topNav-link" href={{ url_for('register') }}>注册</a>
+</li>
+{% else %}
+<!-- 已登录 -->
+<li class="nav-item"><a class="nav-link index-topNav-link" href="{{ url_for('userInfo') }}">您好，{{
+    current_user.username }}</a></li>
+<li class="nav-item"><a class="nav-link index-topNav-link" href="{{ url_for('logout') }}">退出</a>
+</li>
+
+{% if current_user.role.__str__() == 'RoleType.ROOT' %}
+<!--角色为root，包含用户管理链接 -->
+<li class="nav-item"><a class="nav-link index-topNav-link" href="{{ url_for('users') }}">用户管理</a></li>
+{% endif %}
+{% if current_user.role.__str__() == 'RoleType.ADMIN' %}
+<!-- 角色为admin,包含会议管理链接 -->
+<li class="nav-item"><a class="nav-link index-topNav-link" href="{{ url_for('meetings',status='registered') }}">查看待审核会议</a></li>
+
+{% endif %}
+{% endif %}
+
+

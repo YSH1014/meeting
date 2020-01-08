@@ -1,6 +1,6 @@
 from app import app
 from app import db
-from flask import render_template, redirect, url_for, flash,request
+from flask import render_template, redirect, url_for, flash, request
 from app.forms import LoginForm, RegisterForm, RegisterMeetingForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, load_user, RoleType, MeetingStatusType, Meeting
@@ -18,7 +18,7 @@ def register_meeting():
     if form.validate_on_submit():
         meeting = Meeting(
             register=current_user.id,
-            status=MeetingStatusType.REGISTED,
+            status=MeetingStatusType.REGISTERED,
             title=form.title.data,
             short_name=form.short_name.data,
             location=form.location.data,
@@ -45,23 +45,26 @@ def register_meeting():
 
 @app.route("/meetings")
 def meetings():
-
-    start_year = request.args.get('start_year',2020)
-    start_month = request.args.get('start_month',1)
-    start_day = request.args.get('start_day',1)
-    end_year = request.args.get('end_year',9999)
-    end_month = request.args.get('end_month',12)
-    end_day = request.args.get('end_day',31)
+    start_year = request.args.get('start_year', 2020)
+    start_month = request.args.get('start_month', 1)
+    start_day = request.args.get('start_day', 1)
+    end_year = request.args.get('end_year', 9999)
+    end_month = request.args.get('end_month', 12)
+    end_day = request.args.get('end_day', 31)
+    status = request.args.get('status', 'all')
     try:
         start_date = date(int(start_year), int(start_month), int(start_day))
         end_date = date(int(end_year), int(end_month), int(end_day))
-    except:
-        return redirect(url_for('error',message='请求参数无效，请检查日期是否存在'))
+    except ValueError as e:
+        return redirect(url_for('error', message='请求参数无效，请检查日期是否存在' + e))
 
-    if current_user.is_authenticated and current_user.role == RoleType.ADMIN:  # 对管理员显示全部会议
+    if current_user.is_authenticated \
+            and current_user.role == RoleType.ADMIN \
+            and status == 'registered':  # 对管理员显示未审批会议
         all_meetings = Meeting.query.filter(
             Meeting.start_date > start_date,
-            Meeting.start_date < end_date
+            Meeting.start_date < end_date,
+            Meeting.status == MeetingStatusType.REGISTERED
         ).order_by(Meeting.start_date).all()
         return render_template('meetings.html', meetings=all_meetings)
     else:
