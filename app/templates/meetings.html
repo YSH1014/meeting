@@ -7,11 +7,11 @@
 {% for meeting in meetings %}
 <div class="card meetings-card">
     <div class="card-header">
-        2020 Meetings
+        {{meeting.title}}
     </div>
     <div class="card-body">
         <blockquote class="blockquote mb-0">
-            <p class="meetings-title">{{meeting.title}}</p>
+            <p class="meetings-title">{{meeting.short_name}}</p>
 
             <div class="row meetings-detail">
                 <div class="col-sm-1">日期</div>

@@ -9,11 +9,11 @@
         {{ form.hidden_tag() }}
         <p>
             {{ form.email.label(class='form_label') }}
-            {{ form.email(size=32) }}
+            {{ form.email(class="form_input") }}
         </p>
         <p>
             {{ form.password.label(class='form_label') }}
-            {{ form.password(size=32) }}
+            {{ form.password(class="form_input") }}
         </p>
         <p>{{ form.remember_me() }} {{ form.remember_me.label(class='form_label') }}</p>
         <p>{{ form.submit() }}</p>
