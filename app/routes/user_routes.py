@@ -16,10 +16,17 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
-        if user is None or not user.check_password(form.password.data):
-            flash('Invalid email or password')
+        # 返回错误信息
+        if user is None:
+            flash("用户不存在")
             return redirect(url_for('login'))
+        elif not user.check_password(form.password.data):
+            flash('密码错误')
+            return redirect(url_for('login'))
+
+        #登录成功
         login_user(user, remember=form.remember_me.data)
+        flash("登录成功")
         return redirect(url_for('userInfo'))
 
     #   return render_template('userInfo.html',user={'name':form.username.data})
@@ -32,6 +39,7 @@ def login():
 def userInfo():
     # 用户未登录，重定向到登录界面
     if not current_user.is_authenticated:
+        flash("请登录")
         return redirect(url_for('index'))
 
     return render_template('userInfo.html')

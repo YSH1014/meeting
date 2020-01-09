@@ -117,12 +117,25 @@
             }
 
 
+
+
                             </style>
                             {% block title %}
                             {% endblock %}
                         </div>
                     </div>
 
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    <ul class="flash">
+                        {% for message in messages %}
+                        <div class="alert alert-success" style="text-align: center">
+                            <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                            <strong>{{ message }}</strong></div>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    {% endwith %}
 
                     {% block content %}
                     {% endblock %}
@@ -130,11 +143,7 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid lg-container">
-        <div class="row">
-            <div class="card"> alsikdjf1</div>
-        </div>
-    </div>
+
 </div>
 </body>
 {% include 'footer.html' %}
