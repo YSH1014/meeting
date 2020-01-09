@@ -15,7 +15,7 @@ class RegisterForm(FlaskForm):
     password = PasswordField('密码', validators=[DataRequired()])
     password2 = PasswordField('重新输入密码', validators=[DataRequired(), EqualTo('password')])
     email = StringField('Email', validators=[DataRequired(), Email()])
-    phone = StringField('电话号码+86', validators=[DataRequired()])
+    phone = StringField('电话', validators=[DataRequired()])
     address = StringField('地址')
     submit = SubmitField('注册')
 
@@ -32,6 +32,6 @@ class RegisterMeetingForm(FlaskForm):
     # 默认自动填写
     contact = StringField('联系人姓名', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
-    phone = StringField('电话+ 86', validators=[DataRequired()])
+    phone = StringField('电话', validators=[DataRequired()])
 
     submit = SubmitField('提交')
