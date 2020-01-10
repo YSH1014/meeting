@@ -1,10 +1,12 @@
 from flask import Flask
-from app.config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_migrate import Migrate
-
+from dotenv import load_dotenv
 app = Flask(__name__)
+load_dotenv('.flaskenv')
+load_dotenv('.env')
+from app.config import Config
 app.config.from_object(Config)
 
 login = LoginManager(app)

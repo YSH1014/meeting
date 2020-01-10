@@ -1,12 +1,13 @@
 from app import app
 from app import db
 from flask import render_template, redirect, url_for, flash, request
-from app.forms import LoginForm, RegisterForm, RegisterMeetingForm
+from app.forms import LoginForm, RegisterForm, RegisterMeetingForm, UpdateMeeting
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, load_user, RoleType, MeetingStatusType, Meeting
 import sqlalchemy.exc
 from datetime import datetime, timedelta, date
 from app.security import user_required
+from sqlalchemy.sql import or_
 
 
 @app.route('/registerMeeting', methods=['Get', 'Post'])
@@ -35,14 +36,108 @@ def register_meeting():
         try:
             db.session.add(meeting)
             db.session.commit()
-            flash('Congratulations, you are now a registered user!')
-            return redirect(url_for("meetingInfo", id=meeting.id))
+            flash('注册成功，请等待管理员审核')
+            return redirect(url_for("meeting_detail", id=meeting.id))
         except sqlalchemy.exc.IntegrityError as e:
             flash('注册失败，请检查信息是否完整')
 
-    return render_template('registerMeeting.html', form=form)
+    return render_template('registerMeeting.html', form=form, action='/register_meeting')
 
 
+@app.route('/update_meeting_form/<int:id>',methods=['get','post'])
+@user_required
+def update_meeting_form(id):
+    meeting = Meeting.query.get(id)
+    if (meeting.register != current_user.id):
+        return redirect(url_for('error', message='您不是该会议注册者，无法修改'))
+    # 将原有属性填入新表单
+    form = RegisterMeetingForm(
+        title=meeting.title,
+        short_name=meeting.short_name,
+        location=meeting.location,
+        start_date=meeting.start_date,
+        end_date=meeting.end_date,
+        introduction=meeting.introduction,
+        url=meeting.url,
+        key_words=meeting.key_words,
+        contact=meeting.contact,
+        email=meeting.email,
+        phone=meeting.phone
+    )
+    if form.validate_on_submit():
+
+        meeting = Meeting.query.get(id)
+
+        meeting.register=current_user.id
+        meeting.status= MeetingStatusType.REGISTERED
+        meeting.title=form.title.data
+        meeting.short_name=form.short_name.data
+        meeting.location=form.location.data
+        meeting.url=form.url.data
+        meeting.start_date=form.start_date.data
+        meeting.end_date=form.end_date.data
+        meeting.key_words=form.key_words.data
+        meeting.contact=form.contact.data
+        meeting.email=form.email.data
+        meeting.phone=form.phone.data
+        meeting.introduction=form.introduction.data
+
+        db.session.commit()
+        flash("修改成功，等待管理员再次审核")
+        return redirect(url_for("meeting_detail", id=meeting.id))
+    else :
+        return render_template('registerMeeting.html', form=form, action=url_for('update_meeting_form', id=id))
+
+
+@app.route("/meetings")
+def meetings():
+    try:
+        query_id = request.args.get('id')
+        if query_id:
+            return redirect(url_for('meeting_detail', id=query_id))
+        query_filter = []
+        start_date = request.args.get('start_date')
+
+        # 处理　start_date
+        if start_date:
+            start_date = datetime.strptime(start_date, '%Y-%m-%d').date()
+        else:
+            start_date = date.today()
+
+        query_filter.append(Meeting.start_date >= start_date)
+
+        # 处理　end_date
+        end_date = request.args.get('end_date')
+        if end_date:
+            end_date = datetime.strptime(end_date, '%Y-%m-%d').date()
+            query_filter.append(Meeting.start_date <= end_date)
+
+        # 处理status
+        # 如果是管理员，则读取该参数，否则用approved
+        status = request.args.get('status', 'APPROVED') \
+            if current_user.is_authenticated and current_user.role == RoleType.ADMIN else \
+            'APPROVED'
+
+        query_filter.append(Meeting.status == MeetingStatusType.__members__[status])
+
+        # 处理search_keywords
+        search_keywords = request.args.get('keywords')
+        if search_keywords:
+            search_keywords = '%' + search_keywords + '%'
+            query_filter.append(or_(Meeting.title.like(search_keywords)))
+            query_filter.append(or_(Meeting.introduction.like(search_keywords)))
+            query_filter.append(or_(Meeting.key_words.like(search_keywords)))
+
+        all_meetings = Meeting.query.filter(*query_filter).all()
+        return render_template('meetings.html', meetings=all_meetings)
+
+
+
+    except ValueError as e:
+        return redirect(url_for('error', message='请求参数无效，请检查日期是否存在' + e))
+
+
+'''
 @app.route("/meetings")
 def meetings():
     start_year = request.args.get('start_year', 2020)
@@ -74,6 +169,7 @@ def meetings():
             Meeting.start_date < end_date
         ).order_by(Meeting.start_date).all()
         return render_template('meetings.html', meetings=all_meetings)
+'''
 
 
 @app.route("/meetings_week")
@@ -86,7 +182,12 @@ def meetings_week():
 
 
 @app.route("/meetingInfo/<int:id>")
-def meetingInfo(id):
+def meeting_detail(id):
     meeting = Meeting.query.get(id)
     register = User.query.get(meeting.register)
-    return render_template('meetingInfo.html', meeting=meeting, register=register)
+    return render_template('meeting_detail.html', meeting=meeting, register=register)
+
+
+@app.route("/search_meeting")
+def search_meeting():
+    return render_template("search_meeting.html")

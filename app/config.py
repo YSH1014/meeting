@@ -4,6 +4,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 
 class Config(object):
+
     POSTGRES_URL = os.environ.get("POSTGRES_URL")
     POSTGRES_USER = os.environ.get("POSTGRES_USER")
     POSTGRES_PW = os.environ.get("POSTGRES_PW")

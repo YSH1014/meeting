@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, DateField, TextAreaField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, DateField, TextAreaField,IntegerField
 from wtforms.validators import DataRequired, EqualTo, Email
 from flask_login import current_user
 
@@ -35,3 +35,12 @@ class RegisterMeetingForm(FlaskForm):
     phone = StringField('电话', validators=[DataRequired()])
 
     submit = SubmitField('提交')
+
+
+class UpdateMeeting(RegisterForm):
+    id = IntegerField()
+
+
+class QueryMeetingById(FlaskForm):
+    id = IntegerField('输入id',validators=[DataRequired()])
+    submit = SubmitField('查询')

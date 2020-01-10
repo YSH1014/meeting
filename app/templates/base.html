@@ -5,8 +5,8 @@
         <ul class="navbar-nav indexNavbar-ul">
             {% include 'user_menu.html' %}
         </ul>
-        <form class="form-inline my-2 my-lg-0 input-group-sm">
-            <input class="form-control mr-sm-2 index-topNav-searchBox" type="search" placeholder="站内搜索"
+        <form action="/meetings" class="form-inline my-2 my-lg-0 input-group-sm">
+            <input name="keywords" class="form-control mr-sm-2 index-topNav-searchBox" type="search" placeholder="站内搜索"
                    aria-label="Search">
             <button class="btn my-2 my-sm-0 btn-sm" type="submit">Search</button>
         </form>
@@ -62,23 +62,15 @@
                             class="nav-link meeting-sidebar-navlink" href={{
                             url_for(
                         "meetings",
-                        start_year = 2021,
-                        start_month = 1,
-                        start_day = 1,
-                        end_year = 2021,
-                        end_month = 12,
-                        end_day = 31
+                        start_date='2021-1-1',
+                        end_date='2021-12-31'
                         )}}>2021 Meetings</a></li>
                     <li class="nav-item list-group-item meeting-sidebar-item"><a
                             class="nav-link meeting-sidebar-navlink" href={{
                             url_for(
                         "meetings",
-                        start_year = 2020,
-                        start_month = 1,
-                        start_day = 1,
-                        end_year = 2020,
-                        end_month = 12,
-                        end_day = 31
+                        start_date='2020-1-1',
+                        end_date='2020-12-31'
                         )}}>2020 Meetings</a></li>
                     <li class="dropdown-divider"></li>
                     <li class="nav-item list-group-item meeting-sidebar-subtitle"><img src={{url_for('static'
@@ -91,7 +83,7 @@
                             class="nav-link meeting-sidebar-navlink" href={{ url_for("register_meeting") }}>Submit new
                         meetings</a></li>
                     <li class="nav-item list-group-item meeting-sidebar-item"><a
-                            class="nav-link meeting-sidebar-navlink" href="#">Update Meeting Information</a></li>
+                            class="nav-link meeting-sidebar-navlink" href={{url_for('search_meeting')}}>Update Meeting Information</a></li>
                     <li class="nav-item list-group-item meeting-sidebar-subtitle"><img src={{url_for('static'
                                                                                        ,filename="u/img/meetings-img/linkIcon.png"
                                                                                        )}} alt="..."

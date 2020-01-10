@@ -31,7 +31,7 @@
 {% endif %}
 {% if current_user.role.__str__() == 'RoleType.ADMIN' %}
 <!-- 角色为admin,包含会议管理链接 -->
-<li class="nav-item"><a class="nav-link index-topNav-link" href="{{ url_for('meetings',status='registered') }}">查看待审核会议</a></li>
+<li class="nav-item"><a class="nav-link index-topNav-link" href="{{ url_for('meetings',status='REGISTERED') }}">查看待审核会议</a></li>
 
 {% endif %}
 {% endif %}

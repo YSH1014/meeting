@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}
+查找会议
+{% endblock %}
+{% block content %}
+<div class="card meetings-card">
+    <div class="card-body meeting-intro">
+        <form action="/meetings" method="get">
+            id :<input name="id" type="number" />
+            <input type="submit" text="id精确查找" >
+        </form>
+
+        <!--明天修改后加上
+        <form action="/meetings" method="post">
+            关键词：<input type="text" />
+            <input type="submit" text="关键词模糊查找" />
+        </form>
+        -->
+    </div>
+</div>
+
+{% endblock %}

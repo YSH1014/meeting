@@ -14,7 +14,7 @@ def approve(id):
     meeting = Meeting.query.get(id)
     meeting.status = MeetingStatusType.APPROVED
     db.session.commit()
-    return redirect(url_for('meetingInfo',id=id))
+    return redirect(url_for('meeting_detail',id=id))
 
 @app.route('/unapprove/<int:id>')
 @admin_required
