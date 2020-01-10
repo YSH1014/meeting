@@ -115,11 +115,15 @@ def meetings():
         # 处理status
         # 如果是管理员，则读取该参数，否则用approved
         status = request.args.get('status', 'APPROVED') \
-            if current_user.is_authenticated and current_user.role == RoleType.ADMIN else \
-            'APPROVED'
+ #           if current_user.is_authenticated and current_user.role == RoleType.ADMIN else \
+  #          'APPROVED'
 
         query_filter.append(Meeting.status == MeetingStatusType.__members__[status])
 
+        # 处理 register
+        register = request.args.get('register')
+        if register:
+            query_filter.append(Meeting.register == int(register))
         # 处理search_keywords
         search_keywords = request.args.get('keywords')
         if search_keywords:

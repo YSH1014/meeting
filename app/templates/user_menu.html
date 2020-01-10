@@ -24,6 +24,18 @@
     current_user.username }}</a></li>
 <li class="nav-item"><a class="nav-link index-topNav-link" href="{{ url_for('logout') }}">退出</a>
 </li>
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                                                 role="button" data-toggle="dropdown" aria-haspopup="true"
+                                                 aria-expanded="false"> 我注册的会议</a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown" >
+        <a class="dropdown-item" href={{url_for('meetings',register=current_user.id,status='REGISTERED')}}>待审核</a>
+        <a class="dropdown-item" href={{url_for('meetings',register=current_user.id,status='UNAPPROVED')}}>未通过</a>
+        <a class="dropdown-item" href={{url_for('meetings',register=current_user.id,status='APPROVED')}}>已通过</a>
+        <a class="dropdown-item" href={{url_for('meetings',register=current_user.id,status='OUTDUE')}}>已过期</a>
+
+    </div>
+</li>
 
 {% if current_user.role.__str__() == 'RoleType.ROOT' %}
 <!--角色为root，包含用户管理链接 -->
@@ -31,7 +43,8 @@
 {% endif %}
 {% if current_user.role.__str__() == 'RoleType.ADMIN' %}
 <!-- 角色为admin,包含会议管理链接 -->
-<li class="nav-item"><a class="nav-link index-topNav-link" href="{{ url_for('meetings',status='REGISTERED') }}">查看待审核会议</a></li>
+<li class="nav-item"><a class="nav-link index-topNav-link"
+                        href="{{ url_for('meetings',status='REGISTERED') }}">查看待审核会议</a></li>
 
 {% endif %}
 {% endif %}
