@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}
-查找会议
+输入会议id进行查找并修改
 {% endblock %}
 {% block content %}
 <div class="card meetings-card">
@@ -12,12 +12,7 @@
             </p>
         </form>
 
-        <form action="/meetings">
-            <p align="center">
-                关键词：<input name="keywords" type="text"/>
-                <input type="submit" value="关键词模糊查找"/>
-            </p>
-        </form>
+
 
     </div>
 </div>

@@ -42,6 +42,7 @@
             {% else %}
             ...
             {% endif %}
+            <a href={{ url_for('update_meeting_form',id=meeting.id)}}>修改信息</a>
         </p>
 
         <!--管理员界面 -->
@@ -51,10 +52,7 @@
         <a href="{{ url_for('unapprove',id=meeting.id) }}"> 不通过</a>
         {% endif %}
 
-        <!--注册者界面　-->
-        {% if meeting.register == current_user.id %}
-            <a href={{ url_for('update_meeting_form',id=meeting.id)}}>修改信息</a>
-        {% endif %}
+
     </div>
 </div>
 <div class="card meetings-card">

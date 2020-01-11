@@ -48,8 +48,13 @@ def register_meeting():
 @user_required
 def update_meeting_form(id):
     meeting = Meeting.query.get(id)
+    if not meeting:
+        return redirect(url_for('error',message='会议不存在'))
+    #去掉了权限审核页面，任何注册用户都可以修改
+    '''
     if (meeting.register != current_user.id):
         return redirect(url_for('error', message='您不是该会议注册者，无法修改'))
+        '''
     # 将原有属性填入新表单
     form = RegisterMeetingForm(
         title=meeting.title,
@@ -68,7 +73,7 @@ def update_meeting_form(id):
 
         meeting = Meeting.query.get(id)
 
-        meeting.register=current_user.id
+        meeting.register = current_user.id
         meeting.status= MeetingStatusType.REGISTERED
         meeting.title=form.title.data
         meeting.short_name=form.short_name.data
