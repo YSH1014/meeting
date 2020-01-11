@@ -5,19 +5,20 @@
 {% block content %}
 <div class="card meetings-card">
     <div class="card-body meeting-intro">
-        <form action="/meetings" method="get" >
+        <form action="/meetings" method="get">
             <p align="center">
-                id :<input name="id" type="number" />
-            <input type="submit" text="id精确查找" >
+                id :<input name="id" type="number"/>
+                <input type="submit" value="id精确查找">
             </p>
         </form>
 
-        <!--明天修改后加上
-        <form action="/meetings" method="post">
-            关键词：<input type="text" />
-            <input type="submit" text="关键词模糊查找" />
+        <form action="/meetings">
+            <p align="center">
+                关键词：<input name="keywords" type="text"/>
+                <input type="submit" value="关键词模糊查找"/>
+            </p>
         </form>
-        -->
+
     </div>
 </div>
 
