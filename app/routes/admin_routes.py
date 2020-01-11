@@ -22,4 +22,4 @@ def unapprove(id):
     meeting = Meeting.query.get(id)
     meeting.status = MeetingStatusType.UNAPPROVED
     db.session.commit()
-    return redirect(url_for('meetingInfo', id=id))
+    return redirect(url_for('meeting_detail', id=id))
