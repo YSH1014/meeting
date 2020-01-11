@@ -5,9 +5,11 @@
 {% block content %}
 <div class="card meetings-card">
     <div class="card-body meeting-intro">
-        <form action="/meetings" method="get">
-            id :<input name="id" type="number" />
+        <form action="/meetings" method="get" >
+            <p align="center">
+                id :<input name="id" type="number" />
             <input type="submit" text="id精确查找" >
+            </p>
         </form>
 
         <!--明天修改后加上
