@@ -95,7 +95,6 @@ def meetings():
         query_id = request.args.get('id')
         if query_id:
             return redirect(url_for('meeting_detail', id=query_id))
-        query_filter = []
         start_date = request.args.get('start_date')
 
         # 处理　start_date
@@ -104,13 +103,12 @@ def meetings():
         else:
             start_date = date.today()
 
-        query_filter.append(Meeting.start_date >= start_date)
-
+        query = Meeting.query.filter(Meeting.start_date >= start_date)
         # 处理　end_date
         end_date = request.args.get('end_date')
         if end_date:
             end_date = datetime.strptime(end_date, '%Y-%m-%d').date()
-            query_filter.append(Meeting.start_date <= end_date)
+            query = query.filter(Meeting.start_date <= end_date)
 
         # 处理status
         # 如果是管理员，则读取该参数，否则用approved
@@ -118,21 +116,24 @@ def meetings():
  #           if current_user.is_authenticated and current_user.role == RoleType.ADMIN else \
   #          'APPROVED'
 
-        query_filter.append(Meeting.status == MeetingStatusType.__members__[status])
+        query = query.filter(Meeting.status == MeetingStatusType.__members__[status])
 
         # 处理 register
         register = request.args.get('register')
         if register:
-            query_filter.append(Meeting.register == int(register))
+            query = query.filter(Meeting.register == register)
         # 处理search_keywords
         search_keywords = request.args.get('keywords')
         if search_keywords:
-            search_keywords = '%' + search_keywords + '%'
-            query_filter.append(or_(Meeting.title.like(search_keywords)))
-            query_filter.append(or_(Meeting.introduction.like(search_keywords)))
-            query_filter.append(or_(Meeting.key_words.like(search_keywords)))
+            search_keywords = "%{}%".format(search_keywords)
+            query = query.filter(or_(
+                Meeting.title.like(search_keywords),
+                Meeting.introduction.like(search_keywords),
+                Meeting.key_words.like(search_keywords),
+                Meeting.short_name.like(search_keywords)
+            ))
 
-        all_meetings = Meeting.query.filter(*query_filter).all()
+        all_meetings = query.all()
         return render_template('meetings.html', meetings=all_meetings)
 
 
