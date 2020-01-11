@@ -188,6 +188,8 @@ def meetings_week():
 @app.route("/meetingInfo/<int:id>")
 def meeting_detail(id):
     meeting = Meeting.query.get(id)
+    if not meeting:
+        return redirect(url_for('error',message='会议不存在'))
     register = User.query.get(meeting.register)
     return render_template('meeting_detail.html', meeting=meeting, register=register)
 
