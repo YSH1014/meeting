@@ -44,12 +44,18 @@ def register_meeting():
     return render_template('registerMeeting.html', form=form, action='/register_meeting')
 
 
-@app.route('/update_meeting_form/<int:id>',methods=['get','post'])
+@app.route('/update_meeting_form',methods=['get','post'])
 @user_required
-def update_meeting_form(id):
+def update_meeting_form():
+    id = request.args.get('id',None)
+    if not id:
+        return redirect(url_for('error',message='更新会议需要id作为参数'))
     meeting = Meeting.query.get(id)
     if not meeting:
         return redirect(url_for('error',message='会议不存在'))
+    # 判定是否有权修改（只有已通过的会议可以进行完善）
+    if meeting.status != MeetingStatusType.APPROVED:
+        return redirect(url_for('error',message='会议审核中，无法修改'))
     #去掉了权限审核页面，任何注册用户都可以修改
     '''
     if (meeting.register != current_user.id):

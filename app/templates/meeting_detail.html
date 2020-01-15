@@ -18,21 +18,33 @@
                 <div class="col-sm-10">{{meeting.contact}}</div>
                 <div class="col-sm-2">联系电话</div>
                 <div class="col-sm-10">{{meeting.phone}}</div>
-                <div class="col-sm-2">官网</div>
+                <div class="col-sm-2">会议网址</div>
                 <div class="col-sm-10">{{meeting.url}}</div>
                 <div class="col-sm-2">邮件</div>
                 <div class="col-sm-10">{{meeting.email}}</div>
-                <div class="col-sm-2">会议论文</div>
-                <div class="col-sm-10">暂无</div>
                 <div class="col-sm-2">关键词</div>
                 <div class="col-sm-10">{{meeting.key_words}}</div>
+                <div class="col-sm-2">会议主题</div>
+                <div class="col-sm-10">{{meeting.introduction}} </div>
                 <div class="col-sm-2">编号</div>
                 <div class="col-sm-10">{{meeting.id}}</div>
             </div>
         </blockquote>
+
+        <!-- 对已登录用户显示修改界面 -->
+        {% if current_user.is_authenticated and meeting.status.__str__()=='MeetingStatusType.APPROVED' %}
+        <a href={{ url_for('update_meeting_form',id=meeting.id)}}>修改信息</a>
+        {% endif %}
+
+        <!--管理员界面 -->
+        {% if current_user.role.__str__()=='RoleType.ADMIN' %}
         <p> 状态：
             {% if meeting.status.__str__()=='MeetingStatusType.REGISTERED' %}
+            <!-- 除了显示状态之外，还有通过/不通过选项 -->
             已注册，待审核。
+            <a href="{{ url_for('approve',id=meeting.id) }}"> 通过审核 </a>
+
+            <a href="{{ url_for('unapprove',id=meeting.id) }}"> 不通过</a>
             {% elif meeting.status.__str__()=='MeetingStatusType.APPROVED' %}
             审核通过。
             {% elif meeting.status.__str__() == 'MeetingStatusType.UNAPPROVED' %}
@@ -42,14 +54,8 @@
             {% else %}
             ...
             {% endif %}
-            <a href={{ url_for('update_meeting_form',id=meeting.id)}}>修改信息</a>
         </p>
 
-        <!--管理员界面 -->
-        {% if meeting.status.__str__() == 'MeetingStatusType.REGISTERED' and current_user.role.__str__()=='RoleType.ADMIN' %}
-        <a href="{{ url_for('approve',id=meeting.id) }}"> 通过审核 </a>
-
-        <a href="{{ url_for('unapprove',id=meeting.id) }}"> 不通过</a>
         {% endif %}
 
 
@@ -62,9 +68,10 @@
 
 
 
+
         </script>
     </div>
-</div
+</div>
 
 
-        {% endblock %}
+{% endblock %}
