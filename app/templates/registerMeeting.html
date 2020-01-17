@@ -64,6 +64,13 @@
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
             </p>
+             <p>
+                {{ form.lang.label(class="form_label") }}
+                {{ form.lang(class="form_input") }}<br>
+                {% for error in form.lang.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
             <p>
                 {{ form.contact.label(class="form_label") }}
                 {{ form.contact(class="form_input") }}<br>
