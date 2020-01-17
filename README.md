@@ -11,15 +11,12 @@
 * 建立virtualenv:```python3 -m virtualenv virtualenv```
 * 使用virtualenv的python环境：```. virtualenv/bin/activate```
 * 安装运行必备包```pip install -r requirements.txt```
-* 编写配置文件（新建 .flaskenv 文件)
+* 编写配置文件（新建 .env 文件)
 ```
  POSTGRES_URL="xxx.xxx.xxx.xxx:xxxx"
  POSTGRES_USER="xxx"
  POSTGRES_PW="xxx"
  POSTGRES_DB="xxx"
-
- FLASK_APP=meeting.py
- FLASK_ENV=production
 ```
 * 初始数据库：
 ```
