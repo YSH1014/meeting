@@ -144,7 +144,7 @@ def meetings():
                 Meeting.short_name.like(search_keywords)
             ))
 
-        all_meetings = query.all()
+        all_meetings = query.order_by(Meeting.start_date).all()
         return render_template('meetings.html', meetings=all_meetings)
 
 
