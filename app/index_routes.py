@@ -5,7 +5,7 @@ from app.forms import LoginForm, RegisterForm, RegisterMeetingForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, load_user, RoleType, MeetingStatusType, Meeting
 import sqlalchemy.exc
-
+# from app import bp
 
 @app.route('/')
 @app.route('/index')

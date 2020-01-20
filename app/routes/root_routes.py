@@ -6,7 +6,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, load_user, RoleType, MeetingStatusType, Meeting
 import sqlalchemy.exc
 from app.security import admin_required, user_required, root_required
-
+# from app import bp
 
 @app.route('/users')
 @root_required

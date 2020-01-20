@@ -8,7 +8,7 @@ import sqlalchemy.exc
 from datetime import datetime, timedelta, date
 from app.security import user_required
 from sqlalchemy.sql import or_
-
+# from app import bp
 
 @app.route('/registerMeeting', methods=['Get', 'Post'])
 @user_required

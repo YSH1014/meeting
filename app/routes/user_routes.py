@@ -6,7 +6,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, load_user, RoleType, MeetingStatusType, Meeting
 from app.security import user_required
 import sqlalchemy.exc
-
+# from app import bp
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

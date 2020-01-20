@@ -1,0 +1,199 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>国家天文科学数据中心 | National Astronomical Data Center | NADC</title>
+
+    <!-- Bootstrap -->
+    <link href=/static/u/css/bootstrap.min.css rel="stylesheet">
+
+    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src=/static/u/js/jquery.min.js></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src=/static/u/js/bootstrap.min.js></script>
+    <link href=/static/u/css/style.css rel="stylesheet">
+    <link rel="stylesheet" href=/static/u/css/nadc.css type="text/css"/>
+</head>
+<body>
+<nav class="navbar navbar-expand navbar-dark topNav-bg index-topNav">
+    <div class="container-fluid index-navbar-container">
+        <ul class="navbar-nav indexNavbar-ul">
+            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLNG"
+                                 role="button" data-toggle="dropdown" aria-haspopup="true"
+                                 aria-expanded="false"> <img class="languageImg" src=/static/u/img/index-img/zhongwen.png
+                                                             alt=".."></a>
+    <div class="dropdown-menu indexDropdownMenu" aria-labelledby="navbarDropdownLNG"
+         style="min-width: 20px;"><a class="dropdown-item" href="#"><img class="languageImg"
+                                                                         src=/static/u/img/index-img/zhongwen.png alt=".."></a> <a
+            class="dropdown-item" href="#"><img class="languageImg" src=/static/u/img/index-img/yingwen.png alt=".."></a>
+    </div>
+</li>
+
+
+<!-- 未登录，显示登录注册两个框 -->
+<li class="nav-item"><a class="nav-link index-topNav-link" href=/login>登录</a></li>
+<li class="nav-item"><a class="nav-link index-topNav-link" href=/register>注册</a>
+</li>
+
+
+
+        </ul>
+        <form action="/meetings" class="form-inline my-2 my-lg-0 input-group-sm">
+            <input name="keywords" class="form-control mr-sm-2 index-topNav-searchBox" type="search" placeholder="站内搜索"
+                   aria-label="Search">
+            <button class="btn my-2 my-sm-0 btn-sm" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<nav class="navbar navbar-expand-lg navbar-light bg-white index-SecNav">
+    <div class="container-fluid index-navbar-container">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
+                class="navbar-toggler-icon"></span></button>
+        <a class="navbar-brand" href="#"><img src=/static/u/img/index-img/NADCLogoTransHorizontal.png width="300"
+                                              alt=".."></a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link" href="#">OBSERVATION</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">DATA</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">TOOLS</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">CLOUD</a></li>
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                                                 role="button" data-toggle="dropdown" aria-haspopup="true"
+                                                 aria-expanded="false"> PUBLIC </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown"><a class="dropdown-item" href="#">Worldwide
+                        Telescope</a> <a class="dropdown-item" href="#">PSP</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Special Topic</a></div>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="#">ABOUT</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="main-container meetings-container">
+        <div class="row" style="margin: 0px;">
+            <div class="index-headline-titleLine"><img src=/static/u/img/meetings-img/titleIcon.png alt="..."
+                                                       class="index-headline-icon">
+                <div class="index-headline-title">天文会议</div>
+            </div>
+            <div class="col-sm-2 meeting-sidebar">
+                <ul class="nav flex-column list-group meeting-sidebar-group">
+                    <li class="nav-item list-group-item meeting-sidebar-subtitle"><img src=/static/u/img/meetings-img/navbarSubtitleIcon.png alt="..."
+                                                                                       class="meetings-sidebarSubtitle-icon">
+                        MEETINGS INFO
+                    </li>
+                    <li class="nav-item list-group-item meeting-sidebar-item"><a
+                            class="nav-link meeting-sidebar-navlink" href=/meetings>New Meetings</a>
+                    </li>
+                    <li class="nav-item list-group-item meeting-sidebar-item"><a
+                            class="nav-link meeting-sidebar-navlink" href=/meetings?start_date=2021-1-1&amp;end_date=2021-12-31>2021 Meetings</a></li>
+                    <li class="nav-item list-group-item meeting-sidebar-item"><a
+                            class="nav-link meeting-sidebar-navlink" href=/meetings?start_date=2020-1-1&amp;end_date=2020-12-31>2020 Meetings</a></li>
+                    <li class="dropdown-divider"></li>
+                    <li class="nav-item list-group-item meeting-sidebar-subtitle"><img src=/static/u/img/meetings-img/navbarSubtitleIcon.png alt="..."
+                                                                                       class="meetings-sidebarSubtitle-icon">
+                        SUBMIT MEETINGS
+                    </li>
+                    <li class="nav-item list-group-item meeting-sidebar-item"><a
+                            class="nav-link meeting-sidebar-navlink" href=/registerMeeting>Submit new
+                        meetings</a></li>
+                    <li class="nav-item list-group-item meeting-sidebar-item"><a
+                            class="nav-link meeting-sidebar-navlink" href=/search_meeting>Update Meeting Information</a></li>
+                    <li class="nav-item list-group-item meeting-sidebar-subtitle"><img src=/static/u/img/meetings-img/linkIcon.png alt="..."
+                                                                                       class="meetings-sidebarSubtitle-icon">
+                        RELATED LINKS
+                    </li>
+                    <li class="nav-item list-group-item meeting-sidebar-item"><a
+                            class="nav-link meeting-sidebar-navlink" href="https://ui.adsabs.harvard.edu/">ADS</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-10" style="margin: 0px;padding: 0px;">
+                <div style="margin: 0px; background-color: transparent; padding: 0px 10px;">
+                    <div class="card meetings-card">
+                        <div class="card-body meetings-mainPage-title">
+                            <style>
+    .form_label{
+        width:120px;
+        display:inline-block;
+        }
+       .form_input{
+            width:300px;
+            display:inline-block;
+            }
+
+
+
+
+                            </style>
+                            
+欢迎访问天文会议信息系统
+
+                        </div>
+                    </div>
+
+                    
+                    
+                    
+
+                    
+
+<div class="card meetings-card">
+    <div class="card-body meeting-intro">
+        <div>在这里你可以找到最新的国内外天文会议资讯。</div>
+        <div>欢迎自助登记相关会议</div>
+        <div>我们会在审核后放出…………BLABLA</div>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+	<footer class="nadcFooter">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3">
+        <p>关于NADC</p>
+        <p>用户帮助</p>
+        <p>相关信息</p>
+      </div>
+      <div class="col-sm-3">
+        <p>快速链接</p>
+        <p>contact</p>
+      </div>
+      <div class="col-sm-6"> logos </div>
+    </div>
+    <div>
+      <div class="row" style="margin-top: 30px; color: #222;">
+        <div class="col-sm-4">© 2020 NADC </div>
+        <div class="col-sm-8" style="text-align: right;"> National Astronomical Observatories, Chinese Academy of Sciences</div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//analytics.escience.org.cn/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', '23']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Piwik Code -->
+</html>
