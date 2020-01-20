@@ -17,6 +17,39 @@ class MeetingStatusType(Enum):
     OUTDUE = auto()  # 过期
 
 
+class MeetingLanguageType(Enum):
+    CN = auto()
+    EN = auto()
+
+    @staticmethod
+    def from_int(x):
+        if x==1:
+            return MeetingLanguageType.CN
+        elif x==2:
+            return MeetingLanguageType.EN
+        else:
+            pass
+
+    @staticmethod
+    def to_int(x):
+        if x==MeetingLanguageType.CN:
+            return 1
+        elif x==MeetingLanguageType.EN:
+            return  2
+        else:
+            pass
+
+    def __str__(self):
+        if self == MeetingLanguageType.CN:
+            return "中文"
+        elif self == MeetingLanguageType.EN:
+            return "English"
+        else:
+            return "未定义"
+
+
+
+
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True,  nullable=False)
@@ -56,6 +89,7 @@ class Meeting(db.Model):
     end_date = db.Column(db.Date,nullable=False)
     url = db.Column(db.String(200))
     key_words = db.Column(db.String(100))
+    lang = db.Column(db.Enum(MeetingLanguageType))
 
     contact = db.Column(db.String(30))
     email = db.Column(db.String(120), nullable=False)

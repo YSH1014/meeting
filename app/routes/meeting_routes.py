@@ -3,7 +3,7 @@ from app import db
 from flask import render_template, redirect, url_for, flash, request
 from app.forms import LoginForm, RegisterForm, RegisterMeetingForm, UpdateMeeting
 from flask_login import current_user, login_user, logout_user, login_required
-from app.models import User, load_user, RoleType, MeetingStatusType, Meeting
+from app.models import User, load_user, RoleType, MeetingStatusType, Meeting, MeetingLanguageType
 import sqlalchemy.exc
 from datetime import datetime, timedelta, date
 from app.security import user_required
@@ -27,6 +27,7 @@ def register_meeting():
             start_date=form.start_date.data,
             end_date=form.end_date.data,
             key_words=form.key_words.data,
+            lang=MeetingLanguageType.from_int(form.lang.data),
 
             contact=form.contact.data,
             email=form.email.data,
@@ -44,19 +45,19 @@ def register_meeting():
     return render_template('registerMeeting.html', form=form, action='/register_meeting')
 
 
-@app.route('/update_meeting_form',methods=['get','post'])
+@app.route('/update_meeting_form', methods=['get', 'post'])
 @user_required
 def update_meeting_form():
-    id = request.args.get('id',None)
+    id = request.args.get('id', None)
     if not id:
-        return redirect(url_for('error',message='更新会议需要id作为参数'))
+        return redirect(url_for('error', message='更新会议需要id作为参数'))
     meeting = Meeting.query.get(id)
     if not meeting:
-        return redirect(url_for('error',message='会议不存在'))
+        return redirect(url_for('error', message='会议不存在'))
     # 判定是否有权修改（只有已通过的会议可以进行完善）
     if meeting.status != MeetingStatusType.APPROVED:
-        return redirect(url_for('error',message='会议审核中，无法修改'))
-    #去掉了权限审核页面，任何注册用户都可以修改
+        return redirect(url_for('error', message='会议审核中，无法修改'))
+    # 去掉了权限审核页面，任何注册用户都可以修改
     '''
     if (meeting.register != current_user.id):
         return redirect(url_for('error', message='您不是该会议注册者，无法修改'))
@@ -73,30 +74,31 @@ def update_meeting_form():
         key_words=meeting.key_words,
         contact=meeting.contact,
         email=meeting.email,
-        phone=meeting.phone
+        phone=meeting.phone,
+        lang=MeetingLanguageType.to_int(meeting.lang)
     )
     if form.validate_on_submit():
 
         meeting = Meeting.query.get(id)
 
         meeting.register = current_user.id
-        meeting.status= MeetingStatusType.REGISTERED
-        meeting.title=form.title.data
-        meeting.short_name=form.short_name.data
-        meeting.location=form.location.data
-        meeting.url=form.url.data
-        meeting.start_date=form.start_date.data
-        meeting.end_date=form.end_date.data
-        meeting.key_words=form.key_words.data
-        meeting.contact=form.contact.data
-        meeting.email=form.email.data
-        meeting.phone=form.phone.data
-        meeting.introduction=form.introduction.data
-
+        meeting.status = MeetingStatusType.REGISTERED
+        meeting.title = form.title.data
+        meeting.short_name = form.short_name.data
+        meeting.location = form.location.data
+        meeting.url = form.url.data
+        meeting.start_date = form.start_date.data
+        meeting.end_date = form.end_date.data
+        meeting.key_words = form.key_words.data
+        meeting.contact = form.contact.data
+        meeting.email = form.email.data
+        meeting.phone = form.phone.data
+        meeting.introduction = form.introduction.data
+        meeting.lang = MeetingLanguageType.from_int(form.lang.data)
         db.session.commit()
         flash("修改成功，等待管理员再次审核")
         return redirect(url_for("meeting_detail", id=meeting.id))
-    else :
+    else:
         return render_template('registerMeeting.html', form=form, action=url_for('update_meeting_form', id=id))
 
 
@@ -124,8 +126,8 @@ def meetings():
         # 处理status
         # 如果是管理员，则读取该参数，否则用approved
         status = request.args.get('status', 'APPROVED') \
- #           if current_user.is_authenticated and current_user.role == RoleType.ADMIN else \
-  #          'APPROVED'
+            #           if current_user.is_authenticated and current_user.role == RoleType.ADMIN else \
+        #          'APPROVED'
 
         query = query.filter(Meeting.status == MeetingStatusType.__members__[status])
 
@@ -201,7 +203,7 @@ def meetings_week():
 def meeting_detail(id):
     meeting = Meeting.query.get(id)
     if not meeting:
-        return redirect(url_for('error',message='会议不存在'))
+        return redirect(url_for('error', message='会议不存在'))
     register = User.query.get(meeting.register)
     return render_template('meeting_detail.html', meeting=meeting, register=register)
 

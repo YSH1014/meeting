@@ -1,7 +1,8 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, DateField, TextAreaField,IntegerField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, DateField, TextAreaField,IntegerField,SelectField
 from wtforms.validators import DataRequired, EqualTo, Email
 from flask_login import current_user
+from  app.models import MeetingLanguageType
 
 class LoginForm(FlaskForm):
     email = StringField('email', validators=[DataRequired(), Email()])
@@ -29,6 +30,7 @@ class RegisterMeetingForm(FlaskForm):
     introduction = TextAreaField('会议主题')
     url = StringField('会议网址')
     key_words=StringField('关键词')
+    lang = SelectField('语言',choices=[(1,'中文'),(2,'英文')],coerce=int)
     # 默认自动填写
     contact = StringField('联系人姓名', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
