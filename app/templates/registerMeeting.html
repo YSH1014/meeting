@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% block title %}
+注册新会议
+{% endblock %}
+{% block content %}
+<div class="card meetings-card">
+    <div class="card-body meeting-intro" align="center">
+        <form action="" method="post">
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.title.label(class="form_label") }}
+                {{ form.title(class="form_input") }}<br>
+                {% for error in form.title.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.short_name.label(class="form_label") }}
+                {{ form.short_name(class="form_input") }}<br>
+                {% for error in form.short_name.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.location.label(class="form_label") }}
+                {{ form.location(class="form_input") }}<br>
+                {% for error in form.location.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.start_date.label(class="form_label") }}
+                {{ form.start_date(class="form_input",type="date") }}<br>
+                {% for error in form.start_date.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.end_date.label(class="form_label") }}
+                {{ form.end_date(class="form_input",type="date") }}<br>
+                {% for error in form.end_date.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+
+            <p>
+                {{ form.introduction.label(class="form_label") }}
+                {{ form.introduction(class="form_input") }}<br>
+                {% for error in form.introduction.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.key_words.label(class="form_label") }}
+                {{ form.key_words(class="form_input") }}<br>
+                {% for error in form.key_words.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.url.label(class="form_label") }}
+                {{ form.url(class="form_input") }}<br>
+                {% for error in form.url.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+             <p>
+                {{ form.lang.label(class="form_label") }}
+                {{ form.lang(class="form_input") }}<br>
+                {% for error in form.lang.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.contact.label(class="form_label") }}
+                {{ form.contact(class="form_input") }}<br>
+                {% for error in form.contact.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+
+            <p>
+                {{ form.email.label(class="form_label") }}
+                {{ form.email(class="form_input") }}<br>
+                {% for error in form.email.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+
+            <p>
+                {{ form.phone.label(class="form_label") }}
+                {{ form.phone(class="form_input") }}<br>
+                {% for error in form.phone.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>{{ form.submit(class='btn-primary') }}</p>
+        </form>
+    </div>
+</div>
+{% endblock %}

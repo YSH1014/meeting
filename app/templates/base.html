@@ -1,0 +1,102 @@
+{% include 'header.html' %}
+
+
+<div class="container-fluid">
+    <div class="main-container meetings-container">
+        <div class="row" style="margin: 0px;">
+            <div class="index-headline-titleLine"><img src={{ url_for('static'
+                                                       ,filename="u/img/meetings-img/titleIcon.png" ) }} alt="..."
+                                                       class="index-headline-icon">
+                <div class="index-headline-title">天文会议</div>
+            </div>
+            <div class="col-sm-2 meeting-sidebar">
+                <ul class="nav flex-column list-group meeting-sidebar-group">
+                    <li class="nav-item list-group-item meeting-sidebar-subtitle"><img src={{ url_for('static'
+                                                                                       ,filename="u/img/meetings-img/navbarSubtitleIcon.png"
+                                                                                       ) }} alt="..."
+                                                                                       class="meetings-sidebarSubtitle-icon">
+                        MEETINGS INFO
+                    </li>
+                    <li class="nav-item list-group-item meeting-sidebar-item"><a
+                            class="nav-link meeting-sidebar-navlink" href={{ url_for("meetings") }}>New Meetings</a>
+                    </li>
+                    <li class="nav-item list-group-item meeting-sidebar-item"><a
+                            class="nav-link meeting-sidebar-navlink" href={{ url_for(
+                        "meetings",
+                        start_date='2021-1-1',
+                        end_date='2021-12-31'
+                        ) }}>2021 Meetings</a></li>
+                    <li class="nav-item list-group-item meeting-sidebar-item"><a
+                            class="nav-link meeting-sidebar-navlink" href={{ url_for(
+                        "meetings",
+                        start_date='2020-1-1',
+                        end_date='2020-12-31'
+                        ) }}>2020 Meetings</a></li>
+                    <li class="dropdown-divider"></li>
+                    <li class="nav-item list-group-item meeting-sidebar-subtitle"><img src={{ url_for('static'
+                                                                                       ,filename="u/img/meetings-img/navbarSubtitleIcon.png"
+                                                                                       ) }} alt="..."
+                                                                                       class="meetings-sidebarSubtitle-icon">
+                        SUBMIT MEETINGS
+                    </li>
+                    <li class="nav-item list-group-item meeting-sidebar-item"><a
+                            class="nav-link meeting-sidebar-navlink" href={{ url_for("register_meeting") }}>Submit new
+                        meetings</a></li>
+                    <li class="nav-item list-group-item meeting-sidebar-item"><a
+                            class="nav-link meeting-sidebar-navlink" href={{ url_for('search_meeting') }}>Update Meeting
+                        Information</a></li>
+                    <!-- <li class="nav-item list-group-item meeting-sidebar-subtitle"><img src={{url_for('static'
+                                                                                       ,filename="u/img/meetings-img/linkIcon.png"
+                                                                                       )}} alt="..."
+                                                                                       class="meetings-sidebarSubtitle-icon">
+                        RELATED LINKS
+                    </li>
+                    <li class="nav-item list-group-item meeting-sidebar-item"><a
+                            class="nav-link meeting-sidebar-navlink" href="https://ui.adsabs.harvard.edu/">ADS</a></li> -->
+                </ul>
+            </div>
+            <div class="col-sm-10" style="margin: 0px;padding: 0px;">
+                <div style="margin: 0px; background-color: transparent; padding: 0px 10px;">
+                    <div class="card meetings-card">
+                        <div class="card-body meetings-mainPage-title">
+                            <style>
+                                .form_label {
+                                    width: 120px;
+                                    display: inline-block;
+                                }
+
+                                .form_input {
+                                    width: 300px;
+                                    display: inline-block;
+                                }
+
+
+                            </style>
+                            {% block title %}
+                            {% endblock %}
+                        </div>
+                    </div>
+
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            <ul class="flash">
+                                {% for message in messages %}
+                                    <div class="alert alert-success" style="text-align: center">
+                                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×
+                                        </button>
+                                        <strong>{{ message }}</strong></div>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    {% endwith %}
+
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% include 'footer.html' %}
+

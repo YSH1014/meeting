@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}
+个人信息
+{% endblock %}
+{% block content %}
+<div class="card meetings-card">
+    <div class="card-body meeting-intro">
+        <h1> 欢迎，{{ current_user.username }} </h1></br>
+        <p> 个人信息：</p></br>
+        <p> 电话： {{current_user.phone}}</p><br>
+        <p> 邮箱： {{current_user.email}}</p><br>
+        <p> 地址 ： {{current_user.address}}</p><br>
+    </div>
+</div>
+{% endblock %}

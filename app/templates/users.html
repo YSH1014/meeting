@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card meetings-card" xmlns="http://www.w3.org/1999/html">
+    <div class="card-body meeting-intro" align="center">
+        <table class="table-striped">
+            <tr>
+                <th>用户id</th>
+                <th>用户名</th>
+                <th>用户邮箱</th>
+                <th>用户电话</th>
+                <th>用户地址</th>
+                <th>用户权限</th>
+                <th>操作</th>
+            </tr>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.id}}</td>
+                <td> {{ user.username}}</td>
+                <td> {{ user.email}}</td>
+                <td> {{ user.phone}}</td>
+                <td> {{user.address}}</td>
+                <td> {{user.role}}</td>
+                <td>
+                    {% if user.role.__str__() == 'RoleType.USER' %}
+                    <a href="{{ url_for('set_as_admin',id=user.id) }}"><button class="btn-dark">设为管理员</button> </a>
+                    {% else %}
+                        <a href="{{ url_for('cancel_admin',id=user.id) }}"><button class="btn-light"> 取消管理员身份</button></a>
+                    {% endif %}
+                </td>
+
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

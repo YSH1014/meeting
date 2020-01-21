@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}
+最新天文会议
+{% endblock %}
+{% block content %}
+
+{% for meeting in meetings %}
+<div class="card meetings-card">
+    <div class="card-header">
+        {{meeting.title}}
+    </div>
+    <div class="card-body">
+        <blockquote class="blockquote mb-0">
+            <p class="meetings-title">{{meeting.short_name}}</p>
+
+            <div class="row meetings-detail">
+                <div class="col-sm-1">日期</div>
+                <div class="col-sm-11">{{meeting.start_date}} - {{meeting.end_date}}</div>
+                <div class="col-sm-1">地点</div>
+                <div class="col-sm-11">{{meeting.location}}</div>
+                <div class="col-sm-1">官网</div>
+                <div class="col-sm-11">{{meeting.url}}</div>
+            </div>
+        </blockquote>
+    </div>
+    <div class="card-footer text-muted meetings-more">
+        <a href="{{ url_for('meeting_detail',id=meeting.id) }}" >更多详情</a>
+    </div>
+</div>
+{% endfor %}
+
+
+{% endblock %}
