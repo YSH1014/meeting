@@ -11,12 +11,25 @@
     .main-container {
         width: 1440px;
     }
+	.foot-container{
+        width: 1440px;
+	}
 }
-
+@media (min-width: 1200px){
+	.foot-container{
+        width: 1440px;
+	}
+}
+	
 body{
 	background-color: #333333;
 	font-size: 15px;
 }
+a{text-decoration : none;
+color:#333;} 
+
+a:hover{text-decoration:none;} 
+
 .index-topNav{
 	height: 50px;
 	margin: 0px;
@@ -44,7 +57,22 @@ body{
 .indexNavbar-ul>li{
 	margin: 0px 5px;
 }
-
+.nav-item:hover{
+	background-color: #222;
+	font-weight: bolder;
+}
+.SecNav-item{
+	padding: 10px;
+}
+.SecNav-item:hover{
+	border-radius: 10px;
+	background-color: transparent;
+	font-weight: bolder;
+	color: #222;
+}
+.dropdown-item:hover{
+	background-color: #eee;
+}
 .indexDropdownMenu{
 	box-shadow: 0px 8px 20px rgba(55,125,255,0.075);
 	margin: 0px;
@@ -103,6 +131,13 @@ body{
 	width: 100%;
 	height: 100%;
 }
+.list-more{
+	text-align: center;
+	letter-spacing: 3px;
+	color: #666;
+	font-size: 14px;
+	font-weight: bolder;
+}
 
 .card{
 	box-shadow: 0px 8px 20px rgba(55,125,255,0.075);
@@ -110,6 +145,10 @@ body{
 .index-featureCard{
 	background-color: transparent;
 	border: 0px;
+}
+.index-featureCard:hover{
+	background-color: #17275B;
+	cursor: pointer;
 }
 .feature-container{
 	background-color: #375483;
@@ -131,6 +170,18 @@ body{
 	letter-spacing: 1px;
 	line-height: 28px;
 }
+.caseCard{
+	background-color: #eee;
+	border-radius: 6px;
+}
+.caseCard:hover{
+	background-color: #fff;
+	cursor: pointer;
+	color: #333;
+}
+.caseCard a:hover{
+	color: #333;
+}
 .index-casecard-title{
 	font-size: 16px;
 	font-weight: bolder;
@@ -142,17 +193,73 @@ body{
 	font-size: 12px;
 	line-height: 26px;
 }
-
+.statisticCard{
+	width: 100%;
+	margin-bottom:26px;
+	background-color:#3D6E8A;
+	color:#eee;
+	border: 0px;
+}
+.statisticNumber{
+	font-weight: bolder;
+	font-size: 30px;
+	line-height: 50px;
+	letter-spacing: 5px;
+	text-align: center;
+	color: #eee;
+}
 .nadcFooter {
 	color: #333;
  	bottom: 0;
  	width: 100%;
-  	height: 200px;
+  	min-height: 300px;
+	height: 100%;
 	background-color: #eee;
+	text-align: left;
+	margin: 0px;
+	font-weight: bolder;
+	font-size: 14px;
+	letter-spacing: 2px;
+}
+.footerCard{
+	background-color: #fff;
+	padding: 10px;
+	border-radius: 10px;
+	line-height: 36px;
+}
+.footerCard:hover{
+	background-color: #ddd;
+	cursor: pointer;
+}
+.footerTitle{
 	text-align: center;
+	line-height: 36px;
+	margin: 0px;
+	font-size: 16px;
+}
+.footerCenter{
+	text-align: center;
+	line-height: 36px;
+	margin: 0px;
+}
+.footerCenter:hover{
+	background-color: #ddd;
+}
+.footerP{
+	line-height: 36px;
 	margin: 0px;
 }
 
+/*classic case pages*/
+.case-text-card{
+	padding: 20px 50px;
+	line-height: 36px;
+	font-size: 16px;
+	text-indent: 2em;
+	background-color: #fff;
+	margin: 10px 60px;
+	border-radius: 10px;
+}
 /*meeting pages*/
 .meeting-intro{
 	line-height: 30px;

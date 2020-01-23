@@ -1,21 +1,104 @@
+
 <!doctype html>
-<html>
+<html><!-- InstanceBegin template="/Templates/headfooter.dwt" codeOutsideHTMLIsLocked="false" -->
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>国家天文科学数据中心 | National Astronomical Data Center | NADC</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>国家天文科学数据中心 | National Astronomical Data Center | NADC</title>
+<!-- InstanceEndEditable -->
+<!-- Bootstrap -->
+<link href={{ url_for('static',filename="u/css/bootstrap.min.css")}} rel="stylesheet">
 
-    <!-- Bootstrap -->
-    <link href={{url_for('static' ,filename="u/css/bootstrap.min.css" ) }} rel="stylesheet">
+<!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+<!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
 
-    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
-    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+<script src={{ url_for('static',filename="u/js/jquery.min.js")}}></script>
+<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+<script src={{ url_for('static',filename="u/js/bootstrap.min.js")}}></script>
+<script type="text/javascript" src={{ url_for('static',filename= "u/js/currentuser.js")}}></script>
+<!--<script>
+	function setPageLang(language){
+		//根据中英文和用户状态修改header和footer
+		if("en" == language) {
+			//top栏
+			$("#navLogin").text("Login");
+			$("#navRegister").text("Register");
+			$("#navLang").text("简体中文");
+			$("#navSC").text("ScienceCloud");
 
-    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
-    <script src={{url_for('static' ,filename="u/js/jquery.min.js" )}}></script>
-    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
-    <script src={{url_for('static' ,filename="u/js/bootstrap.min.js" )}}></script>
-    <link href={{url_for('static' ,filename="u/css/style.css" )}} rel="stylesheet">
-    <link rel="stylesheet" href={{url_for('static' ,filename="u/css/nadc.css" )}} type="text/css"/>
+			//导航栏
+			$("#navYun").text("CLOUD");
+			$("#navTool").text("TOOLS");
+			$("#navData").text("DATA");
+			$("#navTele").text("OBSERVATION");
+			$("#navPublic").children("a").text("PUBLIC");
+			$("#navWWT").text("WorldWide Telescope");
+			$("#navPSP").text("PSP");
+			$("#navTopic").text("Special Topic");
+
+			//footer
+			$("#FOOhelp").text("Help");
+			$("#FOOcontact").text("Contact Us");
+			$("#FOOaboutus").text("About Us");
+			$("#FOOcopyright").text("Copyright © National Astronomical Observatories, Chinese Academy of Sciences");
+		}
+	}
+</script>-->
+<link href={{url_for('static',filename="u/css/style.css")}} rel="stylesheet">
+<link rel="stylesheet" href={{ url_for('static',filename= "u/css/nadc.css")}} type="text/css" />
+<!-- InstanceBeginEditable name="head" -->
+<!-- InstanceEndEditable -->
 </head>
+<body>
+<nav class="navbar navbar-expand navbar-dark topNav-bg index-topNav">
+  <div class="container-fluid index-navbar-container">
+    <ul class="navbar-nav indexNavbar-ul">
+      <a class="navbar-brand" href="https://www.escience.org.cn/"><img src={{ url_for('static',filename="u/img/index-img/new-header-logo.png")}} width="260" alt=".."></a>
+      <!--<li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLNG" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <img class="languageImg" src="u/img/index-img/zhongwen.png" alt=".."></a>
+        <div class="dropdown-menu indexDropdownMenu" aria-labelledby="navbarDropdownLNG" style="min-width: 20px;"> <a class="dropdown-item" href="#"><img class="languageImg" src="u/img/index-img/zhongwen.png" alt=".."></a> <a class="dropdown-item" href="#"><img class="languageImg" src="u/img/index-img/yingwen.png" alt=".."></a> </div>
+      </li>-->
+        <!--
+      <li class="nav-item"> <a class="nav-link index-topNav-link" href="http://astrocloud.china-vo.org/dashboard">登录</a> </li>
+      <li class="nav-item"> <a class="nav-link index-topNav-link" href="https://passport.escience.cn/regist.jsp">注册</a> </li>
+      -->
+        {% include 'user_menu.html' %}
+    </ul>
+    <form class="form-inline my-2 my-lg-0 input-group-sm">
+      <input class="form-control mr-sm-2 index-topNav-searchBox" type="search" placeholder="站内搜索" aria-label="Search">
+      <button class="btn my-2 my-sm-0 btn-sm" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+<nav class="navbar navbar-expand-lg navbar-light bg-white index-SecNav">
+  <div class="container-fluid index-navbar-container">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+    <a class="navbar-brand" href="http://nadc.china-vo.org"><img src={{ url_for('static', filename="u/img/index-img/NADCLogoTransHorizontal.png")}} width="300" alt=".."></a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <a class="nav-link" href="http://telescope.china-vo.org/">
+        <li class="nav-item SecNav-item" id="navTele"> 申请观测</li>
+        </a> <a class="nav-link" href="http://explore.china-vo.org/">
+        <li class="nav-item SecNav-item" id="navData">科学数据</li>
+        </a> <a class="nav-link" href="tools.html">
+        <li class="nav-item SecNav-item" id="navTool"> 软件工具</li>
+        </a> <a class="nav-link" href="http://cloud.china-vo.org/client/?ifjaflfipifjaflfipkpjfjffiik">
+        <li class="nav-item SecNav-item" id="navYun"> 云资源 </li>
+        </a>
+        <li class="nav-item SecNav-item dropdown" id="navPublic"> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">公众频道</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown"> <a class="dropdown-item" href="http://wwt.china-vo.org/">
+            <div id="navWWT">万维望远镜</div>
+            </a> <a class="dropdown-item" href="http://psp.china-vo.org/">
+            <div id="navPSP">超新星搜寻</div>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="http://public.china-vo.org/">
+            <div id="navTopic">科普专题</div>
+            </a> </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

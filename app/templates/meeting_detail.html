@@ -6,7 +6,7 @@
 {% endif %}
 {% endblock %}
 {% block content %}
-<div class="card meetings-card">
+<div class="card meetings-card" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
     <div class="card-body meeting-intro">
         <blockquote class="blockquote mb-0">
             <div class="row meetings-detail">
@@ -35,7 +35,7 @@
 
         <!-- 对已登录用户显示修改界面 -->
         {% if current_user.is_authenticated and meeting.status.__str__()=='MeetingStatusType.APPROVED' %}
-        <a href={{ url_for('update_meeting_form',id=meeting.id)}}>修改信息</a>
+            <a href={{ url_for('update_meeting_form',id=meeting.id)}}><button class="btn-danger"> 修改信息 </button></a>
         {% endif %}
 
         <!--管理员界面 -->
@@ -44,9 +44,9 @@
             {% if meeting.status.__str__()=='MeetingStatusType.REGISTERED' %}
             <!-- 除了显示状态之外，还有通过/不通过选项 -->
             已注册，待审核。
-            <a href="{{ url_for('approve',id=meeting.id) }}"> 通过审核 </a>
+                <a href="{{ url_for('approve',id=meeting.id) }}"><button class="btn-info"> 通过审核 </button></a>
 
-            <a href="{{ url_for('unapprove',id=meeting.id) }}"> 不通过</a>
+            <a href="{{ url_for('unapprove',id=meeting.id) }}"> <button class="btn-danger">不通过</button> </a>
             {% elif meeting.status.__str__()=='MeetingStatusType.APPROVED' %}
             审核通过。
             {% elif meeting.status.__str__() == 'MeetingStatusType.UNAPPROVED' %}

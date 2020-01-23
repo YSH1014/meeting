@@ -1,12 +1,44 @@
 from app import app
 from app import db
-from flask import render_template, redirect, url_for, flash
+from flask import render_template, redirect, url_for, flash, session,request,make_response
 from app.forms import LoginForm, RegisterForm, RegisterMeetingForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, load_user, RoleType, MeetingStatusType, Meeting
 from app.security import user_required
 import sqlalchemy.exc
-# from app import bp
+import base64
+
+
+@app.route('/login_new',methods = ['GET', 'POST'])
+def login_new():
+    if not request.cookies.get('china-vo'):
+        # res = make_response('cookie')
+        # res.set_cookie('cvoumt', '"https://nadc.china-vo.org/meetings/userInfo"', max_age=3600 * 24, path = '/', domain='china-vo.org')
+        redirect_to_login  = redirect("http://passport.china-vo.org/loginFrm?umt=true")
+        response = make_response(redirect_to_login)
+        # session["cvoumt"] = "\"https://nadc.china-vo.org/meetings/userInfo\""
+        response.set_cookie('cvoumt', "\"https://nadc.china-vo.org/meetings/userInfo\"", max_age=3600 * 24, path = '/', domain='china-vo.org')
+        # response.set_cookie('cvoumt1', "\"test\"", max_age=3600 * 24, path = '/', domain='china-vo.org')
+
+        
+        return redirect_to_login
+
+    else:
+        token = request.cookies.get('china-vo')
+        print(token)
+        decodeToken = retriveStrByBase64(token)
+        # TODO: session['token'] = decodeToken
+        email, token = decodeToken.split(':')
+
+
+def retriveStrByBase64(token):
+    decodeToken = base64.b64decode(token)
+    return decodeToken
+
+def getUserInfoByEmail(email):
+    #TODO: get userinfo from astrocloud
+    pass
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
