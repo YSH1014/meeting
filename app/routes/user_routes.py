@@ -17,15 +17,14 @@ def login_new():
         redirect_to_login  = redirect("http://passport.china-vo.org/loginFrm?umt=true")
         response = make_response(redirect_to_login)
         # session["cvoumt"] = "\"https://nadc.china-vo.org/meetings/userInfo\""
-        response.set_cookie('cvoumt', "\"https://nadc.china-vo.org/meetings/userInfo\"", max_age=3600 * 24, path = '/', domain='china-vo.org')
+        response.set_cookie('cvoumt', "\"https://nadc.china-vo.org/meetings/login_new\"", max_age=3600 * 24, path = '/', domain='china-vo.org')
         # response.set_cookie('cvoumt1', "\"test\"", max_age=3600 * 24, path = '/', domain='china-vo.org')
-
-        
         return redirect_to_login
 
     else:
         token = request.cookies.get('china-vo')
         print(token)
+        
         decodeToken = retriveStrByBase64(token)
         # TODO: session['token'] = decodeToken
         email, token = decodeToken.split(':')
