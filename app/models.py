@@ -71,6 +71,12 @@ class User(UserMixin, db.Model):
     def set_role(self,role):
         self.role = role
 
+    def is_admin(self):
+        return self.role==RoleType.ADMIN or self.role==RoleType.ROOT
+
+    def is_root(self):
+        return self.role == RoleType.ROOT
+
 
 @login.user_loader
 def load_user(id):

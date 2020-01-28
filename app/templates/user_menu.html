@@ -44,12 +44,12 @@
                     </ul>
                 </li>
 
-                {% if current_user.role.__str__() == 'RoleType.ROOT' %}
+                {% if current_user.is_root() %}
                     <!--角色为root，包含用户管理链接 -->
                     <li class="nav-item"><a class="nav-link index-topNav-link" href="{{ url_for('users') }}">用户管理</a>
                     </li>
                 {% endif %}
-                {% if current_user.role.__str__() == 'RoleType.ADMIN' %}
+                {% if current_user.is_admin() %}
                     <!-- 角色为admin,包含会议管理链接 -->
                     <li class="nav-item"><a class="nav-link index-topNav-link"
                                             href="{{ url_for('meetings',status='REGISTERED') }}">查看待审核会议</a></li>

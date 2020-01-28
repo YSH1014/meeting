@@ -26,7 +26,7 @@ def user_required(func):
 def admin_required(func):
     @wraps(func)
     def decorated_view(*args, **kwargs):
-        if current_user.is_authenticated and current_user.role == RoleType.ADMIN:
+        if current_user.is_authenticated and current_user.is_admin():
             return func(*args, **kwargs)
         else:
             return redirect(url_for('unauthorized', role_require=RoleType.ADMIN))
@@ -37,7 +37,7 @@ def admin_required(func):
 def root_required(func):
     @wraps(func)
     def decorated_view(*args, **kwargs):
-        if current_user.is_authenticated and current_user.role == RoleType.ROOT:
+        if current_user.is_authenticated and current_user.is_root():
             return func(*args, **kwargs)
         else:
             return redirect(url_for('unauthorized', role_require=RoleType.ROOT))

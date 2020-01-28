@@ -39,7 +39,7 @@
         {% endif %}
 
         <!--管理员界面 -->
-        {% if current_user.role.__str__()=='RoleType.ADMIN' %}
+        {% if current_user.is_admin %}
         <p> 状态：
             {% if meeting.status.__str__()=='MeetingStatusType.REGISTERED' %}
             <!-- 除了显示状态之外，还有通过/不通过选项 -->
