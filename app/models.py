@@ -93,7 +93,7 @@ class Meeting(db.Model):
     key_words = db.Column(db.String(300))
     lang = db.Column(db.Enum(MeetingLanguageType))
 
-    contact = db.Column(db.String(50))
+    contact = db.Column(db.String(100))
     email = db.Column(db.String(120), nullable=False)
-    phone = db.Column(db.String(20), nullable=False)
+    phone = db.Column(db.String(50), nullable=False)
     introduction = db.Column(db.String(500))
