@@ -71,6 +71,12 @@ class User(UserMixin, db.Model):
     def set_role(self,role):
         self.role = role
 
+    def is_admin(self):
+        return self.role==RoleType.ADMIN or self.role==RoleType.ROOT
+
+    def is_root(self):
+        return self.role == RoleType.ROOT
+
 
 @login.user_loader
 def load_user(id):
@@ -93,7 +99,7 @@ class Meeting(db.Model):
     key_words = db.Column(db.String(300))
     lang = db.Column(db.Enum(MeetingLanguageType))
 
-    contact = db.Column(db.String(50))
+    contact = db.Column(db.String(100))
     email = db.Column(db.String(120), nullable=False)
-    phone = db.Column(db.String(20), nullable=False)
+    phone = db.Column(db.String(50), nullable=False)
     introduction = db.Column(db.String(500))
