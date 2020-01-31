@@ -96,10 +96,11 @@ class Meeting(db.Model):
     start_date = db.Column(db.Date,nullable=False)
     end_date = db.Column(db.Date,nullable=False)
     url = db.Column(db.String(200))
-    key_words = db.Column(db.String(300))
+    key_words = db.Column(db.Text())
     lang = db.Column(db.Enum(MeetingLanguageType))
 
     contact = db.Column(db.String(100))
     email = db.Column(db.String(120), nullable=False)
     phone = db.Column(db.String(50), nullable=False)
-    introduction = db.Column(db.String(500))
+    introduction = db.Column(db.Text())
+
