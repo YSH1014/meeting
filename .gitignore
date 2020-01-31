@@ -1,5 +1,7 @@
 migrations
 env
+.flaskenv
+app.db
 .idea
 __pycache__
 *.pyc
