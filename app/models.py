@@ -101,6 +101,6 @@ class Meeting(db.Model):
 
     contact = db.Column(db.String(100))
     email = db.Column(db.String(120), nullable=False)
-    phone = db.Column(db.String(50), nullable=False)
+    phone = db.Column(db.String(60), nullable=False)
     introduction = db.Column(db.Text())
 
