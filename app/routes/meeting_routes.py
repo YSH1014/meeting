@@ -6,12 +6,13 @@ from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, load_user, RoleType, MeetingStatusType, Meeting, MeetingLanguageType
 import sqlalchemy.exc
 from datetime import datetime, timedelta, date
-from app.security import user_required
+from app.security import user_required, login_redirect_required
 from sqlalchemy.sql import or_
 # from app import bp
 
 @app.route('/registerMeeting', methods=['Get', 'Post'])
 @user_required
+@login_redirect_required
 def register_meeting():
     form = RegisterMeetingForm(email=current_user.email,
                                phone=current_user.phone,
@@ -47,6 +48,7 @@ def register_meeting():
 
 @app.route('/update_meeting_form', methods=['get', 'post'])
 @user_required
+@login_redirect_required
 def update_meeting_form():
     id = request.args.get('id', None)
     if not id:
@@ -156,6 +158,7 @@ def meetings_year(year):
     return render_template('meetings.html',title=title,meetings=meeting_list)
 
 @app.route("/meetings",methods=['get','post'])
+@login_redirect_required
 def meetings():
     try:
         query_id = request.args.get('id')
@@ -244,6 +247,7 @@ def meetings():
 
 
 @app.route("/meetings_week")
+@login_redirect_required
 def meetings_week():
     current_time = datetime.utcnow()
     week_after = current_time + timedelta(weeks=1)
@@ -253,6 +257,7 @@ def meetings_week():
 
 
 @app.route("/meetingInfo/<int:id>")
+@login_redirect_required
 def meeting_detail(id):
     meeting = Meeting.query.get(id)
     if not meeting:
@@ -286,3 +291,9 @@ def new_meeting():
     title = "最新会议"
     meeting_list = query_meetings()
     return render_template('meetings.html', title=title, meetings=meeting_list)
+
+
+@app.route("/search_meeting")
+@login_redirect_required
+def search_meeting():
+    return render_template("search_meeting.html")

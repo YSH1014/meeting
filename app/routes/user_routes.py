@@ -11,6 +11,7 @@ import re
 import pycurl
 import io
 import json
+from app.security import decode_base64, createUser, getUserInfoByCstnetId, login_redirect_required
 
 
 @app.route('/login',methods = ['GET', 'POST'])
@@ -42,58 +43,77 @@ def login():
             flash("登录成功")
             return redirect(url_for('userInfo'))
 
-def decode_base64(data, altchars= '+/'):
-    data = re.sub(r'[^a-zA-Z0-9%s]+' % altchars, '', data)  # normalize
-    missing_padding = len(data) % 4
-    if missing_padding:
-        data += '='* (4 - missing_padding)
-    return base64.b64decode(data, altchars)
+# def decode_base64(data, altchars= '+/'):
+#     data = re.sub(r'[^a-zA-Z0-9%s]+' % altchars, '', data)  # normalize
+#     missing_padding = len(data) % 4
+#     if missing_padding:
+#         data += '='* (4 - missing_padding)
+#     return base64.b64decode(data, altchars)
 
-def getUserInfoByCstnetId(cstnetId):
-    e = io.BytesIO()
-    c = pycurl.Curl()
-    c.setopt(c.URL, 'http://astrocloud.china-vo.org/services/userinfo?callback=searcht&id='+cstnetId)
-    c.setopt(c.WRITEFUNCTION, e.write)
-    c.setopt(c.HTTPHEADER, ['Content-Type: application/json','Accept-Charset: UTF-8'])
-    c.perform()
-    c.close()
-    profile = e.getvalue().decode('UTF-8')
-    print(profile)
-    return profile
+# def getUserInfoByCstnetId(cstnetId):
+#     e = io.BytesIO()
+#     c = pycurl.Curl()
+#     c.setopt(c.URL, 'http://astrocloud.china-vo.org/services/userinfo?callback=searcht&id='+cstnetId)
+#     c.setopt(c.WRITEFUNCTION, e.write)
+#     c.setopt(c.HTTPHEADER, ['Content-Type: application/json','Accept-Charset: UTF-8'])
+#     c.perform()
+#     c.close()
+#     profile = e.getvalue().decode('UTF-8')
+#     print(profile)
+#     return profile
 
 
-def createUser(profile):
-    ob = json.loads(profile[8:-1])
-    username = ob['truename']
-    print(username)
-    email = ob['cstnetId']
-    print(email)
-    password = ob['securityToken']
-    print(password)
-    address = 'no address info'
-    print(address)
-    phone = ob['phone']
-    print(phone)
+# def createUser(profile):
+#     ob = json.loads(profile[8:-1])
+#     username = ob['truename']
+#     print(username)
+#     email = ob['cstnetId']
+#     print(email)
+#     password = ob['securityToken']
+#     print(password)
+#     address = 'no address info'
+#     print(address)
+#     phone = ob['phone']
+#     print(phone)
 
-    user = User(
-            username=username,
-            email=email,
-            phone=phone,
-            address=address,
-            role=RoleType.USER
-        )
-    user.set_password(password)
-    print(user)
-    try:
-        db.session.add(user)
-        db.session.commit()
-        return user
-        # flash('Congratulations, you are now a registered user!')
-        # return redirect(url_for('login'))  # 注册成功，返回登录界面
-    except sqlalchemy.exc.IntegrityError as e:
-        print(e)
-    #     flash('新用户注册失败，请检查Email或手机是否已被注册')
+#     user = User(
+#             username=username,
+#             email=email,
+#             phone=phone,
+#             address=address,
+#             role=RoleType.USER
+#         )
+#     user.set_password(password)
+#     print(user)
+#     try:
+#         db.session.add(user)
+#         db.session.commit()
+#         return user
+#         # flash('Congratulations, you are now a registered user!')
+#         # return redirect(url_for('login'))  # 注册成功，返回登录界面
+#     except sqlalchemy.exc.IntegrityError as e:
+#         print(e)
+#     #     flash('新用户注册失败，请检查Email或手机是否已被注册')
 
+# def login_redirect(): 
+#     if request.cookies.get('china-vo'):
+#         token = request.cookies.get('china-vo')
+#         decodeToken = str(decode_base64(token))[2:-1]
+#         cstnetId, phone, token = decodeToken.split(':')
+#         user = User.query.filter_by(email=cstnetId).first()
+#         if user is None:
+#             try:
+#                 profile = getUserInfoByCstnetId(cstnetId)
+#                 user = createUser(profile)
+#                 login_user(user)
+#                 flash("登录成功")
+#                 # return redirect(url_for(url))
+#             except:
+#                 flash("登录失败")
+#                 # return redirect(url_for(url))
+#         else:
+#             login_user(user)
+#             flash("登录成功")
 
 # @app.route('/login', methods=['GET', 'POST'])
 # def login():
@@ -123,6 +143,7 @@ def createUser(profile):
 
 @app.route('/userInfo')
 @user_required
+@login_redirect_required
 def userInfo():
     # 用户未登录，重定向到登录界面
     if not current_user.is_authenticated:
