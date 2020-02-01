@@ -133,15 +133,15 @@ def query_meetings(**conditions):
         query = query.filter(Meeting.register == register)
 
      #处理search_keywords
-#    search_keywords = conditions.get('keywords',"")
-#    if search_keywords != "":
-#        search_keywords = "%{}%".format(search_keywords)
-#        query = query.filter(or_(
-#            Meeting.title.like(search_keywords),
-#            Meeting.introduction.like(search_keywords),
-#            Meeting.key_words.like(search_keywords),
-#            Meeting.short_name.like(search_keywords)
-#        ))
+    search_keywords = conditions.get('keywords',"")
+    if search_keywords != "":
+        search_keywords = "%{}%".format(search_keywords)
+        query = query.filter(or_(
+            Meeting.title.like(search_keywords),
+            Meeting.introduction.like(search_keywords),
+            Meeting.key_words.like(search_keywords),
+            Meeting.short_name.like(search_keywords)
+        ))
      #处理语言
     lang = conditions.get('lang')
     if lang:
@@ -279,7 +279,7 @@ def search_meetings():
             start_date=form.start_date.data,
             end_date = form.end_date.data,
             lang = MeetingLanguageType.from_int(form.lang.data) if form.lang.data!=0 else None,
-            keywords= form.key_words
+            keywords= form.key_words.data
         )
         return render_template('meetings.html',title='搜索结果',meetings=meeting_list)
     else:
