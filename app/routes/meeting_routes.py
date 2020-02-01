@@ -1,7 +1,7 @@
 from app import app
 from app import db
 from flask import render_template, redirect, url_for, flash, request
-from app.forms import LoginForm, RegisterForm, RegisterMeetingForm, UpdateMeeting
+from app.forms import LoginForm, RegisterForm, RegisterMeetingForm, UpdateMeeting, SearchMeetingForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, load_user, RoleType, MeetingStatusType, Meeting, MeetingLanguageType
 import sqlalchemy.exc
@@ -102,7 +102,60 @@ def update_meeting_form():
         return render_template('registerMeeting.html', form=form, action=url_for('update_meeting_form', id=id))
 
 
-@app.route("/meetings")
+#根据条件查询会议列表
+def query_meetings(**conditions):
+    start_date = conditions.get('start_date',date.today())
+
+    #建立query
+    query = Meeting.query
+
+    #处理开始时间
+    query = query.filter(Meeting.start_date >= start_date)
+
+    #处理end_date
+    end_date = conditions.get('end_date')
+    if end_date:
+        query = query.filter(Meeting.end_date <= end_date)
+
+    # 处理status
+    # 如果是管理员，则读取该参数，否则用approved
+    status = conditions.get('status', 'APPROVED') \
+        #           if current_user.is_authenticated and current_user.role == RoleType.ADMIN else \
+    #          'APPROVED'
+
+    query = query.filter(Meeting.status == MeetingStatusType.__members__[status])
+
+    # 处理 register
+    register = conditions.get('register')
+    if register:
+        query = query.filter(Meeting.register == register)
+
+    # 处理search_keywords
+    search_keywords = conditions.get('keywords')
+    if search_keywords:
+        search_keywords = "%{}%".format(search_keywords)
+        query = query.filter(or_(
+            Meeting.title.like(search_keywords),
+            Meeting.introduction.like(search_keywords),
+            Meeting.key_words.like(search_keywords),
+            Meeting.short_name.like(search_keywords)
+        ))
+    # 处理语言
+    lang = conditions.get('lang')
+    if lang:
+        query = query.filter(Meeting.lang == MeetingLanguageType.__members__[lang])
+
+    all_meetings = query.order_by(Meeting.start_date).all()
+
+    return all_meetings
+
+@app.route("/meetings_year/<int:year>")
+def meetings_year(year):
+    title = "{}年会议".format(year)
+    meeting_list = query_meetings(start_date='{}-1-1'.format(year),end_date='{}-12-31'.format(year))
+    return render_template('meetings.html',title=title,meetings=meeting_list)
+
+@app.route("/meetings",methods=['get','post'])
 def meetings():
     try:
         query_id = request.args.get('id')
@@ -208,6 +261,28 @@ def meeting_detail(id):
     return render_template('meeting_detail.html', meeting=meeting, register=register)
 
 
-@app.route("/search_meeting")
-def search_meeting():
-    return render_template("search_meeting.html")
+@app.route("/search_meeting_id")
+def search_meeting_id():
+    return render_template("search_meeting_id.html")
+
+
+@app.route("/search_meeting",methods=['get','post'])
+def search_meetings():
+    form = SearchMeetingForm()
+    if form.validate_on_submit():
+        meeting_list = query_meetings(
+            start_date=form.start_date.data,
+            end_date = form.end_date.data,
+            lang = form.lang.data if form.lang.data==0 else None,
+            keywords= form.key_words
+        )
+        return render_template('meetings.html',title='搜索结果',metings=meeting_list)
+    else:
+        return render_template("search_meetings.html",form = SearchMeetingForm())
+
+
+@app.route("/new_meeting")
+def new_meeting():
+    title = "最新会议"
+    meeting_list = query_meetings()
+    return render_template('meetings.html', title=title, meetings=meeting_list)

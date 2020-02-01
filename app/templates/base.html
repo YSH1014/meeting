@@ -18,33 +18,35 @@
                         MEETINGS INFO
                     </li>
                     <li class="nav-item list-group-item meeting-sidebar-item"><a
-                            class="nav-link meeting-sidebar-navlink" href={{ url_for("meetings") }}>New Meetings</a>
+                            class="nav-link meeting-sidebar-navlink" href={{ url_for("new_meeting") }}>最新会议</a>
                     </li>
                     <li class="nav-item list-group-item meeting-sidebar-item"><a
                             class="nav-link meeting-sidebar-navlink" href={{ url_for(
-                        "meetings",
-                        start_date='2021-1-1',
-                        end_date='2021-12-31'
-                        ) }}>2021 Meetings</a></li>
+                        "meetings_year",
+                        year=2021
+                        ) }}>2021 年会议</a></li>
                     <li class="nav-item list-group-item meeting-sidebar-item"><a
                             class="nav-link meeting-sidebar-navlink" href={{ url_for(
-                        "meetings",
-                        start_date='2020-1-1',
-                        end_date='2020-12-31'
-                        ) }}>2020 Meetings</a></li>
+                        "meetings_year",
+                        year=2020
+                        ) }}>2020 年会议</a></li>
+                    <li class="nav-item list-group-item meeting-sidebar-item"><a
+                            class="nav-link meeting-sidebar-navlink" href={{ url_for(
+                            "search_meetings") }}>会议搜索</a></li>
                     <li class="dropdown-divider"></li>
                     <li class="nav-item list-group-item meeting-sidebar-subtitle"><img src={{ url_for('static'
                                                                                        ,filename="u/img/meetings-img/navbarSubtitleIcon.png"
                                                                                        ) }} alt="..."
                                                                                        class="meetings-sidebarSubtitle-icon">
-                        SUBMIT MEETINGS
+                        提交会议信息
                     </li>
                     <li class="nav-item list-group-item meeting-sidebar-item"><a
-                            class="nav-link meeting-sidebar-navlink" href={{ url_for("register_meeting") }}>Submit new
-                        meetings</a></li>
+                            class="nav-link meeting-sidebar-navlink" href={{ url_for("register_meeting") }}>
+                        提交新会议
+                    </a></li>
                     <li class="nav-item list-group-item meeting-sidebar-item"><a
-                            class="nav-link meeting-sidebar-navlink" href={{ url_for('search_meeting') }}>Update Meeting
-                        Information</a></li>
+                            class="nav-link meeting-sidebar-navlink" href={{ url_for('search_meeting_id') }}>更新会议
+                    </a></li>
                     <!-- <li class="nav-item list-group-item meeting-sidebar-subtitle"><img src={{url_for('static'
                                                                                        ,filename="u/img/meetings-img/linkIcon.png"
                                                                                        )}} alt="..."
@@ -74,6 +76,7 @@
                             </style>
                             {% block title %}
                             {% endblock %}
+
                         </div>
                     </div>
 
@@ -92,6 +95,12 @@
 
                     {% block content %}
                     {% endblock %}
+                <script>
+                            start_date = document.getElementById('start_date')
+                            start_date.type='date'
+                            end_date = document.getElementById('end_date')
+                            end_date.type='date'
+                        </script>
                 </div>
             </div>
         </div>

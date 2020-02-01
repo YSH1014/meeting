@@ -46,3 +46,11 @@ class UpdateMeeting(RegisterForm):
 class QueryMeetingById(FlaskForm):
     id = IntegerField('输入id',validators=[DataRequired()])
     submit = SubmitField('查询')
+
+
+class SearchMeetingForm(FlaskForm):
+    start_date = DateField('检索开始时间')
+    end_date = DateField('检索结束时间')
+    lang = SelectField('语言',choices=[(1,'中文'),(2,'英文'),(0,'不限')],coerce=int)
+    key_words=StringField('关键词')
+    submit = SubmitField('搜索')

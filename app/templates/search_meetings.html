@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}
+    会议搜索
+{% endblock %}
+{% block content %}
+    <div class="card meetings-card">
+        <div class="card-body meeting-intro">
+            {% import "bootstrap/wtf.html" as wtf %}
+            {{ wtf.quick_form(form,form_type='form-group') }}
+        </div>
+    </div>
+{% endblock %}
