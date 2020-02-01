@@ -133,8 +133,8 @@ def query_meetings(**conditions):
         query = query.filter(Meeting.register == register)
 
     # 处理search_keywords
-    search_keywords = conditions.get('keywords')
-    if search_keywords:
+    search_keywords = conditions.get('keywords',"")
+    if search_keywords != "":
         search_keywords = "%{}%".format(search_keywords)
         query = query.filter(or_(
             Meeting.title.like(search_keywords),

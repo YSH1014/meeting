@@ -5,7 +5,7 @@
 {% block content %}
 <div class="card meetings-card">
     <div class="card-body meeting-intro">
-        <form action="/update_meeting_form" method="get">
+        <form action={{ url_for('update_meeting_form') }} method="get">
             <p align="center">
                 id :<input name="id" type="number"/>
                 <input type="submit" class="btn-primary" value="id精确查找">
