@@ -132,20 +132,20 @@ def query_meetings(**conditions):
     if register:
         query = query.filter(Meeting.register == register)
 
-    # 处理search_keywords
-    search_keywords = conditions.get('keywords',"")
-    if search_keywords != "":
-        search_keywords = "%{}%".format(search_keywords)
-        query = query.filter(or_(
-            Meeting.title.like(search_keywords),
-            Meeting.introduction.like(search_keywords),
-            Meeting.key_words.like(search_keywords),
-            Meeting.short_name.like(search_keywords)
-        ))
-    # 处理语言
+     #处理search_keywords
+#    search_keywords = conditions.get('keywords',"")
+#    if search_keywords != "":
+#        search_keywords = "%{}%".format(search_keywords)
+#        query = query.filter(or_(
+#            Meeting.title.like(search_keywords),
+#            Meeting.introduction.like(search_keywords),
+#            Meeting.key_words.like(search_keywords),
+#            Meeting.short_name.like(search_keywords)
+#        ))
+     #处理语言
     lang = conditions.get('lang')
     if lang:
-        query = query.filter(Meeting.lang == MeetingLanguageType.__members__[lang])
+        query = query.filter(Meeting.lang == lang)
 
     all_meetings = query.order_by(Meeting.start_date).all()
 
@@ -278,10 +278,10 @@ def search_meetings():
         meeting_list = query_meetings(
             start_date=form.start_date.data,
             end_date = form.end_date.data,
-            lang = form.lang.data if form.lang.data==0 else None,
+            lang = MeetingLanguageType.from_int(form.lang.data) if form.lang.data!=0 else None,
             keywords= form.key_words
         )
-        return render_template('meetings.html',title='搜索结果',metings=meeting_list)
+        return render_template('meetings.html',title='搜索结果',meetings=meeting_list)
     else:
         return render_template("search_meetings.html",form = SearchMeetingForm())
 
@@ -293,7 +293,7 @@ def new_meeting():
     return render_template('meetings.html', title=title, meetings=meeting_list)
 
 
-@app.route("/search_meeting")
-@login_redirect_required
-def search_meeting():
-    return render_template("search_meeting.html")
+#@app.route("/search_meeting")
+#@login_redirect_required
+#def search_meeting():
+#    return render_template("search_meeting.html")
