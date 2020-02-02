@@ -19,12 +19,12 @@
                 <div class="col-sm-1">地点</div>
                 <div class="col-sm-11">{{meeting.location}}</div>
                 <div class="col-sm-1">官网</div>
-                <div class="col-sm-11">{{meeting.url}}</div>
+                <div class="col-sm-11"><a href="{{ meeting.url }}" target="_blank">{{meeting.url}}</a></div>
             </div>
         </blockquote>
     </div>
     <div class="card-footer text-muted meetings-more">
-        <a href="{{ url_for('meeting_detail',id=meeting.id) }}" >更多详情</a>
+        <a href="{{ url_for('meeting_detail',id=meeting.id) }}"  >更多详情</a>
     </div>
 </div>
 {% endfor %}
