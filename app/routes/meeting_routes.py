@@ -8,6 +8,8 @@ import sqlalchemy.exc
 from datetime import datetime, timedelta, date
 from app.security import user_required, login_redirect_required
 from sqlalchemy.sql import or_
+
+
 # from app import bp
 
 @app.route('/registerMeeting', methods=['Get', 'Post'])
@@ -104,17 +106,17 @@ def update_meeting_form():
         return render_template('registerMeeting.html', form=form, action=url_for('update_meeting_form', id=id))
 
 
-#根据条件查询会议列表
+# 根据条件查询会议列表
 def query_meetings(**conditions):
-    start_date = conditions.get('start_date',date.today())
+    start_date = conditions.get('start_date', date.today())
 
-    #建立query
+    # 建立query
     query = Meeting.query
 
-    #处理开始时间
+    # 处理开始时间
     query = query.filter(Meeting.start_date >= start_date)
 
-    #处理end_date
+    # 处理end_date
     end_date = conditions.get('end_date')
     if end_date:
         query = query.filter(Meeting.end_date <= end_date)
@@ -132,8 +134,8 @@ def query_meetings(**conditions):
     if register:
         query = query.filter(Meeting.register == register)
 
-     #处理search_keywords
-    search_keywords = conditions.get('keywords',"")
+    # 处理search_keywords
+    search_keywords = conditions.get('keywords', "")
     if search_keywords != "":
         search_keywords = "%{}%".format(search_keywords)
         query = query.filter(or_(
@@ -142,7 +144,7 @@ def query_meetings(**conditions):
             Meeting.key_words.like(search_keywords),
             Meeting.short_name.like(search_keywords)
         ))
-     #处理语言
+    # 处理语言
     lang = conditions.get('lang')
     if lang:
         query = query.filter(Meeting.lang == lang)
@@ -151,13 +153,15 @@ def query_meetings(**conditions):
 
     return all_meetings
 
+
 @app.route("/meetings_year/<int:year>")
 def meetings_year(year):
     title = "{}年会议".format(year)
-    meeting_list = query_meetings(start_date='{}-1-1'.format(year),end_date='{}-12-31'.format(year))
-    return render_template('meetings.html',title=title,meetings=meeting_list)
+    meeting_list = query_meetings(start_date='{}-1-1'.format(year), end_date='{}-12-31'.format(year))
+    return render_template('meetings.html', title=title, meetings=meeting_list)
 
-@app.route("/meetings",methods=['get','post'])
+
+@app.route("/meetings", methods=['get', 'post'])
 @login_redirect_required
 def meetings():
     try:
@@ -271,19 +275,22 @@ def search_meeting_id():
     return render_template("search_meeting_id.html")
 
 
-@app.route("/search_meeting",methods=['get','post'])
+@app.route("/search_meeting", methods=['get', 'post'])
 def search_meetings():
-    form = SearchMeetingForm()
+    form = SearchMeetingForm(
+        start_date=date.today(),
+        end_date=date(9999,12,31)
+    )
     if form.validate_on_submit():
         meeting_list = query_meetings(
             start_date=form.start_date.data,
-            end_date = form.end_date.data,
-            lang = MeetingLanguageType.from_int(form.lang.data) if form.lang.data!=0 else None,
-            keywords= form.key_words.data
+            end_date=form.end_date.data,
+            lang=MeetingLanguageType.from_int(form.lang.data) if form.lang.data != 0 else None,
+            keywords=form.key_words.data
         )
-        return render_template('meetings.html',title='搜索结果',meetings=meeting_list)
+        return render_template('meetings.html', title='搜索结果', meetings=meeting_list)
     else:
-        return render_template("search_meetings.html",form = SearchMeetingForm())
+        return render_template("search_meetings.html", form=form)
 
 
 @app.route("/new_meeting")
@@ -292,8 +299,7 @@ def new_meeting():
     meeting_list = query_meetings()
     return render_template('meetings.html', title=title, meetings=meeting_list)
 
-
-#@app.route("/search_meeting")
-#@login_redirect_required
-#def search_meeting():
+# @app.route("/search_meeting")
+# @login_redirect_required
+# def search_meeting():
 #    return render_template("search_meeting.html")
