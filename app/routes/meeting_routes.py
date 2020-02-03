@@ -7,7 +7,7 @@ from app.models import User, load_user, RoleType, MeetingStatusType, Meeting, Me
 import sqlalchemy.exc
 from datetime import datetime, timedelta, date
 from app.security import user_required, login_redirect_required
-from sqlalchemy.sql import or_
+from sqlalchemy.sql import or_,desc
 
 
 # from app import bp
@@ -155,7 +155,7 @@ def query_meetings(**conditions):
     order_by = conditions.get('order_by',Meeting.start_date)
     query = query.order_by(order_by)
 
-    all_meetings = query.order_by(Meeting.start_date).all()
+    all_meetings = query.all()
 
     return all_meetings
 
@@ -301,8 +301,8 @@ def search_meetings():
 
 @app.route("/new_meeting")
 def new_meeting():
-    title = "最新会议"
-    meeting_list = query_meetings(order_by=Meeting.register_time)
+    title = "新收录会议"
+    meeting_list = query_meetings(order_by=desc(Meeting.register_time))
     return render_template('meetings.html', title=title, meetings=meeting_list)
 
 # @app.route("/search_meeting")
