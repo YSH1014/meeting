@@ -18,18 +18,19 @@
                         MEETINGS INFO
                     </li>
                     <li class="nav-item list-group-item meeting-sidebar-item"><a
-                            class="nav-link meeting-sidebar-navlink" href={{ url_for("new_meeting") }}>最新会议</a>
+                            class="nav-link meeting-sidebar-navlink" href={{ url_for("new_meeting") }}>新收录会议</a>
                     </li>
-                    <li class="nav-item list-group-item meeting-sidebar-item"><a
-                            class="nav-link meeting-sidebar-navlink" href={{ url_for(
-                        "meetings_year",
-                        year=2021
-                        ) }}>2021 年会议</a></li>
+
                     <li class="nav-item list-group-item meeting-sidebar-item"><a
                             class="nav-link meeting-sidebar-navlink" href={{ url_for(
                         "meetings_year",
                         year=2020
                         ) }}>2020 年会议</a></li>
+                    <li class="nav-item list-group-item meeting-sidebar-item"><a
+                            class="nav-link meeting-sidebar-navlink" href={{ url_for(
+                        "meetings_year",
+                        year=2021
+                        ) }}>2021 年会议</a></li>
                     <li class="nav-item list-group-item meeting-sidebar-item"><a
                             class="nav-link meeting-sidebar-navlink" href={{ url_for(
                             "search_meetings") }}>会议搜索</a></li>
