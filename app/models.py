@@ -2,6 +2,7 @@ from app import app, db, login
 from flask_login import UserMixin
 from enum import Enum, auto
 from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import datetime
 
 
 class RoleType(Enum):
@@ -88,6 +89,7 @@ class Meeting(db.Model):
     register = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     reviewer = db.Column(db.Integer, db.ForeignKey('user.id'))
     status = db.Column(db.Enum(MeetingStatusType),nullable=False)
+    register_time = db.Column(db.DateTime,nullable=False,default=datetime(2020,1,1,0,0,0))
 
     title = db.Column(db.String(300),nullable=False)
 

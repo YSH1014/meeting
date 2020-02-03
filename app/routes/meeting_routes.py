@@ -22,6 +22,7 @@ def register_meeting():
     if form.validate_on_submit():
         meeting = Meeting(
             register=current_user.id,
+            register_time=datetime.now(),
             status=MeetingStatusType.REGISTERED,
             title=form.title.data,
             short_name=form.short_name.data,
@@ -86,6 +87,7 @@ def update_meeting_form():
         meeting = Meeting.query.get(id)
 
         meeting.register = current_user.id
+        meeting.register_time = datetime.now()
         meeting.status = MeetingStatusType.REGISTERED
         meeting.title = form.title.data
         meeting.short_name = form.short_name.data
@@ -148,6 +150,10 @@ def query_meetings(**conditions):
     lang = conditions.get('lang')
     if lang:
         query = query.filter(Meeting.lang == lang)
+
+    # 处理排序方式
+    order_by = conditions.get('order_by',Meeting.start_date)
+    query = query.order_by(order_by)
 
     all_meetings = query.order_by(Meeting.start_date).all()
 
@@ -296,7 +302,7 @@ def search_meetings():
 @app.route("/new_meeting")
 def new_meeting():
     title = "最新会议"
-    meeting_list = query_meetings()
+    meeting_list = query_meetings(order_by=Meeting.register_time)
     return render_template('meetings.html', title=title, meetings=meeting_list)
 
 # @app.route("/search_meeting")
