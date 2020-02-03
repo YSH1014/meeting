@@ -1,4 +1,5 @@
 from app import app
+from app import db
 from app.models import RoleType, User, load_user
 from flask_login import current_user, login_required, login_user
 from flask import render_template, current_app, request, copy_current_request_context, redirect, url_for,flash
@@ -71,13 +72,13 @@ def decode_base64(data, altchars= '+/'):
 def getUserInfoByCstnetId(cstnetId):
     e = io.BytesIO()
     c = pycurl.Curl()
-    c.setopt(c.URL, 'http://astrocloud.china-vo.org/services/userinfo?callback=searcht&id='+cstnetId)
+    c.setopt(c.URL, 'https://nadc.china-vo.org/services/userinfo?callback=searcht&id='+cstnetId)
     c.setopt(c.WRITEFUNCTION, e.write)
     c.setopt(c.HTTPHEADER, ['Content-Type: application/json','Accept-Charset: UTF-8'])
     c.perform()
     c.close()
     profile = e.getvalue().decode('UTF-8')
-    print(profile)
+    print("test: "+profile)
     return profile
 
 
@@ -97,21 +98,21 @@ def createUser(profile):
     user = User(
             username=username,
             email=email,
-            phone=phone,
+            # phone=phone,
             address=address,
             role=RoleType.USER
         )
-    user.set_password(password)
-    print(user)
+    user.set_password('password')
+    # print(user)
     try:
         db.session.add(user)
         db.session.commit()
         return user
         # flash('Congratulations, you are now a registered user!')
         # return redirect(url_for('login'))  # 注册成功，返回登录界面
-    except sqlalchemy.exc.IntegrityError as e:
-        print(e)
-    #     flash('新用户注册失败，请检查Email或手机是否已被注册')
+    except Exception as err:
+        print(err)
+        # flash('新用户注册失败，请检查Email或手机是否已被注册')
 
 def login_redirect(): 
     if request.cookies.get('china-vo'):

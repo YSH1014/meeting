@@ -1,0 +1,612 @@
+[uWSGI] getting INI configuration from meeting.ini
+*** Starting uWSGI 2.0.18 (64bit) on [Sat Feb  1 21:58:29 2020] ***
+compiled with version: 7.3.0 on 22 July 2019 16:35:30
+os: Linux-4.18.0-15-generic #16~18.04.1-Ubuntu SMP Thu Feb 7 14:06:04 UTC 2019
+nodename: xuyunfei-KVM
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 4
+current working directory: /home/xuyunfei/nadc_meeting/meeting
+detected binary path: /home/xuyunfei/anaconda3/bin/uwsgi
+your processes number limit is 31661
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address meeting.sock fd 3
+Python version: 3.7.3 | packaged by conda-forge | (default, Jul  1 2019, 21:52:21)  [GCC 7.3.0]
+Set PythonHome to /home/xuyunfei/nadc_meeting/
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x56304768f260
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 437520 bytes (427 KB) for 5 cores
+*** Operational MODE: preforking ***
+mounting wsgi.py on /meetings
+WSGI app 0 (mountpoint='/meetings') ready in 0 seconds on interpreter 0x56304768f260 pid: 6483 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 6483)
+spawned uWSGI worker 1 (pid: 6484, cores: 1)
+spawned uWSGI worker 2 (pid: 6485, cores: 1)
+spawned uWSGI worker 3 (pid: 6486, cores: 1)
+spawned uWSGI worker 4 (pid: 6487, cores: 1)
+spawned uWSGI worker 5 (pid: 6488, cores: 1)
+[pid: 6484|app: 0|req: 1/1] 10.2.0.42 () {58 vars in 1688 bytes} [Sat Feb  1 21:58:36 2020] GET /meetings/ => generated 17155 bytes in 125 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 6484|app: 0|req: 2/2] 10.2.0.42 () {58 vars in 1743 bytes} [Sat Feb  1 21:58:39 2020] GET /meetings/search_meeting => generated 17727 bytes in 86 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 6486|app: 0|req: 1/3] 10.2.0.42 () {66 vars in 1945 bytes} [Sat Feb  1 21:58:53 2020] POST /meetings/search_meeting => generated 17169 bytes in 160 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 6488|app: 0|req: 1/4] 10.2.0.42 () {56 vars in 1718 bytes} [Sat Feb  1 21:59:14 2020] GET /meetings/search_meeting => generated 17727 bytes in 198 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 6488|app: 0|req: 2/5] 10.2.0.42 () {60 vars in 1774 bytes} [Sat Feb  1 21:59:41 2020] GET /meetings/search_meeting => generated 17727 bytes in 11 msecs (HTTP/1.1 200) 3 headers in 96 bytes (2 switches on core 0)
+[pid: 6486|app: 0|req: 2/6] 10.2.0.42 () {58 vars in 1751 bytes} [Sat Feb  1 22:04:33 2020] GET /meetings/new_meeting => generated 174251 bytes in 41 msecs (HTTP/1.1 200) 3 headers in 97 bytes (1 switches on core 0)
+[pid: 6485|app: 0|req: 1/7] 10.2.0.42 () {58 vars in 1762 bytes} [Sat Feb  1 22:04:34 2020] GET /meetings/meetings_year/2021 => generated 16284 bytes in 144 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 6484|app: 0|req: 3/8] 10.2.0.42 () {58 vars in 1769 bytes} [Sat Feb  1 22:04:36 2020] GET /meetings/meetings_year/2020 => generated 174252 bytes in 48 msecs (HTTP/1.1 200) 3 headers in 97 bytes (2 switches on core 0)
+[pid: 6488|app: 0|req: 3/9] 10.2.0.42 () {58 vars in 1761 bytes} [Sat Feb  1 22:04:39 2020] GET /meetings/search_meeting => generated 17727 bytes in 9 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 6485|app: 0|req: 2/10] 10.2.0.42 () {58 vars in 1759 bytes} [Sat Feb  1 22:04:49 2020] GET /meetings/registerMeeting => generated 19538 bytes in 39 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 6486|app: 0|req: 3/11] 10.2.0.42 () {58 vars in 1764 bytes} [Sat Feb  1 22:04:50 2020] GET /meetings/search_meeting_id => generated 16658 bytes in 9 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 6487|app: 0|req: 1/12] 10.2.0.42 () {58 vars in 1783 bytes} [Sat Feb  1 22:04:57 2020] GET /meetings/update_meeting_form?id=128 => generated 19818 bytes in 166 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 6486|app: 0|req: 4/13] 10.2.0.42 () {66 vars in 1980 bytes} [Sat Feb  1 22:05:00 2020] POST /meetings/update_meeting_form?id=128 => generated 257 bytes in 29 msecs (HTTP/1.1 302) 5 headers in 554 bytes (1 switches on core 0)
+[pid: 6486|app: 0|req: 5/14] 10.2.0.42 () {56 vars in 1797 bytes} [Sat Feb  1 22:05:01 2020] GET /meetings/meetingInfo/128 => generated 19152 bytes in 26 msecs (HTTP/1.1 200) 4 headers in 394 bytes (1 switches on core 0)
+[pid: 6486|app: 0|req: 6/15] 10.2.0.42 () {58 vars in 1752 bytes} [Sat Feb  1 22:05:03 2020] GET /meetings/approve/128 => generated 257 bytes in 13 msecs (HTTP/1.1 302) 4 headers in 158 bytes (1 switches on core 0)
+[pid: 6488|app: 0|req: 4/16] 10.2.0.42 () {54 vars in 1668 bytes} [Sat Feb  1 22:05:03 2020] GET /meetings/meetingInfo/128 => generated 18443 bytes in 29 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 6487|app: 0|req: 2/17] 10.2.0.42 () {58 vars in 1745 bytes} [Sat Feb  1 22:06:59 2020] GET /meetings/registerMeeting => generated 19538 bytes in 11 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 6484|app: 0|req: 4/18] 10.2.0.42 () {58 vars in 1758 bytes} [Sat Feb  1 22:07:51 2020] GET /meetings/search_meeting => generated 17727 bytes in 8 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 6484|app: 0|req: 5/19] 10.2.0.42 () {66 vars in 1945 bytes} [Sat Feb  1 22:08:16 2020] POST /meetings/search_meeting => generated 25258 bytes in 20 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 6486|app: 0|req: 7/20] 10.2.0.42 () {58 vars in 1759 bytes} [Sat Feb  1 22:08:56 2020] GET /meetings/meetingInfo/111 => generated 18301 bytes in 11 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 6486|app: 0|req: 8/21] 10.2.0.42 () {58 vars in 1781 bytes} [Sat Feb  1 22:10:37 2020] GET /meetings/update_meeting_form?id=111 => generated 19676 bytes in 43 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 6485|app: 0|req: 3/22] 10.2.0.42 () {66 vars in 1980 bytes} [Sat Feb  1 22:10:49 2020] POST /meetings/update_meeting_form?id=111 => generated 257 bytes in 33 msecs (HTTP/1.1 302) 5 headers in 554 bytes (2 switches on core 0)
+[pid: 6486|app: 0|req: 9/23] 10.2.0.42 () {56 vars in 1797 bytes} [Sat Feb  1 22:10:49 2020] GET /meetings/meetingInfo/111 => generated 19014 bytes in 9 msecs (HTTP/1.1 200) 4 headers in 394 bytes (1 switches on core 0)
+[pid: 6486|app: 0|req: 10/24] 10.2.0.42 () {58 vars in 1752 bytes} [Sat Feb  1 22:10:55 2020] GET /meetings/approve/111 => generated 257 bytes in 14 msecs (HTTP/1.1 302) 4 headers in 158 bytes (1 switches on core 0)
+[pid: 6484|app: 0|req: 6/25] 10.2.0.42 () {54 vars in 1668 bytes} [Sat Feb  1 22:10:55 2020] GET /meetings/meetingInfo/111 => generated 18305 bytes in 24 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 6484|app: 0|req: 7/26] 10.2.0.42 () {58 vars in 1781 bytes} [Sat Feb  1 22:11:00 2020] GET /meetings/update_meeting_form?id=111 => generated 19674 bytes in 42 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 6488|app: 0|req: 5/27] 10.2.0.42 () {54 vars in 1669 bytes} [Sat Feb  1 22:11:02 2020] GET /meetings/meetingInfo/111 => generated 18305 bytes in 10 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 6488|app: 0|req: 6/28] 10.2.0.42 () {58 vars in 1725 bytes} [Sat Feb  1 22:12:48 2020] GET /meetings/meetingInfo/111 => generated 18305 bytes in 12 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 6488|app: 0|req: 7/29] 10.2.0.42 () {56 vars in 1687 bytes} [Sat Feb  1 22:13:23 2020] GET /meetings/meetingInfo/111 => generated 18305 bytes in 10 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 6488|app: 0|req: 8/30] 10.2.0.42 () {50 vars in 1068 bytes} [Sat Feb  1 22:13:31 2020] GET /meetings/meetingInfo/111 => generated 16735 bytes in 8 msecs (HTTP/1.1 200) 2 headers in 82 bytes (1 switches on core 0)
+[pid: 6488|app: 0|req: 9/31] 10.2.0.42 () {50 vars in 1040 bytes} [Sat Feb  1 22:13:31 2020] GET /meetings/static/u/css/bootstrap.min.css => generated 144885 bytes in 2 msecs via sendfile() (HTTP/1.1 200) 8 headers in 306 bytes (0 switches on core 0)
+[pid: 6488|app: 0|req: 10/32] 10.2.0.42 () {50 vars in 1024 bytes} [Sat Feb  1 22:13:31 2020] GET /meetings/static/u/css/style.css => generated 4597 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 8 headers in 303 bytes (0 switches on core 0)
+[pid: 6488|app: 0|req: 11/33] 10.2.0.42 () {50 vars in 1021 bytes} [Sat Feb  1 22:13:31 2020] GET /meetings/static/u/js/bootstrap.min.js => generated 48950 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 8 headers in 319 bytes (0 switches on core 0)
+[pid: 6488|app: 0|req: 12/34] 10.2.0.42 () {50 vars in 1022 bytes} [Sat Feb  1 22:13:31 2020] GET /meetings/static/u/css/nadc.css => generated 13471 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 8 headers in 303 bytes (0 switches on core 0)
+[pid: 6487|app: 0|req: 3/35] 10.2.0.42 () {50 vars in 1015 bytes} [Sat Feb  1 22:13:31 2020] GET /meetings/static/u/js/jquery.min.js => generated 93071 bytes in 2 msecs via sendfile() (HTTP/1.1 200) 8 headers in 318 bytes (0 switches on core 0)
+[pid: 6487|app: 0|req: 4/36] 10.2.0.42 () {50 vars in 1110 bytes} [Sat Feb  1 22:13:32 2020] GET /meetings/static/u/img/index-img/new-header-logo.png => generated 17890 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 8 headers in 290 bytes (0 switches on core 0)
+[pid: 6485|app: 0|req: 4/37] 10.2.0.42 () {50 vars in 1126 bytes} [Sat Feb  1 22:13:32 2020] GET /meetings/static/u/img/index-img/NADCLogoTransHorizontal.png => generated 297738 bytes in 3 msecs via sendfile() (HTTP/1.1 200) 8 headers in 292 bytes (2 switches on core 0)
+[pid: 6487|app: 0|req: 5/38] 10.2.0.42 () {50 vars in 1104 bytes} [Sat Feb  1 22:13:32 2020] GET /meetings/static/u/img/meetings-img/titleIcon.png => generated 9089 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 8 headers in 289 bytes (0 switches on core 0)
+[pid: 6487|app: 0|req: 6/39] 10.2.0.42 () {50 vars in 1122 bytes} [Sat Feb  1 22:13:32 2020] GET /meetings/static/u/img/meetings-img/navbarSubtitleIcon.png => generated 3633 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 8 headers in 289 bytes (0 switches on core 0)
+[pid: 6485|app: 0|req: 5/40] 10.2.0.42 () {50 vars in 1110 bytes} [Sat Feb  1 22:13:32 2020] GET /meetings/static/u/img/index-img/China-VO_weChat.jpg => generated 147790 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 8 headers in 292 bytes (0 switches on core 0)
+[pid: 6485|app: 0|req: 6/41] 10.2.0.42 () {52 vars in 1195 bytes} [Sat Feb  1 22:18:36 2020] GET /meetings/meetingInfo/111 => generated 16735 bytes in 29 msecs (HTTP/1.1 200) 2 headers in 82 bytes (1 switches on core 0)
+[pid: 6485|app: 0|req: 7/42] 10.2.0.42 () {54 vars in 1259 bytes} [Sat Feb  1 22:18:51 2020] GET /meetings/search_meeting => generated 16377 bytes in 83 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 6485|app: 0|req: 8/43] 10.2.0.42 () {58 vars in 1597 bytes} [Sat Feb  1 22:40:14 2020] GET /meetings/ => generated 16870 bytes in 12 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 6487|app: 0|req: 7/44] 10.2.0.42 () {58 vars in 1629 bytes} [Sat Feb  1 22:40:15 2020] GET /meetings/static/u/css/bootstrap.min.css => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 207 bytes (0 switches on core 0)
+[pid: 6487|app: 0|req: 8/45] 10.2.0.42 () {58 vars in 1612 bytes} [Sat Feb  1 22:40:15 2020] GET /meetings/static/u/css/style.css => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 206 bytes (0 switches on core 0)
+[pid: 6487|app: 0|req: 9/46] 10.2.0.42 () {58 vars in 1608 bytes} [Sat Feb  1 22:40:15 2020] GET /meetings/static/u/js/bootstrap.min.js => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 207 bytes (0 switches on core 0)
+[pid: 6488|app: 0|req: 13/47] 10.2.0.42 () {58 vars in 1671 bytes} [Sat Feb  1 22:40:15 2020] GET /meetings/static/u/img/index-img/new-header-logo.png => generated 0 bytes in 2 msecs (HTTP/1.1 304) 5 headers in 206 bytes (0 switches on core 0)
+[pid: 6487|app: 0|req: 10/48] 10.2.0.42 () {58 vars in 1609 bytes} [Sat Feb  1 22:40:15 2020] GET /meetings/static/u/css/nadc.css => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 205 bytes (0 switches on core 0)
+[pid: 6484|app: 0|req: 8/49] 10.2.0.42 () {58 vars in 1601 bytes} [Sat Feb  1 22:40:15 2020] GET /meetings/static/u/js/jquery.min.js => generated 0 bytes in 2 msecs (HTTP/1.1 304) 5 headers in 206 bytes (0 switches on core 0)
+[pid: 6487|app: 0|req: 11/50] 10.2.0.42 () {58 vars in 1688 bytes} [Sat Feb  1 22:40:15 2020] GET /meetings/static/u/img/index-img/NADCLogoTransHorizontal.png => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 207 bytes (0 switches on core 0)
+[pid: 6487|app: 0|req: 12/51] 10.2.0.42 () {58 vars in 1665 bytes} [Sat Feb  1 22:40:15 2020] GET /meetings/static/u/img/meetings-img/titleIcon.png => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 206 bytes (0 switches on core 0)
+[pid: 6487|app: 0|req: 13/52] 10.2.0.42 () {58 vars in 1671 bytes} [Sat Feb  1 22:40:15 2020] GET /meetings/static/u/img/index-img/China-VO_weChat.jpg => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 206 bytes (0 switches on core 0)
+[pid: 6487|app: 0|req: 14/53] 10.2.0.42 () {58 vars in 1683 bytes} [Sat Feb  1 22:40:15 2020] GET /meetings/static/u/img/meetings-img/navbarSubtitleIcon.png => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 206 bytes (0 switches on core 0)
+[pid: 6487|app: 0|req: 15/54] 10.2.0.42 () {58 vars in 1655 bytes} [Sat Feb  1 22:40:17 2020] GET /meetings/logout => generated 237 bytes in 10 msecs (HTTP/1.1 302) 6 headers in 582 bytes (1 switches on core 0)
+[pid: 6486|app: 0|req: 11/55] 10.2.0.42 () {54 vars in 1552 bytes} [Sat Feb  1 22:40:17 2020] GET /meetings/index => generated 15805 bytes in 5 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 6485|app: 0|req: 9/56] 10.2.0.42 () {58 vars in 1634 bytes} [Sat Feb  1 22:40:19 2020] GET /meetings/login => generated 299 bytes in 2 msecs (HTTP/1.1 302) 4 headers in 245 bytes (1 switches on core 0)
+[pid: 6487|app: 0|req: 16/57] 10.2.0.42 () {58 vars in 1226 bytes} [Sun Feb  2 10:46:27 2020] GET /meetings/ => generated 15805 bytes in 5 msecs (HTTP/1.1 200) 2 headers in 82 bytes (1 switches on core 0)
+[pid: 6488|app: 0|req: 14/58] 10.2.0.42 () {60 vars in 1289 bytes} [Sun Feb  2 10:46:27 2020] GET /meetings/static/u/css/bootstrap.min.css => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 207 bytes (0 switches on core 0)
+[pid: 6484|app: 0|req: 9/59] 10.2.0.42 () {60 vars in 1261 bytes} [Sun Feb  2 10:46:27 2020] GET /meetings/static/u/js/jquery.min.js => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 206 bytes (0 switches on core 0)
+[pid: 6485|app: 0|req: 10/60] 10.2.0.42 () {60 vars in 1268 bytes} [Sun Feb  2 10:46:27 2020] GET /meetings/static/u/js/bootstrap.min.js => generated 0 bytes in 2 msecs (HTTP/1.1 304) 5 headers in 207 bytes (0 switches on core 0)
+[pid: 6487|app: 0|req: 17/61] 10.2.0.42 () {60 vars in 1269 bytes} [Sun Feb  2 10:46:27 2020] GET /meetings/static/u/css/nadc.css => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 205 bytes (0 switches on core 0)
+[pid: 6487|app: 0|req: 18/62] 10.2.0.42 () {60 vars in 1325 bytes} [Sun Feb  2 10:46:27 2020] GET /meetings/static/u/img/meetings-img/titleIcon.png => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 206 bytes (0 switches on core 0)
+[pid: 6484|app: 0|req: 10/63] 10.2.0.42 () {60 vars in 1348 bytes} [Sun Feb  2 10:46:27 2020] GET /meetings/static/u/img/index-img/NADCLogoTransHorizontal.png => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 207 bytes (0 switches on core 0)
+[pid: 6487|app: 0|req: 19/64] 10.2.0.42 () {60 vars in 1272 bytes} [Sun Feb  2 10:46:27 2020] GET /meetings/static/u/css/style.css => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 206 bytes (0 switches on core 0)
+[pid: 6487|app: 0|req: 20/65] 10.2.0.42 () {60 vars in 1331 bytes} [Sun Feb  2 10:46:27 2020] GET /meetings/static/u/img/index-img/new-header-logo.png => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 206 bytes (0 switches on core 0)
+[pid: 6487|app: 0|req: 21/66] 10.2.0.42 () {60 vars in 1343 bytes} [Sun Feb  2 10:46:27 2020] GET /meetings/static/u/img/meetings-img/navbarSubtitleIcon.png => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 206 bytes (0 switches on core 0)
+[pid: 6487|app: 0|req: 22/67] 10.2.0.42 () {60 vars in 1331 bytes} [Sun Feb  2 10:46:27 2020] GET /meetings/static/u/img/index-img/China-VO_weChat.jpg => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 206 bytes (0 switches on core 0)
+[pid: 6488|app: 0|req: 15/68] 10.2.0.42 () {58 vars in 1424 bytes} [Sun Feb  2 10:46:31 2020] GET /meetings/meetings_year/2020 => generated 172900 bytes in 43 msecs (HTTP/1.1 200) 2 headers in 83 bytes (2 switches on core 0)
+[pid: 6485|app: 0|req: 11/69] 10.2.0.42 () {58 vars in 1434 bytes} [Sun Feb  2 10:46:32 2020] GET /meetings/meetingInfo/10 => generated 16780 bytes in 10 msecs (HTTP/1.1 200) 2 headers in 82 bytes (1 switches on core 0)
+[pid: 6486|app: 0|req: 12/70] 10.2.0.42 () {60 vars in 1465 bytes} [Sun Feb  2 10:52:25 2020] GET /meetings/meetingInfo/10 => generated 16780 bytes in 12 msecs (HTTP/1.1 200) 2 headers in 82 bytes (1 switches on core 0)
+[uWSGI] getting INI configuration from meeting.ini
+*** Starting uWSGI 2.0.18 (64bit) on [Sun Feb  2 11:11:22 2020] ***
+compiled with version: 7.3.0 on 22 July 2019 16:35:30
+os: Linux-4.18.0-15-generic #16~18.04.1-Ubuntu SMP Thu Feb 7 14:06:04 UTC 2019
+nodename: xuyunfei-KVM
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 4
+current working directory: /home/xuyunfei/nadc_meeting/meeting
+detected binary path: /home/xuyunfei/anaconda3/bin/uwsgi
+your processes number limit is 31661
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address meeting.sock fd 3
+Python version: 3.7.3 | packaged by conda-forge | (default, Jul  1 2019, 21:52:21)  [GCC 7.3.0]
+Set PythonHome to /home/xuyunfei/nadc_meeting/
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x55942e4a04a0
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 437520 bytes (427 KB) for 5 cores
+*** Operational MODE: preforking ***
+mounting wsgi.py on /meetings
+WSGI app 0 (mountpoint='/meetings') ready in 1 seconds on interpreter 0x55942e4a04a0 pid: 8499 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 8499)
+spawned uWSGI worker 1 (pid: 8500, cores: 1)
+spawned uWSGI worker 2 (pid: 8501, cores: 1)
+spawned uWSGI worker 3 (pid: 8502, cores: 1)
+spawned uWSGI worker 4 (pid: 8503, cores: 1)
+spawned uWSGI worker 5 (pid: 8504, cores: 1)
+[pid: 8500|app: 0|req: 1/1] 10.2.0.42 () {66 vars in 1759 bytes} [Sun Feb  2 11:11:34 2020] POST /meetings/search_meeting => generated 23829 bytes in 133 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 8502|app: 0|req: 1/2] 10.2.0.42 () {58 vars in 1571 bytes} [Sun Feb  2 11:11:36 2020] GET /meetings/search_meeting => generated 16397 bytes in 123 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 8500|app: 0|req: 2/3] 10.2.0.42 () {66 vars in 1759 bytes} [Sun Feb  2 11:11:41 2020] POST /meetings/search_meeting => generated 22762 bytes in 12 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 8502|app: 0|req: 2/4] 10.2.0.42 () {58 vars in 1573 bytes} [Sun Feb  2 11:11:46 2020] GET /meetings/meetingInfo/185 => generated 16829 bytes in 106 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 8502|app: 0|req: 3/5] 10.2.0.42 () {56 vars in 1548 bytes} [Sun Feb  2 11:12:01 2020] GET /meetings/meetingInfo/185 => generated 16829 bytes in 9 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 8502|app: 0|req: 4/6] 10.2.0.42 () {58 vars in 1572 bytes} [Sun Feb  2 11:12:03 2020] GET /meetings/search_meeting => generated 16397 bytes in 4 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 8502|app: 0|req: 5/7] 10.2.0.42 () {66 vars in 1759 bytes} [Sun Feb  2 11:12:07 2020] POST /meetings/search_meeting => generated 14933 bytes in 22 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 8502|app: 0|req: 6/8] 10.2.0.42 () {58 vars in 1571 bytes} [Sun Feb  2 11:12:10 2020] GET /meetings/search_meeting => generated 16397 bytes in 5 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 8502|app: 0|req: 7/9] 10.2.0.42 () {66 vars in 1759 bytes} [Sun Feb  2 11:12:16 2020] POST /meetings/search_meeting => generated 15797 bytes in 11 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 8501|app: 0|req: 1/10] 10.2.0.42 () {58 vars in 1573 bytes} [Sun Feb  2 11:12:18 2020] GET /meetings/meetingInfo/189 => generated 17092 bytes in 156 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 8503|app: 0|req: 1/11] 10.2.0.42 () {58 vars in 1554 bytes} [Sun Feb  2 11:12:30 2020] GET /meetings/login => generated 299 bytes in 10 msecs (HTTP/1.1 302) 4 headers in 245 bytes (1 switches on core 0)
+[pid: 8503|app: 0|req: 2/12] 10.2.0.42 () {56 vars in 1607 bytes} [Sun Feb  2 11:12:41 2020] GET /meetings/meetingInfo/189 => generated 19176 bytes in 142 msecs (HTTP/1.1 200) 4 headers in 396 bytes (2 switches on core 0)
+[pid: 8503|app: 0|req: 3/13] 10.2.0.42 () {58 vars in 1760 bytes} [Sun Feb  2 11:12:45 2020] GET /meetings/search_meeting => generated 17747 bytes in 76 msecs (HTTP/1.1 200) 3 headers in 96 bytes (2 switches on core 0)
+[pid: 8504|app: 0|req: 1/14] 10.2.0.42 () {66 vars in 1947 bytes} [Sun Feb  2 11:12:49 2020] POST /meetings/search_meeting => generated 24112 bytes in 147 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 8503|app: 0|req: 4/15] 10.2.0.42 () {58 vars in 1761 bytes} [Sun Feb  2 11:12:52 2020] GET /meetings/meetingInfo/182 => generated 18394 bytes in 10 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 8502|app: 0|req: 8/16] 10.2.0.42 () {58 vars in 1783 bytes} [Sun Feb  2 11:12:55 2020] GET /meetings/update_meeting_form?id=182 => generated 19770 bytes in 39 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 2/17] 10.2.0.42 () {66 vars in 1982 bytes} [Sun Feb  2 11:12:58 2020] POST /meetings/update_meeting_form?id=182 => generated 257 bytes in 32 msecs (HTTP/1.1 302) 5 headers in 556 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 3/18] 10.2.0.42 () {56 vars in 1799 bytes} [Sun Feb  2 11:12:58 2020] GET /meetings/meetingInfo/182 => generated 19104 bytes in 23 msecs (HTTP/1.1 200) 4 headers in 396 bytes (1 switches on core 0)
+[pid: 8500|app: 0|req: 3/19] 10.2.0.42 () {58 vars in 1754 bytes} [Sun Feb  2 11:13:00 2020] GET /meetings/approve/182 => generated 257 bytes in 27 msecs (HTTP/1.1 302) 4 headers in 158 bytes (1 switches on core 0)
+[pid: 8501|app: 0|req: 2/20] 10.2.0.42 () {54 vars in 1670 bytes} [Sun Feb  2 11:13:00 2020] GET /meetings/meetingInfo/182 => generated 18395 bytes in 9 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 8500|app: 0|req: 4/21] 10.2.0.42 () {58 vars in 1760 bytes} [Sun Feb  2 11:13:07 2020] GET /meetings/search_meeting => generated 17747 bytes in 82 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 8500|app: 0|req: 5/22] 10.2.0.42 () {66 vars in 1947 bytes} [Sun Feb  2 11:13:12 2020] POST /meetings/search_meeting => generated 23217 bytes in 13 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 8500|app: 0|req: 6/23] 10.2.0.42 () {56 vars in 1729 bytes} [Sun Feb  2 11:13:22 2020] GET /meetings/meetingInfo/186 => generated 18674 bytes in 23 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 8503|app: 0|req: 5/24] 10.2.0.42 () {58 vars in 1783 bytes} [Sun Feb  2 11:13:25 2020] GET /meetings/update_meeting_form?id=186 => generated 20050 bytes in 39 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 8502|app: 0|req: 9/25] 10.2.0.42 () {66 vars in 1982 bytes} [Sun Feb  2 11:13:30 2020] POST /meetings/update_meeting_form?id=186 => generated 257 bytes in 32 msecs (HTTP/1.1 302) 5 headers in 556 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 4/26] 10.2.0.42 () {56 vars in 1799 bytes} [Sun Feb  2 11:13:30 2020] GET /meetings/meetingInfo/186 => generated 19384 bytes in 10 msecs (HTTP/1.1 200) 4 headers in 396 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 5/27] 10.2.0.42 () {58 vars in 1754 bytes} [Sun Feb  2 11:13:32 2020] GET /meetings/approve/186 => generated 257 bytes in 14 msecs (HTTP/1.1 302) 4 headers in 158 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 6/28] 10.2.0.42 () {54 vars in 1670 bytes} [Sun Feb  2 11:13:32 2020] GET /meetings/meetingInfo/186 => generated 18675 bytes in 7 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 7/29] 10.2.0.42 () {56 vars in 1729 bytes} [Sun Feb  2 11:13:38 2020] GET /meetings/meetingInfo/187 => generated 18312 bytes in 9 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 8/30] 10.2.0.42 () {58 vars in 1783 bytes} [Sun Feb  2 11:13:40 2020] GET /meetings/update_meeting_form?id=187 => generated 19688 bytes in 42 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 9/31] 10.2.0.42 () {66 vars in 1982 bytes} [Sun Feb  2 11:13:44 2020] POST /meetings/update_meeting_form?id=187 => generated 257 bytes in 22 msecs (HTTP/1.1 302) 5 headers in 556 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 10/32] 10.2.0.42 () {56 vars in 1799 bytes} [Sun Feb  2 11:13:44 2020] GET /meetings/meetingInfo/187 => generated 19022 bytes in 8 msecs (HTTP/1.1 200) 4 headers in 396 bytes (2 switches on core 0)
+[pid: 8504|app: 0|req: 11/33] 10.2.0.42 () {58 vars in 1754 bytes} [Sun Feb  2 11:13:45 2020] GET /meetings/approve/187 => generated 257 bytes in 15 msecs (HTTP/1.1 302) 4 headers in 158 bytes (2 switches on core 0)
+[pid: 8504|app: 0|req: 12/34] 10.2.0.42 () {54 vars in 1670 bytes} [Sun Feb  2 11:13:45 2020] GET /meetings/meetingInfo/187 => generated 18313 bytes in 8 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 13/35] 10.2.0.42 () {56 vars in 1729 bytes} [Sun Feb  2 11:13:52 2020] GET /meetings/meetingInfo/185 => generated 18399 bytes in 10 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 14/36] 10.2.0.42 () {58 vars in 1783 bytes} [Sun Feb  2 11:13:54 2020] GET /meetings/update_meeting_form?id=185 => generated 19776 bytes in 10 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 15/37] 10.2.0.42 () {66 vars in 1982 bytes} [Sun Feb  2 11:13:57 2020] POST /meetings/update_meeting_form?id=185 => generated 257 bytes in 21 msecs (HTTP/1.1 302) 5 headers in 556 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 16/38] 10.2.0.42 () {56 vars in 1799 bytes} [Sun Feb  2 11:13:57 2020] GET /meetings/meetingInfo/185 => generated 19109 bytes in 8 msecs (HTTP/1.1 200) 4 headers in 396 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 17/39] 10.2.0.42 () {58 vars in 1754 bytes} [Sun Feb  2 11:13:59 2020] GET /meetings/approve/185 => generated 257 bytes in 14 msecs (HTTP/1.1 302) 4 headers in 158 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 18/40] 10.2.0.42 () {54 vars in 1670 bytes} [Sun Feb  2 11:13:59 2020] GET /meetings/meetingInfo/185 => generated 18400 bytes in 8 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 19/41] 10.2.0.42 () {56 vars in 1729 bytes} [Sun Feb  2 11:14:06 2020] GET /meetings/meetingInfo/184 => generated 18295 bytes in 11 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 20/42] 10.2.0.42 () {58 vars in 1783 bytes} [Sun Feb  2 11:14:08 2020] GET /meetings/update_meeting_form?id=184 => generated 19671 bytes in 12 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 21/43] 10.2.0.42 () {66 vars in 1982 bytes} [Sun Feb  2 11:14:11 2020] POST /meetings/update_meeting_form?id=184 => generated 257 bytes in 21 msecs (HTTP/1.1 302) 5 headers in 556 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 22/44] 10.2.0.42 () {56 vars in 1799 bytes} [Sun Feb  2 11:14:12 2020] GET /meetings/meetingInfo/184 => generated 19005 bytes in 8 msecs (HTTP/1.1 200) 4 headers in 396 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 23/45] 10.2.0.42 () {58 vars in 1754 bytes} [Sun Feb  2 11:14:13 2020] GET /meetings/approve/184 => generated 257 bytes in 17 msecs (HTTP/1.1 302) 4 headers in 158 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 24/46] 10.2.0.42 () {54 vars in 1670 bytes} [Sun Feb  2 11:14:13 2020] GET /meetings/meetingInfo/184 => generated 18296 bytes in 8 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 25/47] 10.2.0.42 () {56 vars in 1729 bytes} [Sun Feb  2 11:14:22 2020] GET /meetings/meetingInfo/183 => generated 18487 bytes in 9 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 26/48] 10.2.0.42 () {58 vars in 1783 bytes} [Sun Feb  2 11:14:24 2020] GET /meetings/update_meeting_form?id=183 => generated 19863 bytes in 11 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 27/49] 10.2.0.42 () {66 vars in 1982 bytes} [Sun Feb  2 11:14:29 2020] POST /meetings/update_meeting_form?id=183 => generated 257 bytes in 22 msecs (HTTP/1.1 302) 5 headers in 556 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 28/50] 10.2.0.42 () {56 vars in 1799 bytes} [Sun Feb  2 11:14:29 2020] GET /meetings/meetingInfo/183 => generated 19197 bytes in 14 msecs (HTTP/1.1 200) 4 headers in 396 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 29/51] 10.2.0.42 () {58 vars in 1754 bytes} [Sun Feb  2 11:14:31 2020] GET /meetings/approve/183 => generated 257 bytes in 13 msecs (HTTP/1.1 302) 4 headers in 158 bytes (1 switches on core 0)
+[pid: 8500|app: 0|req: 7/52] 10.2.0.42 () {54 vars in 1670 bytes} [Sun Feb  2 11:14:31 2020] GET /meetings/meetingInfo/183 => generated 18488 bytes in 9 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 30/53] 10.2.0.42 () {58 vars in 1765 bytes} [Sun Feb  2 11:14:38 2020] GET /meetings/search_meeting_id => generated 16658 bytes in 10 msecs (HTTP/1.1 200) 3 headers in 96 bytes (2 switches on core 0)
+[pid: 8504|app: 0|req: 31/54] 10.2.0.42 () {58 vars in 1781 bytes} [Sun Feb  2 11:14:40 2020] GET /meetings/update_meeting_form?id=2 => generated 419 bytes in 8 msecs (HTTP/1.1 302) 4 headers in 239 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 32/55] 10.2.0.42 () {54 vars in 1772 bytes} [Sun Feb  2 11:14:40 2020] GET /meetings/error/%E4%BC%9A%E8%AE%AE%E5%AE%A1%E6%A0%B8%E4%B8%AD%EF%BC%8C%E6%97%A0%E6%B3%95%E4%BF%AE%E6%94%B9 => generated 16402 bytes in 9 msecs (HTTP/1.1 200) 3 headers in 96 bytes (2 switches on core 0)
+[pid: 8504|app: 0|req: 33/56] 10.2.0.42 () {58 vars in 1843 bytes} [Sun Feb  2 11:14:42 2020] GET /meetings/registerMeeting => generated 19538 bytes in 9 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 34/57] 10.2.0.42 () {58 vars in 1748 bytes} [Sun Feb  2 11:14:52 2020] GET /meetings/userInfo => generated 16590 bytes in 10 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 35/58] 10.2.0.42 () {58 vars in 1761 bytes} [Sun Feb  2 11:14:56 2020] GET /meetings/meetings_year/2021 => generated 16284 bytes in 11 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 36/59] 10.2.0.42 () {58 vars in 1771 bytes} [Sun Feb  2 11:14:58 2020] GET /meetings/meetings_year/2020 => generated 174250 bytes in 38 msecs (HTTP/1.1 200) 3 headers in 97 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 37/60] 10.2.0.42 () {58 vars in 1763 bytes} [Sun Feb  2 11:15:27 2020] GET /meetings/search_meeting => generated 17747 bytes in 75 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 38/61] 10.2.0.42 () {66 vars in 1947 bytes} [Sun Feb  2 11:17:31 2020] POST /meetings/search_meeting => generated 168362 bytes in 40 msecs (HTTP/1.1 200) 3 headers in 97 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 39/62] 10.2.0.42 () {58 vars in 1759 bytes} [Sun Feb  2 11:17:50 2020] GET /meetings/meetingInfo/11 => generated 18355 bytes in 10 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 40/63] 10.2.0.42 () {58 vars in 1759 bytes} [Sun Feb  2 11:18:02 2020] GET /meetings/search_meeting => generated 17747 bytes in 8 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 41/64] 10.2.0.42 () {52 vars in 1317 bytes} [Sun Feb  2 11:21:57 2020] GET /meetings/meetingInfo/111 => generated 16735 bytes in 12 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 42/65] 10.2.0.42 () {56 vars in 1373 bytes} [Sun Feb  2 11:21:57 2020] GET /meetings/static/u/js/jquery.min.js => generated 0 bytes in 2 msecs (HTTP/1.1 304) 5 headers in 206 bytes (0 switches on core 0)
+[pid: 8504|app: 0|req: 43/66] 10.2.0.42 () {56 vars in 1401 bytes} [Sun Feb  2 11:21:57 2020] GET /meetings/static/u/css/bootstrap.min.css => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 207 bytes (0 switches on core 0)
+[pid: 8504|app: 0|req: 44/67] 10.2.0.42 () {56 vars in 1381 bytes} [Sun Feb  2 11:21:57 2020] GET /meetings/static/u/css/nadc.css => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 205 bytes (0 switches on core 0)
+[pid: 8504|app: 0|req: 45/68] 10.2.0.42 () {56 vars in 1384 bytes} [Sun Feb  2 11:21:57 2020] GET /meetings/static/u/css/style.css => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 206 bytes (0 switches on core 0)
+[pid: 8500|app: 0|req: 8/69] 10.2.0.42 () {56 vars in 1380 bytes} [Sun Feb  2 11:21:57 2020] GET /meetings/static/u/js/bootstrap.min.js => generated 0 bytes in 2 msecs (HTTP/1.1 304) 5 headers in 207 bytes (0 switches on core 0)
+[pid: 8500|app: 0|req: 9/70] 10.2.0.42 () {56 vars in 1468 bytes} [Sun Feb  2 11:21:57 2020] GET /meetings/static/u/img/index-img/new-header-logo.png => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 206 bytes (0 switches on core 0)
+[pid: 8504|app: 0|req: 46/71] 10.2.0.42 () {56 vars in 1485 bytes} [Sun Feb  2 11:21:58 2020] GET /meetings/static/u/img/index-img/NADCLogoTransHorizontal.png => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 207 bytes (0 switches on core 0)
+[pid: 8504|app: 0|req: 47/72] 10.2.0.42 () {56 vars in 1480 bytes} [Sun Feb  2 11:21:58 2020] GET /meetings/static/u/img/meetings-img/navbarSubtitleIcon.png => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 206 bytes (0 switches on core 0)
+[pid: 8500|app: 0|req: 10/73] 10.2.0.42 () {56 vars in 1468 bytes} [Sun Feb  2 11:21:58 2020] GET /meetings/static/u/img/index-img/China-VO_weChat.jpg => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 206 bytes (0 switches on core 0)
+[pid: 8504|app: 0|req: 48/74] 10.2.0.42 () {56 vars in 1462 bytes} [Sun Feb  2 11:21:58 2020] GET /meetings/static/u/img/meetings-img/titleIcon.png => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 206 bytes (0 switches on core 0)
+[pid: 8504|app: 0|req: 49/75] 10.2.0.42 () {50 vars in 915 bytes} [Sun Feb  2 12:13:43 2020] GET /meetings/ => generated 15805 bytes in 5 msecs (HTTP/1.1 200) 2 headers in 82 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 50/76] 10.2.0.42 () {54 vars in 1047 bytes} [Sun Feb  2 12:13:43 2020] GET /meetings/static/u/css/bootstrap.min.css => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 207 bytes (0 switches on core 0)
+[pid: 8504|app: 0|req: 51/77] 10.2.0.42 () {54 vars in 1026 bytes} [Sun Feb  2 12:13:43 2020] GET /meetings/static/u/js/bootstrap.min.js => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 207 bytes (0 switches on core 0)
+[pid: 8500|app: 0|req: 11/78] 10.2.0.42 () {54 vars in 1019 bytes} [Sun Feb  2 12:13:43 2020] GET /meetings/static/u/js/jquery.min.js => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 206 bytes (0 switches on core 0)
+[pid: 8504|app: 0|req: 52/79] 10.2.0.42 () {50 vars in 917 bytes} [Sun Feb  2 12:13:43 2020] GET /meetings/static/u/css/nadc.css => generated 13471 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 8 headers in 303 bytes (0 switches on core 0)
+[pid: 8500|app: 0|req: 12/80] 10.2.0.42 () {50 vars in 919 bytes} [Sun Feb  2 12:13:43 2020] GET /meetings/static/u/css/style.css => generated 4597 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 8 headers in 303 bytes (0 switches on core 0)
+[pid: 8500|app: 0|req: 13/81] 10.2.0.42 () {50 vars in 967 bytes} [Sun Feb  2 12:13:43 2020] GET /meetings/static/u/img/meetings-img/navbarSubtitleIcon.png => generated 3633 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 8 headers in 289 bytes (0 switches on core 0)
+[pid: 8504|app: 0|req: 53/82] 10.2.0.42 () {54 vars in 1081 bytes} [Sun Feb  2 12:13:43 2020] GET /meetings/static/u/img/index-img/NADCLogoTransHorizontal.png => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 207 bytes (0 switches on core 0)
+[pid: 8502|app: 0|req: 10/83] 10.2.0.42 () {50 vars in 955 bytes} [Sun Feb  2 12:13:43 2020] GET /meetings/static/u/img/index-img/new-header-logo.png => generated 17890 bytes in 2 msecs via sendfile() (HTTP/1.1 200) 8 headers in 290 bytes (0 switches on core 0)
+[pid: 8500|app: 0|req: 14/84] 10.2.0.42 () {50 vars in 955 bytes} [Sun Feb  2 12:13:43 2020] GET /meetings/static/u/img/index-img/China-VO_weChat.jpg => generated 147790 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 8 headers in 292 bytes (0 switches on core 0)
+[pid: 8501|app: 0|req: 3/85] 10.2.0.42 () {54 vars in 1058 bytes} [Sun Feb  2 12:13:43 2020] GET /meetings/static/u/img/meetings-img/titleIcon.png => generated 0 bytes in 4 msecs (HTTP/1.1 304) 5 headers in 206 bytes (0 switches on core 0)
+[pid: 8503|app: 0|req: 6/86] 10.2.0.42 () {52 vars in 1039 bytes} [Sun Feb  2 12:13:49 2020] GET /meetings/search_meeting => generated 16397 bytes in 4 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 8502|app: 0|req: 11/87] 10.2.0.42 () {58 vars in 1351 bytes} [Sun Feb  2 12:14:01 2020] POST /meetings/search_meeting => generated 15779 bytes in 11 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 8502|app: 0|req: 12/88] 10.2.0.42 () {52 vars in 1192 bytes} [Sun Feb  2 12:14:04 2020] GET /meetings/meetingInfo/1 => generated 16753 bytes in 11 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 8500|app: 0|req: 15/89] 10.2.0.42 () {52 vars in 1180 bytes} [Sun Feb  2 12:14:17 2020] GET /meetings/search_meeting => generated 16397 bytes in 5 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 8503|app: 0|req: 7/90] 10.2.0.42 () {58 vars in 1351 bytes} [Sun Feb  2 12:18:51 2020] POST /meetings/search_meeting => generated 106284 bytes in 36 msecs (HTTP/1.1 200) 4 headers in 268 bytes (1 switches on core 0)
+[pid: 8503|app: 0|req: 8/91] 10.2.0.42 () {52 vars in 1194 bytes} [Sun Feb  2 12:19:10 2020] GET /meetings/search_meeting => generated 16397 bytes in 5 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 8503|app: 0|req: 9/92] 10.2.0.42 () {58 vars in 1351 bytes} [Sun Feb  2 12:19:14 2020] POST /meetings/search_meeting => generated 17498 bytes in 11 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 8500|app: 0|req: 16/93] 10.2.0.42 () {52 vars in 1196 bytes} [Sun Feb  2 12:19:36 2020] GET /meetings/meetingInfo/190 => generated 16738 bytes in 12 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 8501|app: 0|req: 4/94] 10.2.0.42 () {52 vars in 1196 bytes} [Sun Feb  2 12:19:41 2020] GET /meetings/meetingInfo/190 => generated 16738 bytes in 9 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 54/95] 10.2.0.42 () {52 vars in 1195 bytes} [Sun Feb  2 12:19:48 2020] GET /meetings/search_meeting => generated 16397 bytes in 5 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 55/96] 10.2.0.42 () {58 vars in 1351 bytes} [Sun Feb  2 12:19:51 2020] POST /meetings/search_meeting => generated 17498 bytes in 10 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 56/97] 10.2.0.42 () {52 vars in 1196 bytes} [Sun Feb  2 12:20:31 2020] GET /meetings/meetingInfo/190 => generated 16738 bytes in 10 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 57/98] 10.2.0.42 () {52 vars in 1196 bytes} [Sun Feb  2 12:20:39 2020] GET /meetings/meetingInfo/190 => generated 16738 bytes in 12 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 58/99] 10.2.0.42 () {52 vars in 1196 bytes} [Sun Feb  2 12:20:47 2020] GET /meetings/meetingInfo/190 => generated 16738 bytes in 9 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 59/100] 10.2.0.42 () {52 vars in 1203 bytes} [Sun Feb  2 12:21:11 2020] GET /meetings/meetings_year/2021 => generated 14934 bytes in 9 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 8500|app: 0|req: 17/101] 10.2.0.42 () {52 vars in 1206 bytes} [Sun Feb  2 12:21:13 2020] GET /meetings/meetings_year/2020 => generated 172900 bytes in 37 msecs (HTTP/1.1 200) 4 headers in 268 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 60/102] 10.2.0.42 () {52 vars in 1203 bytes} [Sun Feb  2 12:21:15 2020] GET /meetings/meetings_year/2021 => generated 14934 bytes in 9 msecs (HTTP/1.1 200) 4 headers in 267 bytes (2 switches on core 0)
+[pid: 8504|app: 0|req: 61/103] 10.2.0.42 () {52 vars in 1192 bytes} [Sun Feb  2 12:21:17 2020] GET /meetings/new_meeting => generated 172899 bytes in 31 msecs (HTTP/1.1 200) 4 headers in 268 bytes (1 switches on core 0)
+[pid: 8503|app: 0|req: 10/104] 10.2.0.42 () {52 vars in 1203 bytes} [Sun Feb  2 12:21:19 2020] GET /meetings/meetings_year/2021 => generated 14934 bytes in 9 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 62/105] 10.2.0.42 () {52 vars in 1198 bytes} [Sun Feb  2 12:21:21 2020] GET /meetings/search_meeting => generated 16397 bytes in 4 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 8503|app: 0|req: 11/106] 10.2.0.42 () {58 vars in 1351 bytes} [Sun Feb  2 12:21:24 2020] POST /meetings/search_meeting => generated 17498 bytes in 11 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 8503|app: 0|req: 12/107] 10.2.0.42 () {52 vars in 1198 bytes} [Sun Feb  2 12:21:27 2020] GET /meetings/search_meeting => generated 16397 bytes in 5 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 63/108] 10.2.0.42 () {58 vars in 1351 bytes} [Sun Feb  2 12:21:31 2020] POST /meetings/search_meeting => generated 170334 bytes in 34 msecs (HTTP/1.1 200) 4 headers in 268 bytes (1 switches on core 0)
+[pid: 8501|app: 0|req: 5/109] 10.2.0.42 () {52 vars in 1194 bytes} [Sun Feb  2 12:21:33 2020] GET /meetings/meetingInfo/10 => generated 16780 bytes in 9 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 64/110] 10.2.0.42 () {52 vars in 1194 bytes} [Sun Feb  2 12:21:37 2020] GET /meetings/meetingInfo/10 => generated 16780 bytes in 9 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 65/111] 10.2.0.42 () {52 vars in 1198 bytes} [Sun Feb  2 12:23:10 2020] GET /meetings/search_meeting => generated 16397 bytes in 5 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 66/112] 10.2.0.42 () {52 vars in 1188 bytes} [Sun Feb  2 12:23:14 2020] GET /meetings/new_meeting => generated 172899 bytes in 50 msecs (HTTP/1.1 200) 4 headers in 268 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 67/113] 10.2.0.42 () {52 vars in 1199 bytes} [Sun Feb  2 12:23:16 2020] GET /meetings/meetings_year/2021 => generated 14934 bytes in 8 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 68/114] 10.2.0.42 () {52 vars in 1206 bytes} [Sun Feb  2 12:23:18 2020] GET /meetings/meetings_year/2021 => generated 14934 bytes in 9 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 8503|app: 0|req: 13/115] 10.2.0.42 () {52 vars in 1206 bytes} [Sun Feb  2 12:23:20 2020] GET /meetings/meetings_year/2021 => generated 14934 bytes in 8 msecs (HTTP/1.1 200) 4 headers in 267 bytes (2 switches on core 0)
+[pid: 8503|app: 0|req: 14/116] 10.2.0.42 () {52 vars in 1206 bytes} [Sun Feb  2 12:23:21 2020] GET /meetings/meetings_year/2020 => generated 172900 bytes in 33 msecs (HTTP/1.1 200) 4 headers in 268 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 69/117] 10.2.0.42 () {52 vars in 1200 bytes} [Sun Feb  2 12:23:24 2020] GET /meetings/registerMeeting => generated 291 bytes in 2 msecs (HTTP/1.1 302) 5 headers in 446 bytes (2 switches on core 0)
+[pid: 8504|app: 0|req: 70/118] 10.2.0.42 () {50 vars in 1264 bytes} [Sun Feb  2 12:23:24 2020] GET /meetings/login?role_require=RoleType.USER => generated 299 bytes in 1 msecs (HTTP/1.1 302) 4 headers in 245 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 71/119] 10.2.0.42 () {52 vars in 1351 bytes} [Sun Feb  2 12:23:28 2020] GET /meetings/meetings_year/2020 => generated 173435 bytes in 33 msecs (HTTP/1.1 200) 4 headers in 268 bytes (1 switches on core 0)
+[pid: 8503|app: 0|req: 15/120] 10.2.0.42 () {52 vars in 1249 bytes} [Sun Feb  2 12:23:30 2020] GET /meetings/search_meeting_id => generated 15308 bytes in 6 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 72/121] 10.2.0.42 () {52 vars in 1236 bytes} [Sun Feb  2 12:23:32 2020] GET /meetings/new_meeting => generated 172899 bytes in 34 msecs (HTTP/1.1 200) 4 headers in 268 bytes (1 switches on core 0)
+[pid: 8503|app: 0|req: 16/122] 10.2.0.42 () {52 vars in 1230 bytes} [Sun Feb  2 12:23:38 2020] GET /meetings/new_meeting => generated 172899 bytes in 32 msecs (HTTP/1.1 200) 4 headers in 268 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 73/123] 10.2.0.42 () {52 vars in 1230 bytes} [Sun Feb  2 12:26:08 2020] GET /meetings/new_meeting => generated 172899 bytes in 33 msecs (HTTP/1.1 200) 4 headers in 268 bytes (1 switches on core 0)
+[pid: 8503|app: 0|req: 17/124] 10.2.0.42 () {50 vars in 1146 bytes} [Sun Feb  2 12:26:23 2020] GET /meetings/ => generated 15805 bytes in 5 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 8501|app: 0|req: 6/125] 10.2.0.42 () {58 vars in 1748 bytes} [Sun Feb  2 14:43:22 2020] GET /meetings/meetings_year/2020 => generated 174250 bytes in 46 msecs (HTTP/1.1 200) 3 headers in 97 bytes (1 switches on core 0)
+[pid: 8503|app: 0|req: 18/126] 10.2.0.42 () {58 vars in 1763 bytes} [Sun Feb  2 14:43:29 2020] GET /meetings/meetingInfo/11 => generated 18355 bytes in 9 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 8500|app: 0|req: 18/127] 10.2.0.42 () {58 vars in 1767 bytes} [Sun Feb  2 14:43:31 2020] GET /meetings/meetings_year/2020 => generated 174250 bytes in 34 msecs (HTTP/1.1 200) 3 headers in 97 bytes (1 switches on core 0)
+[pid: 8502|app: 0|req: 13/128] 10.2.0.42 () {58 vars in 1763 bytes} [Sun Feb  2 14:43:36 2020] GET /meetings/meetingInfo/12 => generated 18447 bytes in 9 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 8504|app: 0|req: 74/129] 10.2.0.42 () {56 vars in 1742 bytes} [Sun Feb  2 14:43:37 2020] GET /meetings/meetings_year/2020 => generated 174250 bytes in 34 msecs (HTTP/1.1 200) 3 headers in 97 bytes (1 switches on core 0)
+[pid: 8501|app: 0|req: 7/130] 10.2.0.42 () {58 vars in 1763 bytes} [Sun Feb  2 14:44:07 2020] GET /meetings/meetingInfo/11 => generated 18355 bytes in 9 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 8503|app: 0|req: 19/131] 10.2.0.42 () {58 vars in 1767 bytes} [Sun Feb  2 14:44:10 2020] GET /meetings/meetings_year/2020 => generated 174250 bytes in 34 msecs (HTTP/1.1 200) 3 headers in 97 bytes (1 switches on core 0)
+[pid: 8501|app: 0|req: 8/132] 10.2.0.42 () {58 vars in 1763 bytes} [Sun Feb  2 14:44:23 2020] GET /meetings/search_meeting => generated 17747 bytes in 77 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 8502|app: 0|req: 14/133] 10.2.0.42 () {66 vars in 1947 bytes} [Sun Feb  2 14:44:30 2020] POST /meetings/search_meeting => generated 174249 bytes in 40 msecs (HTTP/1.1 200) 3 headers in 97 bytes (1 switches on core 0)
+[pid: 8502|app: 0|req: 15/134] 10.2.0.42 () {58 vars in 1759 bytes} [Sun Feb  2 14:44:31 2020] GET /meetings/meetingInfo/10 => generated 18349 bytes in 9 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 8502|app: 0|req: 16/135] 10.2.0.42 () {58 vars in 1759 bytes} [Sun Feb  2 14:44:33 2020] GET /meetings/search_meeting => generated 17747 bytes in 8 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 8502|app: 0|req: 17/136] 10.2.0.42 () {58 vars in 1759 bytes} [Sun Feb  2 14:45:46 2020] GET /meetings/search_meeting => generated 17747 bytes in 10 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 8502|app: 0|req: 18/137] 10.2.0.42 () {58 vars in 1767 bytes} [Sun Feb  2 14:45:48 2020] GET /meetings/meetings_year/2021 => generated 16284 bytes in 12 msecs (HTTP/1.1 200) 3 headers in 96 bytes (2 switches on core 0)
+[pid: 8502|app: 0|req: 19/138] 10.2.0.42 () {58 vars in 1771 bytes} [Sun Feb  2 14:45:49 2020] GET /meetings/meetings_year/2020 => generated 174250 bytes in 37 msecs (HTTP/1.1 200) 3 headers in 97 bytes (1 switches on core 0)
+[uWSGI] getting INI configuration from meeting.ini
+*** Starting uWSGI 2.0.18 (64bit) on [Sun Feb  2 14:52:28 2020] ***
+compiled with version: 7.3.0 on 22 July 2019 16:35:30
+os: Linux-4.18.0-15-generic #16~18.04.1-Ubuntu SMP Thu Feb 7 14:06:04 UTC 2019
+nodename: xuyunfei-KVM
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 4
+current working directory: /home/xuyunfei/nadc_meeting/meeting
+detected binary path: /home/xuyunfei/anaconda3/bin/uwsgi
+your processes number limit is 31661
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address meeting.sock fd 3
+Python version: 3.7.3 | packaged by conda-forge | (default, Jul  1 2019, 21:52:21)  [GCC 7.3.0]
+Set PythonHome to /home/xuyunfei/nadc_meeting/
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x56539b19b260
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 437520 bytes (427 KB) for 5 cores
+*** Operational MODE: preforking ***
+mounting wsgi.py on /meetings
+WSGI app 0 (mountpoint='/meetings') ready in 1 seconds on interpreter 0x56539b19b260 pid: 9120 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 9120)
+spawned uWSGI worker 1 (pid: 9121, cores: 1)
+spawned uWSGI worker 2 (pid: 9122, cores: 1)
+spawned uWSGI worker 3 (pid: 9123, cores: 1)
+spawned uWSGI worker 4 (pid: 9124, cores: 1)
+spawned uWSGI worker 5 (pid: 9125, cores: 1)
+[pid: 9122|app: 0|req: 1/1] 10.2.0.42 () {60 vars in 1792 bytes} [Sun Feb  2 14:52:44 2020] GET /meetings/meetingInfo/4 => generated 18523 bytes in 148 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 9121|app: 0|req: 1/2] 10.2.0.42 () {58 vars in 1791 bytes} [Sun Feb  2 15:24:22 2020] GET /meetings/update_meeting_form?id=4 => generated 19833 bytes in 160 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 9122|app: 0|req: 2/3] 10.2.0.42 () {58 vars in 1775 bytes} [Sun Feb  2 15:24:28 2020] GET /meetings/meetingInfo/4 => generated 18523 bytes in 11 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 9122|app: 0|req: 3/4] 10.2.0.42 () {58 vars in 1775 bytes} [Sun Feb  2 15:24:37 2020] GET /meetings/meetingInfo/4 => generated 18523 bytes in 11 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 9121|app: 0|req: 2/5] 10.2.0.42 () {56 vars in 1551 bytes} [Sun Feb  2 16:29:04 2020] GET /meetings/ => generated 15805 bytes in 5 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 9122|app: 0|req: 4/6] 10.2.0.42 () {58 vars in 1614 bytes} [Sun Feb  2 16:29:04 2020] GET /meetings/static/u/css/bootstrap.min.css => generated 0 bytes in 2 msecs (HTTP/1.1 304) 5 headers in 207 bytes (0 switches on core 0)
+[pid: 9122|app: 0|req: 5/7] 10.2.0.42 () {58 vars in 1594 bytes} [Sun Feb  2 16:29:04 2020] GET /meetings/static/u/css/nadc.css => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 205 bytes (0 switches on core 0)
+[pid: 9122|app: 0|req: 6/8] 10.2.0.42 () {58 vars in 1673 bytes} [Sun Feb  2 16:29:04 2020] GET /meetings/static/u/img/index-img/NADCLogoTransHorizontal.png => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 207 bytes (0 switches on core 0)
+[pid: 9122|app: 0|req: 7/9] 10.2.0.42 () {58 vars in 1593 bytes} [Sun Feb  2 16:29:04 2020] GET /meetings/static/u/js/bootstrap.min.js => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 207 bytes (0 switches on core 0)
+[pid: 9121|app: 0|req: 3/10] 10.2.0.42 () {58 vars in 1597 bytes} [Sun Feb  2 16:29:04 2020] GET /meetings/static/u/css/style.css => generated 0 bytes in 5 msecs (HTTP/1.1 304) 5 headers in 206 bytes (0 switches on core 0)
+[pid: 9123|app: 0|req: 1/11] 10.2.0.42 () {58 vars in 1586 bytes} [Sun Feb  2 16:29:04 2020] GET /meetings/static/u/js/jquery.min.js => generated 0 bytes in 8 msecs (HTTP/1.1 304) 5 headers in 206 bytes (0 switches on core 0)
+[pid: 9123|app: 0|req: 2/12] 10.2.0.42 () {58 vars in 1656 bytes} [Sun Feb  2 16:29:04 2020] GET /meetings/static/u/img/index-img/new-header-logo.png => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 206 bytes (0 switches on core 0)
+[pid: 9125|app: 0|req: 1/13] 10.2.0.42 () {58 vars in 1650 bytes} [Sun Feb  2 16:29:04 2020] GET /meetings/static/u/img/meetings-img/titleIcon.png => generated 0 bytes in 6 msecs (HTTP/1.1 304) 5 headers in 206 bytes (0 switches on core 0)
+[pid: 9125|app: 0|req: 2/14] 10.2.0.42 () {58 vars in 1656 bytes} [Sun Feb  2 16:29:04 2020] GET /meetings/static/u/img/index-img/China-VO_weChat.jpg => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 206 bytes (0 switches on core 0)
+[pid: 9124|app: 0|req: 1/15] 10.2.0.42 () {58 vars in 1668 bytes} [Sun Feb  2 16:29:04 2020] GET /meetings/static/u/img/meetings-img/navbarSubtitleIcon.png => generated 0 bytes in 6 msecs (HTTP/1.1 304) 5 headers in 206 bytes (0 switches on core 0)
+[pid: 9124|app: 0|req: 2/16] 10.2.0.42 () {58 vars in 1664 bytes} [Sun Feb  2 16:29:06 2020] GET /meetings/meetings_year/2021 => generated 14934 bytes in 129 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 9125|app: 0|req: 3/17] 10.2.0.42 () {58 vars in 1682 bytes} [Sun Feb  2 16:29:08 2020] GET /meetings/meetings_year/2020 => generated 185896 bytes in 152 msecs (HTTP/1.1 200) 3 headers in 97 bytes (2 switches on core 0)
+[pid: 9122|app: 0|req: 8/18] 10.2.0.42 () {58 vars in 1674 bytes} [Sun Feb  2 16:29:10 2020] GET /meetings/meetingInfo/10 => generated 16845 bytes in 10 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 9121|app: 0|req: 4/19] 10.2.0.42 () {56 vars in 1657 bytes} [Sun Feb  2 16:29:11 2020] GET /meetings/meetings_year/2020 => generated 185896 bytes in 41 msecs (HTTP/1.1 200) 3 headers in 97 bytes (1 switches on core 0)
+[pid: 9123|app: 0|req: 3/20] 10.2.0.42 () {58 vars in 1674 bytes} [Sun Feb  2 16:29:13 2020] GET /meetings/meetingInfo/11 => generated 16868 bytes in 150 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 9124|app: 0|req: 3/21] 10.2.0.42 () {56 vars in 1657 bytes} [Sun Feb  2 16:29:15 2020] GET /meetings/meetings_year/2020 => generated 185896 bytes in 35 msecs (HTTP/1.1 200) 3 headers in 97 bytes (1 switches on core 0)
+[pid: 9125|app: 0|req: 4/22] 10.2.0.42 () {58 vars in 1674 bytes} [Sun Feb  2 16:29:21 2020] GET /meetings/meetingInfo/12 => generated 16948 bytes in 30 msecs (HTTP/1.1 200) 3 headers in 96 bytes (2 switches on core 0)
+[pid: 9124|app: 0|req: 4/23] 10.2.0.42 () {58 vars in 1670 bytes} [Sun Feb  2 16:29:31 2020] GET /meetings/search_meeting => generated 16397 bytes in 71 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 9125|app: 0|req: 5/24] 10.2.0.42 () {50 vars in 915 bytes} [Sun Feb  2 16:57:22 2020] GET /meetings/ => generated 15805 bytes in 4 msecs (HTTP/1.1 200) 2 headers in 82 bytes (2 switches on core 0)
+[pid: 9122|app: 0|req: 9/25] 10.2.0.42 () {52 vars in 1039 bytes} [Sun Feb  2 16:57:25 2020] GET /meetings/search_meeting => generated 16397 bytes in 76 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 9125|app: 0|req: 6/26] 10.2.0.42 () {52 vars in 1196 bytes} [Sun Feb  2 16:57:29 2020] GET /meetings/registerMeeting => generated 291 bytes in 5 msecs (HTTP/1.1 302) 5 headers in 446 bytes (1 switches on core 0)
+[pid: 9125|app: 0|req: 7/27] 10.2.0.42 () {50 vars in 1264 bytes} [Sun Feb  2 16:57:29 2020] GET /meetings/login?role_require=RoleType.USER => generated 299 bytes in 1 msecs (HTTP/1.1 302) 4 headers in 245 bytes (1 switches on core 0)
+[pid: 9125|app: 0|req: 8/28] 10.2.0.42 () {50 vars in 1337 bytes} [Sun Feb  2 16:57:49 2020] GET /meetings/ => generated 18067 bytes in 11 msecs (HTTP/1.1 200) 4 headers in 395 bytes (1 switches on core 0)
+[pid: 9125|app: 0|req: 9/29] 10.2.0.42 () {52 vars in 1446 bytes} [Sun Feb  2 16:57:58 2020] GET /meetings/registerMeeting => generated 19533 bytes in 38 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 9125|app: 0|req: 10/30] 10.2.0.42 () {58 vars in 1618 bytes} [Sun Feb  2 17:03:52 2020] POST /meetings/registerMeeting => generated 257 bytes in 33 msecs (HTTP/1.1 302) 5 headers in 553 bytes (1 switches on core 0)
+[pid: 9125|app: 0|req: 11/31] 10.2.0.42 () {50 vars in 1491 bytes} [Sun Feb  2 17:03:52 2020] GET /meetings/meetingInfo/193 => generated 19047 bytes in 8 msecs (HTTP/1.1 200) 4 headers in 395 bytes (1 switches on core 0)
+[pid: 9125|app: 0|req: 12/32] 10.2.0.42 () {52 vars in 1453 bytes} [Sun Feb  2 17:03:54 2020] GET /meetings/approve/193 => generated 257 bytes in 14 msecs (HTTP/1.1 302) 4 headers in 158 bytes (2 switches on core 0)
+[pid: 9125|app: 0|req: 13/33] 10.2.0.42 () {50 vars in 1395 bytes} [Sun Feb  2 17:03:54 2020] GET /meetings/meetingInfo/193 => generated 18341 bytes in 8 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 9125|app: 0|req: 14/34] 10.2.0.42 () {52 vars in 1467 bytes} [Sun Feb  2 17:03:57 2020] GET /meetings/meetings_year/2021 => generated 17176 bytes in 9 msecs (HTTP/1.1 200) 3 headers in 96 bytes (2 switches on core 0)
+[pid: 9124|app: 0|req: 5/35] 10.2.0.42 () {52 vars in 1456 bytes} [Sun Feb  2 17:04:00 2020] GET /meetings/new_meeting => generated 188137 bytes in 40 msecs (HTTP/1.1 200) 3 headers in 97 bytes (2 switches on core 0)
+[pid: 9121|app: 0|req: 5/36] 10.2.0.42 () {52 vars in 1463 bytes} [Sun Feb  2 17:04:02 2020] GET /meetings/meetings_year/2021 => generated 17176 bytes in 11 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 9124|app: 0|req: 6/37] 10.2.0.42 () {52 vars in 1470 bytes} [Sun Feb  2 17:04:03 2020] GET /meetings/meetings_year/2020 => generated 187248 bytes in 36 msecs (HTTP/1.1 200) 3 headers in 97 bytes (1 switches on core 0)
+[pid: 9125|app: 0|req: 15/38] 10.2.0.42 () {52 vars in 1462 bytes} [Sun Feb  2 17:04:06 2020] GET /meetings/search_meeting => generated 17749 bytes in 78 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 9125|app: 0|req: 16/39] 10.2.0.42 () {56 vars in 1654 bytes} [Sun Feb  2 18:36:42 2020] GET /meetings/ => generated 17155 bytes in 9 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 9125|app: 0|req: 17/40] 10.2.0.42 () {58 vars in 1767 bytes} [Sun Feb  2 18:36:45 2020] GET /meetings/meetings_year/2020 => generated 187246 bytes in 37 msecs (HTTP/1.1 200) 3 headers in 97 bytes (1 switches on core 0)
+[pid: 9125|app: 0|req: 18/41] 10.2.0.42 () {50 vars in 915 bytes} [Mon Feb  3 10:53:23 2020] GET /meetings/ => generated 15805 bytes in 2 msecs (HTTP/1.1 200) 2 headers in 82 bytes (1 switches on core 0)
+[pid: 9125|app: 0|req: 19/42] 10.2.0.42 () {50 vars in 935 bytes} [Mon Feb  3 10:53:23 2020] GET /meetings/static/u/css/bootstrap.min.css => generated 144885 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 8 headers in 306 bytes (0 switches on core 0)
+[pid: 9122|app: 0|req: 10/43] 10.2.0.42 () {50 vars in 917 bytes} [Mon Feb  3 10:53:23 2020] GET /meetings/static/u/css/nadc.css => generated 13471 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 8 headers in 303 bytes (0 switches on core 0)
+[pid: 9124|app: 0|req: 7/44] 10.2.0.42 () {50 vars in 919 bytes} [Mon Feb  3 10:53:23 2020] GET /meetings/static/u/css/style.css => generated 4597 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 8 headers in 303 bytes (0 switches on core 0)
+[pid: 9125|app: 0|req: 20/45] 10.2.0.42 () {54 vars in 1026 bytes} [Mon Feb  3 10:53:23 2020] GET /meetings/static/u/js/bootstrap.min.js => generated 0 bytes in 2 msecs (HTTP/1.1 304) 5 headers in 207 bytes (0 switches on core 0)
+[pid: 9124|app: 0|req: 8/46] 10.2.0.42 () {54 vars in 1019 bytes} [Mon Feb  3 10:53:23 2020] GET /meetings/static/u/js/jquery.min.js => generated 0 bytes in 0 msecs (HTTP/1.1 304) 5 headers in 206 bytes (0 switches on core 0)
+[pid: 9125|app: 0|req: 21/47] 10.2.0.42 () {50 vars in 967 bytes} [Mon Feb  3 10:53:23 2020] GET /meetings/static/u/img/meetings-img/navbarSubtitleIcon.png => generated 3633 bytes in 2 msecs via sendfile() (HTTP/1.1 200) 8 headers in 289 bytes (0 switches on core 0)
+[pid: 9123|app: 0|req: 4/48] 10.2.0.42 () {50 vars in 955 bytes} [Mon Feb  3 10:53:23 2020] GET /meetings/static/u/img/index-img/new-header-logo.png => generated 17890 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 8 headers in 290 bytes (0 switches on core 0)
+[pid: 9123|app: 0|req: 5/49] 10.2.0.42 () {54 vars in 1081 bytes} [Mon Feb  3 10:53:23 2020] GET /meetings/static/u/img/index-img/NADCLogoTransHorizontal.png => generated 0 bytes in 0 msecs (HTTP/1.1 304) 5 headers in 207 bytes (0 switches on core 0)
+[pid: 9121|app: 0|req: 6/50] 10.2.0.42 () {50 vars in 949 bytes} [Mon Feb  3 10:53:23 2020] GET /meetings/static/u/img/meetings-img/titleIcon.png => generated 9089 bytes in 2 msecs via sendfile() (HTTP/1.1 200) 8 headers in 289 bytes (0 switches on core 0)
+[pid: 9125|app: 0|req: 22/51] 10.2.0.42 () {50 vars in 955 bytes} [Mon Feb  3 10:53:23 2020] GET /meetings/static/u/img/index-img/China-VO_weChat.jpg => generated 147790 bytes in 4 msecs via sendfile() (HTTP/1.1 200) 8 headers in 292 bytes (0 switches on core 0)
+[pid: 9122|app: 0|req: 11/52] 10.2.0.42 () {52 vars in 1039 bytes} [Mon Feb  3 10:53:26 2020] GET /meetings/search_meeting => generated 16397 bytes in 4 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 9121|app: 0|req: 7/53] 10.2.0.42 () {54 vars in 1247 bytes} [Mon Feb  3 10:53:26 2020] GET /meetings/static/u/css/bootstrap.min.css => generated 0 bytes in 3 msecs (HTTP/1.1 304) 5 headers in 207 bytes (0 switches on core 0)
+[pid: 9122|app: 0|req: 12/54] 10.2.0.42 () {50 vars in 1119 bytes} [Mon Feb  3 10:53:26 2020] GET /meetings/static/u/css/style.css => generated 4597 bytes in 3 msecs via sendfile() (HTTP/1.1 200) 8 headers in 303 bytes (0 switches on core 0)
+[pid: 9123|app: 0|req: 6/55] 10.2.0.42 () {50 vars in 1117 bytes} [Mon Feb  3 10:53:26 2020] GET /meetings/static/u/css/nadc.css => generated 13471 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 8 headers in 303 bytes (0 switches on core 0)
+[pid: 9122|app: 0|req: 13/56] 10.2.0.42 () {52 vars in 1188 bytes} [Mon Feb  3 10:53:29 2020] GET /meetings/new_meeting => generated 184861 bytes in 46 msecs (HTTP/1.1 200) 4 headers in 268 bytes (1 switches on core 0)
+[pid: 9125|app: 0|req: 23/57] 10.2.0.42 () {52 vars in 1185 bytes} [Mon Feb  3 10:53:38 2020] GET /meetings/new_meeting => generated 184861 bytes in 32 msecs (HTTP/1.1 200) 4 headers in 268 bytes (2 switches on core 0)
+[pid: 9122|app: 0|req: 14/58] 10.2.0.42 () {50 vars in 1101 bytes} [Mon Feb  3 10:53:43 2020] GET /meetings/ => generated 15805 bytes in 5 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 9123|app: 0|req: 7/59] 10.2.0.42 () {50 vars in 841 bytes} [Mon Feb  3 11:01:10 2020] GET /meetings/ => generated 15805 bytes in 5 msecs (HTTP/1.1 200) 2 headers in 82 bytes (1 switches on core 0)
+[pid: 9124|app: 0|req: 9/60] 10.2.0.42 () {50 vars in 861 bytes} [Mon Feb  3 11:01:10 2020] GET /meetings/static/u/css/bootstrap.min.css => generated 144885 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 8 headers in 306 bytes (0 switches on core 0)
+[pid: 9124|app: 0|req: 10/61] 10.2.0.42 () {50 vars in 836 bytes} [Mon Feb  3 11:01:10 2020] GET /meetings/static/u/js/jquery.min.js => generated 93071 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 8 headers in 318 bytes (0 switches on core 0)
+[pid: 9124|app: 0|req: 11/62] 10.2.0.42 () {50 vars in 842 bytes} [Mon Feb  3 11:01:10 2020] GET /meetings/static/u/js/bootstrap.min.js => generated 48950 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 8 headers in 319 bytes (1 switches on core 0)
+[pid: 9121|app: 0|req: 8/63] 10.2.0.42 () {50 vars in 843 bytes} [Mon Feb  3 11:01:10 2020] GET /meetings/static/u/css/nadc.css => generated 13471 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 8 headers in 303 bytes (0 switches on core 0)
+[pid: 9123|app: 0|req: 8/64] 10.2.0.42 () {50 vars in 845 bytes} [Mon Feb  3 11:01:10 2020] GET /meetings/static/u/css/style.css => generated 4597 bytes in 4 msecs via sendfile() (HTTP/1.1 200) 8 headers in 303 bytes (1 switches on core 0)
+[pid: 9124|app: 0|req: 12/65] 10.2.0.42 () {50 vars in 875 bytes} [Mon Feb  3 11:01:10 2020] GET /meetings/static/u/img/meetings-img/titleIcon.png => generated 9089 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 8 headers in 289 bytes (0 switches on core 0)
+[pid: 9121|app: 0|req: 9/66] 10.2.0.42 () {50 vars in 893 bytes} [Mon Feb  3 11:01:10 2020] GET /meetings/static/u/img/meetings-img/navbarSubtitleIcon.png => generated 3633 bytes in 2 msecs via sendfile() (HTTP/1.1 200) 8 headers in 289 bytes (0 switches on core 0)
+[pid: 9124|app: 0|req: 13/67] 10.2.0.42 () {50 vars in 897 bytes} [Mon Feb  3 11:01:10 2020] GET /meetings/static/u/img/index-img/NADCLogoTransHorizontal.png => generated 297738 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 8 headers in 292 bytes (1 switches on core 0)
+[pid: 9122|app: 0|req: 15/68] 10.2.0.42 () {50 vars in 881 bytes} [Mon Feb  3 11:01:10 2020] GET /meetings/static/u/img/index-img/China-VO_weChat.jpg => generated 147790 bytes in 5 msecs via sendfile() (HTTP/1.1 200) 8 headers in 292 bytes (0 switches on core 0)
+[pid: 9124|app: 0|req: 14/69] 10.2.0.42 () {50 vars in 881 bytes} [Mon Feb  3 11:01:10 2020] GET /meetings/static/u/img/index-img/new-header-logo.png => generated 17890 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 8 headers in 290 bytes (0 switches on core 0)
+[pid: 9125|app: 0|req: 24/70] 10.2.0.42 () {52 vars in 947 bytes} [Mon Feb  3 11:01:19 2020] GET /meetings/login => generated 299 bytes in 2 msecs (HTTP/1.1 302) 4 headers in 245 bytes (2 switches on core 0)
+<html>
+<head><title>301 Moved Permanently</title></head>
+<body>
+<center><h1>301 Moved Permanently</h1></center>
+<hr><center>nginx/1.16.1</center>
+</body>
+</html>
+
+[pid: 9125|app: 0|req: 25/71] 10.2.0.42 () {50 vars in 1034 bytes} [Mon Feb  3 11:01:32 2020] GET /meetings/ => generated 16319 bytes in 51 msecs (HTTP/1.1 200) 3 headers in 162 bytes (2 switches on core 0)
+[pid: 9123|app: 0|req: 9/72] 10.2.0.42 () {52 vars in 1107 bytes} [Mon Feb  3 11:02:38 2020] GET /meetings/new_meeting => generated 184861 bytes in 41 msecs (HTTP/1.1 200) 2 headers in 83 bytes (1 switches on core 0)
+<html>
+<head><title>301 Moved Permanently</title></head>
+<body>
+<center><h1>301 Moved Permanently</h1></center>
+<hr><center>nginx/1.16.1</center>
+</body>
+</html>
+
+[pid: 9125|app: 0|req: 26/73] 10.2.0.42 () {52 vars in 1124 bytes} [Mon Feb  3 11:02:49 2020] GET /meetings/meetingInfo/15 => generated 17344 bytes in 23 msecs (HTTP/1.1 200) 3 headers in 162 bytes (1 switches on core 0)
+[pid: 9121|app: 0|req: 10/74] 10.2.0.42 () {52 vars in 1132 bytes} [Mon Feb  3 11:03:05 2020] GET /meetings/meetings_year/2020 => generated 185896 bytes in 33 msecs (HTTP/1.1 200) 2 headers in 83 bytes (1 switches on core 0)
+[pid: 9125|app: 0|req: 27/75] 10.2.0.42 () {52 vars in 1139 bytes} [Mon Feb  3 11:03:07 2020] GET /meetings/meetings_year/2021 => generated 15824 bytes in 7 msecs (HTTP/1.1 200) 2 headers in 82 bytes (1 switches on core 0)
+[pid: 9123|app: 0|req: 10/76] 10.2.0.42 () {52 vars in 1139 bytes} [Mon Feb  3 11:03:11 2020] GET /meetings/meetings_year/2020 => generated 185896 bytes in 31 msecs (HTTP/1.1 200) 2 headers in 83 bytes (1 switches on core 0)
+<html>
+<head><title>301 Moved Permanently</title></head>
+<body>
+<center><h1>301 Moved Permanently</h1></center>
+<hr><center>nginx/1.16.1</center>
+</body>
+</html>
+
+[pid: 9125|app: 0|req: 28/77] 10.2.0.42 () {52 vars in 1131 bytes} [Mon Feb  3 11:03:28 2020] GET /meetings/meetingInfo/10 => generated 17359 bytes in 25 msecs (HTTP/1.1 200) 3 headers in 162 bytes (1 switches on core 0)
+[pid: 9121|app: 0|req: 11/78] 10.2.0.42 () {52 vars in 1131 bytes} [Mon Feb  3 11:04:22 2020] GET /meetings/search_meeting => generated 16397 bytes in 74 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 9125|app: 0|req: 29/79] 10.2.0.42 () {52 vars in 1274 bytes} [Mon Feb  3 11:04:30 2020] GET /meetings/search_meeting_id => generated 15308 bytes in 6 msecs (HTTP/1.1 200) 4 headers in 267 bytes (2 switches on core 0)
+[pid: 9123|app: 0|req: 11/80] 10.2.0.42 () {52 vars in 1272 bytes} [Mon Feb  3 11:04:33 2020] GET /meetings/search_meeting => generated 16397 bytes in 71 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 9125|app: 0|req: 30/81] 10.2.0.42 () {52 vars in 1276 bytes} [Mon Feb  3 11:04:35 2020] GET /meetings/meetings_year/2020 => generated 185896 bytes in 36 msecs (HTTP/1.1 200) 4 headers in 268 bytes (1 switches on core 0)
+[pid: 9125|app: 0|req: 31/82] 10.2.0.42 () {52 vars in 1280 bytes} [Mon Feb  3 11:05:39 2020] GET /meetings/meetings_year/2020 => generated 185896 bytes in 34 msecs (HTTP/1.1 200) 4 headers in 268 bytes (1 switches on core 0)
+<html>
+<head><title>301 Moved Permanently</title></head>
+<body>
+<center><h1>301 Moved Permanently</h1></center>
+<hr><center>nginx/1.16.1</center>
+</body>
+</html>
+
+[pid: 9125|app: 0|req: 32/83] 10.2.0.42 () {52 vars in 1270 bytes} [Mon Feb  3 11:06:59 2020] GET /meetings/meetingInfo/4 => generated 17469 bytes in 23 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 9125|app: 0|req: 33/84] 10.2.0.42 () {52 vars in 1267 bytes} [Mon Feb  3 11:09:00 2020] GET /meetings/search_meeting => generated 16397 bytes in 5 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 9125|app: 0|req: 34/85] 10.2.0.42 () {52 vars in 1270 bytes} [Mon Feb  3 11:09:02 2020] GET /meetings/registerMeeting => generated 291 bytes in 2 msecs (HTTP/1.1 302) 5 headers in 446 bytes (1 switches on core 0)
+<html>
+<head><title>301 Moved Permanently</title></head>
+<body>
+<center><h1>301 Moved Permanently</h1></center>
+<hr><center>nginx/1.16.1</center>
+</body>
+</html>
+
+[pid: 9125|app: 0|req: 35/86] 10.2.0.42 () {50 vars in 1338 bytes} [Mon Feb  3 11:09:02 2020] GET /meetings/login?role_require=RoleType.USER => generated 237 bytes in 21 msecs (HTTP/1.1 302) 5 headers in 443 bytes (1 switches on core 0)
+<html>
+<head><title>301 Moved Permanently</title></head>
+<body>
+<center><h1>301 Moved Permanently</h1></center>
+<hr><center>nginx/1.16.1</center>
+</body>
+</html>
+
+[pid: 9125|app: 0|req: 36/87] 10.2.0.42 () {50 vars in 1309 bytes} [Mon Feb  3 11:09:02 2020] GET /meetings/index => generated 17090 bytes in 17 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 9125|app: 0|req: 37/88] 10.2.0.42 () {52 vars in 1265 bytes} [Mon Feb  3 11:09:04 2020] GET /meetings/search_meeting_id => generated 15308 bytes in 3 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 9125|app: 0|req: 38/89] 10.2.0.42 () {52 vars in 1273 bytes} [Mon Feb  3 11:09:05 2020] GET /meetings/registerMeeting => generated 291 bytes in 2 msecs (HTTP/1.1 302) 5 headers in 446 bytes (1 switches on core 0)
+<html>
+<head><title>301 Moved Permanently</title></head>
+<body>
+<center><h1>301 Moved Permanently</h1></center>
+<hr><center>nginx/1.16.1</center>
+</body>
+</html>
+
+[pid: 9125|app: 0|req: 39/90] 10.2.0.42 () {50 vars in 1338 bytes} [Mon Feb  3 11:09:06 2020] GET /meetings/login?role_require=RoleType.USER => generated 237 bytes in 17 msecs (HTTP/1.1 302) 5 headers in 443 bytes (1 switches on core 0)
+<html>
+<head><title>301 Moved Permanently</title></head>
+<body>
+<center><h1>301 Moved Permanently</h1></center>
+<hr><center>nginx/1.16.1</center>
+</body>
+</html>
+
+[pid: 9125|app: 0|req: 40/91] 10.2.0.42 () {50 vars in 1309 bytes} [Mon Feb  3 11:09:06 2020] GET /meetings/index => generated 17090 bytes in 14 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+<html>
+<head><title>301 Moved Permanently</title></head>
+<body>
+<center><h1>301 Moved Permanently</h1></center>
+<hr><center>nginx/1.16.1</center>
+</body>
+</html>
+
+[pid: 9125|app: 0|req: 41/92] 10.2.0.42 () {52 vars in 1241 bytes} [Mon Feb  3 11:09:07 2020] GET /meetings/login => generated 237 bytes in 17 msecs (HTTP/1.1 302) 5 headers in 386 bytes (1 switches on core 0)
+<html>
+<head><title>301 Moved Permanently</title></head>
+<body>
+<center><h1>301 Moved Permanently</h1></center>
+<hr><center>nginx/1.16.1</center>
+</body>
+</html>
+
+[pid: 9125|app: 0|req: 42/93] 10.2.0.42 () {50 vars in 1252 bytes} [Mon Feb  3 11:09:07 2020] GET /meetings/index => generated 16694 bytes in 16 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+<html>
+<head><title>301 Moved Permanently</title></head>
+<body>
+<center><h1>301 Moved Permanently</h1></center>
+<hr><center>nginx/1.16.1</center>
+</body>
+</html>
+
+[pid: 9125|app: 0|req: 43/94] 10.2.0.42 () {52 vars in 1241 bytes} [Mon Feb  3 11:09:08 2020] GET /meetings/login => generated 237 bytes in 17 msecs (HTTP/1.1 302) 5 headers in 386 bytes (1 switches on core 0)
+<html>
+<head><title>301 Moved Permanently</title></head>
+<body>
+<center><h1>301 Moved Permanently</h1></center>
+<hr><center>nginx/1.16.1</center>
+</body>
+</html>
+
+[pid: 9125|app: 0|req: 44/95] 10.2.0.42 () {50 vars in 1252 bytes} [Mon Feb  3 11:09:08 2020] GET /meetings/index => generated 16694 bytes in 18 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 9125|app: 0|req: 45/96] 10.2.0.42 () {52 vars in 1162 bytes} [Mon Feb  3 11:15:04 2020] GET /meetings/login => generated 299 bytes in 1 msecs (HTTP/1.1 302) 4 headers in 245 bytes (1 switches on core 0)
+<html>
+<head><title>301 Moved Permanently</title></head>
+<body>
+<center><h1>301 Moved Permanently</h1></center>
+<hr><center>nginx/1.16.1</center>
+</body>
+</html>
+
+[pid: 9125|app: 0|req: 46/97] 10.2.0.42 () {50 vars in 1185 bytes} [Mon Feb  3 11:15:18 2020] GET /meetings/index => generated 16319 bytes in 75 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+<html>
+<head><title>301 Moved Permanently</title></head>
+<body>
+<center><h1>301 Moved Permanently</h1></center>
+<hr><center>nginx/1.16.1</center>
+</body>
+</html>
+
+[pid: 9125|app: 0|req: 47/98] 10.2.0.42 () {52 vars in 1241 bytes} [Mon Feb  3 11:15:35 2020] GET /meetings/login => generated 237 bytes in 15 msecs (HTTP/1.1 302) 5 headers in 386 bytes (2 switches on core 0)
+<html>
+<head><title>301 Moved Permanently</title></head>
+<body>
+<center><h1>301 Moved Permanently</h1></center>
+<hr><center>nginx/1.16.1</center>
+</body>
+</html>
+
+[pid: 9125|app: 0|req: 48/99] 10.2.0.42 () {50 vars in 1252 bytes} [Mon Feb  3 11:15:35 2020] GET /meetings/index => generated 16694 bytes in 19 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+<html>
+<head><title>301 Moved Permanently</title></head>
+<body>
+<center><h1>301 Moved Permanently</h1></center>
+<hr><center>nginx/1.16.1</center>
+</body>
+</html>
+
+[pid: 9125|app: 0|req: 49/100] 10.2.0.42 () {52 vars in 1241 bytes} [Mon Feb  3 11:15:36 2020] GET /meetings/login => generated 237 bytes in 20 msecs (HTTP/1.1 302) 5 headers in 386 bytes (1 switches on core 0)
+<html>
+<head><title>301 Moved Permanently</title></head>
+<body>
+<center><h1>301 Moved Permanently</h1></center>
+<hr><center>nginx/1.16.1</center>
+</body>
+</html>
+
+[pid: 9125|app: 0|req: 50/101] 10.2.0.42 () {50 vars in 1252 bytes} [Mon Feb  3 11:15:36 2020] GET /meetings/index => generated 16694 bytes in 17 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 9125|app: 0|req: 51/102] 10.2.0.42 () {50 vars in 1237 bytes} [Mon Feb  3 11:16:49 2020] GET /meetings/ => generated 17671 bytes in 11 msecs (HTTP/1.1 200) 4 headers in 394 bytes (1 switches on core 0)
+[pid: 9125|app: 0|req: 52/103] 10.2.0.42 () {50 vars in 1384 bytes} [Mon Feb  3 11:16:49 2020] GET /meetings/static/u/css/bootstrap.min.css => generated 144885 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 8 headers in 306 bytes (0 switches on core 0)
+<html>
+<head><title>301 Moved Permanently</title></head>
+<body>
+<center><h1>301 Moved Permanently</h1></center>
+<hr><center>nginx/1.16.1</center>
+</body>
+</html>
+
+[pid: 9125|app: 0|req: 53/104] 10.2.0.42 () {50 vars in 1175 bytes} [Mon Feb  3 11:16:57 2020] GET /meetings/ => generated 16319 bytes in 20 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+<html>
+<head><title>301 Moved Permanently</title></head>
+<body>
+<center><h1>301 Moved Permanently</h1></center>
+<hr><center>nginx/1.16.1</center>
+</body>
+</html>
+
+[pid: 9125|app: 0|req: 54/105] 10.2.0.42 () {52 vars in 1236 bytes} [Mon Feb  3 11:17:48 2020] GET /meetings/login => generated 237 bytes in 18 msecs (HTTP/1.1 302) 5 headers in 386 bytes (1 switches on core 0)
+<html>
+<head><title>301 Moved Permanently</title></head>
+<body>
+<center><h1>301 Moved Permanently</h1></center>
+<hr><center>nginx/1.16.1</center>
+</body>
+</html>
+
+[pid: 9125|app: 0|req: 55/106] 10.2.0.42 () {50 vars in 1252 bytes} [Mon Feb  3 11:17:48 2020] GET /meetings/index => generated 16694 bytes in 15 msecs (HTTP/1.1 200) 4 headers in 267 bytes (1 switches on core 0)
+[pid: 9125|app: 0|req: 56/107] 10.2.0.42 () {56 vars in 1543 bytes} [Mon Feb  3 11:22:54 2020] GET /meetings/ => generated 15805 bytes in 3 msecs (HTTP/1.1 200) 4 headers in 452 bytes (1 switches on core 0)
+[pid: 9125|app: 0|req: 57/108] 10.2.0.42 () {58 vars in 1619 bytes} [Mon Feb  3 11:22:54 2020] GET /meetings/static/u/css/bootstrap.min.css => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 207 bytes (0 switches on core 0)
+[pid: 9125|app: 0|req: 58/109] 10.2.0.42 () {58 vars in 1602 bytes} [Mon Feb  3 11:22:55 2020] GET /meetings/static/u/css/style.css => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 206 bytes (0 switches on core 0)
+[pid: 9125|app: 0|req: 59/110] 10.2.0.42 () {58 vars in 1599 bytes} [Mon Feb  3 11:22:55 2020] GET /meetings/static/u/css/nadc.css => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 205 bytes (1 switches on core 0)
+[pid: 9125|app: 0|req: 60/111] 10.2.0.42 () {58 vars in 1591 bytes} [Mon Feb  3 11:22:55 2020] GET /meetings/static/u/js/jquery.min.js => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 206 bytes (0 switches on core 0)
+[pid: 9121|app: 0|req: 12/112] 10.2.0.42 () {58 vars in 1661 bytes} [Mon Feb  3 11:22:55 2020] GET /meetings/static/u/img/index-img/new-header-logo.png => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 206 bytes (0 switches on core 0)
+[pid: 9125|app: 0|req: 61/113] 10.2.0.42 () {58 vars in 1598 bytes} [Mon Feb  3 11:22:55 2020] GET /meetings/static/u/js/bootstrap.min.js => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 207 bytes (0 switches on core 0)
+[pid: 9125|app: 0|req: 62/114] 10.2.0.42 () {58 vars in 1678 bytes} [Mon Feb  3 11:22:55 2020] GET /meetings/static/u/img/index-img/NADCLogoTransHorizontal.png => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 207 bytes (0 switches on core 0)
+[pid: 9125|app: 0|req: 63/115] 10.2.0.42 () {58 vars in 1655 bytes} [Mon Feb  3 11:22:55 2020] GET /meetings/static/u/img/meetings-img/titleIcon.png => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 206 bytes (0 switches on core 0)
+[pid: 9125|app: 0|req: 64/116] 10.2.0.42 () {58 vars in 1661 bytes} [Mon Feb  3 11:22:55 2020] GET /meetings/static/u/img/index-img/China-VO_weChat.jpg => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 206 bytes (1 switches on core 0)
+[pid: 9123|app: 0|req: 12/117] 10.2.0.42 () {58 vars in 1673 bytes} [Mon Feb  3 11:22:55 2020] GET /meetings/static/u/img/meetings-img/navbarSubtitleIcon.png => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 206 bytes (0 switches on core 0)
+[pid: 9125|app: 0|req: 65/118] 10.2.0.42 () {58 vars in 1643 bytes} [Mon Feb  3 11:22:56 2020] GET /meetings/login => generated 299 bytes in 2 msecs (HTTP/1.1 302) 4 headers in 245 bytes (2 switches on core 0)
+SIGINT/SIGQUIT received...killing workers...
+worker 1 buried after 1 seconds
+worker 2 buried after 1 seconds
+worker 3 buried after 1 seconds
+worker 4 buried after 1 seconds
+worker 5 buried after 1 seconds
+goodbye to uWSGI.
+VACUUM WARNING: unix socket meeting.sock changed inode. Skip removal
+SIGINT/SIGQUIT received...killing workers...
+worker 1 buried after 1 seconds
+worker 2 buried after 1 seconds
+worker 3 buried after 1 seconds
+worker 4 buried after 1 seconds
+worker 5 buried after 1 seconds
+goodbye to uWSGI.
+VACUUM WARNING: unix socket meeting.sock changed inode. Skip removal
+SIGINT/SIGQUIT received...killing workers...
+worker 1 buried after 1 seconds
+worker 2 buried after 1 seconds
+worker 3 buried after 1 seconds
+worker 4 buried after 1 seconds
+worker 5 buried after 1 seconds
+goodbye to uWSGI.
+VACUUM: unix socket meeting.sock removed.
