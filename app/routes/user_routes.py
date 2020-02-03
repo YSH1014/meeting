@@ -30,7 +30,9 @@ def login():
         user = User.query.filter_by(email=cstnetId).first()
         if user is None:
             try:
+                # print("get user info by cstnetId")
                 profile = getUserInfoByCstnetId(cstnetId)
+                # print(profile)
                 user = createUser(profile)
                 login_user(user)
                 flash("登录成功")
