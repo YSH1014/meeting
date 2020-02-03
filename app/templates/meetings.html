@@ -6,7 +6,7 @@
 
 {% for meeting in meetings %}
 <div class="card meetings-card">
-    <div class="card-header">
+    <div class="card-header" style="text-shadow: 2px 2px 2px #ffff00;">
         {{meeting.title}}
     </div>
     <div class="card-body">
@@ -20,6 +20,8 @@
                 <div class="col-sm-11">{{meeting.location}}</div>
                 <div class="col-sm-1">官网</div>
                 <div class="col-sm-11"><a  href="{{ meeting.url }}" target="_blank">{{meeting.url}}</a></div>
+                <div class="col-sm-1">最近更新</div>
+                <div class="col-sm-11">{{ meeting.register_time }}</div>
             </div>
         </blockquote>
     </div>
