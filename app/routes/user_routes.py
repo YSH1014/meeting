@@ -17,10 +17,16 @@ from app.security import decode_base64, createUser, getUserInfoByCstnetId, login
 @app.route('/login',methods = ['GET', 'POST'])
 def login():
     if not request.cookies.get('china-vo'):
+        referrer = request.headers.get("Referer")
         redirect_to_login  = redirect("http://passport.china-vo.org/loginFrm?umt=true")
         response = make_response(redirect_to_login)
-        # response.set_cookie('cvoumt', "\"https://nadc.china-vo.org/meetings/login\"", max_age=3600 * 24, path = '/', domain='china-vo.org')
-        response.set_cookie('cvoumt', "", max_age=3600 * 24, path = '/', domain='china-vo.org')
+        print(referrer)
+        if referrer is None:
+            response.set_cookie('cvoumt', "\"https://nadc.china-vo.org/meetings/login\"", max_age=3600 * 24, path = '/', domain='china-vo.org')
+        else:
+            response.set_cookie('cvoumt', "\""+referrer+"\"", max_age=3600 * 24, path = '/', domain='china-vo.org')
+
+        # response.set_cookie('cvoumt', "", max_age=3600 * 24, path = '/', domain='china-vo.org')
         return redirect_to_login
 
     else:

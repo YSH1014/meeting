@@ -2,7 +2,7 @@ from app import app
 from app import db
 from app.models import RoleType, User, load_user
 from flask_login import current_user, login_required, login_user
-from flask import render_template, current_app, request, copy_current_request_context, redirect, url_for,flash
+from flask import render_template, current_app, request, copy_current_request_context, redirect, url_for,flash,make_response
 from functools import wraps
 import base64
 import re
@@ -115,7 +115,17 @@ def createUser(profile):
         # flash('新用户注册失败，请检查Email或手机是否已被注册')
 
 def login_redirect(): 
-    if request.cookies.get('china-vo'):
+    if not request.cookies.get('china-vo'):
+        referrer = request.headers.get("Referer")
+        redirect_to_login  = redirect("http://passport.china-vo.org/loginFrm?umt=true")
+        response = make_response(redirect_to_login)
+        # print(referrer)
+        # if referrer is None:
+        response.set_cookie('cvoumt', "\"https://nadc.china-vo.org/meetings/login\"", max_age=3600 * 24, path = '/', domain='china-vo.org')
+        # else:
+        #     response.set_cookie('cvoumt', "\""+referrer+"\"", max_age=3600 * 24, path = '/', domain='china-vo.org')    
+    # if request.cookies.get('china-vo'):
+    else:
         token = request.cookies.get('china-vo')
         decodeToken = str(decode_base64(token))[2:-1]
         cstnetId, phone, token = decodeToken.split(':')
