@@ -163,7 +163,7 @@ def query_meetings(**conditions):
 @app.route("/meetings_year/<int:year>")
 def meetings_year(year):
     title = "{}年会议".format(year)
-    meeting_list = query_meetings(start_date='{}-1-1'.format(year), end_date='{}-12-31'.format(year))
+    meeting_list = query_meetings(start_date=date(year,1,1),end_date=date(year,12,31))
     return render_template('meetings.html', title=title, meetings=meeting_list)
 
 
