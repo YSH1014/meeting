@@ -23,5 +23,10 @@ migrate = Migrate(app, db)
 bootstrap = Bootstrap(app)
 
 from app import index_routes, models
-from app.routes import user_routes,admin_routes,meeting_routes,root_routes
+if app.config['ENV']!='development':
+    from app.routes import login_production
+else :
+    from app.routes import login_development
+
+from app.routes import  admin_routes,meeting_routes,root_routes,user_routes
 
