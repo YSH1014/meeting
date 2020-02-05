@@ -69,7 +69,8 @@ def update_meeting_form():
         contact=meeting.contact,
         email=meeting.email,
         phone=meeting.phone,
-        lang=MeetingLanguageType.to_int(meeting.lang)
+        lang=MeetingLanguageType.to_int(meeting.lang),
+        introductin_EN=meeting.introduction_EN
     )
     if form.validate_on_submit():
 

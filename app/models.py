@@ -105,6 +105,7 @@ class Meeting(db.Model):
     email = db.Column(db.String(120), nullable=False)
     phone = db.Column(db.String(60), nullable=False)
     introduction = db.Column(db.Text())
+    introduction_EN=db.Column(db.Text())
 
     def update_from_form(self, form):
         from app.forms import RegisterMeetingForm
@@ -123,6 +124,7 @@ class Meeting(db.Model):
             self.email = form.email.data
             self.phone = form.phone.data
             self.introduction = form.introduction.data
+            self.introduction_EN  = form.introduction_EN
         else:
             raise Exception("传入form应为RegisterMeetingForm类型")
 
