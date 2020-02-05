@@ -3,33 +3,74 @@
     {{ title }}
 {% endblock %}
 {% block content %}
+       <link rel="stylesheet" href={{ url_for('static',filename="u/css/style.css")}}>
+    <link rel="stylesheet" href={{url_for('static',filename="u/css/sunburst.css")}}>
+    <link rel="stylesheet" href={{url_for('static',filename="u/css/filtrify.css")}}>
 
-{% for meeting in meetings %}
-<div class="card meetings-card">
-    <div class="card-header" style="text-shadow: 2px 2px 2px #ffff00;">
-        {{meeting.title}}
+    <script src="https://apps.bdimg.com/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src={{ url_for('static',filename="u/js/highlight.pack.js") }}></script>
+    <script src={{ url_for('static',filename="u/js/script.js") }}></script>
+    <script src={{ url_for('static',filename="u/js/filtrify.min.js") }}></script>
+    <script>
+        $(function () {
+            var ft = $.filtrify("container", "placeHolder");
+
+            $("span#China").click(function () {
+                ft.trigger({Country: ["中国"]});
+            });
+            $("span#En_lang").click(function () {
+                ft.trigger({Language: ["English"]});
+            });
+            $("span#Cn_lang").click(function () {
+                ft.trigger({Language: ["中文"]});
+            });
+        });
+    </script>
+    <div  class="card meetings-card">筛选会议：
+        <div id="placeHolder"></div>
+        <div>
+            <!--
+            <span id="China">中国</span>
+            <span id="En_lang">English Meetings</span>
+            <span id="Cn_lang">中文会议</span>
+            -->
+        </div>
     </div>
-    <div class="card-body">
-        <blockquote class="blockquote mb-0">
-            <p class="meetings-title">{{meeting.short_name}}</p>
+    <div id="container">
+        {% for meeting in meetings %}
+            <div class="card meetings-card"
+                 data-Year="{{ meeting.start_date.year }}"
+                 data-Month="{{ meeting.start_date.month }}"
+                 data-Country="{{ meeting.country }}"
+                 data-City="{{ meeting.city }}"
+                 data-Language="{{ meeting.lang }}"
+            >
+                <div class="card-header" style="text-shadow: 2px 2px 2px #ffff00;">
+                    {{ meeting.title }}
+                </div>
+                <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                        <p class="meetings-title">{{ meeting.short_name }}</p>
 
-            <div class="row meetings-detail">
-                <div class="col-sm-1">日期</div>
-                <div class="col-sm-11">{{meeting.start_date}} - {{meeting.end_date}}</div>
-                <div class="col-sm-1">地点</div>
-                <div class="col-sm-11">{{meeting.full_location()}}</div>
-                <div class="col-sm-1">官网</div>
-                <div class="col-sm-11"><a  href="{{ meeting.url }}" target="_blank">{{meeting.url}}</a></div>
-                <div class="col-sm-1">最近更新</div>
-                <div class="col-sm-11">{{ meeting.register_time }}</div>
+                        <div class="row meetings-detail">
+                            <div class="col-sm-1">日期</div>
+                            <div class="col-sm-11">{{ meeting.start_date }} - {{ meeting.end_date }}</div>
+                            <div class="col-sm-1">地点</div>
+                            <div class="col-sm-11">{{ meeting.full_location() }}</div>
+                            <div class="col-sm-1">官网</div>
+                            <div class="col-sm-11"><a href="{{ meeting.url }}" target="_blank">{{ meeting.url }}</a>
+                            </div>
+                            <div class="col-sm-1">最近更新</div>
+                            <div class="col-sm-11">{{ meeting.register_time }}</div>
+                        </div>
+                    </blockquote>
+                </div>
+                <div class="card-footer text-muted meetings-more">
+                    <a href="{{ url_for('meeting_detail',id=meeting.id) }}">更多详情</a>
+                </div>
             </div>
-        </blockquote>
+        {% endfor %}
     </div>
-    <div class="card-footer text-muted meetings-more">
-        <a href="{{ url_for('meeting_detail',id=meeting.id) }}"  >更多详情</a>
-    </div>
-</div>
-{% endfor %}
 
 
 {% endblock %}

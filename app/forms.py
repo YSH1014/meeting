@@ -34,7 +34,7 @@ class RegisterMeetingForm(FlaskForm):
 
     url = StringField('会议网址')
     key_words=StringField('关键词')
-    lang = SelectField('会议语言',choices=[(1,'中文'),(2,'英文')],coerce=int)
+    lang = SelectField('会议语言',choices=[(1,'中文'),(2,'英文'),(0,'其他')],coerce=int)
     # 联系方式默认自动填写
     contact = StringField('联系人姓名', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])

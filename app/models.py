@@ -21,7 +21,7 @@ class MeetingStatusType(Enum):
 class MeetingLanguageType(Enum):
     CN = auto()
     EN = auto()
-
+    OTHER = auto()
     @staticmethod
     def from_int(x):
         if x == 1:
@@ -38,7 +38,7 @@ class MeetingLanguageType(Enum):
         elif x == MeetingLanguageType.EN:
             return 2
         else:
-            pass
+            return 0
 
     def __str__(self):
         if self == MeetingLanguageType.CN:
@@ -46,7 +46,7 @@ class MeetingLanguageType(Enum):
         elif self == MeetingLanguageType.EN:
             return "English"
         else:
-            return "未定义"
+            return "其他"
 
 
 class User(UserMixin, db.Model):
