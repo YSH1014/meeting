@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 {% block title %}
-注册新会议
+    注册新会议
 {% endblock %}
 {% block content %}
-<div class="card meetings-card">
-    <div class="card-body meeting-intro" align="center">
+    <div class="card meetings-card">
+        <div class="card-body meeting-intro" >
+            <!-- 原来的版本，逐个填写
         <form action="" method="post">
             {{ form.hidden_tag() }}
             <p>
@@ -96,6 +97,9 @@
             </p>
             <p>{{ form.submit(class='btn-primary') }}</p>
         </form>
+        -->
+        {% import "bootstrap/wtf.html" as wtf %}
+            {{ wtf.quick_form(form,form_type='horizontal') }}
+        </div>
     </div>
-</div>
 {% endblock %}

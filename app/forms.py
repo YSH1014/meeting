@@ -24,14 +24,18 @@ class RegisterForm(FlaskForm):
 class RegisterMeetingForm(FlaskForm):
     title = StringField('会议名称', validators=[DataRequired()])
     short_name = StringField('会议简称')
-    location = StringField('会议地点', validators=[DataRequired()])
+    country = StringField('会议所在国家',validators=[DataRequired()])
+    city = StringField('会议所在城市',validators=[DataRequired()])
+    location = StringField('会议详细地点', validators=[DataRequired()])
     start_date = DateField('会议开始时间', validators=[DataRequired()])
     end_date = DateField('会议结束时间', validators=[DataRequired()])
-    introduction = TextAreaField('会议主题')
+    introduction = TextAreaField('会议主题',validators=[DataRequired()])
+    introduction_EN = TextAreaField('会议主题（英文）')
+
     url = StringField('会议网址')
     key_words=StringField('关键词')
-    lang = SelectField('语言',choices=[(1,'中文'),(2,'英文')],coerce=int)
-    # 默认自动填写
+    lang = SelectField('会议语言',choices=[(1,'中文'),(2,'英文')],coerce=int)
+    # 联系方式默认自动填写
     contact = StringField('联系人姓名', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
     phone = StringField('电话', validators=[DataRequired()])

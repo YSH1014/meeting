@@ -20,24 +20,11 @@ def register_meeting():
                                phone=current_user.phone,
                                contact=current_user.username)
     if form.validate_on_submit():
-        meeting = Meeting(
-            register=current_user.id,
-            register_time=datetime.now(),
-            status=MeetingStatusType.REGISTERED,
-            title=form.title.data,
-            short_name=form.short_name.data,
-            location=form.location.data,
-            url=form.url.data,
-            start_date=form.start_date.data,
-            end_date=form.end_date.data,
-            key_words=form.key_words.data,
-            lang=MeetingLanguageType.from_int(form.lang.data),
-
-            contact=form.contact.data,
-            email=form.email.data,
-            phone=form.phone.data,
-            introduction=form.introduction.data
-        )
+        meeting = Meeting()
+        meeting.update_from_form(form)
+        meeting.register = current_user.id
+        meeting.register_time = datetime.now()
+        meeting.status = MeetingStatusType.REGISTERED
         try:
             db.session.add(meeting)
             db.session.commit()
@@ -71,6 +58,8 @@ def update_meeting_form():
     form = RegisterMeetingForm(
         title=meeting.title,
         short_name=meeting.short_name,
+        country=meeting.country,
+        city=meeting.city,
         location=meeting.location,
         start_date=meeting.start_date,
         end_date=meeting.end_date,
@@ -89,18 +78,7 @@ def update_meeting_form():
         meeting.register = current_user.id
         meeting.register_time = datetime.now()
         meeting.status = MeetingStatusType.REGISTERED
-        meeting.title = form.title.data
-        meeting.short_name = form.short_name.data
-        meeting.location = form.location.data
-        meeting.url = form.url.data
-        meeting.start_date = form.start_date.data
-        meeting.end_date = form.end_date.data
-        meeting.key_words = form.key_words.data
-        meeting.contact = form.contact.data
-        meeting.email = form.email.data
-        meeting.phone = form.phone.data
-        meeting.introduction = form.introduction.data
-        meeting.lang = MeetingLanguageType.from_int(form.lang.data)
+        meeting.update_from_form(form)
         db.session.commit()
         flash("修改成功，等待管理员再次审核")
         return redirect(url_for("meeting_detail", id=meeting.id))

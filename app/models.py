@@ -24,19 +24,19 @@ class MeetingLanguageType(Enum):
 
     @staticmethod
     def from_int(x):
-        if x==1:
+        if x == 1:
             return MeetingLanguageType.CN
-        elif x==2:
+        elif x == 2:
             return MeetingLanguageType.EN
         else:
             pass
 
     @staticmethod
     def to_int(x):
-        if x==MeetingLanguageType.CN:
+        if x == MeetingLanguageType.CN:
             return 1
-        elif x==MeetingLanguageType.EN:
-            return  2
+        elif x == MeetingLanguageType.EN:
+            return 2
         else:
             pass
 
@@ -49,11 +49,9 @@ class MeetingLanguageType(Enum):
             return "未定义"
 
 
-
-
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(64), index=True,  nullable=False)
+    username = db.Column(db.String(64), index=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
     email = db.Column(db.String(120), index=True, unique=True, nullable=False)
     address = db.Column(db.String(150), nullable=False)
@@ -69,11 +67,11 @@ class User(UserMixin, db.Model):
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
-    def set_role(self,role):
+    def set_role(self, role):
         self.role = role
 
     def is_admin(self):
-        return self.role==RoleType.ADMIN or self.role==RoleType.ROOT
+        return self.role == RoleType.ADMIN or self.role == RoleType.ROOT
 
     def is_root(self):
         return self.role == RoleType.ROOT
@@ -88,15 +86,17 @@ class Meeting(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     register = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     reviewer = db.Column(db.Integer, db.ForeignKey('user.id'))
-    status = db.Column(db.Enum(MeetingStatusType),nullable=False)
-    register_time = db.Column(db.DateTime, default=datetime(2020,1,1,0,0,0))
+    status = db.Column(db.Enum(MeetingStatusType), nullable=False)
+    register_time = db.Column(db.DateTime, default=datetime(2020, 1, 1, 0, 0, 0))
 
-    title = db.Column(db.String(300),nullable=False)
+    title = db.Column(db.String(300), nullable=False)
 
     short_name = db.Column(db.String(30))
+    country = db.Column(db.String(50))
+    city = db.Column(db.String(30))
     location = db.Column(db.String(200))
-    start_date = db.Column(db.Date,nullable=False)
-    end_date = db.Column(db.Date,nullable=False)
+    start_date = db.Column(db.Date, nullable=False)
+    end_date = db.Column(db.Date, nullable=False)
     url = db.Column(db.String(200))
     key_words = db.Column(db.Text())
     lang = db.Column(db.Enum(MeetingLanguageType))
@@ -106,3 +106,29 @@ class Meeting(db.Model):
     phone = db.Column(db.String(60), nullable=False)
     introduction = db.Column(db.Text())
 
+    def update_from_form(self, form):
+        from app.forms import RegisterMeetingForm
+        if isinstance(form, RegisterMeetingForm):
+            self.title = form.title.data
+            self.short_name = form.short_name.data
+            self.country = form.country.data
+            self.city = form.city.data
+            self.location = form.location.data
+            self.start_date = form.start_date.data
+            self.end_date = form.end_date.data
+            self.url = form.end_date.data
+            self.key_words = form.key_words.data
+            self.lang = MeetingLanguageType.from_int(form.lang.data)
+            self.contact = form.contact.data
+            self.email = form.email.data
+            self.phone = form.phone.data
+            self.introduction = form.introduction.data
+        else:
+            raise Exception("传入form应为RegisterMeetingForm类型")
+
+    def full_location(self):
+        return "{country},{city},{location}".format(
+            country=self.country,
+            city=self.city,
+            location=self.location
+        )
