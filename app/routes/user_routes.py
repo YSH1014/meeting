@@ -11,7 +11,7 @@ import re
 import pycurl
 import io
 import json
-from app.security import decode_base64, createUser, getUserInfoByCstnetId, login_redirect_required
+from app.security import decode_base64, createUser, getUserInfoByCstnetId, login_redirect_required,logout_passport
 
 
 
@@ -129,10 +129,13 @@ def userInfo():
 @user_required
 def logout():
     logout_user()
+    logout_passport()
     redirect_to_index  = redirect(url_for('index'))
     response = make_response(redirect_to_index)
-    response.set_cookie('china-vo','', expires=0, path='/',domain="china-vo.org")
+    response.set_cookie('china-vo','', expires=0, path='/',domain="china-vo.org")  
     return redirect_to_index
+
+
 
 # @app.route('/logout_new')
 # @user_required

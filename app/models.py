@@ -124,7 +124,7 @@ class Meeting(db.Model):
             self.email = form.email.data
             self.phone = form.phone.data
             self.introduction = form.introduction.data
-            self.introduction_EN  = form.introduction_EN
+            self.introduction_EN  = form.introduction_EN.data
         else:
             raise Exception("传入form应为RegisterMeetingForm类型")
 

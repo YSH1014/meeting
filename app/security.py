@@ -114,6 +114,18 @@ def createUser(profile):
         print(err)
         # flash('新用户注册失败，请检查Email或手机是否已被注册')
 
+def logout_passport():
+    e = io.BytesIO()
+    c = pycurl.Curl()
+    c.setopt(c.URL, 'https://nadc.china-vo.org/j_spring_security_logout')
+    c.setopt(c.WRITEFUNCTION, e.write)
+    c.setopt(c.HTTPHEADER, ['Content-Type: application/json','Accept-Charset: UTF-8'])
+    c.perform()
+    c.close()
+    profile = e.getvalue().decode('UTF-8')
+    print("test: "+profile)
+    # return profile
+
 def login_redirect(): 
     if not request.cookies.get('china-vo'):
         referrer = request.headers.get("Referer")
