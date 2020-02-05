@@ -7,7 +7,11 @@
             <div class="index-headline-titleLine"><img src={{ url_for('static'
                                                        ,filename="u/img/meetings-img/titleIcon.png" ) }} alt="..."
                                                        class="index-headline-icon">
-                <div class="index-headline-title">天文会议</div>
+                <div class="index-headline-title">
+                    <a href="{{ url_for('index') }}">
+                        <font color="white">天文会议</font>
+                    </a>
+                </div>
             </div>
             <div class="col-sm-2 meeting-sidebar">
                 <ul class="nav flex-column list-group meeting-sidebar-group">
@@ -96,12 +100,12 @@
 
                     {% block content %}
                     {% endblock %}
-                <script>
-                            start_date = document.getElementById('start_date')
-                            start_date.type='date'
-                            end_date = document.getElementById('end_date')
-                            end_date.type='date'
-                        </script>
+                    <script>
+                        start_date = document.getElementById('start_date')
+                        start_date.type = 'date'
+                        end_date = document.getElementById('end_date')
+                        end_date.type = 'date'
+                    </script>
                 </div>
             </div>
         </div>
