@@ -70,7 +70,7 @@ def update_meeting_form():
         email=meeting.email,
         phone=meeting.phone,
         lang=MeetingLanguageType.to_int(meeting.lang),
-        introductin_EN=meeting.introduction_EN
+        introduction_EN=meeting.introduction_EN
     )
     if form.validate_on_submit():
 

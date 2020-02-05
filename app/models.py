@@ -129,8 +129,8 @@ class Meeting(db.Model):
             raise Exception("传入form应为RegisterMeetingForm类型")
 
     def full_location(self):
-        return "{country},{city},{location}".format(
-            country=self.country,
-            city=self.city,
-            location=self.location
-        )
+        location = self.location
+        if self.country:
+            location = self.country+","+location
+        if self.city:
+            location  = self.city+","+location
