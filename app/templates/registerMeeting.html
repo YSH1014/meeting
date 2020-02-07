@@ -4,49 +4,67 @@
 {% endblock %}
 {% block content %}
     <div class="card meetings-card">
-        <div class="card-body meeting-intro" >
+        <div class="card-body meeting-intro">
 
-        {% import "bootstrap/wtf.html" as wtf %}
-            {{ wtf.quick_form(form,form_type='horizontal') }}
-            <button class="btn-primary" id="switchLanguage" lang="CN">提交之前，您可以添加其他语言（点击切换）</button>
+            {% import "bootstrap/wtf.html" as wtf %}
+            {{ wtf.quick_form(form,form_type='horizontal',id='registerForm') }}
         </div>
     </div>
     <script>
         //转化为中文输入
-        function toCN(){
-            $("#title").attr("required",true).parent().parent().show();
-            $("#location").attr("required",true).parent().parent().show();
+        function toCN() {
+            $("#title").attr("required", true).parent().parent().show();
+            $("#location").attr("required", true).parent().parent().show();
             $("#theme").parent().parent().show();
 
-            $("#title_EN").attr("required",false).parent().parent().hide();
-            $("#location_EN").attr("required",false).parent().parent().hide();
+            $("#title_EN").attr("required", false).parent().parent().hide();
+            $("#location_EN").attr("required", false).parent().parent().hide();
             $("#theme_EN").parent().parent().hide();
         }
+
         //转化为英文输入
-        function toEN(){
-            $("#title").attr("required",false).parent().parent().hide();
-            $("#location").attr("required",false).parent().parent().hide();
+        function toEN() {
+            $("#title").attr("required", false).parent().parent().hide();
+            $("#location").attr("required", false).parent().parent().hide();
             $("#theme").parent().parent().hide();
-;
-            $("#title_EN").attr("required",true).parent().parent().show();
-            $("#location_EN").attr("required",true).parent().parent().show();
+            ;
+            $("#title_EN").attr("required", true).parent().parent().show();
+            $("#location_EN").attr("required", true).parent().parent().show();
             $("#theme_EN").parent().parent().show();
         }
 
-        $(function () {
-            //加载文档执行toCN，即默认显示中文
-            toCN();
+        function validateForm() {
+            var form = document.forms["registerForm"];
 
-            //切换语言按钮
-            $("#switchLanguage").click(function () {
-                if($(this).attr("lang")=="CN") {
-                    toEN();
-                    $(this).attr("lang","EN");
-                }else {
-                    toCN();
-                    $(this).attr("lang","CN");
-                }
-            });
+            //中文和英文标题至少填一项
+            if (form["title"].value == "" && form["title_EN"].value == "") {
+                alert("中文和英文标题至少填写一项");
+                return false;
+            }
+            //中英文地址至少填一项
+            var location=form["location"].value;
+            var location_EN=form["location_EN"].value;
+            if(location=="" && location_EN==""){
+                alert("中英文地址至少填写一项")
+                return  false
+            }
+            //地址格式正则检测
+            var patt = /.+-.+-.+/;
+            if(location!="" && !patt.test(location)){
+                alert("请按指定格式输入地址");
+                return false
+            }
+            if(location_EN!="" && !patt.test(location_EN)){
+                alert("请按指定格式输入英文地址");
+                return false
+            }
+
+
+        }
+
+        $(function () {
+            $("form").attr("onsubmit", "return validateForm()");
+
         });
     </script>
 {% endblock %}
