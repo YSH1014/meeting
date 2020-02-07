@@ -57,20 +57,20 @@ def update_meeting_form():
     # 将原有属性填入新表单
     form = RegisterMeetingForm(
         title=meeting.title,
-        short_name=meeting.short_name,
-        country=meeting.country,
-        city=meeting.city,
-        location=meeting.location,
+        title_EN = meeting.title_EN,
+        location=meeting.full_location(),
+        location_EN=meeting.full_location_EN(),
         start_date=meeting.start_date,
         end_date=meeting.end_date,
-        introduction=meeting.introduction,
+        lang=MeetingLanguageType.to_int(meeting.lang),
+        theme = meeting.theme,
+        theme_EN=meeting.theme_EN,
         url=meeting.url,
         key_words=meeting.key_words,
+        short_name=meeting.short_name,
         contact=meeting.contact,
         email=meeting.email,
         phone=meeting.phone,
-        lang=MeetingLanguageType.to_int(meeting.lang),
-        introduction_EN=meeting.introduction_EN
     )
     if form.validate_on_submit():
 
