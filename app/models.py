@@ -5,6 +5,12 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 
 
+# 英文-中文国家字典
+country_dict= {
+    "China":"中国",
+    "America":"美国",
+    "British":"英国",
+}
 class RoleType(Enum):
     USER = auto()
     ADMIN = auto()
@@ -171,3 +177,10 @@ class Meeting(db.Model):
             )
         else:
             return self.location_EN
+
+    def get_country(self):
+
+        if self.country is not None:
+            return self.country
+        else:
+            return country_dict.get(self.country_EN,"未知")

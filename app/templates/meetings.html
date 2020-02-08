@@ -3,6 +3,11 @@
     {{ title }}
 {% endblock %}
 {% block content %}
+    <meta name="description" content="Filtrify">
+    <meta name="keywords" content="javascript, jquery, filtering, filter, plugin" />
+    <meta name="author" content="Luís Almeida">
+
+    <meta name="viewport" content="width=device-width">
        <link rel="stylesheet" href={{ url_for('static',filename="u/css/style.css")}}>
     <link rel="stylesheet" href={{url_for('static',filename="u/css/sunburst.css")}}>
     <link rel="stylesheet" href={{url_for('static',filename="u/css/filtrify.css")}}>
@@ -12,36 +17,69 @@
     <script src={{ url_for('static',filename="u/js/script.js") }}></script>
     <script src={{ url_for('static',filename="u/js/filtrify.min.js") }}></script>
     <script>
+        var filter={
+                "country":[],
+                "year":[],
+                "month":[],
+            };
         $(function () {
             var ft = $.filtrify("container", "placeHolder");
 
-            $("span#China").click(function () {
-                ft.trigger({Country: ["中国"]});
+            $("a.filter-tag").click(function () {
+                //执行过滤
+                var key = $(this).attr("key");
+                var value = $(this).attr("value");
+                filter[key] = [value];
+                ft.trigger(filter);
+                //修改颜色
+                $(this).parent().siblings().children().css({"color":"black"});
+                $(this).css({"color":"red"});
             });
-            $("span#En_lang").click(function () {
-                ft.trigger({Language: ["English"]});
-            });
-            $("span#Cn_lang").click(function () {
-                ft.trigger({Language: ["中文"]});
-            });
+            $("#reset").click(function () {
+                filter["country"]=[];
+                filter["year"] = [];
+                filter["month"]=[];
+                ft.reset();
+                $("a.filter-tag").css({color:"black"})
+            })
+
+
         });
+
     </script>
     <div  class="card meetings-card">筛选会议：
         <div id="placeHolder"></div>
-        <div>
-            <!--
-            <span id="China">中国</span>
-            <span id="En_lang">English Meetings</span>
-            <span id="Cn_lang">中文会议</span>
-            -->
-        </div>
+        <table class="table-condensed table-hover">
+            <tr>
+                <td>热门国家</td>
+                <td>
+                    <a class=" filter-tag" href="#" key="country" value="中国">中国</a>
+                </td>
+                <td>
+                    <a class=" filter-tag" href="#" key="country" value="美国">美国</a>
+                </td>
+                <td>
+                    <a class=" filter-tag" href="#" key="country" value="英国">英国</a>
+                </td>
+            </tr>
+            <tr>
+                <td>年份</td>
+                <td>
+                    <a class=" filter-tag" href="#" key="year" value="2020">2020</a>
+                </td>
+                <td>
+                    <a class=" filter-tag" href="#" key="year" value="2021">2021</a>
+                </td>
+            </tr>
+        </table>
+        <button id="reset" class="btn-danger" onclick="reset">重置条件</button>
     </div>
     <div id="container">
         {% for meeting in meetings %}
             <div class="card meetings-card"
                  data-Year="{{ meeting.start_date.year }}"
                  data-Month="{{ meeting.start_date.month }}"
-                 data-Country="{{ meeting.country }}"
+                 data-Country="{{ meeting.get_country() }}"
                  data-City="{{ meeting.city }}"
                  data-Language="{{ meeting.lang }}"
             >
@@ -57,6 +95,8 @@
                             <div class="col-sm-11">{{ meeting.start_date }} - {{ meeting.end_date }}</div>
                             <div class="col-sm-1">地点</div>
                             <div class="col-sm-11">{{ meeting.full_location() }}</div>
+                            <div class="col-sm-1">Location</div>
+                            <div class="col-sm-11">{{ meeting.full_location_EN() }}</div>
                             <div class="col-sm-1">官网</div>
                             <div class="col-sm-11"><a href="{{ meeting.url }}" target="_blank">{{ meeting.url }}</a>
                             </div>
