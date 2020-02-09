@@ -4,74 +4,90 @@
 {% endblock %}
 {% block content %}
     <meta name="description" content="Filtrify">
-    <meta name="keywords" content="javascript, jquery, filtering, filter, plugin" />
+    <meta name="keywords" content="javascript, jquery, filtering, filter, plugin"/>
     <meta name="author" content="Luís Almeida">
 
     <meta name="viewport" content="width=device-width">
-       <link rel="stylesheet" href={{ url_for('static',filename="u/css/style.css")}}>
-    <link rel="stylesheet" href={{url_for('static',filename="u/css/sunburst.css")}}>
-    <link rel="stylesheet" href={{url_for('static',filename="u/css/filtrify.css")}}>
+    <link rel="stylesheet" href={{ url_for('static',filename="u/css/style.css") }}>
+    <link rel="stylesheet" href={{ url_for('static',filename="u/css/sunburst.css") }}>
+    <link rel="stylesheet" href={{ url_for('static',filename="u/css/filtrify.css") }}>
 
     <script src="https://apps.bdimg.com/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src={{ url_for('static',filename="u/js/highlight.pack.js") }}></script>
     <script src={{ url_for('static',filename="u/js/script.js") }}></script>
     <script src={{ url_for('static',filename="u/js/filtrify.min.js") }}></script>
     <script>
-        var filter={
-                "country":[],
-                "year":[],
-                "month":[],
-            };
+        var filter = {
+            "country": [],
+            "year": [],
+            "month": [],
+        };
         $(function () {
             var ft = $.filtrify("container", "placeHolder");
+            var filter_box = document.getElementById("filter-box");
+            //var placeHolder = document.getElementById("placeHolder");
+            //添加横向菜单
+            for (filter_key in ft._fields) {
+                //filter_key 值为country,year等
+                var ul = document.createElement("ul");
+                var nav= document.createElement("nav");
+                ul.className = "navbar-nav indexNavbar-ul";
+                nav.className="navbar navbar-expand  index-topNav";
+                var filter_values = ft._fields[filter_key];
+                for (filter_value in ft._fields[filter_key]) {
+                    //filter_value值为中国，2020等
+                    var li = document.createElement("li");
+                    var a = document.createElement("a");
+                    li.className = "nav-item";
+                    a.href = "#";
+                    a.className = "filter-tag nav-link index-topNav-link";
+                    var keyAttr = document.createAttribute("key");
+                    keyAttr.value = filter_key;
+                    a.setAttributeNode(keyAttr);
+                    var valueAttr = document.createAttribute("value");
+                    valueAttr.value = filter_value;
+                    a.setAttributeNode(valueAttr);
+                    a.innerHTML = filter_value;
 
-            $("a.filter-tag").click(function () {
+                    li.appendChild(a);
+                    ul.appendChild(li);
+                }
+                //添加表头
+                var li= document.createElement("li");
+                li.innerHTML=filter_key+" : ";
+                li.className="nav-item";
+                ul.insertBefore(li,ul.firstChild);
+                nav.appendChild(ul);
+                filter_box.appendChild(nav);
+            }
+            //为横向菜单按钮添加动作
+            $(".filter-tag").click(function () {
                 //执行过滤
                 var key = $(this).attr("key");
                 var value = $(this).attr("value");
                 filter[key] = [value];
                 ft.trigger(filter);
                 //修改颜色
-                $(this).parent().siblings().children().css({"color":"black"});
-                $(this).css({"color":"red"});
+                $(this).parent().siblings().children().css({"color": "black"});
+                $(this).css({"color": "red"});
             });
             $("#reset").click(function () {
-                filter["country"]=[];
+                filter["country"] = [];
                 filter["year"] = [];
-                filter["month"]=[];
+                filter["month"] = [];
                 ft.reset();
-                $("a.filter-tag").css({color:"black"})
+                $("a.filter-tag").css({color: "black"})
             })
 
 
         });
 
     </script>
-    <div  class="card meetings-card">筛选会议：
+    <div class="card meetings-card">筛选会议：
         <div id="placeHolder"></div>
-        <table class="table-condensed table-hover">
-            <tr>
-                <td>热门国家</td>
-                <td>
-                    <a class=" filter-tag" href="#" key="country" value="中国">中国</a>
-                </td>
-                <td>
-                    <a class=" filter-tag" href="#" key="country" value="美国">美国</a>
-                </td>
-                <td>
-                    <a class=" filter-tag" href="#" key="country" value="英国">英国</a>
-                </td>
-            </tr>
-            <tr>
-                <td>年份</td>
-                <td>
-                    <a class=" filter-tag" href="#" key="year" value="2020">2020</a>
-                </td>
-                <td>
-                    <a class=" filter-tag" href="#" key="year" value="2021">2021</a>
-                </td>
-            </tr>
-        </table>
+        <div id="filter-box"></div>
+        </nav>
+
         <button id="reset" class="btn-danger" onclick="reset">重置条件</button>
     </div>
     <div id="container">
@@ -101,7 +117,7 @@
                             <div class="col-sm-11"><a href="{{ meeting.url }}" target="_blank">{{ meeting.url }}</a>
                             </div>
                             <div class="col-sm-1">最近更新</div>
-                            <div class="col-sm-11">{{ meeting.register_time }}</div>
+                            <div class="col-sm-11">{{ meeting.register_time.date() }}</div>
                         </div>
                     </blockquote>
                 </div>
