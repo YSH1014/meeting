@@ -29,7 +29,7 @@ class RegisterMeetingForm(FlaskForm):
     location_EN = StringField('Detail location',description='Follow this format:Country-City-address,for example:China-Beijing-National Astronomical Observatories,20A Datun Road, Chaoyang District')
     start_date = DateField('会议开始时间(Start Date)', validators=[DataRequired()])
     end_date = DateField('会议结束时间(End Date)', validators=[DataRequired()])
-    lang = SelectField('会议语言(Language)',choices=[(1,'中文'),(2,'English'),(0,'其他(Other)')],coerce=int)
+    lang = SelectField('会议语言(Language)',choices=[(1,'中文'),(2,'English'),(0,'其他(Other)')],coerce=int,validators=[DataRequired()])
 
     #选填项
     theme = TextAreaField('会议主题')

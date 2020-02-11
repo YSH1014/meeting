@@ -3,6 +3,13 @@
     注册新会议
 {% endblock %}
 {% block content %}
+
+    <style>
+        .required:before {
+            content: '* ';
+            color: red;
+        }
+    </style>
     <div class="card meetings-card">
         <div class="card-body meeting-intro">
 
@@ -42,19 +49,19 @@
                 return false;
             }
             //中英文地址至少填一项
-            var location=form["location"].value;
-            var location_EN=form["location_EN"].value;
-            if(location=="" && location_EN==""){
+            var location = form["location"].value;
+            var location_EN = form["location_EN"].value;
+            if (location == "" && location_EN == "") {
                 alert("中英文地址至少填写一项")
-                return  false
+                return false
             }
             //地址格式正则检测
             var patt = /.+-.+-.+/;
-            if(location!="" && !patt.test(location)){
+            if (location != "" && !patt.test(location)) {
                 alert("请按指定格式输入地址");
                 return false
             }
-            if(location_EN!="" && !patt.test(location_EN)){
+            if (location_EN != "" && !patt.test(location_EN)) {
                 alert("请按指定格式输入英文地址");
                 return false
             }
@@ -64,7 +71,11 @@
 
         $(function () {
             $("form#registerForm").attr("onsubmit", "return validateForm()");
-            $(".control-label").removeClass("col-lg-2")
+            $(".control-label").removeClass("col-lg-2");
+            $("#title").attr("placeHolder","与下一条English Title二选一，至少一条");
+            $("#title_EN").attr("placeHolder","Fill in at least one item with the previous one 会议名称");
+            $("#location").attr("placeHolder","与下一条location二选一，至少一条");
+            $("#location_EN").attr("placeHolder","Fill in at least one item with the previous one 会议地点")
 
 
         });
