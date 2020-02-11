@@ -4,7 +4,15 @@
 {% endblock %}
 {% block content %}
     <div class="card meetings-card">
-        <div class="card-body meeting-intro" >
+        <div class="card-body" >
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-10">
+                    {% import "bootstrap/wtf.html" as wtf %}
+                    {{ wtf.quick_form(form,form_type="basic") }}
+                </div>
+                <div class="col-1"></div>
+            </div>
             <!-- 原来的版本，逐个填写
         <form action="" method="post">
             {{ form.hidden_tag() }}
@@ -98,8 +106,7 @@
             <p>{{ form.submit(class='btn-primary') }}</p>
         </form>
         -->
-        {% import "bootstrap/wtf.html" as wtf %}
-            {{ wtf.quick_form(form,form_type='horizontal') }}
+        
         </div>
     </div>
 {% endblock %}
