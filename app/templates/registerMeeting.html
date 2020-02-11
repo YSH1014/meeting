@@ -63,7 +63,9 @@
         }
 
         $(function () {
-            $("form").attr("onsubmit", "return validateForm()");
+            $("form#registerForm").attr("onsubmit", "return validateForm()");
+            $(".control-label").removeClass("col-lg-2")
+
 
         });
     </script>

@@ -1,83 +1,103 @@
 {% extends 'base.html' %}
 {% block title %}
-{{meeting.title}}
-{% if meeting.short_name %}
-( {{meeting.short_name}} )
-{% endif %}
+    {% if meeting.title %}
+        <strong>{{ meeting.title }}</strong>
+    {% endif %}
+    {% if meeting.title_EN %}
+        <p>{{ meeting.title_EN }}</p>
+    {% endif %}
+
 {% endblock %}
 {% block content %}
-<div class="card meetings-card" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
-    <div class="card-body meeting-intro">
-        <blockquote class="blockquote mb-0">
-            <div class="row meetings-detail">
-                <div class="col-sm-2">日期</div>
-                <div class="col-sm-10">{{meeting.start_date}} - {{meeting.end_date}}</div>
-                <div class="col-sm-2">地点</div>
-                <div class="col-sm-10">{{meeting.full_location()}}</div>
-                <div class="col-sm-2">Location</div>
-                <div class="col-sm-10">{{meeting.full_location_EN()}}</div>
-                <div class="col-sm-2">联系人</div>
-                <div class="col-sm-10">{{meeting.contact}}</div>
-                <div class="col-sm-2">联系电话</div>
-                <div class="col-sm-10">{{meeting.phone}}</div>
-                <div class="col-sm-2">会议网址</div>
-                <div class="col-sm-10"><a href="{{meeting.url}}" target="_blank">{{ meeting.url }}</a> </div>
-                <div class="col-sm-2">邮件</div>
-                <div class="col-sm-10">{{meeting.email}}</div>
-                <div class="col-sm-2">关键词</div>
-                <div class="col-sm-10">{{meeting.key_words}}</div>
-                <div class="col-sm-2">会议主题</div>
-                <div class="col-sm-10">{{meeting.theme}} </div>
-                <div class="col-sm-2">Meeting Theme</div>
-                <div class="col-sm-10">{{meeting.theme_EN}} </div>
-                <div class="col-sm-2">会议语言</div>
-                <div class="col-sm-10">{{meeting.lang}} </div>
-                <div class="col-sm-2">编号</div>
-                <div class="col-sm-10">{{meeting.id}}</div>
-            </div>
-        </blockquote>
+    <div class="card meetings-card" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+        <div class="card-body meeting-intro">
+            <blockquote class="blockquote mb-0">
+                <div class="row meetings-detail">
+                    {% if meeting.short_name %}
+                        <div class="col-sm-2">会议简称(Date)</div>
+                    <div class="col-sm-10">{{ meeting.short_name }}</div>
+                    {% endif %}
+                    <div class="col-sm-2">日期(Date)</div>
+                    <div class="col-sm-10">{{ meeting.start_date }} - {{ meeting.end_date }}</div>
+                    {% if meeting.location %}
+                        <div class="col-sm-2">地点(Location)</div>
+                        <div class="col-sm-10"><strong>{{ meeting.full_location() }}</strong></div>
+                    {% endif %}
+                    {% if meeting.location_EN %}
+                        <div class="col-sm-2">Location</div>
+                        <div class="col-sm-10">{{ meeting.full_location_EN() }}</div>
+                    {% endif %}
+                    <div class="col-sm-2">联系人(contact)</div>
+                    <div class="col-sm-10">{{ meeting.contact }}</div>
+                    <div class="col-sm-2">联系电话</div>
+                    <div class="col-sm-10">{{ meeting.phone }}</div>
+                    <div class="col-sm-2">会议网址</div>
+                    <div class="col-sm-10"><a href="{{ meeting.url }}" target="_blank">{{ meeting.url }}</a></div>
+                    <div class="col-sm-2">邮件</div>
+                    <div class="col-sm-10">{{ meeting.email }}</div>
+                    <div class="col-sm-2">关键词</div>
+                    <div class="col-sm-10">{{ meeting.key_words }}</div>
+                    <div class="col-sm-2">KeyWords</div>
+                    <div class="col-sm-10">{{ meeting.key_words_EN }}</div>
+                    <div class="col-sm-2">会议主题</div>
+                    <div class="col-sm-10">{{ meeting.theme }} </div>
+                    <div class="col-sm-2">Meeting Theme</div>
+                    <div class="col-sm-10">{{ meeting.theme_EN }} </div>
+                    <div class="col-sm-2">会议语言</div>
+                    <div class="col-sm-10">{{ meeting.lang }} </div>
+                    <div class="col-sm-2">编号</div>
+                    <div class="col-sm-10">{{ meeting.id }}</div>
+                </div>
+            </blockquote>
 
-        <!-- 对已登录用户显示修改界面 -->
-        {% if current_user.is_authenticated and meeting.status.__str__()=='MeetingStatusType.APPROVED' %}
-            <a href={{ url_for('update_meeting_form',id=meeting.id)}}><button class="btn-danger"> 修改信息 </button></a>
-        {% endif %}
-
-        <!--管理员界面 -->
-        {% if current_user.is_authenticated and current_user.is_admin() %}
-        <p> 状态：
-            {% if meeting.status.__str__()=='MeetingStatusType.REGISTERED' %}
-            <!-- 除了显示状态之外，还有通过/不通过选项 -->
-            已注册，待审核。
-                <a href="{{ url_for('approve',id=meeting.id) }}"><button class="btn-info"> 通过审核 </button></a>
-
-            <a href="{{ url_for('unapprove',id=meeting.id) }}"> <button class="btn-danger">不通过</button> </a>
-            {% elif meeting.status.__str__()=='MeetingStatusType.APPROVED' %}
-            审核通过。
-            {% elif meeting.status.__str__() == 'MeetingStatusType.UNAPPROVED' %}
-            审核未通过。
-            {% elif meeting.status.__str__() == 'MeetingStatusType.OUTDUE' %}
-            已过期。
-            {% else %}
-            ...
+            <!-- 对已登录用户显示修改界面 -->
+            {% if current_user.is_authenticated and meeting.status.__str__()=='MeetingStatusType.APPROVED' %}
+                <a href={{ url_for('update_meeting_form',id=meeting.id) }}>
+                    <button class="btn-danger"> 修改信息</button>
+                </a>
             {% endif %}
-        </p>
 
-        {% endif %}
+            <!--管理员界面 -->
+            {% if current_user.is_authenticated and current_user.is_admin() %}
+                <p> 状态：
+                    {% if meeting.status.__str__()=='MeetingStatusType.REGISTERED' %}
+                        <!-- 除了显示状态之外，还有通过/不通过选项 -->
+                        已注册，待审核。
+                        <a href="{{ url_for('approve',id=meeting.id) }}">
+                            <button class="btn-info"> 通过审核</button>
+                        </a>
+
+                        <a href="{{ url_for('unapprove',id=meeting.id) }}">
+                            <button class="btn-danger">不通过</button>
+                        </a>
+                    {% elif meeting.status.__str__()=='MeetingStatusType.APPROVED' %}
+                        审核通过。
+                    {% elif meeting.status.__str__() == 'MeetingStatusType.UNAPPROVED' %}
+                        审核未通过。
+                    {% elif meeting.status.__str__() == 'MeetingStatusType.OUTDUE' %}
+                        已过期。
+                    {% else %}
+                        ...
+                    {% endif %}
+                </p>
+
+            {% endif %}
 
 
+        </div>
     </div>
-</div>
-<div class="card meetings-card">
-    <div class="card-body meetings-mainPage-title">
-        <script>
-               document.write('<a href="' + document.referrer + '">返回列表</a>');
+    <div class="card meetings-card">
+        <div class="card-body meetings-mainPage-title">
+            <script>
+                $(function () {
+                    $("strong").addClass("thick").css("font-size", "1.35em")
+                });
+                document.write('<a href="' + document.referrer + '">返回列表</a>');
 
 
-
-
-        </script>
+            </script>
+        </div>
     </div>
-</div>
 
 
 {% endblock %}

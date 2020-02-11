@@ -30,9 +30,9 @@
             for (filter_key in ft._fields) {
                 //filter_key 值为country,year等
                 var ul = document.createElement("ul");
-                var nav= document.createElement("nav");
+                var nav = document.createElement("nav");
                 ul.className = "navbar-nav indexNavbar-ul";
-                nav.className="navbar navbar-expand  index-topNav";
+                nav.className = "navbar navbar-expand  index-topNav";
                 var filter_values = ft._fields[filter_key];
                 for (filter_value in ft._fields[filter_key]) {
                     //filter_value值为中国，2020等
@@ -53,10 +53,10 @@
                     ul.appendChild(li);
                 }
                 //添加表头
-                var li= document.createElement("li");
-                li.innerHTML=filter_key+" : ";
-                li.className="nav-item";
-                ul.insertBefore(li,ul.firstChild);
+                var li = document.createElement("li");
+                li.innerHTML = filter_key + " : ";
+                li.className = "nav-item";
+                ul.insertBefore(li, ul.firstChild);
                 nav.appendChild(ul);
                 filter_box.appendChild(nav);
             }
@@ -100,7 +100,12 @@
                  data-Language="{{ meeting.lang }}"
             >
                 <div class="card-header" style="text-shadow: 2px 2px 2px #ffff00;">
-                    {{ meeting.title }}
+                    {% if meeting.title %}
+                        <strong>{{ meeting.title }}</strong>
+                    {% endif %}
+                    {% if meeting.title_EN %}
+                        <p>{{ meeting.title_EN }}</p>
+                    {% endif %}
                 </div>
                 <div class="card-body">
                     <blockquote class="blockquote mb-0">

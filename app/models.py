@@ -113,6 +113,7 @@ class Meeting(db.Model):
     # 选填信息
     url = db.Column(db.String(200))
     key_words = db.Column(db.Text())
+    key_words_EN = db.Column(db.Text())
     short_name = db.Column(db.String(30))
     contact = db.Column(db.String(100))
     email = db.Column(db.String(120), nullable=False)

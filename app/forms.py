@@ -27,22 +27,23 @@ class RegisterMeetingForm(FlaskForm):
     title_EN = StringField('English Title')
     location = StringField('会议地点',description='按照格式：国家-城市-详细地址，例如：中国-北京-朝阳区大屯路甲20号国家天文台')
     location_EN = StringField('Detail location',description='Follow this format:Country-City-address,for example:China-Beijing-National Astronomical Observatories,20A Datun Road, Chaoyang District')
-    start_date = DateField('会议开始时间', validators=[DataRequired()])
-    end_date = DateField('会议结束时间', validators=[DataRequired()])
-    lang = SelectField('会议语言',choices=[(1,'中文'),(2,'英文'),(0,'其他')],coerce=int)
+    start_date = DateField('会议开始时间(Start Date)', validators=[DataRequired()])
+    end_date = DateField('会议结束时间(End Date)', validators=[DataRequired()])
+    lang = SelectField('会议语言(Language)',choices=[(1,'中文'),(2,'English'),(0,'其他(Other)')],coerce=int)
 
     #选填项
     theme = TextAreaField('会议主题')
     theme_EN = TextAreaField('Meeting themes')
-    short_name = StringField('会议简称')
-    url = StringField('会议网址')
+    short_name = StringField('会议简称(Short name)')
+    url = StringField('会议网址(official website)')
     key_words=StringField('关键词')
+    key_words_EN = StringField('key words')
     # 联系方式默认自动填写
-    contact = StringField('联系人姓名')
+    contact = StringField('联系人姓名(contact)')
     email = StringField('Email')
-    phone = StringField('电话')
+    phone = StringField('电话(phone)')
 
-    submit = SubmitField('提交')
+    submit = SubmitField('提交(submit)')
 
 
 class UpdateMeeting(RegisterForm):
