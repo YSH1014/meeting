@@ -69,7 +69,19 @@
             }
             if (location_EN != "" && !patt.test(location_EN)) {
                 alert("请按指定格式输入英文地址");
-                return false
+                return false;
+            }
+            //验证日期
+            var today = new Date();
+            var start_date = new Date(form["start_date"].value);
+            var end_date = new Date(form["end_date"].value);
+            if(start_date < today){
+                alert("开始时间已过，请检查日期是否正确");
+                return false;
+            }
+            if(start_date > end_date){
+                alert("开始时间在结束时间之后，请检查日期是否正确");
+                return false;
             }
 
 
