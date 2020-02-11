@@ -1,20 +1,22 @@
 {% extends 'base.html' %}
 {% block title %}
-    注册新会议
+提交新会议信息（Submit New Meeting）
 {% endblock %}
 {% block content %}
 
     <style>
-        .required:before {
+        /* .required:before {
             content: '* ';
             color: red;
-        }
+        } */
     </style>
     <div class="card meetings-card">
-        <div class="card-body meeting-intro">
-
+        <div class="card-body ">
+<div class="container">
+    <!-- <div col= -->
             {% import "bootstrap/wtf.html" as wtf %}
-            {{ wtf.quick_form(form,form_type='horizontal',id='registerForm') }}
+            {{ wtf.quick_form(form,form_type='basic',id='registerForm') }}
+        <!-- </div> -->
         </div>
     </div>
     <script>
