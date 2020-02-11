@@ -46,13 +46,17 @@
             //中文和英文标题至少填一项
             if (form["title"].value == "" && form["title_EN"].value == "") {
                 alert("中文和英文标题至少填写一项");
+                $("#title").attr("placeHolder","与下一条English Title二选一，至少一条");
+                $("#title_EN").attr("placeHolder","Fill in at least one item with the previous one 会议名称");
                 return false;
             }
             //中英文地址至少填一项
             var location = form["location"].value;
             var location_EN = form["location_EN"].value;
             if (location == "" && location_EN == "") {
-                alert("中英文地址至少填写一项")
+                alert("中英文地址至少填写一项");
+                $("#location").attr("placeHolder","与下一条location二选一，至少一条");
+                $("#location_EN").attr("placeHolder","Fill in at least one item with the previous one 会议地点")
                 return false
             }
             //地址格式正则检测
@@ -72,10 +76,8 @@
         $(function () {
             $("form#registerForm").attr("onsubmit", "return validateForm()");
             $(".control-label").removeClass("col-lg-2");
-            $("#title").attr("placeHolder","与下一条English Title二选一，至少一条");
-            $("#title_EN").attr("placeHolder","Fill in at least one item with the previous one 会议名称");
-            $("#location").attr("placeHolder","与下一条location二选一，至少一条");
-            $("#location_EN").attr("placeHolder","Fill in at least one item with the previous one 会议地点")
+
+
 
 
         });
