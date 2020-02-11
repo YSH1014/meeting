@@ -6,7 +6,8 @@ from flask import render_template, current_app, request, copy_current_request_co
 from functools import wraps
 import base64
 import re
-import pycurl
+if app.config["ENV"]=="production":
+    import pycurl
 import io
 import json
 # from app.routes.user_routes import login_redirect

@@ -3,110 +3,83 @@
     注册新会议
 {% endblock %}
 {% block content %}
+
+    <style>
+        .required:before {
+            content: '* ';
+            color: red;
+        }
+    </style>
     <div class="card meetings-card">
-        <div class="card-body" >
-            <div class="row">
-                <div class="col-1"></div>
-                <div class="col-10">
-                    {% import "bootstrap/wtf.html" as wtf %}
-                    {{ wtf.quick_form(form,form_type="basic") }}
-                </div>
-                <div class="col-1"></div>
-            </div>
-            <!-- 原来的版本，逐个填写
-        <form action="" method="post">
-            {{ form.hidden_tag() }}
-            <p>
-                {{ form.title.label(class="form_label") }}
-                {{ form.title(class="form_input") }}<br>
-                {% for error in form.title.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </p>
-            <p>
-                {{ form.short_name.label(class="form_label") }}
-                {{ form.short_name(class="form_input") }}<br>
-                {% for error in form.short_name.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </p>
-            <p>
-                {{ form.location.label(class="form_label") }}
-                {{ form.location(class="form_input") }}<br>
-                {% for error in form.location.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </p>
-            <p>
-                {{ form.start_date.label(class="form_label") }}
-                {{ form.start_date(class="form_input",type="date") }}<br>
-                {% for error in form.start_date.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </p>
-            <p>
-                {{ form.end_date.label(class="form_label") }}
-                {{ form.end_date(class="form_input",type="date") }}<br>
-                {% for error in form.end_date.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </p>
+        <div class="card-body meeting-intro">
 
-            <p>
-                {{ form.introduction.label(class="form_label") }}
-                {{ form.introduction(class="form_input") }}<br>
-                {% for error in form.introduction.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </p>
-            <p>
-                {{ form.key_words.label(class="form_label") }}
-                {{ form.key_words(class="form_input") }}<br>
-                {% for error in form.key_words.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </p>
-            <p>
-                {{ form.url.label(class="form_label") }}
-                {{ form.url(class="form_input") }}<br>
-                {% for error in form.url.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </p>
-             <p>
-                {{ form.lang.label(class="form_label") }}
-                {{ form.lang(class="form_input") }}<br>
-                {% for error in form.lang.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </p>
-            <p>
-                {{ form.contact.label(class="form_label") }}
-                {{ form.contact(class="form_input") }}<br>
-                {% for error in form.contact.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </p>
-
-            <p>
-                {{ form.email.label(class="form_label") }}
-                {{ form.email(class="form_input") }}<br>
-                {% for error in form.email.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </p>
-
-            <p>
-                {{ form.phone.label(class="form_label") }}
-                {{ form.phone(class="form_input") }}<br>
-                {% for error in form.phone.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </p>
-            <p>{{ form.submit(class='btn-primary') }}</p>
-        </form>
-        -->
-        
+            {% import "bootstrap/wtf.html" as wtf %}
+            {{ wtf.quick_form(form,form_type='horizontal',id='registerForm') }}
         </div>
     </div>
+    <script>
+        //转化为中文输入
+        function toCN() {
+            $("#title").attr("required", true).parent().parent().show();
+            $("#location").attr("required", true).parent().parent().show();
+            $("#theme").parent().parent().show();
+
+            $("#title_EN").attr("required", false).parent().parent().hide();
+            $("#location_EN").attr("required", false).parent().parent().hide();
+            $("#theme_EN").parent().parent().hide();
+        }
+
+        //转化为英文输入
+        function toEN() {
+            $("#title").attr("required", false).parent().parent().hide();
+            $("#location").attr("required", false).parent().parent().hide();
+            $("#theme").parent().parent().hide();
+            ;
+            $("#title_EN").attr("required", true).parent().parent().show();
+            $("#location_EN").attr("required", true).parent().parent().show();
+            $("#theme_EN").parent().parent().show();
+        }
+
+        function validateForm() {
+            var form = document.forms["registerForm"];
+
+            //中文和英文标题至少填一项
+            if (form["title"].value == "" && form["title_EN"].value == "") {
+                alert("中文和英文标题至少填写一项");
+                $("#title").attr("placeHolder","与下一条English Title二选一，至少一条");
+                $("#title_EN").attr("placeHolder","Fill in at least one item with the previous one 会议名称");
+                return false;
+            }
+            //中英文地址至少填一项
+            var location = form["location"].value;
+            var location_EN = form["location_EN"].value;
+            if (location == "" && location_EN == "") {
+                alert("中英文地址至少填写一项");
+                $("#location").attr("placeHolder","与下一条location二选一，至少一条");
+                $("#location_EN").attr("placeHolder","Fill in at least one item with the previous one 会议地点")
+                return false
+            }
+            //地址格式正则检测
+            var patt = /.+-.+-.+/;
+            if (location != "" && !patt.test(location)) {
+                alert("请按指定格式输入地址");
+                return false
+            }
+            if (location_EN != "" && !patt.test(location_EN)) {
+                alert("请按指定格式输入英文地址");
+                return false
+            }
+
+
+        }
+
+        $(function () {
+            $("form#registerForm").attr("onsubmit", "return validateForm()");
+            $(".control-label").removeClass("col-lg-2");
+
+
+
+
+        });
+    </script>
 {% endblock %}

@@ -1,5 +1,5 @@
-{% include 'header.html' %}
-
+{% extends "header_footer.html" %}
+{% block body %}
 
 <div class="container-fluid">
     <div class="main-container meetings-container">
@@ -101,10 +101,12 @@
                     {% block content %}
                     {% endblock %}
                     <script>
-                        start_date = document.getElementById('start_date')
-                        start_date.type = 'date'
-                        end_date = document.getElementById('end_date')
+                        start_date = document.getElementById('start_date');
+                        start_date.type = 'date';
+                        start_date.style.width="180px";
+                        end_date = document.getElementById('end_date');
                         end_date.type = 'date'
+                        end_date.style.width="180px"
                     </script>
                 </div>
             </div>
@@ -112,5 +114,5 @@
     </div>
 
 </div>
-{% include 'footer.html' %}
 
+{% endblock %}

@@ -8,7 +8,8 @@ from app.security import user_required
 import sqlalchemy.exc
 import base64
 import re
-import pycurl
+if app.config["ENV"]=="production":
+    import pycurl
 import io
 import json
 from app.security import decode_base64, createUser, getUserInfoByCstnetId, login_redirect_required,logout_passport

@@ -8,9 +8,9 @@ import sqlalchemy.exc
 from datetime import datetime, timedelta, date
 from app.security import user_required, login_redirect_required
 from sqlalchemy.sql import or_,desc
+from app.ModelFormRender import meeting_render
 
 
-# from app import bp
 
 @app.route('/registerMeeting', methods=['Get', 'Post'])
 @user_required
@@ -21,7 +21,8 @@ def register_meeting():
                                contact=current_user.username)
     if form.validate_on_submit():
         meeting = Meeting()
-        meeting.update_from_form(form)
+        # meeting.update_from_form(form)
+        meeting_render.f2m(meeting,form)
         meeting.register = current_user.id
         meeting.register_time = datetime.now()
         meeting.status = MeetingStatusType.REGISTERED
@@ -55,23 +56,24 @@ def update_meeting_form():
         return redirect(url_for('error', message='您不是该会议注册者，无法修改'))
         '''
     # 将原有属性填入新表单
-    form = RegisterMeetingForm(
-        title=meeting.title,
-        short_name=meeting.short_name,
-        country=meeting.country,
-        city=meeting.city,
-        location=meeting.location,
-        start_date=meeting.start_date,
-        end_date=meeting.end_date,
-        introduction=meeting.introduction,
-        url=meeting.url,
-        key_words=meeting.key_words,
-        contact=meeting.contact,
-        email=meeting.email,
-        phone=meeting.phone,
-        lang=MeetingLanguageType.to_int(meeting.lang),
-        introduction_EN=meeting.introduction_EN
-    )
+    # form = RegisterMeetingForm(
+    #     title=meeting.title,
+    #     title_EN = meeting.title_EN,
+    #     location=meeting.full_location(),
+    #     location_EN=meeting.full_location_EN(),
+    #     start_date=meeting.start_date,
+    #     end_date=meeting.end_date,
+    #     lang=MeetingLanguageType.to_int(meeting.lang),
+    #     theme = meeting.theme,
+    #     theme_EN=meeting.theme_EN,
+    #     url=meeting.url,
+    #     key_words=meeting.key_words,
+    #     short_name=meeting.short_name,
+    #     contact=meeting.contact,
+    #     email=meeting.email,
+    #     phone=meeting.phone,
+    # )
+    form = RegisterMeetingForm()
     if form.validate_on_submit():
 
         meeting = Meeting.query.get(id)
@@ -79,11 +81,13 @@ def update_meeting_form():
         meeting.register = current_user.id
         meeting.register_time = datetime.now()
         meeting.status = MeetingStatusType.REGISTERED
-        meeting.update_from_form(form)
+        # meeting.update_from_form(form)
+        meeting_render.f2m(meeting,form)
         db.session.commit()
         flash("修改成功，等待管理员再次审核")
         return redirect(url_for("meeting_detail", id=meeting.id))
     else:
+        meeting_render.m2f(meeting, form)  # 从meeting填入form
         return render_template('registerMeeting.html', form=form, action=url_for('update_meeting_form', id=id))
 
 
