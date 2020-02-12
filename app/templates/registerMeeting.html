@@ -1,99 +1,119 @@
 {% extends 'base.html' %}
 {% block title %}
-提交新会议信息（Submit New Meeting）
+    提交新会议信息（Submit New Meeting）
 {% endblock %}
 {% block content %}
+<style>
+#submit{
 
-    <style>
-        /* .required:before {
-            content: '* ';
-            color: red;
-        } */
-    </style>
+}
+</style>
+
     <div class="card meetings-card">
         <div class="card-body ">
-<div class="container">
-    <!-- <div col= -->
-            {% import "bootstrap/wtf.html" as wtf %}
-            {{ wtf.quick_form(form,form_type='basic',id='registerForm') }}
-        <!-- </div> -->
+
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-10">
+                    {% import "bootstrap/wtf.html" as wtf %}
+                    <form action="" method="post" class="form" role="form"
+                          onsubmit="return validateForm()" id="registerForm">
+                        {{ form.hidden_tag() }}
+                        <div class="meeting-input-group">
+                            <div class="meeting-input-group-title">会议名称（中英文至少填一项）</div>
+                            {{ wtf.form_field(form.title) }}
+                            {{ wtf.form_field(form.title_EN) }}
+                        </div>
+                        <div class="meeting-input-group">
+                            <div class="meeting-input-group-title">会议地点（中英文至少填一项）</div>
+                            {{ wtf.form_field(form.location) }}
+                            {{ wtf.form_field(form.location_EN) }}
+                        </div>
+                        <div class="meeting-input-group">
+                            <div class="meeting-input-group-title">会议时间</div>
+                            {{ wtf.form_field(form.start_date) }}
+                            {{ wtf.form_field(form.end_date) }}
+                        </div>
+                        <div class="meeting-input-group">
+                            <div class="meeting-input-group-title">会议语言</div>
+                            {{ wtf.form_field(form.lang) }}
+                        </div>
+                            <div class="meeting-input-group">
+                                <div class="meeting-input-group-title">其他会议信息（选填）</div>
+                                {{ wtf.form_field(form.url) }}
+                                {{ wtf.form_field(form.short_name) }}
+                                {{ wtf.form_field(form.theme) }}
+                                {{ wtf.form_field(form.theme_EN) }}
+                                {{ wtf.form_field(form.key_words) }}
+                                {{ wtf.form_field(form.key_words_EN) }}
+                            </div>
+
+                            <div class="meeting-input-group">
+                                <div class="meeting-input-group-title">联系人信息</div>
+                                {{ wtf.form_field(form.contact) }}
+                                {{ wtf.form_field(form.email) }}
+                                {{ wtf.form_field(form.phone) }}
+                            </div>
+                            <div style="text-align: center;">
+                                {{ wtf.form_field(form.submit,class="btn btn-primary max-auto") }}
+                            </div>
+                    </form>
+                </div>
+                <div class="col-1"></div>
+            </div>
+
         </div>
-    </div>
-    <script>
-        //转化为中文输入
-        function toCN() {
-            $("#title").attr("required", true).parent().parent().show();
-            $("#location").attr("required", true).parent().parent().show();
-            $("#theme").parent().parent().show();
+        <script>
 
-            $("#title_EN").attr("required", false).parent().parent().hide();
-            $("#location_EN").attr("required", false).parent().parent().hide();
-            $("#theme_EN").parent().parent().hide();
-        }
+            function validateForm() {
+                var form = document.forms["registerForm"];
 
-        //转化为英文输入
-        function toEN() {
-            $("#title").attr("required", false).parent().parent().hide();
-            $("#location").attr("required", false).parent().parent().hide();
-            $("#theme").parent().parent().hide();
-            ;
-            $("#title_EN").attr("required", true).parent().parent().show();
-            $("#location_EN").attr("required", true).parent().parent().show();
-            $("#theme_EN").parent().parent().show();
-        }
+                //中文和英文标题至少填一项
+                if (form["title"].value == "" && form["title_EN"].value == "") {
+                    alert("中文和英文标题至少填写一项");
+                    $("#title").attr("placeHolder", "与下一条English Title二选一，至少一条");
+                    $("#title_EN").attr("placeHolder", "Fill in at least one item with the previous one 会议名称");
+                    return false;
+                }
+                //中英文地址至少填一项
+                var location = form["location"].value;
+                var location_EN = form["location_EN"].value;
+                if (location == "" && location_EN == "") {
+                    alert("中英文地址至少填写一项");
+                    $("#location").attr("placeHolder", "与下一条location二选一，至少一条");
+                    $("#location_EN").attr("placeHolder", "Fill in at least one item with the previous one 会议地点")
+                    return false
+                }
+                //地址格式正则检测
+                var patt = /.+-.+-.+/;
+                if (location != "" && !patt.test(location)) {
+                    alert("请按指定格式输入地址");
+                    return false
+                }
+                if (location_EN != "" && !patt.test(location_EN)) {
+                    alert("请按指定格式输入英文地址");
+                    return false;
+                }
+                //验证日期
+                var today = new Date();
+                var start_date = new Date(form["start_date"].value);
+                var end_date = new Date(form["end_date"].value);
+                if (start_date < today) {
+                    alert("开始时间已过，请检查日期是否正确");
+                    return false;
+                }
+                if (start_date > end_date) {
+                    alert("开始时间在结束时间之后，请检查日期是否正确");
+                    return false;
+                }
 
-        function validateForm() {
-            var form = document.forms["registerForm"];
 
-            //中文和英文标题至少填一项
-            if (form["title"].value == "" && form["title_EN"].value == "") {
-                alert("中文和英文标题至少填写一项");
-                $("#title").attr("placeHolder","与下一条English Title二选一，至少一条");
-                $("#title_EN").attr("placeHolder","Fill in at least one item with the previous one 会议名称");
-                return false;
-            }
-            //中英文地址至少填一项
-            var location = form["location"].value;
-            var location_EN = form["location_EN"].value;
-            if (location == "" && location_EN == "") {
-                alert("中英文地址至少填写一项");
-                $("#location").attr("placeHolder","与下一条location二选一，至少一条");
-                $("#location_EN").attr("placeHolder","Fill in at least one item with the previous one 会议地点")
-                return false
-            }
-            //地址格式正则检测
-            var patt = /.+-.+-.+/;
-            if (location != "" && !patt.test(location)) {
-                alert("请按指定格式输入地址");
-                return false
-            }
-            if (location_EN != "" && !patt.test(location_EN)) {
-                alert("请按指定格式输入英文地址");
-                return false;
-            }
-            //验证日期
-            var today = new Date();
-            var start_date = new Date(form["start_date"].value);
-            var end_date = new Date(form["end_date"].value);
-            if(start_date < today){
-                alert("开始时间已过，请检查日期是否正确");
-                return false;
-            }
-            if(start_date > end_date){
-                alert("开始时间在结束时间之后，请检查日期是否正确");
-                return false;
             }
 
-
-        }
-
-        $(function () {
-            $("form#registerForm").attr("onsubmit", "return validateForm()");
-            $(".control-label").removeClass("col-lg-2");
+            $(function () {
+                $(".control-label").removeClass("col-lg-2");
 
 
-
-
-        });
-    </script>
+            });
+        </script>
 {% endblock %}

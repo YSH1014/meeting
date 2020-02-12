@@ -125,8 +125,11 @@ def query_meetings(**conditions):
         search_keywords = "%{}%".format(search_keywords)
         query = query.filter(or_(
             Meeting.title.like(search_keywords),
-            Meeting.introduction.like(search_keywords),
+            Meeting.title_EN.like(search_keywords),
+            Meeting.theme.like(search_keywords),
+            Meeting.theme_EN.like(search_keywords),
             Meeting.key_words.like(search_keywords),
+            Meeting.key_words_EN.like(search_keywords),
             Meeting.short_name.like(search_keywords)
         ))
     # 处理语言

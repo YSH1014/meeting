@@ -304,14 +304,21 @@ a:hover{text-decoration:none;}
 	padding-left: 5px;
 	font-weight: bolder;
 }
+.meeting-sidebar-subtitle:hover{
+	background-color: #fff;
+}
 .meetings-sidebarSubtitle-icon{
 	height: 26px;
 	margin: 5px 5px 10px 5px;
 }
-.meetings-mainPage-title{
-	line-height: 60px;
-	font-size: 18px;
-	margin: 0px 5px 5px 20px;
+
+.meetings-detailPage-title{
+	color:#222;
+	font-size:20px;
+	line-height: 30px;
+	text-align: center;
+	font-weight: bolder;
+	background-color: #fff;
 }
 
 .meetings-mainPage-title{
@@ -322,11 +329,13 @@ a:hover{text-decoration:none;}
 	text-align: center;
 	font-weight: bolder;
 	background-color: #fff;
+	margin: 0px 5px 5px 20px;
 }
 .meetings-card{
 	margin-bottom: 20px;
 	font-size: 14px;
 	font-weight: bolder;
+	border: 0px;
 }
 .meetings-title{
 	font-weight: bolder;
@@ -342,7 +351,8 @@ a:hover{text-decoration:none;}
 }
 	
 .meetings-more:hover{
-	background-color: #fff;
+	background-color: #bbb;
+	color: #000 !important;
 	cursor: pointer;
 	text-align: center;
 	letter-spacing: 3px;
@@ -354,9 +364,41 @@ a:hover{text-decoration:none;}
 	font-weight: bolder;
 }
 
+.meeting-search-menu{
+	text-align: center;
+	margin: 20px 0px;
+}
+.meeting-input-label{
+	line-height: 30px;
+	background-color: #eee;
+	width: 100%;
+	margin: 20px 0px;
+	padding-left: 10px;
+	font-size: 14px;
+	border-left: 3px solid rgb(55, 84, 131);
+}
+.meeting-input{
+}
+.meeting-input-group{
+	background-color: #efefef;
+	padding: 20px;
+	border-radius: 10px;
+	margin: 20px;
+}
+.meeting-input-group-title{
+	letter-spacing: 2px;
+	font-size:16px;
+	color: rgb(55, 84, 131);
+	font-weight: bold;
+	line-height: 30px;
+	padding:5px 0px;
+	margin: 20px 0px;
+	border-bottom: 1px solid #aaa;
+}
 /* unconfirmed*/
 .fast-navbar-container{
 	max-width: 1400px;
+	margin: 0px;
 }
 
 .languageImg{
