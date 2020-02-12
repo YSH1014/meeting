@@ -69,11 +69,11 @@
                         <!-- 除了显示状态之外，还有通过/不通过选项 -->
                         已注册，待审核。
                         <a href="{{ url_for('approve',id=meeting.id) }}">
-                            <button class="btn-info"> 通过审核</button>
+                            <button class="btn btn-sm btn-outline-info"> 通过审核</button>
                         </a>
 
                         <a href="{{ url_for('unapprove',id=meeting.id) }}">
-                            <button class="btn-danger">不通过</button>
+                            <button class="btn btn-sm btn-outline-danger">不通过</button>
                         </a>
                     {% elif meeting.status.__str__()=='MeetingStatusType.APPROVED' %}
                         审核通过。
