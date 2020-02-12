@@ -82,13 +82,13 @@
                 nav.className = "navbar navbar-expand-sm meeting-filter-navbar navbar-default";
                 //nav的成员之a
                 var a = document.createElement("a");
-                a.innerHTML = filter_key + " : ";
+                a.innerHTML = filter_key.toUpperCase();
                 a.className = "navbar-brand meeting-filterbox-navbrand";
                 //nav的成员之Button
                 var button = document.createElement("button");
                 button.className = "navbar-toggler";
-                //button.innerHTML = "&#9660;";
-                button.innerHTML = "展开";
+                button.innerHTML = "&#9660;";
+                //button.innerHTML = "展开";
                 button.setAttribute("type", "button");
                 button.setAttribute("data-toggle", "collapse");
                 button.setAttribute("data-target", "#navbarDropdown" + filter_key);
@@ -134,11 +134,10 @@
         <div id="placeHolder"></div>
         <div id="filter-box"></div>
         <div align="center">
-            <button id="reset" class="btn btn-sm btn-danger" onclick="reset">重置条件</button>
+            <button id="reset" class="btn btn-sm btn-outline-danger" onclick="reset">重置条件</button>
         </div>
 
     </div>
-
 
 
     <div id="container">
