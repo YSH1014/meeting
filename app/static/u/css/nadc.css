@@ -809,3 +809,36 @@ a:hover{text-decoration:none;}
 	float: right;
 	width: 80px;
 }
+.meeting-sidebar-subtitle:hover{
+	background-color: #fff;
+}
+
+.meeting-input-label{
+	line-height: 30px;
+	background-color: #eee;
+	width: 100%;
+	margin: 20px 0px;
+	padding-left: 10px;
+	font-size: 14px;
+	border-left: 3px solid rgb(55, 84, 131);
+}
+.meeting-input{
+}
+
+.meeting-input-group{
+	background-color: #efefef;
+	padding: 20px;
+	border-radius: 10px;
+	margin: 20px;
+}
+.meeting-input-group-title{
+	letter-spacing: 2px;
+	font-size:16px;
+	color: rgb(55, 84, 131);
+	font-weight: bold;
+	line-height: 30px;
+	padding:5px 0px;
+	margin: 20px 0px;
+	border-bottom: 1px solid #aaa;
+}
+
