@@ -271,9 +271,9 @@ def search_meeting_id():
 def search_meetings():
     form = SearchMeetingForm(
         start_date=date.today(),
-        end_date=date(9999,12,31)
+        end_date=date(9999,12,31),
     )
-    if form.validate_on_submit():
+    if form.validate():
         meeting_list = query_meetings(
             start_date=form.start_date.data,
             end_date=form.end_date.data,

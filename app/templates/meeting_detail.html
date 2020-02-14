@@ -89,12 +89,16 @@
     </div>
     <div class="card meetings-card">
         <div class="card-body meetings-mainPage-title">
+            <a href="#" id="returnToList">返回列表</a>
             <script>
                 $(function () {
                     $("strong").addClass("thick").css("font-size", "1.35em")
-                });
-                document.write('<a href="' + document.referrer + '">返回列表</a>');
-
+                })
+                lastList = localStorage.getItem("lastList");
+                if (lastList==null){
+                    lastList = "{{ url_for('new_meeting') }}";
+                }
+                document.getElementById("returnToList").href=lastList;
 
             </script>
         </div>

@@ -42,13 +42,27 @@
     <script src={{ url_for('static',filename="u/js/script.js") }}></script>
     <script src={{ url_for('static',filename="u/js/filtrify.min.js") }}></script>
     <script>
+
         var filter = {
             "country": [],
             "year": [],
             "month": [],
+            "language":[]
+        };
+
+        window.onload = function(){
+
+        };
+        //退出时存储filter
+        window.onbeforeunload = function(){
+            localStorage.setItem("lastList",window.location.href);
+            localStorage.setItem("filter",JSON.stringify(filter));
         };
         $(function () {
             var ft = $.filtrify("container", "placeHolder");
+
+
+
             $("#placeHolder").hide();//默认的这个隐藏了
             var filter_box = document.getElementById("filter-box");
             //var placeHolder = document.getElementById("placeHolder");
@@ -125,6 +139,12 @@
                 $("a.filter-tag").css({color: "black"})
             })
 
+            // 读取之前存储的filter
+        //    var filter_stored = localStorage.getItem("filter");
+        //    if (filter_stored != null){
+        //        filter = JSON.parse(filter_stored);
+        //        ft.trigger(filter);
+        //    }
 
         });
 
