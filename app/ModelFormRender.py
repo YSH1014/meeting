@@ -11,18 +11,20 @@ class MeetingRender(ModelFormRender):
         # 处理位置
         if form.location.data != None:
             location_splited = form.location.data.split('-', 2)
-            if location_splited.__len__() == 3:
+            if location_splited.__len__() >= 2:
                 model.country = location_splited[0]
                 model.city = location_splited[1]
-                model.location = location_splited[2]
+                if location_splited.__len__()==3:
+                    model.location = location_splited[2]
             else:
                 model.location = form.location.data
         if form.location_EN.data != None:
             location_EN_splited = form.location_EN.data.split('-', 2)
-            if location_EN_splited.__len__() == 3:
+            if location_EN_splited.__len__() >= 2:
                 model.country_EN = location_EN_splited[0]
                 model.city_EN = location_EN_splited[1]
-                model.location_EN = location_EN_splited[2]
+                if location_splited.__len__() ==3:
+                    model.location_EN = location_EN_splited[2]
             else:
                 model.location_EN = form.location_EN.data
 

@@ -161,20 +161,18 @@ class Meeting(db.Model):
 
     def full_location(self):
         if self.country and self.city:
-            return "{country}-{city}-{location}".format(
+            return "{country}-{city}".format(
                 country=self.country,
                 city=self.city,
-                location=self.location
             )
         else:
             return self.location
 
     def full_location_EN(self):
         if self.country_EN and self.city_EN:
-            return "{country}-{city}-{location}".format(
+            return "{country}-{city}".format(
                 country = self.country_EN,
                 city=self.city_EN,
-                location = self.location_EN
             )
         else:
             return self.location_EN

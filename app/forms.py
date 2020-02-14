@@ -27,9 +27,9 @@ class RegisterMeetingForm(FlaskForm):
     # 必填项
     title = StringField('会议名称')
     title_EN = StringField('English Title')
-    location = StringField('会议地点 (按照格式：国家-城市-详细地址)')
+    location = StringField('会议地点 (按照格式：国家-城市)')
     # ,description='例如：中国-北京-朝阳区大屯路甲20号国家天文台'
-    location_EN = StringField('Detail location (Follow this format: Country-City-Address)')
+    location_EN = StringField('Detail location (Follow this format: Country-City)')
     # description='For example:China-Beijing-National Astronomical Observatories,20A Datun Road, Chaoyang District'
 
     start_date = DateField('会议开始时间 (Start Date)', validators=[DataRequired()])

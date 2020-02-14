@@ -22,14 +22,10 @@
                     {% endif %}
                     <div class="col-sm-2">日期(Date)</div>
                     <div class="col-sm-10">{{ meeting.start_date }} - {{ meeting.end_date }}</div>
-                    {% if meeting.location %}
-                        <div class="col-sm-2">地点(Location)</div>
-                        <div class="col-sm-10"><strong>{{ meeting.full_location() }}</strong></div>
-                    {% endif %}
-                    {% if meeting.location_EN %}
-                        <div class="col-sm-2">Location</div>
-                        <div class="col-sm-10">{{ meeting.full_location_EN() }}</div>
-                    {% endif %}
+                    <div class="col-sm-2">地点(Location)</div>
+                    <div class="col-sm-10"><strong>{{ meeting.full_location() }}</strong></div>
+                    <div class="col-sm-2">Location</div>
+                    <div class="col-sm-10">{{ meeting.full_location_EN() }}</div>
                     <div class="col-sm-2">联系人(contact)</div>
                     <div class="col-sm-10">{{ meeting.contact }}</div>
                     <div class="col-sm-2">联系电话</div>
