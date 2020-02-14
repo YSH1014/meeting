@@ -29,10 +29,10 @@ def register_meeting():
         try:
             db.session.add(meeting)
             db.session.commit()
-            flash('注册成功，请等待管理员审核')
+            flash('提交成功，请等待管理员审核')
             return redirect(url_for("meeting_detail", id=meeting.id))
         except sqlalchemy.exc.IntegrityError as e:
-            flash('注册失败，请检查信息是否完整')
+            flash('提交失败，请检查信息是否完整')
 
     return render_template('registerMeeting.html', form=form, action='/register_meeting')
 
