@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}
-    提交新会议信息（Submit New Meeting）
+    提交会议信息（Submit New Meeting）
 {% endblock %}
 {% block content %}
 <style>
@@ -20,26 +20,26 @@
                           onsubmit="return validateForm()" id="registerForm">
                         {{ form.hidden_tag() }}
                         <div class="meeting-input-group">
-                            <div class="meeting-input-group-title">会议名称（中英文至少填一项）</div>
+                            <div class="meeting-input-group-title"><p>会议名称（中英文至少填一项）</p><p>Meeting Name (Fill in at least one item in Chinese or English)</p></div>
                             {{ wtf.form_field(form.title) }}
                             {{ wtf.form_field(form.title_EN) }}
                         </div>
                         <div class="meeting-input-group">
-                            <div class="meeting-input-group-title">会议地点（中英文至少填一项）</div>
+                            <div class="meeting-input-group-title"><p>会议地点（中英文至少填一项）</p><p>Meeting Location (Fill in at least one item in Chinese or English)</p></div>
                             {{ wtf.form_field(form.location) }}
                             {{ wtf.form_field(form.location_EN) }}
                         </div>
                         <div class="meeting-input-group">
-                            <div class="meeting-input-group-title">会议时间</div>
+                            <div class="meeting-input-group-title"><p>会议时间</p><p>Meeting Date</p></div>
                             {{ wtf.form_field(form.start_date) }}
                             {{ wtf.form_field(form.end_date) }}
                         </div>
                         <div class="meeting-input-group">
-                            <div class="meeting-input-group-title">会议语言</div>
+                            <div class="meeting-input-group-title"><p>会议语言</p><p>Meeting Language</p></div>
                             {{ wtf.form_field(form.lang) }}
                         </div>
                             <div class="meeting-input-group">
-                                <div class="meeting-input-group-title">其他会议信息（选填）</div>
+                                <div class="meeting-input-group-title"><p>其他会议信息（选填）</p><p>Other Meeting Information (Optional)</p></div>
                                 {{ wtf.form_field(form.url) }}
                                 {{ wtf.form_field(form.short_name) }}
                                 {{ wtf.form_field(form.theme) }}
@@ -49,7 +49,7 @@
                             </div>
 
                             <div class="meeting-input-group">
-                                <div class="meeting-input-group-title">联系人信息</div>
+                                <div class="meeting-input-group-title"><p>联系人信息</p><p>Contact Information</p></div>
                                 {{ wtf.form_field(form.contact) }}
                                 {{ wtf.form_field(form.email) }}
                                 {{ wtf.form_field(form.phone) }}

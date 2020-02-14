@@ -24,7 +24,7 @@ def user_required(func):
         if current_user.is_authenticated:
             return func(*args, **kwargs)
         else:
-            flash("您需要登陆后执行该操作")
+            # flash("您需要登陆后执行该操作")
             return redirect(url_for('login', role_require=RoleType.USER))
 
     return decorated_view
@@ -134,7 +134,7 @@ def login_redirect():
         response = make_response(redirect_to_login)
         # print(referrer)
         # if referrer is None:
-        response.set_cookie('cvoumt', "\"https://nadc.china-vo.org/meetings/login\"", max_age=3600 * 24, path = '/', domain='china-vo.org')
+        response.set_cookie('cvoumt', "\"https://nadc.china-vo.org/meetings/registerMeeting\"", max_age=3600 * 24, path = '/', domain='china-vo.org')
         # else:
         #     response.set_cookie('cvoumt', "\""+referrer+"\"", max_age=3600 * 24, path = '/', domain='china-vo.org')    
     # if request.cookies.get('china-vo'):
