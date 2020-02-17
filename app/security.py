@@ -134,7 +134,7 @@ def login_redirect():
         response = make_response(redirect_to_login)
         # print(referrer)
         # if referrer is None:
-        response.set_cookie('cvoumt', "\"https://nadc.china-vo.org/meetings/registerMeeting\"", max_age=3600 * 24, path = '/', domain='china-vo.org')
+        response.set_cookie('cvoumt', "\"https://nadc.china-vo.org/meetings/login\"", max_age=3600 * 24, path = '/', domain='china-vo.org')
         # else:
         #     response.set_cookie('cvoumt', "\""+referrer+"\"", max_age=3600 * 24, path = '/', domain='china-vo.org')    
     # if request.cookies.get('china-vo'):
@@ -148,11 +148,11 @@ def login_redirect():
                 profile = getUserInfoByCstnetId(cstnetId)
                 user = createUser(profile)
                 login_user(user)
-                flash("登录成功")
+                # flash("登录成功")
                 # return redirect(url_for(url))
             except:
                 flash("登录失败")
                 # return redirect(url_for(url))
         else:
             login_user(user)
-            flash("登录成功")
+            # flash("登录成功")
