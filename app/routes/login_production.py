@@ -32,12 +32,12 @@ def login():
                 # print(profile)
                 user = createUser(profile)
                 login_user(user)
-                flash("登录成功")
-                return redirect(url_for('userInfo'))
+                # flash("登录成功")
+                return redirect(url_for('register_meeting'))
             except:
                 flash("登录失败")
                 return redirect(url_for('index'))
         else:
             login_user(user)
-            flash("登录成功")
-            return redirect(url_for('userInfo'))
+            # flash("登录成功")
+            return redirect(url_for('register_meeting'))
