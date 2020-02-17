@@ -45,6 +45,7 @@
 
         var filter = {
             "country": [],
+            "city":[],
             "year": [],
             "month": [],
             "language":[]
@@ -133,6 +134,8 @@
             });
             $("#reset").click(function () {
                 filter["country"] = [];
+                filter["city"] = [];
+                filter["language"] = [];
                 filter["year"] = [];
                 filter["month"] = [];
                 ft.reset();
@@ -140,11 +143,23 @@
             })
 
             // 读取之前存储的filter
-        //    var filter_stored = localStorage.getItem("filter");
-        //    if (filter_stored != null){
-        //        filter = JSON.parse(filter_stored);
-        //        ft.trigger(filter);
-        //    }
+            var filter_stored = localStorage.getItem("filter");
+            patt = '[key={key}][value={value}]';
+            if (filter_stored != null){
+                filter = JSON.parse(filter_stored);
+                ft.trigger(filter);
+                //重新替换颜色
+
+                for(key in filter){
+                    if(filter[key].length==1){
+                        $(patt.replace("{key}",key).replace("{value}",filter[key][0])).css(
+                            {
+                                color:"red"
+                            }
+                        )
+                    }
+                }
+            }
 
         });
 
