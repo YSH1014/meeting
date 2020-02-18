@@ -130,7 +130,7 @@
                 ft.trigger(filter);
                 //修改颜色
                 $(this).parent().siblings().children().css({"color": "black"});
-                $(this).css({"color": "red"});
+                $(this).css({"color": "blue"});
             });
             $("#reset").click(function () {
                 filter["country"] = [];
@@ -154,7 +154,7 @@
                     if(filter[key].length==1){
                         $(patt.replace("{key}",key).replace("{value}",filter[key][0])).css(
                             {
-                                color:"red"
+                                color:"blue"
                             }
                         )
                     }

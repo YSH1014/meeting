@@ -1,20 +1,24 @@
 {% extends 'base.html' %}
 {% block title %}
-输入会议id进行查找并修改
+    输入会议id进行查找并修改
 {% endblock %}
 {% block content %}
-<div class="card meetings-card">
-    <div class="card-body meeting-intro">
-        <form action={{ url_for('update_meeting_form') }} method="get">
-            <p align="center">
-                id :<input name="id" type="number"/>
-                <input type="submit" class="btn-primary" value="id精确查找">
-            </p>
-        </form>
+    <div class="card meetings-card">
+        <div class="card-body meeting-intro">
+            <form action={{ url_for('update_meeting_form') }} method="get">
+                <div class="input-group">
+
+                    <input class="form-control" name="id" type="number" placeholder="输入会议ID"/>
+                    <div class="input-group-append">
+                        <input type="submit" class="btn btn-sm btn-secondary" value="精确查找">
+                    </div>
+
+                </div>
+
+            </form>
 
 
-
+        </div>
     </div>
-</div>
 
 {% endblock %}

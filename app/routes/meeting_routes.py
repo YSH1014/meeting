@@ -93,6 +93,11 @@ def update_meeting_form():
 
 # 根据条件查询会议列表
 def query_meetings(**conditions):
+    '''
+
+    :param conditions: start_date,end_date,status,register,keywords,lang,order_by
+    :return:
+    '''
     start_date = conditions.get('start_date', date.today())
 
     # 建立query

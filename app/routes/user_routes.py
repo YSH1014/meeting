@@ -4,6 +4,7 @@ from flask import render_template, redirect, url_for, flash, session,request,mak
 from app.forms import LoginForm, RegisterForm, RegisterMeetingForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, load_user, RoleType, MeetingStatusType, Meeting
+from app.routes.meeting_routes import query_meetings
 from app.security import user_required
 import sqlalchemy.exc
 import base64
@@ -123,7 +124,8 @@ def userInfo():
         flash("请登录")
         return redirect(url_for('index'))
 
-    return render_template('userInfo.html')
+    meetings = query_meetings(register=current_user.id)
+    return render_template('userInfo.html',meetings=meetings)
 
 
 @app.route('/logout')

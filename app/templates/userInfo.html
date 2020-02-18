@@ -1,15 +1,47 @@
 {% extends 'base.html' %}
 {% block title %}
-个人信息
+    个人信息
 {% endblock %}
 {% block content %}
-<div class="card meetings-card">
-    <div class="card-body meeting-intro">
-        <h1> 欢迎，{{ current_user.username }} </h1></br>
-        <p> 个人信息：</p></br>
-        <p> 电话： {{current_user.phone}}</p><br>
-        <p> 邮箱： {{current_user.email}}</p><br>
-        <p> 地址 ： {{current_user.address}}</p><br>
+    <div class="card meetings-card">
+        <div class="card-body meeting-intro">
+            <div class="row">
+                <div class="info-box col-sm-5">
+                    <div class="info-box-title">欢迎，{{ current_user.username }}</div>
+                    <ul class="list-group user-profile-contact">
+                        <li class="list-group-item">
+                            <img class="user-profile-contact-img" src={{ url_for("static",filename="u/img/meetings-img/phoneIcon.png") }}>
+                            <label>{{ current_user.phone }}</label>
+                        </li>
+                        <li class="list-group-item">
+                            <img class="user-profile-contact-img"
+                                 src={{ url_for("static",filename= "u/img/meetings-img/emailIcon.png") }}>
+                            <label>{{ current_user.email }}</label>
+                        </li>
+                        <li class="list-group-item">
+                            <img class="user-profile-contact-img"
+                                 src={{ url_for("static",filename="u/img/meetings-img/posIcon.png") }}>
+                            <label>{{ current_user.address if (current_user.address==None or current_user.address=="") else "暂无" }}</label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="info-box col-sm-6">
+                    <div class="info-box-title">我提交的会议</div>
+                    <ul class="list-group user-profile-meeting">
+                        {% for meeting in meetings %}
+                            <li class="list-group-item">
+                                <label>
+                                    {{ meeting.title_EN if (meeting.title==None or meeting.title=="") else meeting.title }}
+                                </label>
+                                <a href={{ url_for("meeting_detail",id=meeting.id) }}>
+                                <img class="user-profile-meeting-img"
+                                     src={{ url_for("static",filename="u/img/meetings-img/goIcon.png") }}>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 {% endblock %}
