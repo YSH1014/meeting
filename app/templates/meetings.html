@@ -3,7 +3,7 @@
     {{ title }}
 {% endblock %}
 {% block content %}
-    <style>
+    <style xmlns:v-bind="http://www.w3.org/1999/xhtml" >
         .meeting-filter-navbar {
             margin-bottom: 0px;
         }
@@ -41,6 +41,7 @@
     <script src={{ url_for('static',filename="u/js/highlight.pack.js") }}></script>
     <script src={{ url_for('static',filename="u/js/script.js") }}></script>
     <script src={{ url_for('static',filename="u/js/filtrify.min.js") }}></script>
+    <script src={{ url_for("static",filename="u/js/vue.min.js") }}></script>
     <script>
 
         var filter = {
@@ -61,71 +62,21 @@
         };
         $(function () {
             var ft = $.filtrify("container", "placeHolder");
-
-
-
+            //使用vue渲染filter-box
+            new Vue({
+                delimiters: ['{[', ']}'],  //防止和Flask冲突
+                el:"#filter-box",
+                data:{
+                    ftFields:JSON.parse(JSON.stringify(ft._fields)),
+                },
+            });
             $("#placeHolder").hide();//默认的这个隐藏了
-            var filter_box = document.getElementById("filter-box");
-            //var placeHolder = document.getElementById("placeHolder");
-            //添加横向菜单
-            for (filter_key in ft._fields) {
-                //filter_key 值为country,year等
-                var ul = document.createElement("ul");
-                ul.className = "navbar-nav  meeting-search-menu ft-menu";
-                //ul.style.margin = "20px 0px";
-                //ul.style.textAlign = "center";
-                var filter_values = ft._fields[filter_key];
-                for (filter_value in ft._fields[filter_key]) {
-                    //filter_value值为中国，2020等
-                    var li = document.createElement("li");
-                    var a = document.createElement("a");
-                    li.className = "nav-item meeting-filterbox-listitem";
-                    a.href = "#";
-                    a.className = "filter-tag nav-link index-topNav-link";
-                    var keyAttr = document.createAttribute("key");
-                    keyAttr.value = filter_key;
-                    a.setAttributeNode(keyAttr);
-                    var valueAttr = document.createAttribute("value");
-                    valueAttr.value = filter_value;
-                    a.setAttributeNode(valueAttr);
-                    a.innerHTML = filter_value;
 
-                    li.appendChild(a);
-                    ul.appendChild(li);
-                }
-                var nav = document.createElement("nav");
-                nav.className = "navbar navbar-expand-sm meeting-filter-navbar navbar-default";
-                //nav的成员之a
-                var a = document.createElement("a");
-                a.innerHTML = filter_key.toUpperCase();
-                a.className = "navbar-brand meeting-filterbox-navbrand";
-                //nav的成员之Button
-                var button = document.createElement("button");
-                button.className = "navbar-toggler";
-                button.innerHTML = "&#9660;";
-                //button.innerHTML = "展开";
-                button.setAttribute("type", "button");
-                button.setAttribute("data-toggle", "collapse");
-                button.setAttribute("data-target", "#navbarDropdown" + filter_key);
-                button.setAttribute("aria-controls", "navbarDropdown" + filter_key);
-                button.setAttribute("aria-expanded", "false");
-                button.setAttribute("aria-label", "Toggle navigation");
-                //nav的成员之div
-                var div = document.createElement("div");
-                div.className = "collapse navbar-collapse";
-                div.id = "navbarDropdown" + filter_key;
-                div.appendChild(ul);
-
-                nav.appendChild(a);
-                nav.appendChild(button);
-                nav.appendChild(div);
-                filter_box.appendChild(nav);
-            }
             //为横向菜单按钮添加动作
             $(".filter-tag").click(function () {
                 //执行过滤
-                var key = $(this).attr("key");
-                var value = $(this).attr("value");
+                var key = $(this).attr("ft-key");
+                var value = $(this).attr("ft-value");
                 filter[key] = [value];
                 ft.trigger(filter);
                 //修改颜色
@@ -167,7 +118,23 @@
     <div class="card meetings-card">
         <div class="card-header" style="text-align: center;"> 筛选会议</div>
         <div id="placeHolder"></div>
-        <div id="filter-box"></div>
+        <div id="filter-box">
+            <nav class="navbar navbar-expand-sm meeting-filter-navbar navbar-default"
+            v-for="(value,key) in ftFields">
+                <a class="navbar-brand meeting-filterbox-navbrand">
+                    {[key]}
+                </a>
+                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDropdownyear" aria-controls="navbarDropdownyear" aria-expanded="false" aria-label="Toggle navigation">&#9660;</button>
+                <div class="navbar-collapse collapse" id="navbarDropdownyear">
+                    <ul class="navbar-nav  meeting-search-menu ft-menu">
+                        <li class="nav-item meeting-filterbox-listitem" v-for="(count,tag) in value">
+                            <a href="#" class="filter-tag nav-link index-topNav-link"
+                               v-bind:ft-key="key" v-bind:ft-value="tag">{[tag]}</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
         <div align="center" style="margin-bottom: 15px;margin-top: 15px">
             <button id="reset" class="btn btn-sm btn-outline-danger" onclick="reset">重置条件</button>
         </div>
