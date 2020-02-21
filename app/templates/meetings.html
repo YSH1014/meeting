@@ -185,12 +185,14 @@
                  data-Language="{{ meeting.lang }}"
             >
                 <div class="card-header" style="text-shadow: 2px 2px 2px #ffff00;">
+                <a href="{{ url_for('meeting_detail',id=meeting.id) }}">
                     {% if meeting.title %}
                         <strong>{{ meeting.title }}</strong>
                     {% endif %}
                     {% if meeting.title_EN %}
                         <p>{{ meeting.title_EN }}</p>
                     {% endif %}
+                </a>
                 </div>
                 <div class="card-body">
                     <blockquote class="blockquote mb-0">
