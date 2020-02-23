@@ -52,9 +52,7 @@
             "language":[]
         };
 
-        window.onload = function(){
 
-        };
         //退出时存储filter
         window.onbeforeunload = function(){
             localStorage.setItem("lastList",window.location.href);
@@ -67,7 +65,8 @@
                 delimiters: ['{[', ']}'],  //防止和Flask冲突
                 el:"#filter-box",
                 data:{
-                    ftFields:JSON.parse(JSON.stringify(ft._fields)),
+                    ftFields:JSON.parse(JSON.stringify(ft._fields)),//深拷贝，静态存储初始的状态
+                    ftFieldsDynamic:ft._fields, //浅拷贝，动态获取count值
                 },
             });
             $("#placeHolder").hide();//默认的这个隐藏了
@@ -95,12 +94,11 @@
 
             // 读取之前存储的filter
             var filter_stored = localStorage.getItem("filter");
-            patt = '[key={key}][value={value}]';
+            patt = '[ft-key={key}][ft-value={value}]';
             if (filter_stored != null){
                 filter = JSON.parse(filter_stored);
                 ft.trigger(filter);
                 //重新替换颜色
-
                 for(key in filter){
                     if(filter[key].length==1){
                         $(patt.replace("{key}",key).replace("{value}",filter[key][0])).css(
