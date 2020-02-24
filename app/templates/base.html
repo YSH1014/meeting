@@ -1,46 +1,46 @@
 {% extends "header_footer.html" %}
 {% block body %}
 
-<div class="container-fluid">
-    <div class="main-container meetings-container">
-        <div class="row" style="margin: 0px;">
-            <div class="index-headline-titleLine"><img src={{ url_for('static'
+    <div class="container-fluid">
+        <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+
+        <div class="main-container meetings-container">
+            <div class="row" style="margin: 0px;">
+                <div class="index-headline-titleLine"><img src={{ url_for('static'
                                                        ,filename="u/img/meetings-img/titleIcon.png" ) }} alt="..."
-                                                       class="index-headline-icon">
-                <div class="index-headline-title">
-                    <a href="{{ url_for('index') }}">
-                        <font color="white">天文会议</font>
-                    </a>
+                                                           class="index-headline-icon">
+                    <div class="index-headline-title">
+                        <a href="{{ url_for('index') }}">
+                            <font color="white">天文会议</font>
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="col-sm-2 meeting-sidebar">
-                <ul class="nav flex-column list-group meeting-sidebar-group">
-                    <!--
+                <div class="col-sm-2 meeting-sidebar">
+                    <ul class="nav flex-column list-group meeting-sidebar-group">
                     <li class="nav-item list-group-item meeting-sidebar-subtitle"><img src={{ url_for('static'
                                                                                        ,filename="u/img/meetings-img/navbarSubtitleIcon.png"
                                                                                        ) }} alt="..."
                                                                                        class="meetings-sidebarSubtitle-icon">
-                        会议信息
+                        会议信息与提交
                     </li>
-                    -->
-                    <li class="nav-item list-group-item meeting-sidebar-item"><a
-                            class="nav-link meeting-sidebar-navlink" href={{ url_for("new_meeting") }}>新收录会议</a>
-                    </li>
+                        <li class="nav-item list-group-item meeting-sidebar-item"><a
+                                class="nav-link meeting-sidebar-navlink" href={{ url_for("new_meeting") }}>新收录会议</a>
+                        </li>
 
-                    <li class="nav-item list-group-item meeting-sidebar-item"><a
-                            class="nav-link meeting-sidebar-navlink" href={{ url_for(
+                        <li class="nav-item list-group-item meeting-sidebar-item"><a
+                                class="nav-link meeting-sidebar-navlink" href={{ url_for(
                         "meetings_year",
                         year=2020
                         ) }}>2020 年会议</a></li>
-                    <li class="nav-item list-group-item meeting-sidebar-item"><a
-                            class="nav-link meeting-sidebar-navlink" href={{ url_for(
+                        <li class="nav-item list-group-item meeting-sidebar-item"><a
+                                class="nav-link meeting-sidebar-navlink" href={{ url_for(
                         "meetings_year",
                         year=2021
                         ) }}>2021 年会议</a></li>
-                    <li class="nav-item list-group-item meeting-sidebar-item"><a
-                            class="nav-link meeting-sidebar-navlink" href={{ url_for(
+                        <li class="nav-item list-group-item meeting-sidebar-item"><a
+                                class="nav-link meeting-sidebar-navlink" href={{ url_for(
                             "search_meetings") }}>会议信息检索</a></li>
-                    <!--
+                        <!--
                     <li class="dropdown-divider"></li>
                     <li class="nav-item list-group-item meeting-sidebar-subtitle"><img src={{ url_for('static'
                                                                                        ,filename="u/img/meetings-img/navbarSubtitleIcon.png"
@@ -49,16 +49,40 @@
                         信息提交和更新
                     </li>
                     -->
-                    <li class="nav-item list-group-item meeting-sidebar-item"><a
-                            class="nav-link meeting-sidebar-navlink" href={{ url_for("register_meeting") }}>
-                        会议信息提交
-                    </a></li>
-                    <!--暂时去掉了
+                        <li class="nav-item list-group-item meeting-sidebar-item"><a
+                                class="nav-link meeting-sidebar-navlink" href={{ url_for("register_meeting") }}>
+                            会议信息提交
+                        </a></li>
+                        <li class="dropdown-divider"></li>
+                        <li class="nav-item list-group-item meeting-sidebar-subtitle"><img src={{url_for('static'
+                                                                                       ,filename="u/img/meetings-img/linkIcon.png"
+                                                                                       )}} alt="..."
+                                                                                       class="meetings-sidebarSubtitle-icon">
+                        RELATED LINKS
+                    </li>
+                        <li class="nav-item list-group-item meeting-sidebar-item"><a
+                                class="nav-link meeting-sidebar-navlink"
+                                href="http://www.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/en/meetings/">
+                            CADC Meetings
+                        </a></li>
+                        <li class="nav-item list-group-item meeting-sidebar-item"><a
+                                class="nav-link meeting-sidebar-navlink"
+                                href="https://www.iau.org/science/meetings/future/">
+                            IAU Meetings
+                        </a></li>
+                        <li class="nav-item list-group-item meeting-sidebar-item"><a
+                                class="nav-link meeting-sidebar-navlink"
+                                href="https://aas.org/meetings/future-aas-meetings">
+                            AAS Meetings
+                        </a></li>
+
+
+                        <!--暂时去掉了
                     <li class="nav-item list-group-item meeting-sidebar-item"><a
                             class="nav-link meeting-sidebar-navlink" href={{ url_for('search_meeting_id') }}>更新会议信息
                     </a></li>
                     -->
-                    <!-- <li class="nav-item list-group-item meeting-sidebar-subtitle"><img src={{url_for('static'
+                        <!-- <li class="nav-item list-group-item meeting-sidebar-subtitle"><img src={{url_for('static'
                                                                                        ,filename="u/img/meetings-img/linkIcon.png"
                                                                                        )}} alt="..."
                                                                                        class="meetings-sidebarSubtitle-icon">
@@ -66,63 +90,64 @@
                     </li>
                     <li class="nav-item list-group-item meeting-sidebar-item"><a
                             class="nav-link meeting-sidebar-navlink" href="https://ui.adsabs.harvard.edu/">ADS</a></li> -->
-                </ul>
-            </div>
-            <div class="col-sm-10" style="margin: 0px;padding: 0px;">
-                <div style="margin: 0px; background-color: transparent; padding: 0px 10px;">
-                    <div class="card meetings-card">
-                        <div class="card-body meetings-mainPage-title">
-                            <style>
-                                .form_label {
-                                    width: 120px;
-                                    display: inline-block;
-                                }
+                    </ul>
+                </div>
+                <div class="col-sm-10" style="margin: 0px;padding: 0px;">
+                    <div style="margin: 0px; background-color: transparent; padding: 0px 10px;">
+                        <div class="card meetings-card">
+                            <div class="card-body meetings-mainPage-title">
+                                <style>
+                                    .form_label {
+                                        width: 120px;
+                                        display: inline-block;
+                                    }
 
-                                .form_input {
-                                    width: 300px;
-                                    display: inline-block;
-                                }
+                                    .form_input {
+                                        width: 300px;
+                                        display: inline-block;
+                                    }
 
 
-                            </style>
-                            {% block title %}
-                            {% endblock %}
+                                </style>
+                                {% block title %}
+                                {% endblock %}
 
+                            </div>
                         </div>
+
+                        {% with messages = get_flashed_messages() %}
+                            {% if messages %}
+                                <ul class="flash">
+                                    {% for message in messages %}
+                                        <div class="alert alert-success" style="text-align: center">
+                                            <button aria-hidden="true" data-dismiss="alert" class="close" type="button">
+                                                ×
+                                            </button>
+                                            <strong>{{ message }}</strong></div>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        {% endwith %}
+
+                        {% block content %}
+                        {% endblock %}
+                        <script>
+                            start_date = document.getElementById('start_date');
+                            if (start_date) {
+                                start_date.type = 'date';
+                                //start_date.style.width="180px";
+                            }
+                            end_date = document.getElementById('end_date');
+                            if (end_date) {
+                                end_date.type = 'date';
+                                //end_date.style.width="180px";
+                            }
+                        </script>
                     </div>
-
-                    {% with messages = get_flashed_messages() %}
-                        {% if messages %}
-                            <ul class="flash">
-                                {% for message in messages %}
-                                    <div class="alert alert-success" style="text-align: center">
-                                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×
-                                        </button>
-                                        <strong>{{ message }}</strong></div>
-                                {% endfor %}
-                            </ul>
-                        {% endif %}
-                    {% endwith %}
-
-                    {% block content %}
-                    {% endblock %}
-                    <script>
-                        start_date = document.getElementById('start_date');
-                        if(start_date) {
-                            start_date.type = 'date';
-                            //start_date.style.width="180px";
-                        }
-                        end_date = document.getElementById('end_date');
-                        if(end_date) {
-                            end_date.type = 'date';
-                            //end_date.style.width="180px";
-                        }
-                    </script>
                 </div>
             </div>
         </div>
-    </div>
 
-</div>
+    </div>
 
 {% endblock %}
