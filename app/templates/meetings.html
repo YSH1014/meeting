@@ -120,10 +120,10 @@
             <nav class="navbar navbar-expand-sm meeting-filter-navbar navbar-default"
             v-for="(value,key) in ftFields">
                 <a class="navbar-brand meeting-filterbox-navbrand">
-                    {[key]}
+                    {[key.toUpperCase()]}
                 </a>
-                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDropdownyear" aria-controls="navbarDropdownyear" aria-expanded="false" aria-label="Toggle navigation">&#9660;</button>
-                <div class="navbar-collapse collapse" id="navbarDropdownyear">
+                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" v-bind:data-target="'#navbarDropdown'+key" v-bind:aria-controls="'#navbarDropdown'+key" aria-expanded="false" aria-label="Toggle navigation">&#9660;</button>
+                <div class="navbar-collapse collapse" v-bind:id="'navbarDropdown'+key">
                     <ul class="navbar-nav  meeting-search-menu ft-menu">
                         <li class="nav-item meeting-filterbox-listitem" v-for="(count,tag) in value">
                             <a href="#" class="filter-tag nav-link index-topNav-link"
