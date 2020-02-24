@@ -15,12 +15,14 @@
             </div>
             <div class="col-sm-2 meeting-sidebar">
                 <ul class="nav flex-column list-group meeting-sidebar-group">
+                    <!--
                     <li class="nav-item list-group-item meeting-sidebar-subtitle"><img src={{ url_for('static'
                                                                                        ,filename="u/img/meetings-img/navbarSubtitleIcon.png"
                                                                                        ) }} alt="..."
                                                                                        class="meetings-sidebarSubtitle-icon">
                         会议信息
                     </li>
+                    -->
                     <li class="nav-item list-group-item meeting-sidebar-item"><a
                             class="nav-link meeting-sidebar-navlink" href={{ url_for("new_meeting") }}>新收录会议</a>
                     </li>
@@ -37,7 +39,8 @@
                         ) }}>2021 年会议</a></li>
                     <li class="nav-item list-group-item meeting-sidebar-item"><a
                             class="nav-link meeting-sidebar-navlink" href={{ url_for(
-                            "search_meetings") }}>会议检索</a></li>
+                            "search_meetings") }}>会议信息检索</a></li>
+                    <!--
                     <li class="dropdown-divider"></li>
                     <li class="nav-item list-group-item meeting-sidebar-subtitle"><img src={{ url_for('static'
                                                                                        ,filename="u/img/meetings-img/navbarSubtitleIcon.png"
@@ -45,9 +48,10 @@
                                                                                        class="meetings-sidebarSubtitle-icon">
                         信息提交和更新
                     </li>
+                    -->
                     <li class="nav-item list-group-item meeting-sidebar-item"><a
                             class="nav-link meeting-sidebar-navlink" href={{ url_for("register_meeting") }}>
-                        提交会议信息
+                        会议信息提交
                     </a></li>
                     <!--暂时去掉了
                     <li class="nav-item list-group-item meeting-sidebar-item"><a
