@@ -1,6 +1,6 @@
 ## 天文会议系统文档目录
 
-[用例](./doc/Usecase.md)  
+[用例和使用手册](./doc/Usecase.md)  
 [需求](./doc/requirement.md)  
 [数据字典](./doc/dataDictionary.md)
 [E-R](./doc/ER.md)

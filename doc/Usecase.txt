@@ -8,8 +8,8 @@ actor tourist
 
 
 usecase browse
-usecase holdMeeting
-usecase cancelMeeting
+usecase registerMeeting
+usecase updateMeeting
 usecase review
 usecase addAdmin
 usecase deleteAdmin
@@ -23,8 +23,8 @@ tourist <|-- user
 
 
 tourist->browse
-user->holdMeeting
-user->cancelMeeting
+user->registerMeeting
+user->updateMeeting
 admin->review
 root->addAdmin
 root->deleteAdmin
