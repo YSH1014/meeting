@@ -114,7 +114,7 @@
 
     </script>
     <div class="card meetings-card">
-        <div class="card-header" style="text-align: center;"> 筛选会议</div>
+        <div class="card-header" style="text-align: center;"> {{ _('筛选会议') }}</div>
         <div id="placeHolder"></div>
         <div id="filter-box" >
             <nav class="navbar navbar-expand-sm meeting-filter-navbar navbar-default"
@@ -134,7 +134,7 @@
             </nav>
         </div>
         <div align="center" style="margin-bottom: 15px;margin-top: 15px">
-            <button id="reset" class="btn btn-sm btn-outline-danger" onclick="reset">重置条件</button>
+            <button id="reset" class="btn btn-sm btn-outline-danger" onclick="reset">{{ _('重置条件') }}</button>
         </div>
 
     </div>
@@ -164,22 +164,22 @@
                         <p class="meetings-title">{{ meeting.short_name }}</p>
 
                         <div class="row meetings-detail">
-                            <div class="col-sm-1">日期</div>
+                            <div class="col-sm-1">{{ _('会议时间') }}</div>
                             <div class="col-sm-11">{{ meeting.start_date }} - {{ meeting.end_date }}</div>
-                            <div class="col-sm-1">地点</div>
+                            <div class="col-sm-1">会议地点</div>
                             <div class="col-sm-11">{{ meeting.full_location() }}</div>
                             <div class="col-sm-1">Location</div>
                             <div class="col-sm-11">{{ meeting.full_location_EN() }}</div>
-                            <div class="col-sm-1">官网</div>
+                            <div class="col-sm-1">{{ _('官网') }}</div>
                             <div class="col-sm-11"><a href="{{ meeting.url }}" target="_blank">{{ meeting.url }}</a>
                             </div>
-                            <div class="col-sm-1">最近更新</div>
+                            <div class="col-sm-1">{{ _('最近更新') }}</div>
                             <div class="col-sm-11">{{ meeting.register_time.date() }}</div>
                         </div>
                     </blockquote>
                 </div>
                 <div class="card-footer text-muted meetings-more">
-                    <a href="{{ url_for('meeting_detail',id=meeting.id) }}">更多详情</a>
+                    <a href="{{ url_for('meeting_detail',id=meeting.id) }}">{{ _('更多详情') }}</a>
                 </div>
             </div>
         {% endfor %}

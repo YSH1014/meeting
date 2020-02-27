@@ -7,7 +7,7 @@
         <div class="card-body meeting-intro">
             <div class="row">
                 <div class="info-box col-sm-5">
-                    <div class="info-box-title">欢迎，{{ current_user.username }}</div>
+                    <div class="info-box-title">{{ _('欢迎') }}，{{ current_user.username }}</div>
                     <ul class="list-group user-profile-contact">
                         <li class="list-group-item">
                             <img class="user-profile-contact-img" src={{ url_for("static",filename="u/img/meetings-img/phoneIcon.png") }}>
@@ -21,12 +21,12 @@
                         <li class="list-group-item">
                             <img class="user-profile-contact-img"
                                  src={{ url_for("static",filename="u/img/meetings-img/posIcon.png") }}>
-                            <label>{{ current_user.address if (current_user.address==None or current_user.address=="") else "暂无" }}</label>
+                            <label>{{ current_user.address if (current_user.address==None or current_user.address=="") else _("暂无") }}</label>
                         </li>
                     </ul>
                 </div>
                 <div class="info-box col-sm-6">
-                    <div class="info-box-title">我提交的会议</div>
+                    <div class="info-box-title">{{ _('我提交的会议') }}</div>
                     <ul class="list-group user-profile-meeting">
                         {% for meeting in meetings %}
                             <li class="list-group-item">

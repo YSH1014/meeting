@@ -18,41 +18,41 @@
 -->
             {% if current_user.is_anonymous %}
                 <!-- 未登录，显示登录注册两个框 -->
-                <li class="nav-item"><a class="nav-link index-topNav-link" href={{ url_for('login') }}>登录</a></li>
-                <!-- <li class="nav-item"><a class="nav-link index-topNav-link" href={{ url_for('register') }}>注册</a> -->
+                <li class="nav-item"><a class="nav-link index-topNav-link" href={{ url_for('login') }}>_(登录)</a></li>
+                <!-- <li class="nav-item"><a class="nav-link index-topNav-link" href={{ url_for('register') }}>_(注册)</a> -->
                 </li>
             {% else %}
                 <!-- 已登录 -->
                 <li class="nav-item"><a class="nav-link index-topNav-link"
-                                        href="{{ url_for('userInfo') }}">您好，{{ current_user.username }}</a></li>
-                <li class="nav-item"><a class="nav-link index-topNav-link" href="{{ url_for('logout') }}">退出</a>
+                                        href="{{ url_for('userInfo') }}">{{  _('您好，')}} {{ current_user.username }}</a></li>
+                <li class="nav-item"><a class="nav-link index-topNav-link" href="{{ url_for('logout') }}">{{  _('退出')}}</a>
                 </li>
                 <li class="nav-item dropdown" >
                     <a class="nav-link dropdown-toggle index-topNav-link" href="#" id="navbarDropdown"
                        role="button" data-toggle="dropdown" aria-haspopup="true"
-                       aria-expanded="false"> 我注册的会议</a>
+                       aria-expanded="false"> {{  _('我注册的会议') }}</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item"
-                           href={{ url_for('meetings',register=current_user.id,status='REGISTERED') }}>待审核</a>
+                           href={{ url_for('meetings',register=current_user.id,status='REGISTERED') }}>{{  _('待审核')}}</a>
                         <a class="dropdown-item"
-                           href={{ url_for('meetings',register=current_user.id,status='UNAPPROVED') }}>未通过</a>
+                           href={{ url_for('meetings',register=current_user.id,status='UNAPPROVED') }}>{{  _('未通过')}}</a>
                         <a class="dropdown-item"
-                           href={{ url_for('meetings',register=current_user.id,status='APPROVED') }}>已通过</a>
+                           href={{ url_for('meetings',register=current_user.id,status='APPROVED') }}>{{ _('已通过') }}</a>
                         <a class="dropdown-item"
-                           href={{ url_for('meetings',register=current_user.id,status='OUTDUE') }}>已过期</a>
+                           href={{ url_for('meetings',register=current_user.id,status='OUTDUE') }}>{{ _('已过期') }}</a>
 
                     </ul>
                 </li>
 
                 {% if current_user.is_root() %}
                     <!--角色为root，包含用户管理链接 -->
-                    <li class="nav-item"><a class="nav-link index-topNav-link" href="{{ url_for('users') }}">用户管理</a>
+                    <li class="nav-item"><a class="nav-link index-topNav-link" href="{{ url_for('users') }}">{{ _('用户管理') }}</a>
                     </li>
                 {% endif %}
                 {% if current_user.is_admin() %}
                     <!-- 角色为admin,包含会议管理链接 -->
                     <li class="nav-item"><a class="nav-link index-topNav-link"
-                                            href="{{ url_for('meetings',status='REGISTERED') }}">查看待审核会议</a></li>
+                                            href="{{ url_for('meetings',status='REGISTERED') }}">{{ _('查看待审核会议')}}</a></li>
 
                 {% endif %}
             {% endif %}
