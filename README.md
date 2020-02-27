@@ -1,3 +1,3 @@
 ## 天文会议系统文档目录
 
-[用例](./doc/Usecase.md)
+[文档详见doc分支](https://github.com/YSH1014/meeting/tree/doc)
