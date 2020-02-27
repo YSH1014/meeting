@@ -278,16 +278,8 @@ def search_meetings():
         start_date=date.today(),
         end_date=date(9999,12,31),
     )
-    if form.validate():
-        meeting_list = query_meetings(
-            start_date=form.start_date.data,
-            end_date=form.end_date.data,
-            lang=MeetingLanguageType.from_int(form.lang.data) if form.lang.data != 0 else None,
-            keywords=form.key_words.data
-        )
-        return render_template('meetings.html', title='搜索结果', meetings=meeting_list)
-    else:
-        return render_template("search_meetings.html", form=form)
+
+    return render_template("search_meetings.html", form=form)
 
 
 @app.route("/new_meeting")

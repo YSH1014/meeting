@@ -6,9 +6,7 @@
 {% block content %}
     <div class="card meetings-card">
         <div class="card-body ">
-            <form action="" method="post" class="form" role="form">
-
-                {{ form.hidden_tag() }}
+            <form action="{{ url_for('meetings') }}" method="get" class="form" role="form">
 
                 <div class="form-group ">
                     {{ form.start_date.label(class="control-label meeting-input-label") }}
