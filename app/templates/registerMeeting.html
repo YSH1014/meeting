@@ -3,11 +3,11 @@
     提交会议信息（Submit New Meeting）
 {% endblock %}
 {% block content %}
-<style>
-#submit{
+    <style>
+        #submit {
 
-}
-</style>
+        }
+    </style>
 
     <div class="card meetings-card">
         <div class="card-body ">
@@ -18,45 +18,71 @@
                     {% import "bootstrap/wtf.html" as wtf %}
                     <form action="" method="post" class="form" role="form"
                           onsubmit="return validateForm()" id="registerForm">
+                        <!-- 引入datepicker -->
+                        <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+                        <link href="https://cdn.bootcss.com/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css"
+                              rel="stylesheet">
+                        <script src="https://cdn.bootcss.com/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
+
                         {{ form.hidden_tag() }}
                         <div class="meeting-input-group">
-                            <div class="meeting-input-group-title"><p>会议名称（中英文至少填一项）</p><p>Meeting Name (Fill in at least one item in Chinese or English)</p></div>
+                            <div class="meeting-input-group-title"><p>会议名称（中英文至少填一项）</p>
+                                <p>Meeting Name (Fill in at least one item in Chinese or English)</p></div>
                             {{ wtf.form_field(form.title) }}
                             {{ wtf.form_field(form.title_EN) }}
                         </div>
                         <div class="meeting-input-group">
-                            <div class="meeting-input-group-title"><p>会议地点（中英文至少填一项）</p><p>Meeting Location (Fill in at least one item in Chinese or English)</p></div>
+                            <div class="meeting-input-group-title"><p>会议地点（中英文至少填一项）</p>
+                                <p>Meeting Location (Fill in at least one item in Chinese or English)</p></div>
                             {{ wtf.form_field(form.location) }}
                             {{ wtf.form_field(form.location_EN) }}
                         </div>
                         <div class="meeting-input-group">
-                            <div class="meeting-input-group-title"><p>会议时间</p><p>Meeting Date</p></div>
+                            <div class="meeting-input-group-title"><p>会议时间</p>
+                                <p>Meeting Date</p></div>
                             {{ wtf.form_field(form.start_date) }}
                             {{ wtf.form_field(form.end_date) }}
                         </div>
                         <div class="meeting-input-group">
-                            <div class="meeting-input-group-title"><p>会议语言</p><p>Meeting Language</p></div>
+                            <div class="meeting-input-group-title"><p>会议语言</p>
+                                <p>Meeting Language</p></div>
                             {{ wtf.form_field(form.lang) }}
                         </div>
-                            <div class="meeting-input-group">
-                                <div class="meeting-input-group-title"><p>其他会议信息（选填）</p><p>Other Meeting Information (Optional)</p></div>
-                                {{ wtf.form_field(form.url) }}
-                                {{ wtf.form_field(form.short_name) }}
-                                {{ wtf.form_field(form.theme) }}
-                                {{ wtf.form_field(form.theme_EN) }}
-                                {{ wtf.form_field(form.key_words) }}
-                                {{ wtf.form_field(form.key_words_EN) }}
-                            </div>
+                        <div class="meeting-input-group">
+                            <div class="meeting-input-group-title"><p>其他会议信息（选填）</p>
+                                <p>Other Meeting Information (Optional)</p></div>
+                            {{ wtf.form_field(form.url) }}
+                            {{ wtf.form_field(form.short_name) }}
+                            {{ wtf.form_field(form.theme) }}
+                            {{ wtf.form_field(form.theme_EN) }}
+                            {{ wtf.form_field(form.key_words) }}
+                            {{ wtf.form_field(form.key_words_EN) }}
+                        </div>
 
-                            <div class="meeting-input-group">
-                                <div class="meeting-input-group-title"><p>联系人信息</p><p>Contact Information</p></div>
-                                {{ wtf.form_field(form.contact) }}
-                                {{ wtf.form_field(form.email) }}
-                                {{ wtf.form_field(form.phone) }}
-                            </div>
-                            <div style="text-align: center;">
-                                {{ wtf.form_field(form.submit,class="btn btn-primary max-auto") }}
-                            </div>
+                        <div class="meeting-input-group">
+                            <div class="meeting-input-group-title"><p>联系人信息</p>
+                                <p>Contact Information</p></div>
+                            {{ wtf.form_field(form.contact) }}
+                            {{ wtf.form_field(form.email) }}
+                            {{ wtf.form_field(form.phone) }}
+                        </div>
+                        <div style="text-align: center;">
+                            {{ wtf.form_field(form.submit,class="btn btn-primary max-auto") }}
+                        </div>
+                        <!--修改日期样式-->
+                        <script type="text/javascript">
+        $(function () {
+            $("#start_date,#end_date").datepicker({
+                language: "zh-CN",
+                clearBtn: true,//清除
+                autoclose: true,
+                todayHighlight: true,
+                format: 'yyyy-mm-dd',
+                todayBtn: true,//今日按钮
+
+            })
+        });
+    </script>
                     </form>
                 </div>
                 <div class="col-1"></div>
