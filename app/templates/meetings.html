@@ -117,17 +117,72 @@
         <div class="card-header" style="text-align: center;"> {{ _('筛选会议') }}</div>
         <div id="placeHolder"></div>
         <div id="filter-box" >
-            <nav class="navbar navbar-expand-sm meeting-filter-navbar navbar-default"
-            v-for="(value,key) in ftFields">
+            <nav class="navbar navbar-expand-sm meeting-filter-navbar navbar-default">
                 <a class="navbar-brand meeting-filterbox-navbrand">
-                    {[key.toUpperCase()]}
+                    {{ _('年') }}
                 </a>
-                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" v-bind:data-target="'#navbarDropdown'+key" v-bind:aria-controls="'#navbarDropdown'+key" aria-expanded="false" aria-label="Toggle navigation">&#9660;</button>
-                <div class="navbar-collapse collapse" v-bind:id="'navbarDropdown'+key">
+                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="'#navbarDropdownYear" aria-controls="'#navbarDropdownYear" aria-expanded="false" aria-label="Toggle navigation">&#9660;</button>
+                <div class="navbar-collapse collapse" id="'navbarDropdownYear">
                     <ul class="navbar-nav  meeting-search-menu ft-menu">
-                        <li class="nav-item meeting-filterbox-listitem" v-for="(count,tag) in value">
+                        <li class="nav-item meeting-filterbox-listitem" v-for="(count,tag) in ftFields['year']">
                             <a href="#" class="filter-tag nav-link index-topNav-link"
-                               v-bind:ft-key="key" v-bind:ft-value="tag">{[tag]}</a>
+                               ft-key="year" v-bind:ft-value="tag">{[tag]}</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <nav class="navbar navbar-expand-sm meeting-filter-navbar navbar-default">
+                <a class="navbar-brand meeting-filterbox-navbrand">
+                    {{ _('月') }}
+                </a>
+                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="'#navbarDropdownMonth" aria-controls="'#navbarDropdownMonth" aria-expanded="false" aria-label="Toggle navigation">&#9660;</button>
+                <div class="navbar-collapse collapse" id="'navbarDropdownMonth">
+                    <ul class="navbar-nav  meeting-search-menu ft-menu">
+                        <li class="nav-item meeting-filterbox-listitem" v-for="(count,tag) in ftFields['month']">
+                            <a href="#" class="filter-tag nav-link index-topNav-link"
+                               ft-key="month" v-bind:ft-value="tag">{[tag]}</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <nav class="navbar navbar-expand-sm meeting-filter-navbar navbar-default">
+                <a class="navbar-brand meeting-filterbox-navbrand">
+                    {{ _('国家') }}
+                </a>
+                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="'#navbarDropdownCountry" aria-controls="'#navbarDropdownCountry" aria-expanded="false" aria-label="Toggle navigation">&#9660;</button>
+                <div class="navbar-collapse collapse" id="'navbarDropdownCountry">
+                    <ul class="navbar-nav  meeting-search-menu ft-menu">
+                        <li class="nav-item meeting-filterbox-listitem" v-for="(count,tag) in ftFields['country']">
+                            <a href="#" class="filter-tag nav-link index-topNav-link"
+                               ft-key="country" v-bind:ft-value="tag">{[tag]}</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <nav class="navbar navbar-expand-sm meeting-filter-navbar navbar-default">
+                <a class="navbar-brand meeting-filterbox-navbrand">
+                    {{ _('城市') }}
+                </a>
+                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="'#navbarDropdownCity" aria-controls="'#navbarDropdownCity" aria-expanded="false" aria-label="Toggle navigation">&#9660;</button>
+                <div class="navbar-collapse collapse" id="'navbarDropdownCity">
+                    <ul class="navbar-nav  meeting-search-menu ft-menu">
+                        <li class="nav-item meeting-filterbox-listitem" v-for="(count,tag) in ftFields['city']">
+                            <a href="#" class="filter-tag nav-link index-topNav-link"
+                               ft-key="city" v-bind:ft-value="tag">{[tag]}</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <nav class="navbar navbar-expand-sm meeting-filter-navbar navbar-default">
+                <a class="navbar-brand meeting-filterbox-navbrand">
+                    {{ _('语言') }}
+                </a>
+                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="'#navbarDropdownLanguage" aria-controls="'#navbarDropdownLanguage" aria-expanded="false" aria-label="Toggle navigation">&#9660;</button>
+                <div class="navbar-collapse collapse" id="'navbarDropdownLanguage">
+                    <ul class="navbar-nav  meeting-search-menu ft-menu">
+                        <li class="nav-item meeting-filterbox-listitem" v-for="(count,tag) in ftFields['language']">
+                            <a href="#" class="filter-tag nav-link index-topNav-link"
+                               ft-key="language" v-bind:ft-value="tag">{[tag]}</a>
                         </li>
                     </ul>
                 </div>
@@ -146,7 +201,7 @@
                  data-Year="{{ meeting.start_date.year }}"
                  data-Month="{{ meeting.start_date.month }}"
                  data-Country="{{ meeting.get_country() }}"
-                 data-City="{{ meeting.city }}"
+                 data-City="{{ meeting.city if meeting.city!=None else '未知' }}"
                  data-Language="{{ meeting.lang }}"
             >
                 <div class="card-header" style="text-shadow: 2px 2px 2px #ffff00;">
