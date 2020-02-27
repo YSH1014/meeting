@@ -64,6 +64,7 @@ class User(UserMixin, db.Model):
     address = db.Column(db.String(150), nullable=False)
     phone = db.Column(db.String(20), index=True)
     role = db.Column(db.Enum(RoleType))
+    locale = db.Column(db.String(30), nullable=True)  
 
     def __repr__(self):
         return '<User {}>'.format(self.username)

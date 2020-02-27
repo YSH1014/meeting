@@ -18,6 +18,8 @@
 <script src={{ url_for('static',filename="u/js/jquery.min.js")}}></script>
 <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
 <script src={{ url_for('static',filename="u/js/bootstrap.min.js")}}></script>
+<script src={{ url_for('static',filename="u/js/meeting.js")}}></script>
+
 <!-- <script type="text/javascript" src={{ url_for('static',filename= "u/js/currentuser.js")}}></script> -->
 <!--<script>
 	function setPageLang(language){
@@ -65,6 +67,24 @@
       <li class="nav-item"> <a class="nav-link index-topNav-link" href="https://passport.escience.cn/regist.jsp">注册</a> </li>
       -->
         {% include 'user_menu.html' %}
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLNG" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {% if get_locale()=='en' %}
+          <img class="languageImg" src="{{ url_for('static', filename="u/img/index-img/yingwen.png") }}" alt="English">
+          {% else %}
+          <img class="languageImg" src="{{ url_for('static', filename="u/img/index-img/zhongwen.png") }}" alt="中文">
+          {% endif %}
+          </a>
+          <div class="dropdown-menu fastDropdownMenu" aria-labelledby="navbarDropdownLNG" style="min-width: 20px;">
+              <a class="dropdown-item" onclick="visit_url_and_refresh_current_page('{{ url_for('set_locale', locale='zh_Hans_CN') }}')" href="#">
+                  <img class="languageImg" src="{{ url_for('static', filename="u/img/index-img/zhongwen.png") }}" alt="中文"> 中文
+              </a>
+              <a class="dropdown-item" onclick="visit_url_and_refresh_current_page('{{ url_for('set_locale', locale='en') }}')" href="#">
+                  <img class="languageImg" src="{{ url_for('static', filename="u/img/index-img/yingwen.png") }}" alt="English"> English
+              </a>
+          </div>
+      </li>
     </ul>
     <form class="form-inline my-2 my-lg-0 input-group-sm">
       <input class="form-control mr-sm-2 index-topNav-searchBox" type="search" placeholder="站内搜索" aria-label="Search">
