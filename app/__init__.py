@@ -21,6 +21,8 @@ migrate = Migrate(app, db)
 bootstrap = Bootstrap(app)
 babel = Babel(app)
 
+from app.cli import register_commands
+register_commands(app)
 
 # 环境相关文件
 from app import index_routes, models

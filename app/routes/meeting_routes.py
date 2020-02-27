@@ -9,7 +9,7 @@ from datetime import datetime, timedelta, date
 from app.security import user_required, login_redirect_required
 from sqlalchemy.sql import or_,desc
 from app.ModelFormRender import meeting_render
-
+from app.index_routes import get_locale
 
 
 @app.route('/registerMeeting', methods=['Get', 'Post'])
@@ -274,9 +274,15 @@ def search_meeting_id():
 
 @app.route("/search_meeting", methods=['get', 'post'])
 def search_meetings():
+   
+    # keyword = request.args['keyword']
+    lang = request.args.get('lang')
+    key_words= request.args.get('key_words')
     form = SearchMeetingForm(
         start_date=date.today(),
         end_date=date(9999,12,31),
+        lang = lang,
+        key_words= key_words
     )
     if form.validate():
         meeting_list = query_meetings(

@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    会议检索
+{{_('会议检索')}}
 {% endblock %}
 {% block content %}
     <div class="card meetings-card">
         <div class="card-body ">
-            <form action="" method="post" class="form" role="form">
+            <form action="" method="GET" class="form" role="form">
 
                 {{ form.hidden_tag() }}
 

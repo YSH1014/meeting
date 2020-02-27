@@ -7,7 +7,8 @@ from app.models import User, load_user, RoleType, MeetingStatusType, Meeting
 import sqlalchemy.exc
 # from app.routes.user_routes import login_redirect
 from app.security import login_redirect_required
-from flask_babelex import Babel
+from flask_babelex import Babel, _
+
 from app import babel
 
 @app.route('/')
@@ -41,6 +42,10 @@ def set_locale(locale):
     else:
         response.set_cookie('locale', locale, max_age=60 * 60 * 24 * 30)
     return response
+
+# @app.before_app_request
+# def before_request():
+#     g.locale = str(get_locale())
 
 @babel.localeselector
 def get_locale():

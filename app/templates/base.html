@@ -10,7 +10,7 @@
                                                            class="index-headline-icon">
                     <div class="index-headline-title">
                         <a href="{{ url_for('index') }}">
-                            <font color="white">天文会议</font>
+                            <font color="white">{{_('天文会议')}}</font>
                         </a>
                     </div>
                 </div>
@@ -20,25 +20,25 @@
                                                                                        ,filename="u/img/meetings-img/navbarSubtitleIcon.png"
                                                                                        ) }} alt="..."
                                                                                        class="meetings-sidebarSubtitle-icon">
-                        会议信息与提交
+                                                                                       {{_('会议信息与提交')}}
                     </li>
                         <li class="nav-item list-group-item meeting-sidebar-item"><a
-                                class="nav-link meeting-sidebar-navlink" href={{ url_for("new_meeting") }}>新收录会议</a>
+                                class="nav-link meeting-sidebar-navlink" href={{ url_for("new_meeting") }}>{{_('新收录会议')}}</a>
                         </li>
 
                         <li class="nav-item list-group-item meeting-sidebar-item"><a
                                 class="nav-link meeting-sidebar-navlink" href={{ url_for(
                         "meetings_year",
                         year=2020
-                        ) }}>2020 年会议</a></li>
+                        ) }}>{{_('2020 年会议')}}</a></li>
                         <li class="nav-item list-group-item meeting-sidebar-item"><a
                                 class="nav-link meeting-sidebar-navlink" href={{ url_for(
                         "meetings_year",
                         year=2021
-                        ) }}>2021 年会议</a></li>
+                        ) }}>{{_('2021 年会议')}}</a></li>
                         <li class="nav-item list-group-item meeting-sidebar-item"><a
                                 class="nav-link meeting-sidebar-navlink" href={{ url_for(
-                            "search_meetings") }}>会议信息检索</a></li>
+                            "search_meetings") }}>{{_('会议信息检索')}}</a></li>
                         <!--
                     <li class="dropdown-divider"></li>
                     <li class="nav-item list-group-item meeting-sidebar-subtitle"><img src={{ url_for('static'
@@ -50,14 +50,14 @@
                     -->
                         <li class="nav-item list-group-item meeting-sidebar-item"><a
                                 class="nav-link meeting-sidebar-navlink" href={{ url_for("register_meeting") }}>
-                            会议信息提交
+                                {{_('会议信息提交')}}
                         </a></li>
                         <li class="dropdown-divider"></li>
                         <li class="nav-item list-group-item meeting-sidebar-subtitle"><img src={{url_for('static'
                                                                                        ,filename="u/img/meetings-img/linkIcon.png"
                                                                                        )}} alt="..."
                                                                                        class="meetings-sidebarSubtitle-icon">
-                        RELATED LINKS
+                                                                                       {{_('相关链接')}}
                     </li>
                         <li class="nav-item list-group-item meeting-sidebar-item"><a
                                 class="nav-link meeting-sidebar-navlink"

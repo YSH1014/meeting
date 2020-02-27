@@ -17,34 +17,55 @@
             <blockquote class="blockquote mb-0">
                 <div class="row meetings-detail">
                     {% if meeting.short_name %}
-                        <div class="col-sm-2">会议简称(Date)</div>
+                        <div class="col-sm-2">{{_('会议简称')}}</div>
                         <div class="col-sm-10">{{ meeting.short_name }}</div>
                     {% endif %}
-                    <div class="col-sm-2">日期(Date)</div>
+                    <div class="col-sm-2">{{_('日期')}}</div>
                     <div class="col-sm-10">{{ meeting.start_date }} - {{ meeting.end_date }}</div>
-                    <div class="col-sm-2">地点(Location)</div>
-                    <div class="col-sm-10"><strong>{{ meeting.full_location() }}</strong></div>
-                    <div class="col-sm-2">Location</div>
+
+                    <div class="col-sm-2">{{_('地点')}}</div>
+                    {% if get_locale()=='en' %}
                     <div class="col-sm-10">{{ meeting.full_location_EN() }}</div>
-                    <div class="col-sm-2">联系人(contact)</div>
+                    {% else %}
+                    <div class="col-sm-10"><strong>{{ meeting.full_location() }}</strong></div>
+                    {% endif%}
+
+                    <div class="col-sm-2">{{_('联系人')}}</div>
                     <div class="col-sm-10">{{ meeting.contact }}</div>
-                    <div class="col-sm-2">联系电话</div>
+                    <div class="col-sm-2">{{_('联系电话')}}</div>
                     <div class="col-sm-10">{{ meeting.phone }}</div>
-                    <div class="col-sm-2">会议网址</div>
+                    <div class="col-sm-2">{{_('会议网址')}}</div>
                     <div class="col-sm-10"><a href="{{ meeting.url }}" target="_blank">{{ meeting.url }}</a></div>
-                    <div class="col-sm-2">邮件</div>
+                    <div class="col-sm-2">{{_('邮件')}}</div>
                     <div class="col-sm-10">{{ meeting.email }}</div>
-                    <div class="col-sm-2">关键词</div>
+
+                    <div class="col-sm-2">{{_('关键词')}}</div>
+                    {% if get_locale()=='en' %}
+                    <div class="col-sm-10">{{ meeting.key_words_EN }}</div>
+                    {% else %}
+                    <div class="col-sm-10"><strong>{{ meeting.key_words }}</strong></div>
+                    {% endif%}
+
+                    <!-- <div class="col-sm-2">关键词</div>
                     <div class="col-sm-10">{{ meeting.key_words }}</div>
                     <div class="col-sm-2">KeyWords</div>
-                    <div class="col-sm-10">{{ meeting.key_words_EN }}</div>
-                    <div class="col-sm-2">会议主题</div>
+                    <div class="col-sm-10">{{ meeting.key_words_EN }}</div> -->
+
+                    <div class="col-sm-2">{{_('会议主题')}}</div>
+                    {% if get_locale()=='en' %}
+                    <div class="col-sm-10">{{ meeting.theme_EN }}</div>
+                    {% else %}
+                    <div class="col-sm-10"><strong>{{ meeting.theme }}</strong></div>
+                    {% endif%}
+
+                    <!-- <div class="col-sm-2">会议主题</div>
                     <div class="col-sm-10">{{ meeting.theme }} </div>
                     <div class="col-sm-2">Meeting Theme</div>
-                    <div class="col-sm-10">{{ meeting.theme_EN }} </div>
-                    <div class="col-sm-2">会议语言</div>
+                    <div class="col-sm-10">{{ meeting.theme_EN }} </div> -->
+
+                    <div class="col-sm-2">{{_('会议语言')}}</div>
                     <div class="col-sm-10">{{ meeting.lang }} </div>
-                    <div class="col-sm-2">编号</div>
+                    <div class="col-sm-2">{{_('编号')}}</div>
                     <div class="col-sm-10">{{ meeting.id }}</div>
                 </div>
             </blockquote>
@@ -89,7 +110,7 @@
     </div>
     <div class="card meetings-card">
         <div class="card-body meetings-mainPage-title">
-            <a href="#" id="returnToList">返回列表</a>
+            <a href="#" id="returnToList">{{_('返回列表')}}</a>
             <script>
                 $(function () {
                     $("strong").addClass("thick").css("font-size", "1.35em")
