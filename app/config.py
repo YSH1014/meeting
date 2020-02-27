@@ -18,3 +18,4 @@ class Config(object):
             .format(user=POSTGRES_USER, pw=POSTGRES_PW, url=POSTGRES_URL, db=POSTGRES_DB) #否则使用postgre
         )
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    LANGUAGES = ['en', 'zh_Hans_CN']

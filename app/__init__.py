@@ -5,6 +5,8 @@ from flask_migrate import Migrate
 from flask_bootstrap import Bootstrap
 from dotenv import load_dotenv
 from tools.ModelFormRender import ModelFormRender
+from flask_babelex import Babel
+
 
 app = Flask(__name__)
 load_dotenv('.flaskenv')
@@ -17,6 +19,8 @@ login = LoginManager(app)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 bootstrap = Bootstrap(app)
+babel = Babel(app)
+
 
 # 环境相关文件
 from app import index_routes, models
@@ -26,6 +30,5 @@ else :
     from app.routes import login_development
 from app.routes import  admin_routes,meeting_routes,root_routes,user_routes
 
-
-
-
+from app.index_routes import get_locale
+app.jinja_env.globals['get_locale'] = get_locale
