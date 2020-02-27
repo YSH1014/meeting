@@ -129,13 +129,13 @@ def query_meetings(**conditions):
     if search_keywords != "":
         search_keywords = "%{}%".format(search_keywords)
         query = query.filter(or_(
-            Meeting.title.like(search_keywords),
-            Meeting.title_EN.like(search_keywords),
-            Meeting.theme.like(search_keywords),
-            Meeting.theme_EN.like(search_keywords),
-            Meeting.key_words.like(search_keywords),
-            Meeting.key_words_EN.like(search_keywords),
-            Meeting.short_name.like(search_keywords)
+            Meeting.title.ilike(search_keywords),
+            Meeting.title_EN.ilike(search_keywords),
+            Meeting.theme.ilike(search_keywords),
+            Meeting.theme_EN.ilike(search_keywords),
+            Meeting.key_words.ilike(search_keywords),
+            Meeting.key_words_EN.ilike(search_keywords),
+            Meeting.short_name.ilike(search_keywords)
         ))
     # 处理语言
     lang = conditions.get('lang')
