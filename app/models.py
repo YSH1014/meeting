@@ -168,7 +168,7 @@ class Meeting(db.Model):
                 city=self.city,
             )
         else:
-            return self.full_location_EN()
+            return self.location
 
     def full_location_EN(self):
         if self.country_EN and self.city_EN:
@@ -177,7 +177,7 @@ class Meeting(db.Model):
                 city=self.city_EN,
             )
         else:
-            return self.full_location()
+            return self.location_EN
 
     def get_country(self,locale):
         if locale=="en":
