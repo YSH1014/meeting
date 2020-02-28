@@ -118,6 +118,8 @@
                 lastList = localStorage.getItem("lastList");
                 if (lastList==null){
                     lastList = "{{ url_for('new_meeting') }}";
+                }else if(lastList.indexOf("withStoredFilter") == -1){
+                    lastList += "&withFilter=True";
                 }
                 document.getElementById("returnToList").href=lastList;
 

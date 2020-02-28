@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-02-27 18:15+0800\n"
+"POT-Creation-Date: 2020-02-27 18:39+0800\n"
 "PO-Revision-Date: 2020-02-27 12:58+0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -165,6 +165,10 @@ msgstr "Empty"
 #: app/templates/userInfo.html:29
 msgid "我提交的会议"
 msgstr "My meetings"
+
+#: app/templates/user_menu.html:21
+msgid "登录"
+msgstr "Login"
 
 #: app/templates/user_menu.html:27
 msgid "您好，"
