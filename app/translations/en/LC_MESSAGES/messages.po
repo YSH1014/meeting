@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-02-28 18:32+0800\n"
+"POT-Creation-Date: 2020-02-28 18:45+0800\n"
 "PO-Revision-Date: 2020-02-27 12:58+0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -34,6 +34,14 @@ msgstr "Submit fail,please check information"
 msgid "修改成功，等待管理员再次审核"
 msgstr "Submit successfully,please wait for administrator's approval"
 
+#: app/routes/meeting_routes.py:157
+msgid "{}年会议"
+msgstr "{} Meetings"
+
+#: app/routes/meeting_routes.py:294 app/templates/base.html:26
+msgid "新收录会议"
+msgstr "New Meetings"
+
 #: app/templates/base.html:13
 msgid "天文会议"
 msgstr "Astronomy Meetings"
@@ -41,10 +49,6 @@ msgstr "Astronomy Meetings"
 #: app/templates/base.html:23
 msgid "会议信息与提交"
 msgstr "Meetings Information"
-
-#: app/templates/base.html:26
-msgid "新收录会议"
-msgstr "New Meetings"
 
 #: app/templates/base.html:33
 msgid "2020 年会议"
@@ -78,7 +82,7 @@ msgstr "Welcome to the Astronomical Conference Information System"
 msgid "会议信息"
 msgstr "Meeting Information"
 
-#: app/templates/meeting_detail.html:25 app/templates/meetings.html:226
+#: app/templates/meeting_detail.html:25
 msgid "地点"
 msgstr "Location"
 
@@ -90,7 +94,7 @@ msgstr "Meeting Date"
 msgid "语言"
 msgstr "Language"
 
-#: app/templates/meeting_detail.html:37
+#: app/templates/meeting_detail.html:37 app/templates/meetings.html:228
 msgid "网址"
 msgstr "Website"
 
@@ -163,11 +167,11 @@ msgid "筛选会议"
 msgstr "Filter Meetings"
 
 #: app/templates/meetings.html:124
-msgid "年"
+msgid "年份"
 msgstr "Year"
 
 #: app/templates/meetings.html:138
-msgid "月"
+msgid "月份"
 msgstr "Month"
 
 #: app/templates/meetings.html:152
@@ -182,9 +186,9 @@ msgstr "City"
 msgid "重置条件"
 msgstr "Reset Conditions"
 
-#: app/templates/meetings.html:228
-msgid "官网"
-msgstr "Website"
+#: app/templates/meetings.html:226
+msgid "会议地点"
+msgstr "Location"
 
 #: app/templates/meetings.html:231
 msgid "最近更新"
@@ -192,7 +196,7 @@ msgstr "Last Update"
 
 #: app/templates/meetings.html:237
 msgid "更多详情"
-msgstr "More"
+msgstr "More Details"
 
 #: app/templates/search_meetings.html:4
 msgid "会议检索"
@@ -212,7 +216,7 @@ msgstr "Empty"
 
 #: app/templates/userInfo.html:29
 msgid "我提交的会议"
-msgstr "My Meetings"
+msgstr "Meetings Submitted"
 
 #: app/templates/user_menu.html:21
 msgid "登录"
@@ -419,6 +423,121 @@ msgstr ""
 #~ msgid "Awaiting review"
 #~ msgstr ""
 
+#~ msgid "年"
+#~ msgstr "Year"
+
+#~ msgid "月"
+#~ msgstr "Month"
+
+#~ msgid "This field is required."
+#~ msgstr ""
+
+#~ msgid "File does not have an approved extension: {extensions}"
+#~ msgstr ""
+
+#~ msgid "File does not have an approved extension."
+#~ msgstr ""
+
+#~ msgid "Invalid field name '%s'."
+#~ msgstr ""
+
+#~ msgid "Field must be equal to %(other_name)s."
+#~ msgstr ""
+
+#~ msgid "Field must be at least %(min)d character long."
+#~ msgid_plural "Field must be at least %(min)d characters long."
+#~ msgstr[0] ""
+#~ msgstr[1] ""
+
+#~ msgid "Field cannot be longer than %(max)d character."
+#~ msgid_plural "Field cannot be longer than %(max)d characters."
+#~ msgstr[0] ""
+#~ msgstr[1] ""
+
+#~ msgid "Field must be between %(min)d and %(max)d characters long."
+#~ msgstr ""
+
+#~ msgid "Number must be at least %(min)s."
+#~ msgstr ""
+
+#~ msgid "Number must be at most %(max)s."
+#~ msgstr ""
+
+#~ msgid "Number must be between %(min)s and %(max)s."
+#~ msgstr ""
+
+#~ msgid "Invalid input."
+#~ msgstr ""
+
+#~ msgid "Invalid email address."
+#~ msgstr ""
+
+#~ msgid "Invalid IP address."
+#~ msgstr ""
+
+#~ msgid "Invalid Mac address."
+#~ msgstr ""
+
+#~ msgid "Invalid URL."
+#~ msgstr ""
+
+#~ msgid "Invalid UUID."
+#~ msgstr ""
+
+#~ msgid "Invalid value, must be one of: %(values)s."
+#~ msgstr ""
+
+#~ msgid "Invalid value, can't be any of: %(values)s."
+#~ msgstr ""
+
+#~ msgid "Invalid CSRF Token"
+#~ msgstr ""
+
+#~ msgid "CSRF token missing"
+#~ msgstr ""
+
+#~ msgid "CSRF failed"
+#~ msgstr ""
+
+#~ msgid "CSRF token expired"
+#~ msgstr ""
+
+#~ msgid "Not a valid choice"
+#~ msgstr ""
+
+#~ msgid "Not a valid list"
+#~ msgstr ""
+
+#~ msgid "Not a valid integer list"
+#~ msgstr ""
+
+#~ msgid "Please input a date/time value"
+#~ msgstr ""
+
+#~ msgid "Invalid date/time input"
+#~ msgstr ""
+
+#~ msgid "Invalid Choice: could not coerce"
+#~ msgstr ""
+
+#~ msgid "Invalid choice(s): one or more data inputs could not be coerced"
+#~ msgstr ""
+
+#~ msgid "'%(value)s' is not a valid choice for this field"
+#~ msgstr ""
+
+#~ msgid "Not a valid integer value"
+#~ msgstr ""
+
+#~ msgid "Not a valid decimal value"
+#~ msgstr ""
+
+#~ msgid "Not a valid float value"
+#~ msgstr ""
+
+#~ msgid "Not a valid datetime value"
+#~ msgstr ""
+
 #~ msgid "会议简称"
 #~ msgstr "Short Name"
 
@@ -445,4 +564,7 @@ msgstr ""
 
 #~ msgid "时间"
 #~ msgstr "Date"
+
+#~ msgid "官网"
+#~ msgstr "Website"
 

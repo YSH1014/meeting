@@ -9,7 +9,7 @@ from datetime import datetime, timedelta, date
 from app.security import user_required, login_redirect_required
 from sqlalchemy.sql import or_,desc
 from app.ModelFormRender import meeting_render
-from flask_babel import _
+from flask_babelex import _
 from app.index_routes import get_locale
 
 
@@ -154,7 +154,7 @@ def query_meetings(**conditions):
 
 @app.route("/meetings_year/<int:year>")
 def meetings_year(year):
-    title = "{}年会议".format(year)
+    title = _("{}年会议").format(year)
     meeting_list = query_meetings(start_date=date(year,1,1),end_date=date(year,12,31))
     return render_template('meetings.html', title=title, meetings=meeting_list)
 
@@ -291,7 +291,7 @@ def search_meetings():
 
 @app.route("/new_meeting")
 def new_meeting():
-    title = "新收录会议"
+    title = _("新收录会议")
     meeting_list = query_meetings(order_by=desc(Meeting.register_time))
     return render_template('meetings.html', title=title, meetings=meeting_list)
 
