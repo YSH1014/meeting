@@ -92,20 +92,22 @@
                 $("a.filter-tag").css({color: "black"})
             })
 
-            // 读取之前存储的filter
-            var filter_stored = localStorage.getItem("filter");
-            patt = '[ft-key={key}][ft-value={value}]';
-            if (filter_stored != null){
-                filter = JSON.parse(filter_stored);
-                ft.trigger(filter);
-                //重新替换颜色
-                for(key in filter){
-                    if(filter[key].length==1){
-                        $(patt.replace("{key}",key).replace("{value}",filter[key][0])).css(
-                            {
-                                color:"blue"
-                            }
-                        )
+            // 如果filter为true读取之前存储的filter
+            if(window.location.href.indexOf("withStoredFilter") !== -1) {
+                var filter_stored = localStorage.getItem("filter");
+                patt = '[ft-key={key}][ft-value={value}]';
+                if (filter_stored != null) {
+                    filter = JSON.parse(filter_stored);
+                    ft.trigger(filter);
+                    //重新替换颜色
+                    for (key in filter) {
+                        if (filter[key].length == 1) {
+                            $(patt.replace("{key}", key).replace("{value}", filter[key][0])).css(
+                                {
+                                    color: "blue"
+                                }
+                            )
+                        }
                     }
                 }
             }
