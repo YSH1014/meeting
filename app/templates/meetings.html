@@ -202,7 +202,7 @@
             <div class="card meetings-card"
                  data-Year="{{ meeting.start_date.year }}"
                  data-Month="{{ meeting.start_date.month }}"
-                 data-Country="{{ meeting.get_country() }}"
+                 data-Country="{{ meeting.get_country(get_locale()) }}"
                  data-City="{{ meeting.city if meeting.city!=None else '未知' }}"
                  data-Language="{{ meeting.lang }}"
             >

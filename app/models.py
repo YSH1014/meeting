@@ -4,13 +4,14 @@ from enum import Enum, auto
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 
-
 # 英文-中文国家字典
-country_dict= {
-    "China":"中国",
-    "America":"美国",
-    "British":"英国",
+country_dict = {
+    "China": "中国",
+    "America": "美国",
+    "British": "英国",
 }
+
+
 class RoleType(Enum):
     USER = auto()
     ADMIN = auto()
@@ -64,7 +65,7 @@ class User(UserMixin, db.Model):
     address = db.Column(db.String(150), nullable=False)
     phone = db.Column(db.String(20), index=True)
     role = db.Column(db.Enum(RoleType))
-    locale = db.Column(db.String(30), nullable=True)  
+    locale = db.Column(db.String(30), nullable=True)
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
@@ -128,16 +129,16 @@ class Meeting(db.Model):
             self.title = form.title.data
             self.title_EN = form.title_EN.data
 
-            #处理位置
-            location_splited = form.location.data.split('-',2)
+            # 处理位置
+            location_splited = form.location.data.split('-', 2)
             if location_splited.__len__() == 3:
                 self.country = location_splited[0]
                 self.city = location_splited[1]
                 self.location = location_splited[2]
-            else :
+            else:
                 self.location = form.location.data
 
-            location_EN_splited = form.location_EN.data.split('-',2)
+            location_EN_splited = form.location_EN.data.split('-', 2)
             if location_EN_splited.__len__() == 3:
                 self.country_EN = location_EN_splited[0]
                 self.city_EN = location_EN_splited[1]
@@ -167,20 +168,57 @@ class Meeting(db.Model):
                 city=self.city,
             )
         else:
-            return self.location
+            return self.full_location_EN()
 
     def full_location_EN(self):
         if self.country_EN and self.city_EN:
             return "{country}-{city}".format(
-                country = self.country_EN,
+                country=self.country_EN,
                 city=self.city_EN,
             )
         else:
-            return self.location_EN
+            return self.full_location()
 
-    def get_country(self):
+    def get_country(self,locale):
+        if locale=="en":
+            return self.country_EN if self.country_EN is not None else self.country
+        else :
+            return self.country if self.country is not None else self.country_EN
 
-        if self.country is not None:
-            return self.country
+    def get_city(self,locale):
+        if locale=="en":
+            return self.city_EN if self.city_EN is not None else self.city
+        else :
+            return self.city if self.city is not None else self.city_EN
+
+    def get_location(self,locale):
+        location = None
+        location_EN = None
+        if self.city and self.country:
+            location = "{country}-{city}".format(
+                country=self.country,
+                city=self.city,
+            )
+        if self.city_EN and self.country_EN:
+            location_EN = "{country}-{city}".format(
+                country=self.country_EN,
+                city=self.city_EN,
+            )
+
+        if locale=="en":
+            return location_EN if location_EN is not None else location
         else:
-            return country_dict.get(self.country_EN,"未知")
+            return location if location is not None else location_EN
+
+    def get_theme(self,locale):
+        if locale=="en":
+            return self.theme_EN if self.theme_EN is not None else self.theme
+        else:
+            return self.theme if self.theme is not None else self.theme_EN
+
+    def get_keyWords(self,locale):
+        if locale=="en":
+            return self.key_words_EN if self.key_words_EN is not None else self.key_words
+        else:
+            return self.key_words if self.key_words is not None else self.key_words_EN
+

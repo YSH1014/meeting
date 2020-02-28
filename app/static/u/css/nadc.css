@@ -414,6 +414,21 @@ a:hover{text-decoration:none;}
 .meeting-filterbox-listitem:hover{
 	background-color: #eee;
 }
+.meeting-info-group{
+	background-color: #efefef;
+	padding: 20px;
+	border-radius: 10px;
+	margin: 20px;
+}
+.meeting-info-group-title{
+	letter-spacing: 2px;
+	font-size:16px;
+	color: rgb(55, 84, 131);
+	font-weight: bold;
+	line-height: 20px;
+	padding:5px 0px;
+	margin: 20px 0px 0px 0px;
+}
 .info-box{
 	background-color: #eee;
 	margin: 10px;
