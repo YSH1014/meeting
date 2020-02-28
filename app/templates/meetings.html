@@ -223,10 +223,8 @@
                         <div class="row meetings-detail">
                             <div class="col-sm-1">{{ _('会议时间') }}</div>
                             <div class="col-sm-11">{{ meeting.start_date }} - {{ meeting.end_date }}</div>
-                            <div class="col-sm-1">会议地点</div>
-                            <div class="col-sm-11">{{ meeting.full_location() }}</div>
-                            <div class="col-sm-1">Location</div>
-                            <div class="col-sm-11">{{ meeting.full_location_EN() }}</div>
+                            <div class="col-sm-1">{{  _('地点')}}</div>
+                            <div class="col-sm-11">{{ meeting.get_location(get_locale()) }}</div>
                             <div class="col-sm-1">{{ _('官网') }}</div>
                             <div class="col-sm-11"><a href="{{ meeting.url }}" target="_blank">{{ meeting.url }}</a>
                             </div>

@@ -9,6 +9,7 @@ from datetime import datetime, timedelta, date
 from app.security import user_required, login_redirect_required
 from sqlalchemy.sql import or_,desc
 from app.ModelFormRender import meeting_render
+from flask_babel import _
 from app.index_routes import get_locale
 
 
@@ -29,10 +30,10 @@ def register_meeting():
         try:
             db.session.add(meeting)
             db.session.commit()
-            flash('提交成功，请等待管理员审核')
+            flash(_('提交成功，请等待管理员审核'))
             return redirect(url_for("meeting_detail", id=meeting.id))
         except sqlalchemy.exc.IntegrityError as e:
-            flash('提交失败，请检查信息是否完整')
+            flash(_('提交失败，请检查信息是否完整'))
 
     return render_template('registerMeeting.html', form=form, action='/register_meeting')
 
@@ -84,7 +85,7 @@ def update_meeting_form():
         # meeting.update_from_form(form)
         meeting_render.f2m(meeting,form)
         db.session.commit()
-        flash("修改成功，等待管理员再次审核")
+        flash(_("修改成功，等待管理员再次审核"))
         return redirect(url_for("meeting_detail", id=meeting.id))
     else:
         meeting_render.m2f(meeting, form)  # 从meeting填入form
