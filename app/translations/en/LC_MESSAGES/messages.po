@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-02-27 18:39+0800\n"
+"POT-Creation-Date: 2020-02-28 11:44+0800\n"
 "PO-Revision-Date: 2020-02-27 12:58+0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.8.0\n"
+"Generated-By: Babel 2.6.0\n"
 
 #: app/index_routes.py:38
 msgid "Setting updated."
@@ -106,49 +106,53 @@ msgstr "ID"
 msgid "返回列表"
 msgstr "Return to List"
 
-#: app/templates/meetings.html:117
+#: app/templates/meetings.html:119
 msgid "筛选会议"
 msgstr "Filter Meetings"
 
-#: app/templates/meetings.html:122
-msgid "年"
+#: app/templates/meetings.html:124
+msgid "年份"
 msgstr "Year"
 
-#: app/templates/meetings.html:136
-msgid "月"
+#: app/templates/meetings.html:138
+msgid "月份"
 msgstr "Month"
 
-#: app/templates/meetings.html:150
+#: app/templates/meetings.html:152
 msgid "国家"
 msgstr "Country"
 
-#: app/templates/meetings.html:164
+#: app/templates/meetings.html:166
 msgid "城市"
 msgstr "City"
 
-#: app/templates/meetings.html:178
+#: app/templates/meetings.html:180
 msgid "语言"
 msgstr "Language"
 
-#: app/templates/meetings.html:192
+#: app/templates/meetings.html:194
 msgid "重置条件"
 msgstr "Reset Conditions"
 
-#: app/templates/meetings.html:222
+#: app/templates/meetings.html:224
 msgid "会议时间"
-msgstr "Meeting Date"
+msgstr "Date"
 
-#: app/templates/meetings.html:228
-msgid "官网"
-msgstr "Official website"
+#: app/templates/meetings.html:226
+msgid "会议地点"
+msgstr "Location"
 
-#: app/templates/meetings.html:231
+#: app/templates/meetings.html:233
+msgid "网址"
+msgstr "Website"
+
+#: app/templates/meetings.html:236
 msgid "最近更新"
-msgstr "Last update"
+msgstr "Last Update"
 
-#: app/templates/meetings.html:237
+#: app/templates/meetings.html:242
 msgid "更多详情"
-msgstr "More"
+msgstr "More Details"
 
 #: app/templates/search_meetings.html:4
 msgid "会议检索"
@@ -164,7 +168,7 @@ msgstr "Empty"
 
 #: app/templates/userInfo.html:29
 msgid "我提交的会议"
-msgstr "My meetings"
+msgstr "Meetings Submitted"
 
 #: app/templates/user_menu.html:21
 msgid "登录"
@@ -180,11 +184,11 @@ msgstr "logout"
 
 #: app/templates/user_menu.html:33
 msgid "我注册的会议"
-msgstr "My meetings"
+msgstr "My Meetings"
 
 #: app/templates/user_menu.html:36
 msgid "待审核"
-msgstr "Awaiting review"
+msgstr "Awaiting Review"
 
 #: app/templates/user_menu.html:38
 msgid "未通过"
@@ -196,7 +200,7 @@ msgstr "Approved"
 
 #: app/templates/user_menu.html:42
 msgid "已过期"
-msgstr "Out due"
+msgstr "Out Due"
 
 #: app/templates/user_menu.html:49
 msgid "用户管理"
@@ -204,186 +208,132 @@ msgstr "User Management"
 
 #: app/templates/user_menu.html:55
 msgid "查看待审核会议"
-msgstr "View awaiting review meetings"
-
-#: env/lib/python3.7/site-packages/flask_wtf/file.py:51
-#: env/lib/python3.7/site-packages/wtforms/validators.py:205
-#: env/lib/python3.7/site-packages/wtforms/validators.py:245
-msgid "This field is required."
-msgstr ""
-
-#: env/lib/python3.7/site-packages/flask_wtf/file.py:85
-msgid "File does not have an approved extension: {extensions}"
-msgstr ""
-
-#: env/lib/python3.7/site-packages/flask_wtf/file.py:90
-msgid "File does not have an approved extension."
-msgstr ""
-
-#: env/lib/python3.7/site-packages/wtforms/validators.py:58
-#, python-format
-msgid "Invalid field name '%s'."
-msgstr ""
-
-#: env/lib/python3.7/site-packages/wtforms/validators.py:66
-#, python-format
-msgid "Field must be equal to %(other_name)s."
-msgstr ""
-
-#: env/lib/python3.7/site-packages/wtforms/validators.py:99
-#, python-format
-msgid "Field must be at least %(min)d character long."
-msgid_plural "Field must be at least %(min)d characters long."
-msgstr[0] ""
-msgstr[1] ""
-
-#: env/lib/python3.7/site-packages/wtforms/validators.py:102
-#, python-format
-msgid "Field cannot be longer than %(max)d character."
-msgid_plural "Field cannot be longer than %(max)d characters."
-msgstr[0] ""
-msgstr[1] ""
-
-#: env/lib/python3.7/site-packages/wtforms/validators.py:105
-#, python-format
-msgid "Field must be between %(min)d and %(max)d characters long."
-msgstr ""
-
-#: env/lib/python3.7/site-packages/wtforms/validators.py:141
-#, python-format
-msgid "Number must be at least %(min)s."
-msgstr ""
-
-#: env/lib/python3.7/site-packages/wtforms/validators.py:143
-#, python-format
-msgid "Number must be at most %(max)s."
-msgstr ""
-
-#: env/lib/python3.7/site-packages/wtforms/validators.py:145
-#, python-format
-msgid "Number must be between %(min)s and %(max)s."
-msgstr ""
-
-#: env/lib/python3.7/site-packages/wtforms/validators.py:277
-msgid "Invalid input."
-msgstr ""
-
-#: env/lib/python3.7/site-packages/wtforms/validators.py:311
-msgid "Invalid email address."
-msgstr ""
-
-#: env/lib/python3.7/site-packages/wtforms/validators.py:352
-msgid "Invalid IP address."
-msgstr ""
-
-#: env/lib/python3.7/site-packages/wtforms/validators.py:403
-msgid "Invalid Mac address."
-msgstr ""
-
-#: env/lib/python3.7/site-packages/wtforms/validators.py:432
-msgid "Invalid URL."
-msgstr ""
-
-#: env/lib/python3.7/site-packages/wtforms/validators.py:452
-msgid "Invalid UUID."
-msgstr ""
-
-#: env/lib/python3.7/site-packages/wtforms/validators.py:482
-#, python-format
-msgid "Invalid value, must be one of: %(values)s."
-msgstr ""
-
-#: env/lib/python3.7/site-packages/wtforms/validators.py:514
-#, python-format
-msgid "Invalid value, can't be any of: %(values)s."
-msgstr ""
-
-#: env/lib/python3.7/site-packages/wtforms/csrf/core.py:98
-#: env/lib/python3.7/site-packages/wtforms/ext/csrf/form.py:47
-msgid "Invalid CSRF Token"
-msgstr ""
-
-#: env/lib/python3.7/site-packages/wtforms/csrf/session.py:61
-#: env/lib/python3.7/site-packages/wtforms/ext/csrf/session.py:58
-msgid "CSRF token missing"
-msgstr ""
-
-#: env/lib/python3.7/site-packages/wtforms/csrf/session.py:69
-#: env/lib/python3.7/site-packages/wtforms/ext/csrf/session.py:66
-msgid "CSRF failed"
-msgstr ""
-
-#: env/lib/python3.7/site-packages/wtforms/csrf/session.py:74
-#: env/lib/python3.7/site-packages/wtforms/ext/csrf/session.py:71
-msgid "CSRF token expired"
-msgstr ""
-
-#: env/lib/python3.7/site-packages/wtforms/ext/appengine/fields.py:87
-#: env/lib/python3.7/site-packages/wtforms/ext/appengine/fields.py:164
-#: env/lib/python3.7/site-packages/wtforms/ext/appengine/fields.py:166
-#: env/lib/python3.7/site-packages/wtforms/ext/django/fields.py:95
-#: env/lib/python3.7/site-packages/wtforms/ext/sqlalchemy/fields.py:125
-#: env/lib/python3.7/site-packages/wtforms/ext/sqlalchemy/fields.py:127
-#: env/lib/python3.7/site-packages/wtforms/ext/sqlalchemy/fields.py:180
-#: env/lib/python3.7/site-packages/wtforms/ext/sqlalchemy/fields.py:185
-#: env/lib/python3.7/site-packages/wtforms/fields/core.py:475
-msgid "Not a valid choice"
-msgstr ""
-
-#: env/lib/python3.7/site-packages/wtforms/ext/appengine/fields.py:185
-msgid "Not a valid list"
-msgstr ""
-
-#: env/lib/python3.7/site-packages/wtforms/ext/appengine/fields.py:204
-msgid "Not a valid integer list"
-msgstr ""
-
-#: env/lib/python3.7/site-packages/wtforms/ext/dateutil/fields.py:63
-msgid "Please input a date/time value"
-msgstr ""
-
-#: env/lib/python3.7/site-packages/wtforms/ext/dateutil/fields.py:75
-#: env/lib/python3.7/site-packages/wtforms/ext/dateutil/fields.py:83
-msgid "Invalid date/time input"
-msgstr ""
-
-#: env/lib/python3.7/site-packages/wtforms/fields/core.py:468
-msgid "Invalid Choice: could not coerce"
-msgstr ""
-
-#: env/lib/python3.7/site-packages/wtforms/fields/core.py:501
-msgid "Invalid choice(s): one or more data inputs could not be coerced"
-msgstr ""
-
-#: env/lib/python3.7/site-packages/wtforms/fields/core.py:508
-#, python-format
-msgid "'%(value)s' is not a valid choice for this field"
-msgstr ""
-
-#: env/lib/python3.7/site-packages/wtforms/fields/core.py:591
-msgid "Not a valid integer value"
-msgstr ""
-
-#: env/lib/python3.7/site-packages/wtforms/fields/core.py:657
-msgid "Not a valid decimal value"
-msgstr ""
-
-#: env/lib/python3.7/site-packages/wtforms/fields/core.py:684
-msgid "Not a valid float value"
-msgstr ""
-
-#: env/lib/python3.7/site-packages/wtforms/fields/core.py:745
-msgid "Not a valid datetime value"
-msgstr ""
-
-#: env/lib/python3.7/site-packages/wtforms/fields/core.py:762
-msgid "Not a valid date value"
-msgstr ""
-
-#: env/lib/python3.7/site-packages/wtforms/fields/core.py:779
-msgid "Not a valid time value"
-msgstr ""
+msgstr "View Awaiting Review Meetings"
 
 #~ msgid "Awaiting review"
 #~ msgstr ""
+
+#~ msgid "年"
+#~ msgstr "Year"
+
+#~ msgid "月"
+#~ msgstr "Month"
+
+#~ msgid "This field is required."
+#~ msgstr ""
+
+#~ msgid "File does not have an approved extension: {extensions}"
+#~ msgstr ""
+
+#~ msgid "File does not have an approved extension."
+#~ msgstr ""
+
+#~ msgid "Invalid field name '%s'."
+#~ msgstr ""
+
+#~ msgid "Field must be equal to %(other_name)s."
+#~ msgstr ""
+
+#~ msgid "Field must be at least %(min)d character long."
+#~ msgid_plural "Field must be at least %(min)d characters long."
+#~ msgstr[0] ""
+#~ msgstr[1] ""
+
+#~ msgid "Field cannot be longer than %(max)d character."
+#~ msgid_plural "Field cannot be longer than %(max)d characters."
+#~ msgstr[0] ""
+#~ msgstr[1] ""
+
+#~ msgid "Field must be between %(min)d and %(max)d characters long."
+#~ msgstr ""
+
+#~ msgid "Number must be at least %(min)s."
+#~ msgstr ""
+
+#~ msgid "Number must be at most %(max)s."
+#~ msgstr ""
+
+#~ msgid "Number must be between %(min)s and %(max)s."
+#~ msgstr ""
+
+#~ msgid "Invalid input."
+#~ msgstr ""
+
+#~ msgid "Invalid email address."
+#~ msgstr ""
+
+#~ msgid "Invalid IP address."
+#~ msgstr ""
+
+#~ msgid "Invalid Mac address."
+#~ msgstr ""
+
+#~ msgid "Invalid URL."
+#~ msgstr ""
+
+#~ msgid "Invalid UUID."
+#~ msgstr ""
+
+#~ msgid "Invalid value, must be one of: %(values)s."
+#~ msgstr ""
+
+#~ msgid "Invalid value, can't be any of: %(values)s."
+#~ msgstr ""
+
+#~ msgid "Invalid CSRF Token"
+#~ msgstr ""
+
+#~ msgid "CSRF token missing"
+#~ msgstr ""
+
+#~ msgid "CSRF failed"
+#~ msgstr ""
+
+#~ msgid "CSRF token expired"
+#~ msgstr ""
+
+#~ msgid "Not a valid choice"
+#~ msgstr ""
+
+#~ msgid "Not a valid list"
+#~ msgstr ""
+
+#~ msgid "Not a valid integer list"
+#~ msgstr ""
+
+#~ msgid "Please input a date/time value"
+#~ msgstr ""
+
+#~ msgid "Invalid date/time input"
+#~ msgstr ""
+
+#~ msgid "Invalid Choice: could not coerce"
+#~ msgstr ""
+
+#~ msgid "Invalid choice(s): one or more data inputs could not be coerced"
+#~ msgstr ""
+
+#~ msgid "'%(value)s' is not a valid choice for this field"
+#~ msgstr ""
+
+#~ msgid "Not a valid integer value"
+#~ msgstr ""
+
+#~ msgid "Not a valid decimal value"
+#~ msgstr ""
+
+#~ msgid "Not a valid float value"
+#~ msgstr ""
+
+#~ msgid "Not a valid datetime value"
+#~ msgstr ""
+
+#~ msgid "Not a valid date value"
+#~ msgstr ""
+
+#~ msgid "Not a valid time value"
+#~ msgstr ""
+
+#~ msgid "官网"
+#~ msgstr "Official website"
 
