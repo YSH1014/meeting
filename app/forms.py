@@ -64,8 +64,8 @@ class QueryMeetingById(FlaskForm):
 
 
 class SearchMeetingForm(FlaskForm):
-    start_date = DateField('检索开始时间')
-    end_date = DateField('检索结束时间')
-    lang = SelectField('语言', choices=[(0, '不限'), (1, '中文'), (2, 'English')], coerce=int)
+    #start_date = DateField('检索开始时间')
+    # end_date = DateField('检索结束时间')
+    # lang = SelectField('语言', choices=[(0, '不限'), (1, '中文'), (2, 'English')], coerce=int)
     key_words = StringField('关键词')
     submit = SubmitField('检索')

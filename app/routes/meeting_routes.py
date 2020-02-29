@@ -156,7 +156,7 @@ def query_meetings(**conditions):
 def meetings_year(year):
     title = _("{}年会议").format(year)
     meeting_list = query_meetings(start_date=date(year,1,1),end_date=date(year,12,31))
-    return render_template('meetings.html', title=title, meetings=meeting_list)
+    return render_template('meetings.html', title=title, meetings=meeting_list,show_filter=True)
 
 
 @app.route("/meetings", methods=['get', 'post'])
@@ -205,7 +205,7 @@ def meetings():
             ))
 
         all_meetings = query.order_by(Meeting.start_date).all()
-        return render_template('meetings.html', meetings=all_meetings)
+        return render_template('meetings.html', meetings=all_meetings,show_filter=False)
 
 
 
@@ -213,49 +213,6 @@ def meetings():
         return redirect(url_for('error', message='请求参数无效，请检查日期是否存在' + e))
 
 
-'''
-@app.route("/meetings")
-def meetings():
-    start_year = request.args.get('start_year', 2020)
-    start_month = request.args.get('start_month', 1)
-    start_day = request.args.get('start_day', 1)
-    end_year = request.args.get('end_year', 9999)
-    end_month = request.args.get('end_month', 12)
-    end_day = request.args.get('end_day', 31)
-    status = request.args.get('status', 'all')
-    try:
-        start_date = date(int(start_year), int(start_month), int(start_day))
-        end_date = date(int(end_year), int(end_month), int(end_day))
-    except ValueError as e:
-        return redirect(url_for('error', message='请求参数无效，请检查日期是否存在' + e))
-
-    if current_user.is_authenticated \
-            and current_user.role == RoleType.ADMIN \
-            and status == 'registered':  # 对管理员显示未审批会议
-        all_meetings = Meeting.query.filter(
-            Meeting.start_date > start_date,
-            Meeting.start_date < end_date,
-            Meeting.status == MeetingStatusType.REGISTERED
-        ).order_by(Meeting.start_date).all()
-        return render_template('meetings.html', meetings=all_meetings)
-    else:
-        all_meetings = Meeting.query.filter(
-            Meeting.status == MeetingStatusType.APPROVED,
-            Meeting.start_date > start_date,
-            Meeting.start_date < end_date
-        ).order_by(Meeting.start_date).all()
-        return render_template('meetings.html', meetings=all_meetings)
-'''
-
-
-@app.route("/meetings_week")
-@login_redirect_required
-def meetings_week():
-    current_time = datetime.utcnow()
-    week_after = current_time + timedelta(weeks=1)
-    all_meetings = db.session.query(Meeting).filter(current_time < Meeting.start_date).filter(
-        Meeting.start_date < week_after).all()
-    return render_template('meetings.html', meetings=all_meetings)
 
 
 @app.route("/meetingInfo/<int:id>")
@@ -276,15 +233,7 @@ def search_meeting_id():
 @app.route("/search_meeting", methods=['get', 'post'])
 def search_meetings():
    
-    # keyword = request.args['keyword']
-    lang = request.args.get('lang')
-    key_words= request.args.get('key_words')
-    form = SearchMeetingForm(
-        start_date=date.today(),
-        end_date=date(9999,12,31),
-        lang = lang,
-        key_words= key_words
-    )
+    form = SearchMeetingForm()
 
     return render_template("search_meetings.html", form=form)
 
@@ -293,7 +242,7 @@ def search_meetings():
 def new_meeting():
     title = _("新收录会议")
     meeting_list = query_meetings(order_by=desc(Meeting.register_time))
-    return render_template('meetings.html', title=title, meetings=meeting_list)
+    return render_template('meetings.html', title=title, meetings=meeting_list,show_filter=True)
 
 # @app.route("/search_meeting")
 # @login_redirect_required
