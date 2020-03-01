@@ -69,32 +69,50 @@
                         ftFields: JSON.parse(JSON.stringify(ft._fields)),//深拷贝，静态存储初始的状态
                         ftFieldsDynamic: ft._fields, //浅拷贝，动态获取count值
                     },
+                    methods: {
+                        getCount: function (key, value) {
+                            if (Object.keys(this.ftFieldsDynamic[key]).indexOf(value) != -1) {
+                                return this.ftFieldsDynamic[key][value];
+                            } else {
+                                return 0;
+                            }
+                        }
+                    }
                 });
                 $("#placeHolder").hide();//默认的这个隐藏了
 
-                //为横向菜单按钮添加动作
-                $(".filter-tag").click(function () {
-                    //执行过滤
-                    var key = $(this).attr("ft-key");
-                    var value = $(this).attr("ft-value");
-                    filter[key] = [value];
-                    ft.trigger(filter);
-                    //修改颜色
-                    $(this).parent().siblings().children().css({"color": "black"});
-                    $(this).css({"color": "blue"});
-                });
-                $("#reset").click(function () {
-                    filter["country"] = [];
-                    filter["city"] = [];
-                    filter["language"] = [];
-                    filter["year"] = [];
-                    filter["month"] = [];
-                    ft.reset();
-                    $("a.filter-tag").css({color: "black"})
-                });
+                function rearrange(ulId) {
+                    //对国家、城市进行重新排序
+                    //id以#开头
+                    function cmpLi(li1, li2) {
+                        //对两个li标签进行比较的函数
+                        const key1 = li1.firstChild.getAttribute("ft-key");
+                        const key2 = li2.firstChild.getAttribute("ft-key");
+                        console.assert(key1 == key2);
+                        const value1 = li1.firstChild.getAttribute("ft-value");
+                        const value2 = li2.firstChild.getAttribute("ft-value");
 
-                // 如果filter为true读取之前存储的filter
-                if (window.location.href.indexOf("withStoredFilter") !== -1) {
+                        const count1 = parseInt(ft._fields[key1][value1] || "0");
+                        const count2 = parseInt(ft._fields[key2][value2] || "0");
+
+                        return count2 - count1;
+                    }
+
+                    var ul,list;
+                    //处理国家
+                    ul = $(ulId+'>ul').get()[0];
+                    list = $(ulId+'>ul>li').get();
+                    list.sort(cmpLi);
+                    for (li of list){
+                        ul.appendChild(li);
+                    }
+                    $('#navbarDropdownCountry>ul>li:gt(10)').hide();
+                    $('#navbarDropdownCountry>ul>li:lt(10)').show();
+                    $('#navbarDropdownCountry>ul>li:eq(10)').hide();
+
+                }
+
+                function loadStoredFilter(){
                     var filter_stored = localStorage.getItem("filter");
                     patt = '[ft-key={key}][ft-value={value}]';
                     if (filter_stored != null) {
@@ -112,6 +130,39 @@
                         }
                     }
                 }
+                //为横向菜单按钮添加动作
+                $(".filter-tag").click(function () {
+                    //执行过滤
+                    var key = $(this).attr("ft-key");
+                    var value = $(this).attr("ft-value");
+                    filter[key] = [value];
+                    ft.trigger(filter);
+                    //修改颜色
+                    $(this).parent().siblings().children().css({"color": "black"});
+                    $(this).css({"color": "blue"});
+                    //对国家和城市重新排序
+                    if(key!="country") rearrange("#navbarDropdownCountry");
+                    if(key!="city") rearrange("#navbarDropdownCity");
+
+                });
+                $("#reset").click(function () {
+                    filter["country"] = [];
+                    filter["city"] = [];
+                    filter["language"] = [];
+                    filter["year"] = [];
+                    filter["month"] = [];
+                    ft.reset();
+                    $("a.filter-tag").css({color: "black"})
+                });
+
+
+                // 如果filter为true读取之前存储的filter
+                if (window.location.href.indexOf("withStoredFilter") !== -1) {
+                    loadStoredFilter();
+                }
+                //国家城市只显示前几项
+                rearrange("#navbarDropdownCountry");
+                rearrange("#navbarDropdownCity");
 
             });
 
@@ -125,10 +176,10 @@
                         {{ _('年份') }}
                     </a>
                     <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
-                            data-target="'#navbarDropdownYear" aria-controls="'#navbarDropdownYear"
+                            data-target="#navbarDropdownYear" aria-controls="'#navbarDropdownYear"
                             aria-expanded="false" aria-label="Toggle navigation">&#9660;
                     </button>
-                    <div class="navbar-collapse collapse" id="'navbarDropdownYear">
+                    <div class="navbar-collapse collapse" id="navbarDropdownYear">
                         <ul class="navbar-nav  meeting-search-menu ft-menu">
                             <li class="nav-item meeting-filterbox-listitem" v-for="(count,tag) in ftFields['year']">
                                 <a href="#" class="filter-tag nav-link index-topNav-link"
@@ -142,10 +193,10 @@
                         {{ _('月份') }}
                     </a>
                     <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
-                            data-target="'#navbarDropdownMonth" aria-controls="'#navbarDropdownMonth"
+                            data-target="#navbarDropdownMonth" aria-controls="'#navbarDropdownMonth"
                             aria-expanded="false" aria-label="Toggle navigation">&#9660;
                     </button>
-                    <div class="navbar-collapse collapse" id="'navbarDropdownMonth">
+                    <div class="navbar-collapse collapse" id="navbarDropdownMonth">
                         <ul class="navbar-nav  meeting-search-menu ft-menu">
                             <li class="nav-item meeting-filterbox-listitem" v-for="(count,tag) in ftFields['month']">
                                 <a href="#" class="filter-tag nav-link index-topNav-link"
@@ -159,12 +210,15 @@
                         {{ _('国家') }}
                     </a>
                     <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
-                            data-target="'#navbarDropdownCountry" aria-controls="'#navbarDropdownCountry"
+                            data-target="#navbarDropdownCountry" aria-controls="'#navbarDropdownCountry"
                             aria-expanded="false" aria-label="Toggle navigation">&#9660;
                     </button>
-                    <div class="navbar-collapse collapse" id="'navbarDropdownCountry">
+                    <div class="navbar-collapse collapse" id="navbarDropdownCountry">
                         <ul class="navbar-nav  meeting-search-menu ft-menu">
-                            <li class="nav-item meeting-filterbox-listitem" v-for="(count,tag) in ftFields['country']">
+                            <li class="nav-item meeting-filterbox-listitem"
+                                v-once
+                                v-for="(count,tag) in ftFields['country']"
+                            >
                                 <a href="#" class="filter-tag nav-link index-topNav-link"
                                    ft-key="country" v-bind:ft-value="tag">{[tag]}</a>
                             </li>
@@ -176,10 +230,10 @@
                         {{ _('城市') }}
                     </a>
                     <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
-                            data-target="'#navbarDropdownCity" aria-controls="'#navbarDropdownCity"
+                            data-target="#navbarDropdownCity" aria-controls="'#navbarDropdownCity"
                             aria-expanded="false" aria-label="Toggle navigation">&#9660;
                     </button>
-                    <div class="navbar-collapse collapse" id="'navbarDropdownCity">
+                    <div class="navbar-collapse collapse" id="navbarDropdownCity">
                         <ul class="navbar-nav  meeting-search-menu ft-menu">
                             <li class="nav-item meeting-filterbox-listitem" v-for="(count,tag) in ftFields['city']">
                                 <a href="#" class="filter-tag nav-link index-topNav-link"
@@ -193,10 +247,10 @@
                         {{ _('语言') }}
                     </a>
                     <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
-                            data-target="'#navbarDropdownLanguage" aria-controls="'#navbarDropdownLanguage"
+                            data-target="#navbarDropdownLanguage" aria-controls="'#navbarDropdownLanguage"
                             aria-expanded="false" aria-label="Toggle navigation">&#9660;
                     </button>
-                    <div class="navbar-collapse collapse" id="'navbarDropdownLanguage">
+                    <div class="navbar-collapse collapse" id="navbarDropdownLanguage">
                         <ul class="navbar-nav  meeting-search-menu ft-menu">
                             <li class="nav-item meeting-filterbox-listitem" v-for="(count,tag) in ftFields['language']">
                                 <a href="#" class="filter-tag nav-link index-topNav-link"
