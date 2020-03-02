@@ -52,6 +52,7 @@
                 "month": [],
                 "language": []
             };
+            var cityCountryDict={};//城市->国家的映射
 
 
             //退出时存储filter
@@ -79,6 +80,7 @@
                         }
                     }
                 });
+                var ft2 = $.filtrify("cityFilterContainer","placeHolder");
                 $("#placeHolder").hide();//默认的这个隐藏了
 
                 function rearrange(ulId) {
@@ -125,7 +127,11 @@
                                     {
                                         color: "blue"
                                     }
-                                )
+                                );
+                                //对城市重新筛选
+                                if(key=="country"){
+                                    ft2.trigger({"country":[filter[key][0]]})
+                                }
                             }
                         }
                     }
@@ -136,10 +142,12 @@
                     var key = $(this).attr("ft-key");
                     var value = $(this).attr("ft-value");
                     filter[key] = [value];
+                    if(key == "country") filter["city"]=[];//点击国家后重置城市
                     ft.trigger(filter);
                     //修改颜色
                     $(this).parent().siblings().children().css({"color": "black"});
                     $(this).css({"color": "blue"});
+                    if(key=="country") ft2.trigger({"country":[value]})
                     //对国家和城市重新排序
                     if(key!="country") rearrange("#navbarDropdownCountry");
                     if(key!="city") rearrange("#navbarDropdownCity");
@@ -234,8 +242,10 @@
                             aria-expanded="false" aria-label="Toggle navigation">&#9660;
                     </button>
                     <div class="navbar-collapse collapse" id="navbarDropdownCity">
-                        <ul class="navbar-nav  meeting-search-menu ft-menu">
-                            <li class="nav-item meeting-filterbox-listitem" v-for="(count,tag) in ftFields['city']">
+                        <ul class="navbar-nav  meeting-search-menu ft-menu" id="cityFilterContainer">
+                            <li class="nav-item meeting-filterbox-listitem"
+                                v-for="(count,tag) in ftFields['city']"
+                                v-bind:data-country="cityCountryDict[tag]">
                                 <a href="#" class="filter-tag nav-link index-topNav-link"
                                    ft-key="city" v-bind:ft-value="tag">{[tag]}</a>
                             </li>
@@ -277,6 +287,9 @@
                  data-City="{{ meeting.get_city(get_locale()) }}"
                  data-Language="{{ meeting.lang }}"
             >
+                <script>
+                    cityCountryDict["{{ meeting.get_city(get_locale()) }}"] = "{{ meeting.get_country(get_locale()) }}";
+                </script>
                 <div class="card-header" style="text-shadow: 2px 2px 2px #ffff00;">
                     <a href="{{ url_for('meeting_detail',id=meeting.id) }}">
                         {% if meeting.title %}
