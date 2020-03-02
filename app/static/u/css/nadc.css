@@ -416,11 +416,10 @@ a:hover{text-decoration:none;}
 }
 .meeting-info-group{
 	background-color: #efefef;
-	padding: 20px;
+	padding: 0px;
 	border-radius: 10px;
-	margin: 20px;
-	word-break: break-all;
-	word-wrap: break-word;
+	margin: 0px;
+	width: 100%;
 }
 .meeting-info-group-title{
 	letter-spacing: 2px;
@@ -430,6 +429,18 @@ a:hover{text-decoration:none;}
 	line-height: 20px;
 	padding:5px 0px;
 	margin: 20px 0px 0px 0px;
+}
+.meeting-info{
+	line-height: 50px;
+	padding: 0px;
+	margin: 0px;
+	border-bottom: 1px solid #ccc;
+}
+.meeting-info:hover{
+	background-color: #ddd;
+}
+.meeting-info-section{
+	background-color: #ddd;
 }
 .info-box{
 	background-color: #eee;
