@@ -102,12 +102,15 @@ class Meeting(db.Model):
     # 用户必填信息
     title = db.Column(db.String(300))
     title_EN = db.Column(db.String(300))
+    # 从Country到location_EN，数据更新完后不再使用
     country = db.Column(db.String(50))
     country_EN = db.Column(db.String(50))
     city = db.Column(db.String(50))
     city_EN = db.Column(db.String(50))
     location = db.Column(db.String(200))
     location_EN = db.Column(db.String(200))
+    #------------
+    cityId = db.Column(db.String(50),db.ForeignKey("city.geoId"))
     start_date = db.Column(db.Date, nullable=False)
     end_date = db.Column(db.Date, nullable=False)
     lang = db.Column(db.Enum(MeetingLanguageType))
@@ -180,16 +183,20 @@ class Meeting(db.Model):
             return self.location_EN
 
     def get_country(self,locale):
+        country = Country.query.get(
+            City.query.get(self.cityId).country
+        )
         if locale=="en":
-            return self.country_EN if self.country_EN is not None else self.country
+            return country.name_EN
         else :
-            return self.country if self.country is not None else self.country_EN
+            return country.name_CN if country.name_CN is not None else country.name_EN
 
     def get_city(self,locale):
+        city = City.query.get(self.cityId)
         if locale=="en":
-            return self.city_EN if self.city_EN is not None else self.city
+            return city.name_EN
         else :
-            return self.city if self.city is not None else self.city_EN
+            return city.name_CN if city.name_CN is not None else city.name_EN
 
     def get_location(self,locale):
         location = None
@@ -222,3 +229,15 @@ class Meeting(db.Model):
         else:
             return self.key_words if self.key_words is not None else self.key_words_EN
 
+
+class Country(db.Model):
+    name_EN = db.Column(db.String(50),primary_key=True)
+    name_CN = db.Column(db.String(50))
+
+
+class City(db.Model):
+    geoId = db.Column(db.Integer,primary_key=True)
+    name_EN = db.Column(db.String(50))
+    name_CN = db.Column(db.String(50))
+    country = db.Column(db.String(50),db.ForeignKey('country.name_EN'))
+    selector_title = db.Column(db.String(200))

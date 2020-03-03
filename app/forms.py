@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, DateField, TextAreaField, IntegerField, \
-    SelectField
+    SelectField, HiddenField
 from wtforms.validators import DataRequired, EqualTo, Email, URL, Regexp
 from flask_login import current_user
 from app.models import MeetingLanguageType
@@ -27,10 +27,16 @@ class RegisterMeetingForm(FlaskForm):
     # 必填项
     title = StringField('会议名称')
     title_EN = StringField('English Title')
-    location = StringField('会议地点 (按照格式：国家-城市)')
+    #location = StringField('会议地点 (按照格式：国家-城市)')
     # ,description='例如：中国-北京-朝阳区大屯路甲20号国家天文台'
-    location_EN = StringField('Detail location (Follow this format: Country-City)')
+    #location_EN = StringField('Detail location (Follow this format: Country-City)')
     # description='For example:China-Beijing-National Astronomical Observatories,20A Datun Road, Chaoyang District'
+
+    #这三项不由用户显示输入，而由 cityAutoComplete回调输入
+    cityId = HiddenField(validators=[DataRequired()])
+    country = HiddenField(validators=[DataRequired()])
+    city = HiddenField(validators=[DataRequired()])
+    selector_title = HiddenField(validators=[DataRequired()])
 
     start_date = DateField('会议开始时间 (Start Date)', validators=[DataRequired()])
     end_date = DateField('会议结束时间 (End Date)', validators=[DataRequired()])

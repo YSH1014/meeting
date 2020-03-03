@@ -245,7 +245,8 @@
                         <ul class="navbar-nav  meeting-search-menu ft-menu" id="cityFilterContainer">
                             <li class="nav-item meeting-filterbox-listitem"
                                 v-for="(count,tag) in ftFields['city']"
-                                v-bind:data-country="cityCountryDict[tag]">
+                                v-bind:data-country="cityCountryDict[tag]"
+                                v-once>
                                 <a href="#" class="filter-tag nav-link index-topNav-link"
                                    ft-key="city" v-bind:ft-value="tag">{[tag]}</a>
                             </li>
