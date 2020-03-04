@@ -110,7 +110,7 @@ class Meeting(db.Model):
     location = db.Column(db.String(200))
     location_EN = db.Column(db.String(200))
     #------------
-    cityId = db.Column(db.String(50),db.ForeignKey("city.geoId"))
+    cityId = db.Column(db.Integer,db.ForeignKey("city.geoId"))
     start_date = db.Column(db.Date, nullable=False)
     end_date = db.Column(db.Date, nullable=False)
     lang = db.Column(db.Enum(MeetingLanguageType))

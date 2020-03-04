@@ -6,3 +6,5 @@ app.db
 __pycache__
 *.pyc
 nohup.out
+logs
+uwsgi.daemonize.log

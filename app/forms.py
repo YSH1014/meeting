@@ -4,7 +4,7 @@ from wtforms import StringField, PasswordField, BooleanField, SubmitField, DateF
 from wtforms.validators import DataRequired, EqualTo, Email, URL, Regexp
 from flask_login import current_user
 from app.models import MeetingLanguageType
-from flask_babel import _
+from flask_babelex import _
 
 
 class LoginForm(FlaskForm):
