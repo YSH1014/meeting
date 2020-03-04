@@ -4,6 +4,7 @@ from wtforms import StringField, PasswordField, BooleanField, SubmitField, DateF
 from wtforms.validators import DataRequired, EqualTo, Email, URL, Regexp
 from flask_login import current_user
 from app.models import MeetingLanguageType
+from flask_babel import _
 
 
 class LoginForm(FlaskForm):
@@ -25,12 +26,8 @@ class RegisterForm(FlaskForm):
 
 class RegisterMeetingForm(FlaskForm):
     # 必填项
-    title = StringField('会议名称')
-    title_EN = StringField('English Title')
-    #location = StringField('会议地点 (按照格式：国家-城市)')
-    # ,description='例如：中国-北京-朝阳区大屯路甲20号国家天文台'
-    #location_EN = StringField('Detail location (Follow this format: Country-City)')
-    # description='For example:China-Beijing-National Astronomical Observatories,20A Datun Road, Chaoyang District'
+    title = StringField(_('会议名称（中文）'))
+    title_EN = StringField(_('会议名称（英文）'))
 
     #这三项不由用户显示输入，而由 cityAutoComplete回调输入
     cityId = HiddenField(validators=[DataRequired()])
@@ -38,24 +35,24 @@ class RegisterMeetingForm(FlaskForm):
     city = HiddenField(validators=[DataRequired()])
     selector_title = HiddenField(validators=[DataRequired()])
 
-    start_date = DateField('会议开始时间 (Start Date)', validators=[DataRequired()])
-    end_date = DateField('会议结束时间 (End Date)', validators=[DataRequired()])
-    lang = SelectField('会议语言 (Language)', choices=[(1, '中文'), (2, 'English'), (0, '其他(Other)')], coerce=int,
+    start_date = DateField(_('会议开始时间'), validators=[DataRequired()])
+    end_date = DateField(_('会议结束时间'), validators=[DataRequired()])
+    lang = SelectField(_('会议语言'), choices=[(1, '中文'), (2, 'English'), (0, '其他(Other)')], coerce=int,
                        validators=[DataRequired()])
 
     # 选填项
-    theme = TextAreaField('会议主题')
-    theme_EN = TextAreaField('Meeting Themes')
-    short_name = StringField('会议简称 (Short Name)')
-    url = StringField('会议网址 (Official Website)')
-    key_words = StringField('关键词')
-    key_words_EN = StringField('Keywords')
+    theme = TextAreaField(_('会议主题（中文）'))
+    theme_EN = TextAreaField(_('会议主题（英文'))
+    short_name = StringField(_('会议简称'))
+    url = StringField(_('会议网址'))
+    key_words = StringField(_('关键词（中文）'))
+    key_words_EN = StringField(_('关键词（英文）'))
     # 联系方式默认自动填写
-    contact = StringField('联系人姓名 (Contact)')
+    contact = StringField(_('联系人姓名'))
     email = StringField('Email')
-    phone = StringField('电话 (Phone)')
+    phone = StringField(_('电话'))
 
-    submit = SubmitField('提交 (Submit)')
+    submit = SubmitField(_('提交'))
 
 
 
@@ -73,5 +70,14 @@ class SearchMeetingForm(FlaskForm):
     #start_date = DateField('检索开始时间')
     # end_date = DateField('检索结束时间')
     # lang = SelectField('语言', choices=[(0, '不限'), (1, '中文'), (2, 'English')], coerce=int)
-    key_words = StringField('关键词(Keywords)')
-    submit = SubmitField('检索(Search)')
+    key_words = StringField(_('关键词'))
+    submit = SubmitField(_('检索(Search)'))
+
+
+class UpdateOldDataForm(FlaskForm):
+    meetingID = IntegerField()
+    cityId = HiddenField(validators=[DataRequired()])
+    country = HiddenField(validators=[DataRequired()])
+    city = HiddenField(validators=[DataRequired()])
+    selector_title = HiddenField(validators=[DataRequired()])
+    submit = SubmitField('提交')

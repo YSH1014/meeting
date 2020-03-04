@@ -3,11 +3,6 @@
     提交会议信息（Submit New Meeting）
 {% endblock %}
 {% block content %}
-    <style>
-        #submit {
-
-        }
-    </style>
 
     <div class="card meetings-card">
         <div class="card-body ">
@@ -27,14 +22,12 @@
 
                         {{ form.hidden_tag() }}
                         <div class="meeting-input-group">
-                            <div class="meeting-input-group-title"><p>会议名称（中英文至少填一项）</p>
-                                <p>Meeting Name (Fill in at least one item in Chinese or English)</p></div>
+                            <div class="meeting-input-group-title"><p>{{ _('会议名称（中英文至少填一项）')}}</p></div>
                             {{ wtf.form_field(form.title) }}
                             {{ wtf.form_field(form.title_EN) }}
                         </div>
                         <div class="meeting-input-group">
-                            <div class="meeting-input-group-title"><p>会议地点</p>
-                                <p>Meeting Location </p></div>
+                            <div class="meeting-input-group-title"><p>{{ _('会议地点') }}</p></div>
                             <input type="text" id="cityAutoComplete" autocomplete="off" value="{{ form.selector_title.data or '' }}">
                             <script src={{ url_for('static',filename='u/js/teleport-autocomplete.js') }}></script>
                             <script>
@@ -49,19 +42,16 @@
                             </script>
                         </div>
                         <div class="meeting-input-group">
-                            <div class="meeting-input-group-title"><p>会议时间（必填）</p>
-                                <p>Meeting Date(Data Required)</p></div>
+                            <div class="meeting-input-group-title"><p>{{ _('会议时间（必填）') }}</p></div>
                             {{ wtf.form_field(form.start_date) }}
                             {{ wtf.form_field(form.end_date) }}
                         </div>
                         <div class="meeting-input-group">
-                            <div class="meeting-input-group-title"><p>会议语言（必填）</p>
-                                <p>Meeting Language(Data Required)</p></div>
+                            <div class="meeting-input-group-title"><p>{{ _('会议语言（必填）') }}</p></div>
                             {{ wtf.form_field(form.lang) }}
                         </div>
                         <div class="meeting-input-group">
-                            <div class="meeting-input-group-title"><p>其他会议信息（选填）</p>
-                                <p>Other Meeting Information (Optional)</p></div>
+                            <div class="meeting-input-group-title"><p>{{ _('其它会议信息（选填）') }}</p></div>
                             {{ wtf.form_field(form.url) }}
                             {{ wtf.form_field(form.short_name) }}
                             {{ wtf.form_field(form.theme) }}
@@ -71,8 +61,8 @@
                         </div>
 
                         <div class="meeting-input-group">
-                            <div class="meeting-input-group-title"><p>联系人信息</p>
-                                <p>Contact Information</p></div>
+                            <div class="meeting-input-group-title"><p>{{ _('联系人信息') }}</p>
+                                </div>
                             {{ wtf.form_field(form.contact) }}
                             {{ wtf.form_field(form.email) }}
                             {{ wtf.form_field(form.phone) }}

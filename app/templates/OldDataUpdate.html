@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ _('旧数据更新') }}
+{% endblock %}
+{% block content %}
+    {% import "bootstrap/wtf.html" as wtf %}
+
+    <div class="card meetings-card">
+        <div class="card-body ">
+            <table class="table-hover">
+                <tr>
+                    <th>location</th>
+                    <td>{{ meeting.location }}</td>
+                </tr>
+                <tr>
+                    <th>location_EN</th>
+                    <td>{{ meeting.location_EN }}</td>
+                </tr>
+                <tr>
+                    <th>country-city</th>
+                    <td>{{ meeting.country }}-{{ meeting.city }}</td>
+                </tr>
+                <tr>
+                    <th>country-city-en</th>
+                    <td>{{ meeting.country_EN }}-{{ meeting.city_EN }}</td>
+                </tr>
+
+            </table>
+            <form id="updateOldData" method="post">
+                {{ form.hidden_tag() }}
+                <input type="text" id="cityAutoComplete" autocomplete="off"
+                       value="{{ form.selector_title.data or '' }}">
+                <link rel="stylesheet" href={{ url_for('static',filename="u/css/teleport-autocomplete.css") }}>
+
+                <script src={{ url_for('static',filename='u/js/teleport-autocomplete.js') }}></script>
+                <script>
+                    //定义回调
+                    TeleportAutocomplete.init('#cityAutoComplete').on('change', function (value) {
+                        document.forms["updateOldData"].cityId.value = value.geonameId;
+                        document.forms["updateOldData"].city.value = value.name;
+                        document.forms["updateOldData"].country.value = value.country;
+                        document.forms["updateOldData"].selector_title.value = value.title;
+                    });
+                    $('#cityAutoComplete').addClass("form-control");
+                </script>
+                {{ wtf.form_field(form.meetingID) }}
+                <script>
+                    document.forms["updateOldData"].meetingID.value =
+                    {{ meeting.id }}
+                </script>
+                {{ wtf.form_field(form.submit,class="btn btn-primary max-auto") }}
+
+            </form>
+        </div>
+    </div>
+{% endblock %}

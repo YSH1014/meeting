@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-02-28 18:45+0800\n"
+"POT-Creation-Date: 2020-03-04 14:57+0800\n"
 "PO-Revision-Date: 2020-02-27 12:58+0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -17,6 +17,70 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.8.0\n"
+
+#: app/forms.py:29
+msgid "会议名称（中文）"
+msgstr "Meeting Name(Chinese)"
+
+#: app/forms.py:30
+msgid "会议名称（英文）"
+msgstr "Meeting Name(English)"
+
+#: app/forms.py:42
+msgid "会议开始时间"
+msgstr "Start Date"
+
+#: app/forms.py:43
+msgid "会议结束时间"
+msgstr "End Date"
+
+#: app/forms.py:44
+msgid "会议语言"
+msgstr "Language"
+
+#: app/forms.py:48
+msgid "会议主题（中文）"
+msgstr "Meeting Themes(Chinese)"
+
+#: app/forms.py:49
+msgid "会议主题（英文"
+msgstr "Meeting Themes(English)"
+
+#: app/forms.py:50
+msgid "会议简称"
+msgstr "Short Name"
+
+#: app/forms.py:51
+msgid "会议网址"
+msgstr "Website"
+
+#: app/forms.py:52
+msgid "关键词（中文）"
+msgstr "Keywords(Chinese)"
+
+#: app/forms.py:53
+msgid "关键词（英文）"
+msgstr "Keywords(English)"
+
+#: app/forms.py:55
+msgid "联系人姓名"
+msgstr "Name"
+
+#: app/forms.py:57 app/templates/meeting_detail.html:59
+msgid "电话"
+msgstr "Phone"
+
+#: app/forms.py:59
+msgid "提交"
+msgstr "Submit"
+
+#: app/forms.py:77 app/templates/meeting_detail.html:42
+msgid "关键词"
+msgstr "Keywords"
+
+#: app/forms.py:78
+msgid "检索(Search)"
+msgstr ""
 
 #: app/index_routes.py:38
 msgid "Setting updated."
@@ -38,9 +102,13 @@ msgstr "Submit successfully,please wait for administrator's approval"
 msgid "{}年会议"
 msgstr "{} Meetings"
 
-#: app/routes/meeting_routes.py:294 app/templates/base.html:26
+#: app/routes/meeting_routes.py:243 app/templates/base.html:26
 msgid "新收录会议"
 msgstr "New Meetings"
+
+#: app/templates/OldDataUpdate.html:3 app/templates/user_menu.html:61
+msgid "旧数据更新"
+msgstr "Update Old Data"
 
 #: app/templates/base.html:13
 msgid "天文会议"
@@ -82,121 +150,129 @@ msgstr "Welcome to the Astronomical Conference Information System"
 msgid "会议信息"
 msgstr "Meeting Information"
 
-#: app/templates/meeting_detail.html:25
+#: app/templates/meeting_detail.html:24
 msgid "地点"
 msgstr "Location"
 
-#: app/templates/meeting_detail.html:29 app/templates/meetings.html:224
+#: app/templates/meeting_detail.html:27 app/templates/meetings.html:309
 msgid "会议时间"
 msgstr "Meeting Date"
 
-#: app/templates/meeting_detail.html:33 app/templates/meetings.html:180
+#: app/templates/meeting_detail.html:30 app/templates/meetings.html:258
 msgid "语言"
 msgstr "Language"
 
-#: app/templates/meeting_detail.html:37 app/templates/meetings.html:228
+#: app/templates/meeting_detail.html:33 app/templates/meetings.html:313
 msgid "网址"
 msgstr "Website"
 
-#: app/templates/meeting_detail.html:41
+#: app/templates/meeting_detail.html:36
 msgid "简称"
 msgstr "Short name"
 
-#: app/templates/meeting_detail.html:45
+#: app/templates/meeting_detail.html:39
 msgid "主题"
 msgstr "Theme"
 
-#: app/templates/meeting_detail.html:49
-msgid "关键词"
-msgstr "Keywords"
-
-#: app/templates/meeting_detail.html:53
+#: app/templates/meeting_detail.html:45
 msgid "编号"
 msgstr "ID"
 
-#: app/templates/meeting_detail.html:59
+#: app/templates/meeting_detail.html:49 app/templates/registerMeeting.html:69
 msgid "联系人信息"
 msgstr "Contact information"
 
-#: app/templates/meeting_detail.html:64
+#: app/templates/meeting_detail.html:53
 msgid "姓名"
 msgstr "Name"
 
-#: app/templates/meeting_detail.html:72
-msgid "电话"
-msgstr "Phone"
-
-#: app/templates/meeting_detail.html:84
+#: app/templates/meeting_detail.html:70
 msgid "会议信息有误？提交更新"
 msgstr "Information incorrect? Submit update!"
 
-#: app/templates/meeting_detail.html:91
+#: app/templates/meeting_detail.html:77
 msgid "状态"
 msgstr "Status"
 
-#: app/templates/meeting_detail.html:94 app/templates/user_menu.html:36
+#: app/templates/meeting_detail.html:80 app/templates/user_menu.html:34
 msgid "待审核"
 msgstr "Awaiting review"
 
-#: app/templates/meeting_detail.html:96
+#: app/templates/meeting_detail.html:82
 msgid "通过审核"
 msgstr "Approve"
 
-#: app/templates/meeting_detail.html:100
+#: app/templates/meeting_detail.html:86
 msgid "不通过"
 msgstr "Unapprove"
 
-#: app/templates/meeting_detail.html:103 app/templates/user_menu.html:40
+#: app/templates/meeting_detail.html:89 app/templates/user_menu.html:38
 msgid "已通过"
 msgstr "Approved"
 
-#: app/templates/meeting_detail.html:105 app/templates/user_menu.html:38
+#: app/templates/meeting_detail.html:91 app/templates/user_menu.html:36
 msgid "未通过"
 msgstr "Unapproved"
 
-#: app/templates/meeting_detail.html:107 app/templates/user_menu.html:42
+#: app/templates/meeting_detail.html:93 app/templates/user_menu.html:40
 msgid "已过期"
 msgstr "Out due"
 
-#: app/templates/meeting_detail.html:120
+#: app/templates/meeting_detail.html:106
 msgid "返回列表"
 msgstr "Return to List"
 
-#: app/templates/meetings.html:119
+#: app/templates/meetings.html:179
 msgid "筛选会议"
 msgstr "Filter Meetings"
 
-#: app/templates/meetings.html:124
+#: app/templates/meetings.html:184
 msgid "年份"
 msgstr "Year"
 
-#: app/templates/meetings.html:138
+#: app/templates/meetings.html:201
 msgid "月份"
 msgstr "Month"
 
-#: app/templates/meetings.html:152
+#: app/templates/meetings.html:218
 msgid "国家"
 msgstr "Country"
 
-#: app/templates/meetings.html:166
+#: app/templates/meetings.html:238
 msgid "城市"
 msgstr "City"
 
-#: app/templates/meetings.html:194
+#: app/templates/meetings.html:275
 msgid "重置条件"
 msgstr "Reset Conditions"
 
-#: app/templates/meetings.html:226
+#: app/templates/meetings.html:311 app/templates/registerMeeting.html:31
 msgid "会议地点"
 msgstr "Location"
 
-#: app/templates/meetings.html:231
+#: app/templates/meetings.html:316
 msgid "最近更新"
 msgstr "Last Update"
 
-#: app/templates/meetings.html:237
+#: app/templates/meetings.html:322
 msgid "更多详情"
 msgstr "More Details"
+
+#: app/templates/registerMeeting.html:25
+msgid "会议名称（中英文至少填一项）"
+msgstr "Meeting Name (Fill in at least one item in Chinese or English)"
+
+#: app/templates/registerMeeting.html:47
+msgid "会议时间（必填）"
+msgstr "Meeting Date(Data Required)"
+
+#: app/templates/registerMeeting.html:53
+msgid "会议语言（必填）"
+msgstr "Meeting Language(Data Required)"
+
+#: app/templates/registerMeeting.html:58
+msgid "其它会议信息（选填）"
+msgstr "Other Meeting Information (Optional)"
 
 #: app/templates/search_meetings.html:4
 msgid "会议检索"
@@ -218,27 +294,31 @@ msgstr "Empty"
 msgid "我提交的会议"
 msgstr "Meetings Submitted"
 
-#: app/templates/user_menu.html:21
+#: app/templates/user_menu.html:19
 msgid "登录"
 msgstr "Login"
 
-#: app/templates/user_menu.html:27
+#: app/templates/user_menu.html:25
 msgid "您好，"
 msgstr "Hello,"
 
-#: app/templates/user_menu.html:28
+#: app/templates/user_menu.html:26
 msgid "退出"
 msgstr "Logout"
 
-#: app/templates/user_menu.html:33
+#: app/templates/user_menu.html:31
 msgid "我注册的会议"
 msgstr "My Meetings"
 
-#: app/templates/user_menu.html:49
+#: app/templates/user_menu.html:47
 msgid "用户管理"
 msgstr "User Management"
 
 #: app/templates/user_menu.html:55
+msgid "管理员菜单"
+msgstr "Admin Menu"
+
+#: app/templates/user_menu.html:59
 msgid "查看待审核会议"
 msgstr "View Awaiting Review Meetings"
 

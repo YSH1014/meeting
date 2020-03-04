@@ -121,8 +121,8 @@ class Meeting(db.Model):
     key_words_EN = db.Column(db.Text())
     short_name = db.Column(db.String(30))
     contact = db.Column(db.String(100))
-    email = db.Column(db.String(120), nullable=False)
-    phone = db.Column(db.String(60), nullable=False)
+    email = db.Column(db.String(120))
+    phone = db.Column(db.String(60) )
     theme = db.Column(db.Text())
     theme_EN = db.Column(db.Text())
 
@@ -199,23 +199,8 @@ class Meeting(db.Model):
             return city.name_CN if city.name_CN is not None else city.name_EN
 
     def get_location(self,locale):
-        location = None
-        location_EN = None
-        if self.city and self.country:
-            location = "{country}-{city}".format(
-                country=self.country,
-                city=self.city,
-            )
-        if self.city_EN and self.country_EN:
-            location_EN = "{country}-{city}".format(
-                country=self.country_EN,
-                city=self.city_EN,
-            )
-
-        if locale=="en":
-            return location_EN if location_EN is not None else location
-        else:
-            return location if location is not None else location_EN
+        location = self.get_country(locale) +' - ' +  self.get_city(locale)
+        return location
 
     def get_theme(self,locale):
         if locale=="en":
