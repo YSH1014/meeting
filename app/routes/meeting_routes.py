@@ -194,14 +194,17 @@ def meetings():
         if register:
             query = query.filter(Meeting.register == register)
         # 处理search_keywords
-        search_keywords = request.args.get('keywords')
+        search_keywords = request.args.get('key_words')
         if search_keywords:
             search_keywords = "%{}%".format(search_keywords)
             query = query.filter(or_(
-                Meeting.title.like(search_keywords),
-                Meeting.introduction.like(search_keywords),
-                Meeting.key_words.like(search_keywords),
-                Meeting.short_name.like(search_keywords)
+                Meeting.title.ilike(search_keywords),
+                Meeting.title_EN.ilike(search_keywords),
+                Meeting.theme.ilike(search_keywords),
+                Meeting.theme_EN.ilike(search_keywords),
+                Meeting.key_words.ilike(search_keywords),
+                Meeting.key_words_EN.ilike(search_keywords),
+                Meeting.short_name.ilike(search_keywords)
             ))
 
         all_meetings = query.order_by(Meeting.start_date).all()
