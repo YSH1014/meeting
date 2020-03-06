@@ -108,9 +108,9 @@
                     for (li of list){
                         ul.appendChild(li);
                     }
-                    $('#navbarDropdownCountry>ul>li:gt(10)').hide();
-                    $('#navbarDropdownCountry>ul>li:lt(10)').show();
-                    $('#navbarDropdownCountry>ul>li:eq(10)').hide();
+                    $( ulId + '>ul>li:gt(10)').hide();
+                    $(ulId + '>ul>li:lt(10)').show();
+                    $(ulId + 'ul>li:eq(10)').hide();
 
                 }
 
