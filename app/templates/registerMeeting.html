@@ -103,6 +103,14 @@
                     $("#title_EN").attr("placeHolder", "Fill in at least one item with the previous one 会议名称");
                     return false;
                 }
+                //检查地点
+                if(form["city"].value==""
+                    || form["cityId"].value==""
+                    || form["country"].value==""
+                    || form["selector_title"].value==""){
+                    alert("请输入地点（输入后请在下拉框中选择）");
+                    return false;
+                }
 
                 //验证日期
                 var today = new Date();
