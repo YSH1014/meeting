@@ -107,6 +107,7 @@ Vue.component('nadc-filter', {
 
     template: `
         <div >
+            <div class="card-header" style="text-align: center;"> {{ localeKeyDict['title']}}</div>
             <nadc-filter-row
             v-for="values,key in keyValue"
             v-bind:ftKey="key"
@@ -117,7 +118,7 @@ Vue.component('nadc-filter', {
             >
             </nadc-filter-row>
             <div align="center" style="margin-bottom: 15px;margin-top: 15px">
-                <button id="reset" class="btn btn-sm btn-outline-danger" v-on:click="reset">重置条件</button>
+                <button id="reset" class="btn btn-sm btn-outline-danger" v-on:click="reset">{{localeKeyDict['reset']}}</button>
             </div>
             
         </div>

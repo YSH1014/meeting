@@ -1,329 +1,141 @@
 {% extends 'base.html' %}
 {% block title %}
-    {{ title }}
+{{ title }}
 {% endblock %}
 {% block content %}
-    <style xmlns:v-bind="http://www.w3.org/1999/xhtml">
-        .meeting-filter-navbar {
-            margin-bottom: 0px;
-        }
+<style xmlns:v-bind="http://www.w3.org/1999/xhtml">
+    .meeting-filter-navbar {
+        margin-bottom: 0px;
+    }
 
-        .meeting-filterbox-navbrand {
-            background-color: rgb(55, 84, 131);
-            border-radius: 10px;
-            padding: 5px 10px;
-            font-size: 14px;
-            color: #eee !important;
-        }
+    .meeting-filterbox-navbrand {
+        background-color: rgb(55, 84, 131);
+        border-radius: 10px;
+        padding: 5px 10px;
+        font-size: 14px;
+        color: #eee !important;
+    }
 
-        .meeting-filterbox-listitem {
-            border-radius: 10px;
-            line-height: 20px;
-            padding: 0px 10px;
-            margin: 5px 0px;
-        }
+    .meeting-filterbox-listitem {
+        border-radius: 10px;
+        line-height: 20px;
+        padding: 0px 10px;
+        margin: 5px 0px;
+    }
 
-        .meeting-filterbox-listitem:hover {
-            background-color: #eee;
-        }
+    .meeting-filterbox-listitem:hover {
+        background-color: #eee;
+    }
+</style>
+<meta name="description" content="Filtrify">
+<meta name="keywords" content="javascript, jquery, filtering, filter, plugin" />
+<meta name="author" content="Luís Almeida">
 
-    </style>
-    <meta name="description" content="Filtrify">
-    <meta name="keywords" content="javascript, jquery, filtering, filter, plugin"/>
-    <meta name="author" content="Luís Almeida">
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href={{ url_for('static',filename="u/css/style.css") }}>
+<link rel="stylesheet" href={{ url_for('static',filename="u/css/sunburst.css") }}>
+<link rel="stylesheet" href={{ url_for('static',filename="u/css/filtrify.css") }}>
 
-    <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href={{ url_for('static',filename="u/css/style.css") }}>
-    <link rel="stylesheet" href={{ url_for('static',filename="u/css/sunburst.css") }}>
-    <link rel="stylesheet" href={{ url_for('static',filename="u/css/filtrify.css") }}>
+<script src="https://apps.bdimg.com/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src={{ url_for('static',filename="u/js/highlight.pack.js") }}></script>
+<script src={{ url_for('static',filename="u/js/script.js") }}></script>
+<script src={{ url_for('static',filename="u/js/filtrify.min.js") }}></script>
+<script src={{ url_for("static",filename="u/js/vue.min.js") }}></script>
+{% if show_filter %}
+<script src={{ url_for("static",filename="u/js/nadcFilter.js")}}></script>
+<div class="card meetings-card" id="filter-box">
+    <nadc-filter id="filter" v-bind:ft="ft" v-bind:locale-key-dict="localeKeyDict"
+        v-bind:init-conditions="initConditions">
 
-    <script src="https://apps.bdimg.com/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src={{ url_for('static',filename="u/js/highlight.pack.js") }}></script>
-    <script src={{ url_for('static',filename="u/js/script.js") }}></script>
-    <script src={{ url_for('static',filename="u/js/filtrify.min.js") }}></script>
-    <script src={{ url_for("static",filename="u/js/vue.min.js") }}></script>
-    {% if show_filter %}
-        <script>
+    </nadc-filter>
+    <script>
+        $(function () {
+            ft = $.filtrify("container");
 
-            var filter = {
-                "country": [],
-                "city": [],
-                "year": [],
-                "month": [],
-                "language": []
+
+            //读取已存储筛选条件，保证返回后与之前内容一致
+            /*
+            initConditions = {
+                year: [],
+                month: [],
+                country: [],
+                city: [],
+                language: [],
             };
-            var cityCountryDict={};//城市->国家的映射
+            if (window.location.href.indexOf("withStoredFilter") !== -1) {
+                var filter_stored = localStorage.getItem("filter");
+                if (filter_stored !=null){
+                    initConditions = JSON.parse(filter_stored);
+                }
 
-
-            //退出时存储filter
+            }
             window.onbeforeunload = function () {
                 localStorage.setItem("lastList", window.location.href);
-                localStorage.setItem("filter", JSON.stringify(filter));
+                localStorage.setItem("filter", JSON.stringify(initConditions));
             };
-            $(function () {
-                var ft = $.filtrify("container", "placeHolder");
-                //使用vue渲染filter-box
-                new Vue({
-                    delimiters: ['{[', ']}'],  //防止和Flask冲突
-                    el: "#filter-box",
-                    data: {
-                        ftFields: JSON.parse(JSON.stringify(ft._fields)),//深拷贝，静态存储初始的状态
-                        ftFieldsDynamic: ft._fields, //浅拷贝，动态获取count值
+            */
+            nadcFilter = new Vue({
+                el: "#filter",
+                data: {
+                    ft: ft,
+                    localeKeyDict: {
+                        "year": "{{ _("年份") }}",
+                        "month": "{{ _("月份") }}",
+                        "country": "{{ _("国家") }}",
+                        "city": "{{ _("城市") }}",
+                        "language": "{{ _("语言") }}",
+                        "title": "{{ _("筛选会议") }}",
+                        "reset": "{{ _("重置条件") }}", 
                     },
-                    methods: {
-                        getCount: function (key, value) {
-                            if (Object.keys(this.ftFieldsDynamic[key]).indexOf(value) != -1) {
-                                return this.ftFieldsDynamic[key][value];
-                            } else {
-                                return 0;
-                            }
-                        }
-                    }
-                });
-                var ft2 = $.filtrify("cityFilterContainer","placeHolder");
-                $("#placeHolder").hide();//默认的这个隐藏了
-
-                function rearrange(ulId) {
-                    //对国家、城市进行重新排序
-                    //id以#开头
-                    function cmpLi(li1, li2) {
-                        //对两个li标签进行比较的函数
-                        const key1 = li1.firstChild.getAttribute("ft-key");
-                        const key2 = li2.firstChild.getAttribute("ft-key");
-                        console.assert(key1 == key2);
-                        const value1 = li1.firstChild.getAttribute("ft-value");
-                        const value2 = li2.firstChild.getAttribute("ft-value");
-
-                        const count1 = parseInt(ft._fields[key1][value1] || "0");
-                        const count2 = parseInt(ft._fields[key2][value2] || "0");
-
-                        return count2 - count1;
-                    }
-
-                    var ul,list;
-                    //处理国家
-                    ul = $(ulId+'>ul').get()[0];
-                    list = $(ulId+'>ul>li').get();
-                    list.sort(cmpLi);
-                    for (li of list){
-                        ul.appendChild(li);
-                    }
-                    $( ulId + '>ul>li:gt(10)').hide();
-                    $(ulId + '>ul>li:lt(10)').show();
-                    $(ulId + 'ul>li:eq(10)').hide();
-
-                }
-
-                function loadStoredFilter(){
-                    var filter_stored = localStorage.getItem("filter");
-                    patt = '[ft-key={key}][ft-value={value}]';
-                    if (filter_stored != null) {
-                        filter = JSON.parse(filter_stored);
-                        ft.trigger(filter);
-                        //重新替换颜色
-                        for (key in filter) {
-                            if (filter[key].length == 1) {
-                                $(patt.replace("{key}", key).replace("{value}", filter[key][0])).css(
-                                    {
-                                        color: "blue"
-                                    }
-                                );
-                                //对城市重新筛选
-                                if(key=="country"){
-                                    ft2.trigger({"country":[filter[key][0]]})
-                                }
-                            }
-                        }
-                    }
-                }
-                //为横向菜单按钮添加动作
-                $(".filter-tag").click(function () {
-                    //执行过滤
-                    var key = $(this).attr("ft-key");
-                    var value = $(this).attr("ft-value");
-                    filter[key] = [value];
-                    if(key == "country") filter["city"]=[];//点击国家后重置城市
-                    ft.trigger(filter);
-                    //修改颜色
-                    $(this).parent().siblings().children().css({"color": "black"});
-                    $(this).css({"color": "blue"});
-                    if(key=="country") ft2.trigger({"country":[value]})
-                    //对国家和城市重新排序
-                    if(key!="country") rearrange("#navbarDropdownCountry");
-                    if(key!="city") rearrange("#navbarDropdownCity");
-
-                });
-                $("#reset").click(function () {
-                    filter["country"] = [];
-                    filter["city"] = [];
-                    filter["language"] = [];
-                    filter["year"] = [];
-                    filter["month"] = [];
-                    ft.reset();
-                    $("a.filter-tag").css({color: "black"})
-                });
-
-
-                // 如果filter为true读取之前存储的filter
-                if (window.location.href.indexOf("withStoredFilter") !== -1) {
-                    loadStoredFilter();
-                }
-                //国家城市只显示前几项
-                rearrange("#navbarDropdownCountry");
-                rearrange("#navbarDropdownCity");
-
+                    initConditions: initConditions
+                },
             });
+        });
+        
+    </script>
+</div>
+{% endif %}
 
-        </script>
-        <div class="card meetings-card">
-            <div class="card-header" style="text-align: center;"> {{ _('筛选会议') }}</div>
-            <div id="placeHolder"></div>
-            <div id="filter-box">
-                <nav class="navbar navbar-expand-sm meeting-filter-navbar navbar-default">
-                    <a class="navbar-brand meeting-filterbox-navbrand">
-                        {{ _('年份') }}
-                    </a>
-                    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
-                            data-target="#navbarDropdownYear" aria-controls="'#navbarDropdownYear"
-                            aria-expanded="false" aria-label="Toggle navigation">&#9660;
-                    </button>
-                    <div class="navbar-collapse collapse" id="navbarDropdownYear">
-                        <ul class="navbar-nav  meeting-search-menu ft-menu">
-                            <li class="nav-item meeting-filterbox-listitem" v-for="(count,tag) in ftFields['year']">
-                                <a href="#" class="filter-tag nav-link index-topNav-link"
-                                   ft-key="year" v-bind:ft-value="tag">{[tag]}</a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-                <nav class="navbar navbar-expand-sm meeting-filter-navbar navbar-default">
-                    <a class="navbar-brand meeting-filterbox-navbrand">
-                        {{ _('月份') }}
-                    </a>
-                    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
-                            data-target="#navbarDropdownMonth" aria-controls="'#navbarDropdownMonth"
-                            aria-expanded="false" aria-label="Toggle navigation">&#9660;
-                    </button>
-                    <div class="navbar-collapse collapse" id="navbarDropdownMonth">
-                        <ul class="navbar-nav  meeting-search-menu ft-menu">
-                            <li class="nav-item meeting-filterbox-listitem" v-for="(count,tag) in ftFields['month']">
-                                <a href="#" class="filter-tag nav-link index-topNav-link"
-                                   ft-key="month" v-bind:ft-value="tag">{[tag]}</a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-                <nav class="navbar navbar-expand-sm meeting-filter-navbar navbar-default">
-                    <a class="navbar-brand meeting-filterbox-navbrand">
-                        {{ _('国家') }}
-                    </a>
-                    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
-                            data-target="#navbarDropdownCountry" aria-controls="'#navbarDropdownCountry"
-                            aria-expanded="false" aria-label="Toggle navigation">&#9660;
-                    </button>
-                    <div class="navbar-collapse collapse" id="navbarDropdownCountry">
-                        <ul class="navbar-nav  meeting-search-menu ft-menu">
-                            <li class="nav-item meeting-filterbox-listitem"
-                                v-once
-                                v-for="(count,tag) in ftFields['country']"
-                            >
-                                <a href="#" class="filter-tag nav-link index-topNav-link"
-                                   ft-key="country" v-bind:ft-value="tag">{[tag]}</a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-                <nav class="navbar navbar-expand-sm meeting-filter-navbar navbar-default">
-                    <a class="navbar-brand meeting-filterbox-navbrand">
-                        {{ _('城市') }}
-                    </a>
-                    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
-                            data-target="#navbarDropdownCity" aria-controls="'#navbarDropdownCity"
-                            aria-expanded="false" aria-label="Toggle navigation">&#9660;
-                    </button>
-                    <div class="navbar-collapse collapse" id="navbarDropdownCity">
-                        <ul class="navbar-nav  meeting-search-menu ft-menu" id="cityFilterContainer">
-                            <li class="nav-item meeting-filterbox-listitem"
-                                v-for="(count,tag) in ftFields['city']"
-                                v-bind:data-country="cityCountryDict[tag]"
-                                v-once>
-                                <a href="#" class="filter-tag nav-link index-topNav-link"
-                                   ft-key="city" v-bind:ft-value="tag">{[tag]}</a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-                <nav class="navbar navbar-expand-sm meeting-filter-navbar navbar-default">
-                    <a class="navbar-brand meeting-filterbox-navbrand">
-                        {{ _('语言') }}
-                    </a>
-                    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
-                            data-target="#navbarDropdownLanguage" aria-controls="'#navbarDropdownLanguage"
-                            aria-expanded="false" aria-label="Toggle navigation">&#9660;
-                    </button>
-                    <div class="navbar-collapse collapse" id="navbarDropdownLanguage">
-                        <ul class="navbar-nav  meeting-search-menu ft-menu">
-                            <li class="nav-item meeting-filterbox-listitem" v-for="(count,tag) in ftFields['language']">
-                                <a href="#" class="filter-tag nav-link index-topNav-link"
-                                   ft-key="language" v-bind:ft-value="tag">{[tag]}</a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-            <div align="center" style="margin-bottom: 15px;margin-top: 15px">
-                <button id="reset" class="btn btn-sm btn-outline-danger" onclick="reset">{{ _('重置条件') }}</button>
-            </div>
 
+<div id="container">
+    {% for meeting in meetings %}
+    <div class="card meetings-card" data-Year="{{ meeting.start_date.year }}"
+        data-Month="{{ meeting.start_date.month }}" data-Country="{{ meeting.get_country(get_locale()) }}"
+        data-City="{{ meeting.get_city(get_locale()) }}" data-Language="{{ meeting.lang }}">
+
+        <div class="card-header" style="text-shadow: 2px 2px 2px #ffff00;">
+            <a href="{{ url_for('meeting_detail',id=meeting.id) }}">
+                {% if meeting.title %}
+                <strong>{{ meeting.title }}</strong>
+                {% endif %}
+                {% if meeting.title_EN %}
+                <p>{{ meeting.title_EN }}</p>
+                {% endif %}
+            </a>
         </div>
-    {% endif %}
+        <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                <p class="meetings-title">{{ meeting.short_name }}</p>
 
-
-    <div id="container">
-        {% for meeting in meetings %}
-            <div class="card meetings-card"
-                 data-Year="{{ meeting.start_date.year }}"
-                 data-Month="{{ meeting.start_date.month }}"
-                 data-Country="{{ meeting.get_country(get_locale()) }}"
-                 data-City="{{ meeting.get_city(get_locale()) }}"
-                 data-Language="{{ meeting.lang }}"
-            >
-                <script>
-                    cityCountryDict["{{ meeting.get_city(get_locale()) }}"] = "{{ meeting.get_country(get_locale()) }}";
-                </script>
-                <div class="card-header" style="text-shadow: 2px 2px 2px #ffff00;">
-                    <a href="{{ url_for('meeting_detail',id=meeting.id) }}">
-                        {% if meeting.title %}
-                            <strong>{{ meeting.title }}</strong>
-                        {% endif %}
-                        {% if meeting.title_EN %}
-                            <p>{{ meeting.title_EN }}</p>
-                        {% endif %}
-                    </a>
+                <div class="row meetings-detail">
+                    <div class="col-sm-2">{{ _('会议时间') }}</div>
+                    <div class="col-sm-10">{{ meeting.start_date }} - {{ meeting.end_date }}</div>
+                    <div class="col-sm-2">{{ _('会议地点') }}</div>
+                    <div class="col-sm-10">{{ meeting.get_location(get_locale()) }}</div>
+                    <div class="col-sm-2">{{ _('网址') }}</div>
+                    <div class="col-sm-10"><a href="{{ meeting.url }}" target="_blank">{{ meeting.url }}</a>
+                    </div>
+                    <div class="col-sm-2">{{ _('最近更新') }}</div>
+                    <div class="col-sm-10">{{ meeting.register_time.date() }}</div>
                 </div>
-                <div class="card-body">
-                    <blockquote class="blockquote mb-0">
-                        <p class="meetings-title">{{ meeting.short_name }}</p>
-
-                        <div class="row meetings-detail">
-                            <div class="col-sm-2">{{ _('会议时间') }}</div>
-                            <div class="col-sm-10">{{ meeting.start_date }} - {{ meeting.end_date }}</div>
-                            <div class="col-sm-2">{{ _('会议地点') }}</div>
-                            <div class="col-sm-10">{{ meeting.get_location(get_locale()) }}</div>
-                            <div class="col-sm-2">{{ _('网址') }}</div>
-                            <div class="col-sm-10"><a href="{{ meeting.url }}" target="_blank">{{ meeting.url }}</a>
-                            </div>
-                            <div class="col-sm-2">{{ _('最近更新') }}</div>
-                            <div class="col-sm-10">{{ meeting.register_time.date() }}</div>
-                        </div>
-                    </blockquote>
-                </div>
-                <div class="card-footer text-muted meetings-more">
-                    <a href="{{ url_for('meeting_detail',id=meeting.id) }}">{{ _('更多详情') }}</a>
-                </div>
-            </div>
-        {% endfor %}
+            </blockquote>
+        </div>
+        <div class="card-footer text-muted meetings-more">
+            <a href="{{ url_for('meeting_detail',id=meeting.id) }}">{{ _('更多详情') }}</a>
+        </div>
     </div>
+    {% endfor %}
+</div>
 
 
 {% endblock %}

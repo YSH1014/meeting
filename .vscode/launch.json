@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: Flask",
+            "name": "Flask",
             "type": "python",
             "request": "launch",
             "module": "flask",
@@ -19,8 +19,8 @@
                 "--no-debugger",
                 "--no-reload"
             ],
-            "jinja": true,
-            "pythonPath":"/home/xuyunfei/nadc_meeting/bin/python"
+            "jinja": true
         }
+       
     ]
 }
