@@ -8,3 +8,4 @@ __pycache__
 nohup.out
 logs
 uwsgi.daemonize.log
+.vscode
