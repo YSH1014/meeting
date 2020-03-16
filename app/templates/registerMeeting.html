@@ -1,79 +1,104 @@
 {% extends 'base.html' %}
 {% block title %}
-    提交会议信息（Submit New Meeting）
+提交会议信息（Submit New Meeting）
 {% endblock %}
 {% block content %}
 
-    <div class="card meetings-card">
-        <div class="card-body ">
+<div class="card meetings-card">
+    <div class="card-body ">
 
-            <div class="row">
-                <div class="col-1"></div>
-                <div class="col-10">
-                    {% import "bootstrap/wtf.html" as wtf %}
-                    <form action="" method="post" class="form" role="form"
-                          onsubmit="return validateForm()" id="registerForm">
-                        <!-- 引入datepicker -->
-                        <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-                        <link href="https://cdn.bootcss.com/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css"
-                              rel="stylesheet">
-                            <link rel="stylesheet" href={{ url_for('static',filename="u/css/teleport-autocomplete.css")}}>
-                        <script src="https://cdn.bootcss.com/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10">
+                {% import "bootstrap/wtf.html" as wtf %}
+                <form action="" method="post" class="form" role="form" onsubmit="return validateForm()"
+                    id="registerForm">
+                    <!-- 引入datepicker -->
+                    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+                    <link href="https://cdn.bootcss.com/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css"
+                        rel="stylesheet">
+                    <link rel="stylesheet" href={{ url_for('static',filename="u/css/teleport-autocomplete.css")}}>
+                    <script
+                        src="https://cdn.bootcss.com/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
 
-                        {{ form.hidden_tag() }}
-                        <div class="meeting-input-group">
-                            <div class="meeting-input-group-title"><p>{{ _('会议名称（中英文至少填一项）')}}</p></div>
-                            {{ wtf.form_field(form.title) }}
-                            {{ wtf.form_field(form.title_EN) }}
+                    {{ form.hidden_tag() }}
+                    <div class="meeting-input-group">
+                        <div class="meeting-input-group-title">
+                            <p>{{ _('会议名称（中英文至少填一项）')}}</p>
                         </div>
-                        <div class="meeting-input-group">
-                            <div class="meeting-input-group-title"><p>{{ _('会议地点') }}</p></div>
-                            <input type="text" id="cityAutoComplete" autocomplete="off" value="{{ form.selector_title.data or '' }}">
-                            <script src={{ url_for('static',filename='u/js/teleport-autocomplete.js') }}></script>
-                            <script>
-                                //定义回调
-                                TeleportAutocomplete.init('#cityAutoComplete').on('change', function (value) {
-                                    document.forms["registerForm"].cityId.value = value.geonameId;
-                                    document.forms["registerForm"].city.value = value.name;
-                                    document.forms["registerForm"].country.value = value.country;
-                                    document.forms["registerForm"].selector_title.value = value.title;
-                                });
-                                $('#cityAutoComplete').addClass("form-control");
-                            </script>
+                        {{ wtf.form_field(form.title) }}
+                        {{ wtf.form_field(form.title_EN) }}
+                    </div>
+                    <div class="meeting-input-group">
+                        <div class="meeting-input-group-title">
+                            <p>{{ _('会议地点') }}
+                                <input type="button" id='undetermind'  class="btn-sm btn-outline-info" value={{_('设为待定')}} />
+                            </p>
                         </div>
-                        <div class="meeting-input-group">
-                            <div class="meeting-input-group-title"><p>{{ _('会议时间（必填）') }}</p></div>
-                            {{ wtf.form_field(form.start_date) }}
-                            {{ wtf.form_field(form.end_date) }}
+                        <input type="text" id="cityAutoComplete" autocomplete="off"
+                            value="{{ form.selector_title.data or '' }}">
+                        <script src={{ url_for('static',filename='u/js/teleport-autocomplete.js') }}></script>
+                        <script>
+                            //定义回调
+                            TeleportAutocomplete.init('#cityAutoComplete').on('change', function (value) {
+                                document.forms["registerForm"].cityId.value = value.geonameId;
+                                document.forms["registerForm"].city.value = value.name;
+                                document.forms["registerForm"].country.value = value.country;
+                                document.forms["registerForm"].selector_title.value = value.title;
+                                
+                            });
+                            $("#undetermind").click(function(){
+                                
+                                document.forms["registerForm"].cityId.value = -1;
+                                document.forms["registerForm"].city.value = 'undetermind';
+                                document.forms["registerForm"].country.value = 'undetermind';
+                                document.forms["registerForm"].selector_title.value = 'undetermind';
+                                document.forms["registerForm"].cityAutoComplete.value="{{_('待定')}}";
+                            }
+                            );
+                            $('#cityAutoComplete').addClass("form-control");
+                        </script>
+                    </div>
+                    <div class="meeting-input-group">
+                        <div class="meeting-input-group-title">
+                            <p>{{ _('会议时间（必填）') }}</p>
                         </div>
-                        <div class="meeting-input-group">
-                            <div class="meeting-input-group-title"><p>{{ _('会议语言（必填）') }}</p></div>
-                            {{ wtf.form_field(form.lang) }}
+                        {{ wtf.form_field(form.start_date) }}
+                        {{ wtf.form_field(form.end_date) }}
+                    </div>
+                    <div class="meeting-input-group">
+                        <div class="meeting-input-group-title">
+                            <p>{{ _('会议语言（必填）') }}</p>
                         </div>
-                        <div class="meeting-input-group">
-                            <div class="meeting-input-group-title"><p>{{ _('其它会议信息（选填）') }}</p></div>
-                            {{ wtf.form_field(form.url) }}
-                            {{ wtf.form_field(form.short_name) }}
-                            {{ wtf.form_field(form.theme) }}
-                            {{ wtf.form_field(form.theme_EN) }}
-                            {{ wtf.form_field(form.key_words) }}
-                            {{ wtf.form_field(form.key_words_EN) }}
+                        {{ wtf.form_field(form.lang) }}
+                    </div>
+                    <div class="meeting-input-group">
+                        <div class="meeting-input-group-title">
+                            <p>{{ _('其它会议信息（选填）') }}</p>
                         </div>
+                        {{ wtf.form_field(form.url) }}
+                        {{ wtf.form_field(form.short_name) }}
+                        {{ wtf.form_field(form.theme) }}
+                        {{ wtf.form_field(form.theme_EN) }}
+                        {{ wtf.form_field(form.key_words) }}
+                        {{ wtf.form_field(form.key_words_EN) }}
+                    </div>
 
-                        <div class="meeting-input-group">
-                            <div class="meeting-input-group-title"><p>{{ _('联系人信息') }}</p>
-                                </div>
-                            {{ wtf.form_field(form.contact) }}
-                            {{ wtf.form_field(form.email) }}
-                            {{ wtf.form_field(form.phone) }}
+                    <div class="meeting-input-group">
+                        <div class="meeting-input-group-title">
+                            <p>{{ _('联系人信息') }}</p>
                         </div>
-                        <div style="text-align: center;">
-                            {{ wtf.form_field(form.submit,class="btn btn-primary max-auto") }}
-                        </div>
-                        <!--修改日期样式-->
-                        <script type="text/javascript">
-                            $(function () {
-                                $("#start_date,#end_date").attr("autocomplete","off")
+                        {{ wtf.form_field(form.contact) }}
+                        {{ wtf.form_field(form.email) }}
+                        {{ wtf.form_field(form.phone) }}
+                    </div>
+                    <div style="text-align: center;">
+                        {{ wtf.form_field(form.submit,class="btn btn-primary max-auto") }}
+                    </div>
+                    <!--修改日期样式-->
+                    <script type="text/javascript">
+                        $(function () {
+                            $("#start_date,#end_date").attr("autocomplete", "off")
                                 .datepicker({
                                     language: "zh-CN",
                                     clearBtn: true,//清除
@@ -83,55 +108,55 @@
                                     todayBtn: true,//今日按钮
 
                                 })
-                            });
-                        </script>
-                    </form>
-                </div>
-                <div class="col-1"></div>
+                        });
+                    </script>
+                </form>
             </div>
-
+            <div class="col-1"></div>
         </div>
-        <script>
 
-            function validateForm() {
-                var form = document.forms["registerForm"];
+    </div>
+    <script>
 
-                //中文和英文标题至少填一项
-                if (form["title"].value == "" && form["title_EN"].value == "") {
-                    alert("中文和英文标题至少填写一项");
-                    $("#title").attr("placeHolder", "与下一条English Title二选一，至少一条");
-                    $("#title_EN").attr("placeHolder", "Fill in at least one item with the previous one 会议名称");
-                    return false;
-                }
-                //检查地点
-                if(form["city"].value==""
-                    || form["cityId"].value==""
-                    || form["country"].value==""
-                    || form["selector_title"].value==""){
-                    alert("请输入地点（输入后请在下拉框中选择）");
-                    return false;
-                }
+        function validateForm() {
+            var form = document.forms["registerForm"];
 
-                //验证日期
-                var today = new Date();
-                var start_date = new Date(form["start_date"].value);
-                var end_date = new Date(form["end_date"].value);
-                if (start_date < today) {
-                    alert("开始时间已过，请检查日期是否正确");
-                    return false;
-                }
-                if (start_date > end_date) {
-                    alert("开始时间在结束时间之后，请检查日期是否正确");
-                    return false;
-                }
-
-
+            //中文和英文标题至少填一项
+            if (form["title"].value == "" && form["title_EN"].value == "") {
+                alert("中文和英文标题至少填写一项");
+                $("#title").attr("placeHolder", "与下一条English Title二选一，至少一条");
+                $("#title_EN").attr("placeHolder", "Fill in at least one item with the previous one 会议名称");
+                return false;
+            }
+            //检查地点
+            if (form["city"].value == ""
+                || form["cityId"].value == ""
+                || form["country"].value == ""
+                || form["selector_title"].value == "") {
+                alert("请输入地点（输入后请在下拉框中选择）");
+                return false;
             }
 
-            $(function () {
-                $(".control-label").removeClass("col-lg-2");
+            //验证日期
+            var today = new Date();
+            var start_date = new Date(form["start_date"].value);
+            var end_date = new Date(form["end_date"].value);
+            if (start_date < today) {
+                alert("开始时间已过，请检查日期是否正确");
+                return false;
+            }
+            if (start_date > end_date) {
+                alert("开始时间在结束时间之后，请检查日期是否正确");
+                return false;
+            }
 
 
-            });
-        </script>
-{% endblock %}
+        }
+
+        $(function () {
+            $(".control-label").removeClass("col-lg-2");
+
+
+        });
+    </script>
+    {% endblock %}

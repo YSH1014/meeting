@@ -14,12 +14,14 @@ class MeetingRender(ModelFormRender):
         if Country.query.get(form.country.data) is None:
             country = Country(name_EN=form.country.data)
             db.session.add(country)
+            db.session.commit()
         if City.query.get(form.cityId.data) is None:
             city = City(geoId=form.cityId.data,
                         name_EN=form.city.data,
                         country=form.country.data,
                         selector_title=form.selector_title.data)
             db.session.add(city)
+            db.session.commit()
 
         db.session.commit()
 

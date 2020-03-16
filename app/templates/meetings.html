@@ -53,8 +53,8 @@
             ft = $.filtrify("container");
 
 
-            //读取已存储筛选条件，保证返回后与之前内容一致
-            /*
+            //读取已存储筛选条件，保证返回后与之前内容一致(存储还没写好)
+            
             initConditions = {
                 year: [],
                 month: [],
@@ -73,7 +73,7 @@
                 localStorage.setItem("lastList", window.location.href);
                 localStorage.setItem("filter", JSON.stringify(initConditions));
             };
-            */
+            
             nadcFilter = new Vue({
                 el: "#filter",
                 data: {
