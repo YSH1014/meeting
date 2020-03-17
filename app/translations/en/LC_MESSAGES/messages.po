@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-03-04 14:57+0800\n"
+"POT-Creation-Date: 2020-03-17 21:08+0800\n"
 "PO-Revision-Date: 2020-02-27 12:58+0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -18,69 +18,70 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.8.0\n"
 
-#: app/forms.py:29
+#: app/forms.py:29 app/templates/registerMeeting.html:30
 msgid "会议名称（中文）"
 msgstr "Meeting Name(Chinese)"
 
-#: app/forms.py:30
+#: app/forms.py:30 app/templates/registerMeeting.html:36
 msgid "会议名称（英文）"
 msgstr "Meeting Name(English)"
 
-#: app/forms.py:42
+#: app/forms.py:38 app/templates/registerMeeting.html:79
 msgid "会议开始时间"
 msgstr "Start Date"
 
-#: app/forms.py:43
+#: app/forms.py:39 app/templates/registerMeeting.html:85
 msgid "会议结束时间"
 msgstr "End Date"
 
-#: app/forms.py:44
+#: app/forms.py:40
 msgid "会议语言"
 msgstr "Language"
 
-#: app/forms.py:48
+#: app/forms.py:44 app/templates/registerMeeting.html:110
 msgid "会议主题（中文）"
 msgstr "Meeting Themes(Chinese)"
 
-#: app/forms.py:49
-msgid "会议主题（英文"
+#: app/forms.py:45
+msgid "会议主题（英文)"
 msgstr "Meeting Themes(English)"
 
-#: app/forms.py:50
+#: app/forms.py:46 app/templates/registerMeeting.html:107
 msgid "会议简称"
 msgstr "Short Name"
 
-#: app/forms.py:51
+#: app/forms.py:47 app/templates/registerMeeting.html:104
 msgid "会议网址"
 msgstr "Website"
 
-#: app/forms.py:52
+#: app/forms.py:48 app/templates/registerMeeting.html:116
 msgid "关键词（中文）"
 msgstr "Keywords(Chinese)"
 
-#: app/forms.py:53
+#: app/forms.py:49 app/templates/registerMeeting.html:120
 msgid "关键词（英文）"
 msgstr "Keywords(English)"
 
-#: app/forms.py:55
+#: app/forms.py:51 app/templates/registerMeeting.html:131
 msgid "联系人姓名"
 msgstr "Name"
 
-#: app/forms.py:57 app/templates/meeting_detail.html:59
+#: app/forms.py:53 app/templates/meeting_detail.html:59
+#: app/templates/registerMeeting.html:139
 msgid "电话"
 msgstr "Phone"
 
-#: app/forms.py:59
+#: app/forms.py:55
 msgid "提交"
 msgstr "Submit"
 
-#: app/forms.py:77 app/templates/meeting_detail.html:42
+#: app/forms.py:73 app/templates/meeting_detail.html:42
 msgid "关键词"
 msgstr "Keywords"
 
-#: app/forms.py:78
+#: app/forms.py:74
 msgid "检索(Search)"
-msgstr ""
+msgstr "Search"
 
 #: app/index_routes.py:38
 msgid "Setting updated."
@@ -102,7 +103,7 @@ msgstr "Submit successfully,please wait for administrator's approval"
 msgid "{}年会议"
 msgstr "{} Meetings"
 
-#: app/routes/meeting_routes.py:243 app/templates/base.html:26
+#: app/routes/meeting_routes.py:246 app/templates/base.html:26
 msgid "新收录会议"
 msgstr "New Meetings"
 
@@ -154,15 +155,15 @@ msgstr "Meeting Information"
 msgid "地点"
 msgstr "Location"
 
-#: app/templates/meeting_detail.html:27 app/templates/meetings.html:309
+#: app/templates/meeting_detail.html:27 app/templates/meetings.html:124
 msgid "会议时间"
 msgstr "Meeting Date"
 
-#: app/templates/meeting_detail.html:30 app/templates/meetings.html:258
+#: app/templates/meeting_detail.html:30 app/templates/meetings.html:86
 msgid "语言"
 msgstr "Language"
 
-#: app/templates/meeting_detail.html:33 app/templates/meetings.html:313
+#: app/templates/meeting_detail.html:33 app/templates/meetings.html:128
 msgid "网址"
 msgstr "Website"
 
@@ -178,7 +179,7 @@ msgstr "Theme"
 msgid "编号"
 msgstr "ID"
 
-#: app/templates/meeting_detail.html:49 app/templates/registerMeeting.html:69
+#: app/templates/meeting_detail.html:49 app/templates/registerMeeting.html:129
 msgid "联系人信息"
 msgstr "Contact information"
 
@@ -222,57 +223,69 @@ msgstr "Out due"
 msgid "返回列表"
 msgstr "Return to List"
 
-#: app/templates/meetings.html:179
-msgid "筛选会议"
-msgstr "Filter Meetings"
-
-#: app/templates/meetings.html:184
+#: app/templates/meetings.html:82
 msgid "年份"
 msgstr "Year"
 
-#: app/templates/meetings.html:201
+#: app/templates/meetings.html:83
 msgid "月份"
 msgstr "Month"
 
-#: app/templates/meetings.html:218
+#: app/templates/meetings.html:84
 msgid "国家"
 msgstr "Country"
 
-#: app/templates/meetings.html:238
+#: app/templates/meetings.html:85
 msgid "城市"
 msgstr "City"
 
-#: app/templates/meetings.html:275
+#: app/templates/meetings.html:87
+msgid "筛选会议"
+msgstr "Filter Meetings"
+
+#: app/templates/meetings.html:88
 msgid "重置条件"
 msgstr "Reset Conditions"
 
-#: app/templates/meetings.html:311 app/templates/registerMeeting.html:31
+#: app/templates/meetings.html:126 app/templates/registerMeeting.html:45
 msgid "会议地点"
 msgstr "Location"
 
-#: app/templates/meetings.html:316
+#: app/templates/meetings.html:131
 msgid "最近更新"
 msgstr "Last Update"
 
-#: app/templates/meetings.html:322
+#: app/templates/meetings.html:137
 msgid "更多详情"
 msgstr "More Details"
 
-#: app/templates/registerMeeting.html:25
+#: app/templates/registerMeeting.html:27
 msgid "会议名称（中英文至少填一项）"
 msgstr "Meeting Name (Fill in at least one item in Chinese or English)"
 
 #: app/templates/registerMeeting.html:47
+msgid "设为待定"
+msgstr "Set As Undetermind"
+
+#: app/templates/registerMeeting.html:68
+msgid "待定"
+msgstr "Undetermind"
+
+#: app/templates/registerMeeting.html:76
 msgid "会议时间（必填）"
 msgstr "Meeting Date(Data Required)"
 
-#: app/templates/registerMeeting.html:53
+#: app/templates/registerMeeting.html:94
 msgid "会议语言（必填）"
 msgstr "Meeting Language(Data Required)"
 
-#: app/templates/registerMeeting.html:58
+#: app/templates/registerMeeting.html:102
 msgid "其它会议信息（选填）"
 msgstr "Other Meeting Information (Optional)"
+
+#: app/templates/registerMeeting.html:113
+msgid "会议主题（英文）"
+msgstr "Meeting Themes( English)"
 
 #: app/templates/search_meetings.html:4
 msgid "会议检索"
@@ -322,17 +335,17 @@ msgstr "Admin Menu"
 msgid "查看待审核会议"
 msgstr "View Awaiting Review Meetings"
 
-#: env/lib/python3.7/site-packages/flask_wtf/file.py:51
+#: env/lib/python3.7/site-packages/flask_wtf/file.py:50
 #: env/lib/python3.7/site-packages/wtforms/validators.py:205
 #: env/lib/python3.7/site-packages/wtforms/validators.py:245
 msgid "This field is required."
 msgstr ""
 
-#: env/lib/python3.7/site-packages/flask_wtf/file.py:85
+#: env/lib/python3.7/site-packages/flask_wtf/file.py:83
 msgid "File does not have an approved extension: {extensions}"
 msgstr ""
 
-#: env/lib/python3.7/site-packages/flask_wtf/file.py:90
+#: env/lib/python3.7/site-packages/flask_wtf/file.py:88
 msgid "File does not have an approved extension."
 msgstr ""
 

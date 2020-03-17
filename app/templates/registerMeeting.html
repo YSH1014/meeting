@@ -26,13 +26,25 @@
                         <div class="meeting-input-group-title">
                             <p>{{ _('会议名称（中英文至少填一项）')}}</p>
                         </div>
-                        {{ wtf.form_field(form.title) }}
-                        {{ wtf.form_field(form.title_EN) }}
+                        <div class="form-group ">
+                            <label class="control-label" for="title">{{_('会议名称（中文）')}}</label>
+
+                            {{form.title(class='form-control')}}
+
+                        </div>
+                        <div class="form-group ">
+                            <label class="control-label" for="title_EN">{{_('会议名称（英文）')}}</label>
+
+                            {{form.title_EN(class='form-control')}}
+
+                        </div>
+
                     </div>
                     <div class="meeting-input-group">
                         <div class="meeting-input-group-title">
                             <p>{{ _('会议地点') }}
-                                <input type="button" id='undetermind'  class="btn-sm btn-outline-info" value={{_('设为待定')}} />
+                                <input type="button" id='undetermind' class="btn-sm btn-outline-info"
+                                    value="{{_('设为待定')}}"" />
                             </p>
                         </div>
                         <input type="text" id="cityAutoComplete" autocomplete="off"
@@ -45,15 +57,15 @@
                                 document.forms["registerForm"].city.value = value.name;
                                 document.forms["registerForm"].country.value = value.country;
                                 document.forms["registerForm"].selector_title.value = value.title;
-                                
+
                             });
-                            $("#undetermind").click(function(){
-                                
+                            $("#undetermind").click(function () {
+
                                 document.forms["registerForm"].cityId.value = -1;
                                 document.forms["registerForm"].city.value = 'undetermind';
                                 document.forms["registerForm"].country.value = 'undetermind';
                                 document.forms["registerForm"].selector_title.value = 'undetermind';
-                                document.forms["registerForm"].cityAutoComplete.value="{{_('待定')}}";
+                                document.forms["registerForm"].cityAutoComplete.value = "{{_('待定')}}";
                             }
                             );
                             $('#cityAutoComplete').addClass("form-control");
@@ -63,34 +75,72 @@
                         <div class="meeting-input-group-title">
                             <p>{{ _('会议时间（必填）') }}</p>
                         </div>
-                        {{ wtf.form_field(form.start_date) }}
-                        {{ wtf.form_field(form.end_date) }}
+                        <div class="form-group  required"><label class="control-label"
+                                for="start_date">{{_('会议开始时间')}}</label>
+
+                            {{form.start_date(class='form-control')}}
+
+                        </div>
+                        <div class="form-group  required"><label class="control-label"
+                                for="end_date">{{_('会议结束时间')}}</label>
+
+                            {{form.end_date(class='form-control')}}
+
+                        </div>
+
                     </div>
                     <div class="meeting-input-group">
                         <div class="meeting-input-group-title">
                             <p>{{ _('会议语言（必填）') }}</p>
                         </div>
-                        {{ wtf.form_field(form.lang) }}
+                        {{form.lang(class='form-control')}}
                     </div>
+
+                    
                     <div class="meeting-input-group">
                         <div class="meeting-input-group-title">
                             <p>{{ _('其它会议信息（选填）') }}</p>
                         </div>
-                        {{ wtf.form_field(form.url) }}
-                        {{ wtf.form_field(form.short_name) }}
-                        {{ wtf.form_field(form.theme) }}
-                        {{ wtf.form_field(form.theme_EN) }}
-                        {{ wtf.form_field(form.key_words) }}
-                        {{ wtf.form_field(form.key_words_EN) }}
+                        <div class="form-group "><label class="control-label" for="url">{{_('会议网址')}}</label>
+                            {{form.url(class='form-control')}}
+                        </div>
+                        <div class="form-group "><label class="control-label" for="short_name">{{_('会议简称')}}</label>
+                            {{form.short_name(class='form-control')}}
+                        </div>
+                        <div class="form-group "><label class="control-label" for="theme">{{_('会议主题（中文）')}}</label>
+                            {{form.theme(class='form-control')}}
+                        </div>
+                        <div class="form-group "><label class="control-label" for="theme_EN">{{_('会议主题（英文）')}}</label>
+                            {{form.theme_EN(class='form-control')}}
+                        </div>
+                        <div class="form-group "><label class="control-label" for="key_words">{{_('关键词（中文）')}}</label>
+                            {{form.key_words(class='form-control')}}
+                        </div>
+                        <div class="form-group "><label class="control-label"
+                                for="key_words_EN">{{_('关键词（英文）')}}</label>
+                            {{form.key_words_EN(class='form-control')}}
+                        </div>
+
                     </div>
+
 
                     <div class="meeting-input-group">
                         <div class="meeting-input-group-title">
                             <p>{{ _('联系人信息') }}</p>
                         </div>
-                        {{ wtf.form_field(form.contact) }}
-                        {{ wtf.form_field(form.email) }}
-                        {{ wtf.form_field(form.phone) }}
+                        <div class="form-group "><label class="control-label" for="contact">{{_('联系人姓名')}}</label>
+
+                            {{form.contact(class='form-control')}}
+                        </div>
+                        <div class="form-group "><label class="control-label" for="email">Email</label>
+
+                            {{form.email(class='form-control')}}
+                        </div>
+                        <div class="form-group "><label class="control-label" for="phone">{{_('电话')}}</label>
+                            {{form.phone(class='form-control')}}
+                        </div>
+
+                        
                     </div>
                     <div style="text-align: center;">
                         {{ wtf.form_field(form.submit,class="btn btn-primary max-auto") }}
