@@ -7,7 +7,7 @@ from app import db
 class MeetingRender(ModelFormRender):
     def __init__(self):
         super(self.__class__, self).__init__(Meeting, RegisterMeetingForm,
-                                             ["location", "location_EN", "lang", 'city', 'country','selector_title'])
+                                             ["cityId", "lang", 'city', 'country','selector_title'])
 
     def fix_f2m(self, model, form):
 
@@ -26,6 +26,7 @@ class MeetingRender(ModelFormRender):
         db.session.commit()
 
         # 处理语言
+        model.cityId = form.cityId.data
         model.lang = MeetingLanguageType.from_int(form.lang.data)
 
     def fix_m2f(self, model, form):
