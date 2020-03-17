@@ -51,7 +51,7 @@
     <script>
         $(function () {
             ft = $.filtrify("container");
-
+            
 
             //读取已存储筛选条件，保证返回后与之前内容一致(存储还没写好)
             
@@ -70,7 +70,7 @@
 
             }
             window.onbeforeunload = function () {
-                localStorage.setItem("lastList", window.location.href);
+                
                 localStorage.setItem("filter", JSON.stringify(initConditions));
             };
             
@@ -95,6 +95,9 @@
     </script>
 </div>
 {% endif %}
+<script>
+    localStorage.setItem("lastList", window.location.href);
+</script>
 
 
 <div id="container">
