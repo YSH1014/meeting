@@ -251,6 +251,14 @@ var TeleportAutocomplete = (function () {
 
       this._query = this.el.value;
       this.fetchResults(function () {
+        if ("待定undetermind".indexOf(_this2.query) != -1){
+          _this2.results.push({
+            title: "undetermind(待定)",
+            geonameId:-1,
+            country:"undetermind",
+            name:"undetermind",
+          })
+        }
         return _this2.renderList();
       });
     }
