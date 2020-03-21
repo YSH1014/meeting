@@ -51,10 +51,10 @@
     <script>
         $(function () {
             ft = $.filtrify("container");
-            
+
 
             //读取已存储筛选条件，保证返回后与之前内容一致(存储还没写好)
-            
+
             initConditions = {
                 year: [],
                 month: [],
@@ -64,16 +64,16 @@
             };
             if (window.location.href.indexOf("withStoredFilter") !== -1) {
                 var filter_stored = localStorage.getItem("filter");
-                if (filter_stored !=null){
+                if (filter_stored != null) {
                     initConditions = JSON.parse(filter_stored);
                 }
 
             }
             window.onbeforeunload = function () {
-                
+
                 localStorage.setItem("filter", JSON.stringify(initConditions));
             };
-            
+
             nadcFilter = new Vue({
                 el: "#filter",
                 data: {
@@ -85,13 +85,13 @@
                         "city": "{{ _("城市") }}",
                         "language": "{{ _("语言") }}",
                         "title": "{{ _("筛选会议") }}",
-                        "reset": "{{ _("重置条件") }}", 
+                        "reset": "{{ _("重置条件") }}",
                     },
                     initConditions: initConditions
                 },
             });
         });
-        
+
     </script>
 </div>
 {% endif %}
@@ -102,9 +102,16 @@
 
 <div id="container">
     {% for meeting in meetings %}
-    <div class="card meetings-card" data-Year="{{ meeting.start_date.year }}"
-        data-Month="{{ meeting.start_date.month }}" data-Country="{{ meeting.get_country(get_locale()) }}"
-        data-City="{{ meeting.get_city(get_locale()) }}" data-Language="{{ meeting.lang }}">
+    <div class="card meetings-card"
+    {% if meeting.start_date %}
+        data-Year="{{meeting.start_date.year}}"
+        data-Month="{{ meeting.start_date.month}}"
+    {% else %}
+        data-Year="{{_('待定')}}"
+        data-Month="{{ _('待定')}}"
+    {% endif %}
+        data-Country="{{ meeting.get_country(get_locale()) }}" data-City="{{ meeting.get_city(get_locale()) }}"
+        data-Language="{{ meeting.lang }}">
 
         <div class="card-header" style="text-shadow: 2px 2px 2px #ffff00;">
             <a href="{{ url_for('meeting_detail',id=meeting.id) }}">
@@ -122,7 +129,7 @@
 
                 <div class="row meetings-detail">
                     <div class="col-sm-2">{{ _('会议时间') }}</div>
-                    <div class="col-sm-10">{{ meeting.start_date }} - {{ meeting.end_date }}</div>
+                    <div class="col-sm-10">{{ meeting.start_date or _('待定') }} - {{ meeting.end_date or _('待定') }}</div>
                     <div class="col-sm-2">{{ _('会议地点') }}</div>
                     <div class="col-sm-10">{{ meeting.get_location(get_locale()) }}</div>
                     <div class="col-sm-2">{{ _('网址') }}</div>

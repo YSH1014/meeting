@@ -11,6 +11,11 @@ class MeetingRender(ModelFormRender):
 
     def fix_f2m(self, model, form):
 
+        if form.start_date.data == "":
+            model.start_date=None
+        if form.end_date.data == "":
+            model.end_date=None
+
         if Country.query.get(form.country.data) is None:
             country = Country(name_EN=form.country.data)
             db.session.add(country)
@@ -28,6 +33,8 @@ class MeetingRender(ModelFormRender):
         # 处理语言
         model.cityId = form.cityId.data
         model.lang = MeetingLanguageType.from_int(form.lang.data)
+
+        
 
     def fix_m2f(self, model, form):
         city = City.query.get(model.cityId)

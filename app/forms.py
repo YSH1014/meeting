@@ -35,8 +35,8 @@ class RegisterMeetingForm(FlaskForm):
     city = HiddenField(validators=[DataRequired()])
     selector_title = HiddenField(validators=[DataRequired()])
 
-    start_date = DateField(_('会议开始时间'), validators=[DataRequired()])
-    end_date = DateField(_('会议结束时间'), validators=[DataRequired()])
+    start_date = StringField(_('会议开始时间'))
+    end_date = StringField(_('会议结束时间'))
     lang = SelectField(_('会议语言'), choices=[(1, '中文'), (2, 'English'), (0, '其他(Other)')], coerce=int,
                        validators=[DataRequired()])
 

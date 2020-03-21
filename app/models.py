@@ -111,8 +111,8 @@ class Meeting(db.Model):
     location_EN = db.Column(db.String(200))
     #------------
     cityId = db.Column(db.Integer,db.ForeignKey("city.geoId"))
-    start_date = db.Column(db.Date, nullable=False)
-    end_date = db.Column(db.Date, nullable=False)
+    start_date = db.Column(db.Date)
+    end_date = db.Column(db.Date)
     lang = db.Column(db.Enum(MeetingLanguageType))
 
     # 选填信息

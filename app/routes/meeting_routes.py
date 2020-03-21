@@ -99,13 +99,21 @@ def query_meetings(**conditions):
     :param conditions: start_date,end_date,status,register,keywords,lang,order_by
     :return:
     '''
-    start_date = conditions.get('start_date', date.today())
+    start_date = conditions.get('start_date')
 
     # 建立query
     query = Meeting.query
 
     # 处理开始时间
-    query = query.filter(Meeting.start_date >= start_date)
+    if start_date:
+        query = query.filter(Meeting.start_date >= start_date)
+    else:
+        query = query.filter(
+            or_(
+                Meeting.start_date == None,
+                Meeting.start_date >= date.today()
+            )
+        )
 
     # 处理end_date
     end_date = conditions.get('end_date')
@@ -163,6 +171,7 @@ def meetings_year(year):
 @login_redirect_required
 def meetings():
     try:
+        conditions = {}
         query_id = request.args.get('id')
         if query_id:
             return redirect(url_for('meeting_detail', id=query_id))
@@ -174,12 +183,14 @@ def meetings():
         else:
             start_date = date.today()
 
-        query = Meeting.query.filter(Meeting.start_date >= start_date)
+        # query = Meeting.query.filter(Meeting.start_date >= start_date)
+        conditions['start_date'] = start_date
         # 处理　end_date
         end_date = request.args.get('end_date')
         if end_date:
             end_date = datetime.strptime(end_date, '%Y-%m-%d').date()
-            query = query.filter(Meeting.start_date <= end_date)
+            # query = query.filter(Meeting.start_date <= end_date)
+            conditions['end_date'] = end_date
 
         # 处理status
         # 如果是管理员，则读取该参数，否则用approved
@@ -187,28 +198,32 @@ def meetings():
             #           if current_user.is_authenticated and current_user.role == RoleType.ADMIN else \
         #          'APPROVED'
 
-        query = query.filter(Meeting.status == MeetingStatusType.__members__[status])
+        # query = query.filter(Meeting.status == MeetingStatusType.__members__[status])
+        conditions['status'] = status
 
         # 处理 register
         register = request.args.get('register')
         if register:
-            query = query.filter(Meeting.register == register)
+            # query = query.filter(Meeting.register == register)
+            conditions['register'] = register
         # 处理search_keywords
         search_keywords = request.args.get('key_words')
         if search_keywords:
             search_keywords = "%{}%".format(search_keywords)
-            query = query.filter(or_(
-                Meeting.title.ilike(search_keywords),
-                Meeting.title_EN.ilike(search_keywords),
-                Meeting.theme.ilike(search_keywords),
-                Meeting.theme_EN.ilike(search_keywords),
-                Meeting.key_words.ilike(search_keywords),
-                Meeting.key_words_EN.ilike(search_keywords),
-                Meeting.short_name.ilike(search_keywords)
-            ))
+            # query = query.filter(or_(
+            #     Meeting.title.ilike(search_keywords),
+            #     Meeting.title_EN.ilike(search_keywords),
+            #     Meeting.theme.ilike(search_keywords),
+            #     Meeting.theme_EN.ilike(search_keywords),
+            #     Meeting.key_words.ilike(search_keywords),
+            #     Meeting.key_words_EN.ilike(search_keywords),
+            #     Meeting.short_name.ilike(search_keywords)
+            # ))
+            conditions['keywords'] = search_keywords
 
-        all_meetings = query.order_by(Meeting.start_date).all()
-        return render_template('meetings.html', meetings=all_meetings,show_filter=False)
+        # all_meetings = query.order_by(Meeting.start_date).all()
+        all_meetings = query_meetings(**conditions)
+        return render_template('meetings.html', meetings=all_meetings, show_filter=False)
 
 
 
