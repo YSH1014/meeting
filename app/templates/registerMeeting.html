@@ -74,6 +74,20 @@
                         <div class="meeting-input-group-title">
                             <p>{{ _('会议时间（必填）') }}</p>
                         </div>
+                        <div class="form-group  required">
+                            <input type='checkbox' id="isUndetermind"><label class="control_label" for="isUndetermind">{{_('待定')}}</label>
+                            <script>
+                                $("#isUndetermind").change(function(){
+                                    if(this.checked){
+                                        $("#start_date").val('').attr("required",false).parent().hide();
+                                        $("#end_date").val('').attr("required",false).parent().hide();
+                                    }else {
+                                        $("#start_date").attr("required",true).parent().show();
+                                        $("#end_date").attr("required",true).parent().show();
+                                    }
+                                })
+                            </script>
+                        </div>
                         <div class="form-group  required"><label class="control-label"
                                 for="start_date">{{_('会议开始时间')}}</label>
 
@@ -187,16 +201,18 @@
             }
 
             //验证日期
-            var today = new Date();
-            var start_date = new Date(form["start_date"].value);
-            var end_date = new Date(form["end_date"].value);
-            if (start_date < today) {
-                alert("开始时间已过，请检查日期是否正确");
-                return false;
-            }
-            if (start_date > end_date) {
-                alert("开始时间在结束时间之后，请检查日期是否正确");
-                return false;
+            if(!form["isUndetermind"].checked){
+                var today = new Date();
+                var start_date = new Date(form["start_date"].value);
+                var end_date = new Date(form["end_date"].value);
+                if (start_date < today) {
+                    alert("开始时间已过，请检查日期是否正确");
+                    return false;
+                }
+                if (start_date > end_date) {
+                    alert("开始时间在结束时间之后，请检查日期是否正确");
+                    return false;
+                }
             }
 
 

@@ -104,13 +104,13 @@
     {% for meeting in meetings %}
     <div class="card meetings-card"
     {% if meeting.start_date %}
-        data-Year="{{meeting.start_date.year}}"
         data-Month="{{ meeting.start_date.month}}"
+        data-Year="{{meeting.start_date.year}}"
     {% else %}
-        data-Year="{{_('待定')}}"
         data-Month="{{ _('待定')}}"
+        data-Year="{{_('待定')}}"
     {% endif %}
-        data-Country="{{ meeting.get_country(get_locale()) }}" data-City="{{ meeting.get_city(get_locale()) }}"
+        data-City="{{ meeting.get_city(get_locale()) }}" data-Country="{{ meeting.get_country(get_locale()) }}" 
         data-Language="{{ meeting.lang }}">
 
         <div class="card-header" style="text-shadow: 2px 2px 2px #ffff00;">
