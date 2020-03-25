@@ -17,6 +17,9 @@ from app.index_routes import get_locale
 @user_required
 @login_redirect_required
 def register_meeting():
+    '''
+    添加会议，信息从form获取
+    '''
     form = RegisterMeetingForm(email=current_user.email,
                                phone=current_user.phone,
                                contact=current_user.username)
@@ -42,6 +45,9 @@ def register_meeting():
 @user_required
 @login_redirect_required
 def update_meeting_form():
+    '''
+    更新会议
+    '''
     id = request.args.get('id', None)
     if not id:
         return redirect(url_for('error', message='更新会议需要id作为参数'))
@@ -52,10 +58,10 @@ def update_meeting_form():
     if meeting.status != MeetingStatusType.APPROVED:
         return redirect(url_for('error', message='会议审核中，无法修改'))
     # 去掉了权限审核页面，任何注册用户都可以修改
-    '''
-    if (meeting.register != current_user.id):
-        return redirect(url_for('error', message='您不是该会议注册者，无法修改'))
-        '''
+    
+    # if (meeting.register != current_user.id):
+    #     return redirect(url_for('error', message='您不是该会议注册者，无法修改'))
+        
     # 将原有属性填入新表单
     # form = RegisterMeetingForm(
     #     title=meeting.title,
@@ -95,7 +101,7 @@ def update_meeting_form():
 # 根据条件查询会议列表
 def query_meetings(**conditions):
     '''
-
+    根据条件查询会议列表
     :param conditions: start_date,end_date,status,register,keywords,lang,order_by
     :return:
     '''
@@ -161,7 +167,10 @@ def query_meetings(**conditions):
 
 
 @app.route("/meetings_year/<int:year>")
-def meetings_year(year):
+def meetings_year(year: int):
+    '''
+    根据年份返回当年所有会议
+    '''
     title = _("{}年会议").format(year)
     meeting_list = query_meetings(start_date=date(year,1,1),end_date=date(year,12,31))
     return render_template('meetings.html', title=title, meetings=meeting_list,show_filter=True)
@@ -170,6 +179,9 @@ def meetings_year(year):
 @app.route("/meetings", methods=['get', 'post'])
 @login_redirect_required
 def meetings():
+    '''
+    根据request的参数（查询条件）返回会议列表页
+    '''
     try:
         conditions = {}
         query_id = request.args.get('id')
@@ -236,6 +248,9 @@ def meetings():
 @app.route("/meetingInfo/<int:id>")
 @login_redirect_required
 def meeting_detail(id):
+    '''
+    会议详情
+    '''
     meeting = Meeting.query.get(id)
     if not meeting:
         return redirect(url_for('error', message='会议不存在'))

@@ -12,6 +12,9 @@ from app.security import admin_required, user_required, root_required, login_red
 @root_required
 @login_redirect_required
 def users():
+    '''
+    返回用户列表页
+    '''
     allusers = User.query.all()
     return render_template('users.html', users=allusers)
 
@@ -20,6 +23,9 @@ def users():
 @root_required
 @login_redirect_required
 def set_as_admin(id):
+    '''
+    将该用户设为管理员
+    '''
     User.query.get(id).role = RoleType.ADMIN
     db.session.commit()
     return redirect( url_for('users'))
@@ -29,6 +35,9 @@ def set_as_admin(id):
 @root_required
 @login_redirect_required
 def cancel_admin(id):
+    '''
+    取消管理员身份
+    '''
     User.query.get(id).role = RoleType.USER
     db.session.commit()
     return redirect( url_for('users'))
