@@ -24,7 +24,7 @@ class MeetingLanguageType(Enum):
     OTHER = auto()
 
     @staticmethod
-    def from_int(x: int) -> MeetingLanguageType:
+    def from_int(x: int) :
         '''
             从整形变量得到MeetingLanguageType
         '''
@@ -38,7 +38,7 @@ class MeetingLanguageType(Enum):
             pass
 
     @staticmethod
-    def to_int(x: MeetingLanguageType) -> int:
+    def to_int(x) -> int:
         if x == MeetingLanguageType.CN:
             return 1
         elif x == MeetingLanguageType.EN:

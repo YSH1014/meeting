@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-03-17 21:08+0800\n"
+"POT-Creation-Date: 2020-03-25 21:39+0800\n"
 "PO-Revision-Date: 2020-02-27 12:58+0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -26,11 +26,11 @@ msgstr "Meeting Name(Chinese)"
 msgid "会议名称（英文）"
 msgstr "Meeting Name(English)"
 
-#: app/forms.py:38 app/templates/registerMeeting.html:79
+#: app/forms.py:38 app/templates/registerMeeting.html:92
 msgid "会议开始时间"
 msgstr "Start Date"
 
-#: app/forms.py:39 app/templates/registerMeeting.html:85
+#: app/forms.py:39 app/templates/registerMeeting.html:98
 msgid "会议结束时间"
 msgstr "End Date"
 
@@ -38,36 +38,36 @@ msgstr "End Date"
 msgid "会议语言"
 msgstr "Language"
 
-#: app/forms.py:44 app/templates/registerMeeting.html:110
+#: app/forms.py:44 app/templates/registerMeeting.html:123
 msgid "会议主题（中文）"
 msgstr "Meeting Themes(Chinese)"
 
 #: app/forms.py:45
-msgid "会议主题（英文)"
-msgstr "Meeting Themes(English)"
+msgid "会议主题（英文"
+msgstr ""
 
-#: app/forms.py:46 app/templates/registerMeeting.html:107
+#: app/forms.py:46 app/templates/registerMeeting.html:120
 msgid "会议简称"
 msgstr "Short Name"
 
-#: app/forms.py:47 app/templates/registerMeeting.html:104
+#: app/forms.py:47 app/templates/registerMeeting.html:117
 msgid "会议网址"
 msgstr "Website"
 
-#: app/forms.py:48 app/templates/registerMeeting.html:116
+#: app/forms.py:48 app/templates/registerMeeting.html:129
 msgid "关键词（中文）"
 msgstr "Keywords(Chinese)"
 
-#: app/forms.py:49 app/templates/registerMeeting.html:120
+#: app/forms.py:49 app/templates/registerMeeting.html:133
 msgid "关键词（英文）"
 msgstr "Keywords(English)"
 
-#: app/forms.py:51 app/templates/registerMeeting.html:131
+#: app/forms.py:51 app/templates/registerMeeting.html:144
 msgid "联系人姓名"
 msgstr "Name"
 
-#: app/forms.py:53 app/templates/meeting_detail.html:59
-#: app/templates/registerMeeting.html:139
+#: app/forms.py:53 app/templates/meeting_detail.html:68
+#: app/templates/registerMeeting.html:152
 msgid "电话"
 msgstr "Phone"
 
@@ -75,7 +75,7 @@ msgstr "Phone"
 msgid "提交"
 msgstr "Submit"
 
-#: app/forms.py:73 app/templates/meeting_detail.html:42
+#: app/forms.py:73 app/templates/meeting_detail.html:51
 msgid "关键词"
 msgstr "Keywords"
 
@@ -87,23 +87,23 @@ msgstr "Search"
 msgid "Setting updated."
 msgstr ""
 
-#: app/routes/meeting_routes.py:33
+#: app/routes/meeting_routes.py:36
 msgid "提交成功，请等待管理员审核"
 msgstr "Submit successfully,please wait for administrator's approval"
 
-#: app/routes/meeting_routes.py:36
+#: app/routes/meeting_routes.py:39
 msgid "提交失败，请检查信息是否完整"
 msgstr "Submit fail,please check information"
 
-#: app/routes/meeting_routes.py:88
+#: app/routes/meeting_routes.py:94
 msgid "修改成功，等待管理员再次审核"
 msgstr "Submit successfully,please wait for administrator's approval"
 
-#: app/routes/meeting_routes.py:157
+#: app/routes/meeting_routes.py:174
 msgid "{}年会议"
 msgstr "{} Meetings"
 
-#: app/routes/meeting_routes.py:246 app/templates/base.html:26
+#: app/routes/meeting_routes.py:276 app/templates/base.html:26
 msgid "新收录会议"
 msgstr "New Meetings"
 
@@ -133,7 +133,7 @@ msgstr "Search Meetings"
 
 #: app/templates/base.html:53
 msgid "会议信息提交"
-msgstr "Submit New Meeting"
+msgstr "New Meeting Submission"
 
 #: app/templates/base.html:60
 msgid "相关链接"
@@ -155,71 +155,77 @@ msgstr "Meeting Information"
 msgid "地点"
 msgstr "Location"
 
-#: app/templates/meeting_detail.html:27 app/templates/meetings.html:124
+#: app/templates/meeting_detail.html:27 app/templates/meetings.html:131
 msgid "会议时间"
 msgstr "Meeting Date"
 
-#: app/templates/meeting_detail.html:30 app/templates/meetings.html:86
+#: app/templates/meeting_detail.html:33 app/templates/meetings.html:110
+#: app/templates/meetings.html:111 app/templates/meetings.html:132
+#: app/templates/registerMeeting.html:67
+msgid "待定"
+msgstr "Undetermind"
+
+#: app/templates/meeting_detail.html:39 app/templates/meetings.html:86
 msgid "语言"
 msgstr "Language"
 
-#: app/templates/meeting_detail.html:33 app/templates/meetings.html:128
+#: app/templates/meeting_detail.html:42 app/templates/meetings.html:135
 msgid "网址"
 msgstr "Website"
 
-#: app/templates/meeting_detail.html:36
+#: app/templates/meeting_detail.html:45
 msgid "简称"
 msgstr "Short name"
 
-#: app/templates/meeting_detail.html:39
+#: app/templates/meeting_detail.html:48
 msgid "主题"
 msgstr "Theme"
 
-#: app/templates/meeting_detail.html:45
+#: app/templates/meeting_detail.html:54
 msgid "编号"
 msgstr "ID"
 
-#: app/templates/meeting_detail.html:49 app/templates/registerMeeting.html:129
+#: app/templates/meeting_detail.html:58 app/templates/registerMeeting.html:142
 msgid "联系人信息"
 msgstr "Contact information"
 
-#: app/templates/meeting_detail.html:53
+#: app/templates/meeting_detail.html:62
 msgid "姓名"
 msgstr "Name"
 
-#: app/templates/meeting_detail.html:70
+#: app/templates/meeting_detail.html:79
 msgid "会议信息有误？提交更新"
 msgstr "Information incorrect? Submit update!"
 
-#: app/templates/meeting_detail.html:77
+#: app/templates/meeting_detail.html:86
 msgid "状态"
 msgstr "Status"
 
-#: app/templates/meeting_detail.html:80 app/templates/user_menu.html:34
+#: app/templates/meeting_detail.html:89 app/templates/user_menu.html:34
 msgid "待审核"
 msgstr "Awaiting review"
 
-#: app/templates/meeting_detail.html:82
+#: app/templates/meeting_detail.html:91
 msgid "通过审核"
 msgstr "Approve"
 
-#: app/templates/meeting_detail.html:86
+#: app/templates/meeting_detail.html:95
 msgid "不通过"
 msgstr "Unapprove"
 
-#: app/templates/meeting_detail.html:89 app/templates/user_menu.html:38
+#: app/templates/meeting_detail.html:98 app/templates/user_menu.html:38
 msgid "已通过"
 msgstr "Approved"
 
-#: app/templates/meeting_detail.html:91 app/templates/user_menu.html:36
+#: app/templates/meeting_detail.html:100 app/templates/user_menu.html:36
 msgid "未通过"
 msgstr "Unapproved"
 
-#: app/templates/meeting_detail.html:93 app/templates/user_menu.html:40
+#: app/templates/meeting_detail.html:102 app/templates/user_menu.html:40
 msgid "已过期"
 msgstr "Out due"
 
-#: app/templates/meeting_detail.html:106
+#: app/templates/meeting_detail.html:115
 msgid "返回列表"
 msgstr "Return to List"
 
@@ -247,15 +253,15 @@ msgstr "Filter Meetings"
 msgid "重置条件"
 msgstr "Reset Conditions"
 
-#: app/templates/meetings.html:126 app/templates/registerMeeting.html:45
+#: app/templates/meetings.html:133 app/templates/registerMeeting.html:45
 msgid "会议地点"
 msgstr "Location"
 
-#: app/templates/meetings.html:131
+#: app/templates/meetings.html:138
 msgid "最近更新"
 msgstr "Last Update"
 
-#: app/templates/meetings.html:137
+#: app/templates/meetings.html:144
 msgid "更多详情"
 msgstr "More Details"
 
@@ -263,27 +269,23 @@ msgstr "More Details"
 msgid "会议名称（中英文至少填一项）"
 msgstr "Meeting Name (Fill in at least one item in Chinese or English)"
 
-#: app/templates/registerMeeting.html:47
-msgid "设为待定"
-msgstr "Set As Undetermind"
-
-#: app/templates/registerMeeting.html:68
-msgid "待定"
-msgstr "Undetermind"
-
-#: app/templates/registerMeeting.html:76
+#: app/templates/registerMeeting.html:75
 msgid "会议时间（必填）"
 msgstr "Meeting Date(Data Required)"
 
-#: app/templates/registerMeeting.html:94
+#: app/templates/registerMeeting.html:78
+msgid "设为待定"
+msgstr "To be Undetermind"
+
+#: app/templates/registerMeeting.html:107
 msgid "会议语言（必填）"
 msgstr "Meeting Language(Data Required)"
 
-#: app/templates/registerMeeting.html:102
+#: app/templates/registerMeeting.html:115
 msgid "其它会议信息（选填）"
 msgstr "Other Meeting Information (Optional)"
 
-#: app/templates/registerMeeting.html:113
+#: app/templates/registerMeeting.html:126
 msgid "会议主题（英文）"
 msgstr "Meeting Themes( English)"
 
@@ -335,181 +337,210 @@ msgstr "Admin Menu"
 msgid "查看待审核会议"
 msgstr "View Awaiting Review Meetings"
 
-#: env/lib/python3.7/site-packages/flask_wtf/file.py:50
-#: env/lib/python3.7/site-packages/wtforms/validators.py:205
-#: env/lib/python3.7/site-packages/wtforms/validators.py:245
+#: env/Lib/site-packages/flask_wtf/file.py:50
+#: env/Lib/site-packages/wtforms/validators.py:205
+#: env/Lib/site-packages/wtforms/validators.py:245
 msgid "This field is required."
 msgstr ""
 
-#: env/lib/python3.7/site-packages/flask_wtf/file.py:83
+#: env/Lib/site-packages/flask_wtf/file.py:83
 msgid "File does not have an approved extension: {extensions}"
 msgstr ""
 
-#: env/lib/python3.7/site-packages/flask_wtf/file.py:88
+#: env/Lib/site-packages/flask_wtf/file.py:88
 msgid "File does not have an approved extension."
 msgstr ""
 
-#: env/lib/python3.7/site-packages/wtforms/validators.py:58
+#: env/Lib/site-packages/httplib2/__init__.py:470
+#, python-format
+msgid "Content purported to be compressed with %s but failed to decompress."
+msgstr ""
+
+#: env/Lib/site-packages/httplib2/__init__.py:656
+#, python-format
+msgid "Unsupported value for qop: %s."
+msgstr ""
+
+#: env/Lib/site-packages/httplib2/__init__.py:661
+#: env/Lib/site-packages/httplib2/__init__.py:755
+#, python-format
+msgid "Unsupported value for algorithm: %s.algorithm"
+msgstr ""
+
+#: env/Lib/site-packages/httplib2/__init__.py:750
+msgid "The challenge doesn't contain a server nonce, or this one is empty."
+msgstr ""
+
+#: env/Lib/site-packages/httplib2/__init__.py:760
+#, python-format
+msgid "Unsupported value for pw-algorithm: %s.pw-algorithm"
+msgstr ""
+
+#: env/Lib/site-packages/httplib2/__init__.py:1686
+msgid "Redirected but the response is missing a Location: header."
+msgstr ""
+
+#: env/Lib/site-packages/wtforms/validators.py:58
 #, python-format
 msgid "Invalid field name '%s'."
 msgstr ""
 
-#: env/lib/python3.7/site-packages/wtforms/validators.py:66
+#: env/Lib/site-packages/wtforms/validators.py:66
 #, python-format
 msgid "Field must be equal to %(other_name)s."
 msgstr ""
 
-#: env/lib/python3.7/site-packages/wtforms/validators.py:99
+#: env/Lib/site-packages/wtforms/validators.py:99
 #, python-format
 msgid "Field must be at least %(min)d character long."
 msgid_plural "Field must be at least %(min)d characters long."
 msgstr[0] ""
 msgstr[1] ""
 
-#: env/lib/python3.7/site-packages/wtforms/validators.py:102
+#: env/Lib/site-packages/wtforms/validators.py:102
 #, python-format
 msgid "Field cannot be longer than %(max)d character."
 msgid_plural "Field cannot be longer than %(max)d characters."
 msgstr[0] ""
 msgstr[1] ""
 
-#: env/lib/python3.7/site-packages/wtforms/validators.py:105
+#: env/Lib/site-packages/wtforms/validators.py:105
 #, python-format
 msgid "Field must be between %(min)d and %(max)d characters long."
 msgstr ""
 
-#: env/lib/python3.7/site-packages/wtforms/validators.py:141
+#: env/Lib/site-packages/wtforms/validators.py:141
 #, python-format
 msgid "Number must be at least %(min)s."
 msgstr ""
 
-#: env/lib/python3.7/site-packages/wtforms/validators.py:143
+#: env/Lib/site-packages/wtforms/validators.py:143
 #, python-format
 msgid "Number must be at most %(max)s."
 msgstr ""
 
-#: env/lib/python3.7/site-packages/wtforms/validators.py:145
+#: env/Lib/site-packages/wtforms/validators.py:145
 #, python-format
 msgid "Number must be between %(min)s and %(max)s."
 msgstr ""
 
-#: env/lib/python3.7/site-packages/wtforms/validators.py:277
+#: env/Lib/site-packages/wtforms/validators.py:277
 msgid "Invalid input."
 msgstr ""
 
-#: env/lib/python3.7/site-packages/wtforms/validators.py:311
+#: env/Lib/site-packages/wtforms/validators.py:311
 msgid "Invalid email address."
 msgstr ""
 
-#: env/lib/python3.7/site-packages/wtforms/validators.py:352
+#: env/Lib/site-packages/wtforms/validators.py:352
 msgid "Invalid IP address."
 msgstr ""
 
-#: env/lib/python3.7/site-packages/wtforms/validators.py:403
+#: env/Lib/site-packages/wtforms/validators.py:403
 msgid "Invalid Mac address."
 msgstr ""
 
-#: env/lib/python3.7/site-packages/wtforms/validators.py:432
+#: env/Lib/site-packages/wtforms/validators.py:432
 msgid "Invalid URL."
 msgstr ""
 
-#: env/lib/python3.7/site-packages/wtforms/validators.py:452
+#: env/Lib/site-packages/wtforms/validators.py:452
 msgid "Invalid UUID."
 msgstr ""
 
-#: env/lib/python3.7/site-packages/wtforms/validators.py:482
+#: env/Lib/site-packages/wtforms/validators.py:482
 #, python-format
 msgid "Invalid value, must be one of: %(values)s."
 msgstr ""
 
-#: env/lib/python3.7/site-packages/wtforms/validators.py:514
+#: env/Lib/site-packages/wtforms/validators.py:514
 #, python-format
 msgid "Invalid value, can't be any of: %(values)s."
 msgstr ""
 
-#: env/lib/python3.7/site-packages/wtforms/csrf/core.py:98
-#: env/lib/python3.7/site-packages/wtforms/ext/csrf/form.py:47
+#: env/Lib/site-packages/wtforms/csrf/core.py:98
+#: env/Lib/site-packages/wtforms/ext/csrf/form.py:47
 msgid "Invalid CSRF Token"
 msgstr ""
 
-#: env/lib/python3.7/site-packages/wtforms/csrf/session.py:61
-#: env/lib/python3.7/site-packages/wtforms/ext/csrf/session.py:58
+#: env/Lib/site-packages/wtforms/csrf/session.py:61
+#: env/Lib/site-packages/wtforms/ext/csrf/session.py:58
 msgid "CSRF token missing"
 msgstr ""
 
-#: env/lib/python3.7/site-packages/wtforms/csrf/session.py:69
-#: env/lib/python3.7/site-packages/wtforms/ext/csrf/session.py:66
+#: env/Lib/site-packages/wtforms/csrf/session.py:69
+#: env/Lib/site-packages/wtforms/ext/csrf/session.py:66
 msgid "CSRF failed"
 msgstr ""
 
-#: env/lib/python3.7/site-packages/wtforms/csrf/session.py:74
-#: env/lib/python3.7/site-packages/wtforms/ext/csrf/session.py:71
+#: env/Lib/site-packages/wtforms/csrf/session.py:74
+#: env/Lib/site-packages/wtforms/ext/csrf/session.py:71
 msgid "CSRF token expired"
 msgstr ""
 
-#: env/lib/python3.7/site-packages/wtforms/ext/appengine/fields.py:87
-#: env/lib/python3.7/site-packages/wtforms/ext/appengine/fields.py:164
-#: env/lib/python3.7/site-packages/wtforms/ext/appengine/fields.py:166
-#: env/lib/python3.7/site-packages/wtforms/ext/django/fields.py:95
-#: env/lib/python3.7/site-packages/wtforms/ext/sqlalchemy/fields.py:125
-#: env/lib/python3.7/site-packages/wtforms/ext/sqlalchemy/fields.py:127
-#: env/lib/python3.7/site-packages/wtforms/ext/sqlalchemy/fields.py:180
-#: env/lib/python3.7/site-packages/wtforms/ext/sqlalchemy/fields.py:185
-#: env/lib/python3.7/site-packages/wtforms/fields/core.py:475
+#: env/Lib/site-packages/wtforms/ext/appengine/fields.py:87
+#: env/Lib/site-packages/wtforms/ext/appengine/fields.py:164
+#: env/Lib/site-packages/wtforms/ext/appengine/fields.py:166
+#: env/Lib/site-packages/wtforms/ext/django/fields.py:95
+#: env/Lib/site-packages/wtforms/ext/sqlalchemy/fields.py:125
+#: env/Lib/site-packages/wtforms/ext/sqlalchemy/fields.py:127
+#: env/Lib/site-packages/wtforms/ext/sqlalchemy/fields.py:180
+#: env/Lib/site-packages/wtforms/ext/sqlalchemy/fields.py:185
+#: env/Lib/site-packages/wtforms/fields/core.py:475
 msgid "Not a valid choice"
 msgstr ""
 
-#: env/lib/python3.7/site-packages/wtforms/ext/appengine/fields.py:185
+#: env/Lib/site-packages/wtforms/ext/appengine/fields.py:185
 msgid "Not a valid list"
 msgstr ""
 
-#: env/lib/python3.7/site-packages/wtforms/ext/appengine/fields.py:204
+#: env/Lib/site-packages/wtforms/ext/appengine/fields.py:204
 msgid "Not a valid integer list"
 msgstr ""
 
-#: env/lib/python3.7/site-packages/wtforms/ext/dateutil/fields.py:63
+#: env/Lib/site-packages/wtforms/ext/dateutil/fields.py:63
 msgid "Please input a date/time value"
 msgstr ""
 
-#: env/lib/python3.7/site-packages/wtforms/ext/dateutil/fields.py:75
-#: env/lib/python3.7/site-packages/wtforms/ext/dateutil/fields.py:83
+#: env/Lib/site-packages/wtforms/ext/dateutil/fields.py:75
+#: env/Lib/site-packages/wtforms/ext/dateutil/fields.py:83
 msgid "Invalid date/time input"
 msgstr ""
 
-#: env/lib/python3.7/site-packages/wtforms/fields/core.py:468
+#: env/Lib/site-packages/wtforms/fields/core.py:468
 msgid "Invalid Choice: could not coerce"
 msgstr ""
 
-#: env/lib/python3.7/site-packages/wtforms/fields/core.py:501
+#: env/Lib/site-packages/wtforms/fields/core.py:501
 msgid "Invalid choice(s): one or more data inputs could not be coerced"
 msgstr ""
 
-#: env/lib/python3.7/site-packages/wtforms/fields/core.py:508
+#: env/Lib/site-packages/wtforms/fields/core.py:508
 #, python-format
 msgid "'%(value)s' is not a valid choice for this field"
 msgstr ""
 
-#: env/lib/python3.7/site-packages/wtforms/fields/core.py:591
+#: env/Lib/site-packages/wtforms/fields/core.py:591
 msgid "Not a valid integer value"
 msgstr ""
 
-#: env/lib/python3.7/site-packages/wtforms/fields/core.py:657
+#: env/Lib/site-packages/wtforms/fields/core.py:657
 msgid "Not a valid decimal value"
 msgstr ""
 
-#: env/lib/python3.7/site-packages/wtforms/fields/core.py:684
+#: env/Lib/site-packages/wtforms/fields/core.py:684
 msgid "Not a valid float value"
 msgstr ""
 
-#: env/lib/python3.7/site-packages/wtforms/fields/core.py:745
+#: env/Lib/site-packages/wtforms/fields/core.py:745
 msgid "Not a valid datetime value"
 msgstr ""
 
-#: env/lib/python3.7/site-packages/wtforms/fields/core.py:762
+#: env/Lib/site-packages/wtforms/fields/core.py:762
 msgid "Not a valid date value"
 msgstr ""
 
-#: env/lib/python3.7/site-packages/wtforms/fields/core.py:779
+#: env/Lib/site-packages/wtforms/fields/core.py:779
 msgid "Not a valid time value"
 msgstr ""
 
@@ -660,4 +691,7 @@ msgstr ""
 
 #~ msgid "官网"
 #~ msgstr "Website"
+
+#~ msgid "会议主题（英文)"
+#~ msgstr "Meeting Themes(English)"
 
