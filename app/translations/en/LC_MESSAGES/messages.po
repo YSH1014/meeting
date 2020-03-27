@@ -275,7 +275,7 @@ msgstr "Meeting Date(Data Required)"
 
 #: app/templates/registerMeeting.html:78
 msgid "设为待定"
-msgstr "To be Undetermind"
+msgstr "To Be Determind"
 
 #: app/templates/registerMeeting.html:107
 msgid "会议语言（必填）"
