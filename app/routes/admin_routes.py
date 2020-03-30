@@ -6,9 +6,12 @@ from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, load_user, RoleType, MeetingStatusType, Meeting, City, Country
 import sqlalchemy.exc
 from app.security import admin_required, login_redirect_required
-
+from app import admin
+from flask_admin.contrib.sqla import ModelView
 
 # from app import bp
+
+
 
 @app.route('/approve/<int:id>')
 @admin_required
@@ -57,3 +60,19 @@ def old_data_update():
     else:
 
         return render_template("OldDataUpdate.html",meeting=meeting,form=form)
+
+
+class NadcModelView(ModelView):
+
+    def is_accessible(self):
+        return current_user.is_authenticated and current_user.is_admin()
+
+    def inaccessible_callback(self, name, **kwargs):
+        # redirect to login page if user doesn't have access
+        return redirect(url_for('login', next=request.url))
+
+
+admin.add_view(NadcModelView(Meeting, db.session))
+admin.add_view(NadcModelView(User, db.session))
+admin.add_view(NadcModelView(Country, db.session))
+admin.add_view(NadcModelView(City, db.session))

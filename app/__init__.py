@@ -4,9 +4,8 @@ from flask_login import LoginManager
 from flask_migrate import Migrate
 from flask_bootstrap import Bootstrap
 from dotenv import load_dotenv
-from tools.ModelFormRender import ModelFormRender
 from flask_babelex import Babel
-
+from flask_admin import Admin
 
 app = Flask(__name__)
 load_dotenv('.flaskenv')
@@ -20,6 +19,7 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 bootstrap = Bootstrap(app)
 babel = Babel(app)
+admin = Admin(app)
 
 from app.cli import register_commands
 register_commands(app)
