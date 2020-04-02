@@ -70,8 +70,24 @@ class SearchMeetingForm(FlaskForm):
     #start_date = DateField('检索开始时间')
     # end_date = DateField('检索结束时间')
     # lang = SelectField('语言', choices=[(0, '不限'), (1, '中文'), (2, 'English')], coerce=int)
-    key_words = StringField(_('关键词'))
+    keyword = StringField(_('关键词'))
+    title_checked = BooleanField()
+    country_checked = BooleanField()
+    city_checked = BooleanField()
+    theme_checked = BooleanField()
+    keywords_checked = BooleanField()
+
     submit = SubmitField(_('检索(Search)'))
+
+    def plain_fields(self):
+        return "{title_checked}{country_checked}{city_checked}{theme_checked}{keywords_checked}"\
+            .format(
+                title_checked = 'title,title_en,' if self.title_checked.data else '',
+                country_checked = 'country,country_en,' if self.country_checked.data else '',
+                city_checked = 'city,city_en,' if self.city_checked.data else '',
+                theme_checked = 'theme,theme_en,' if self.theme_checked else '',
+                keywords_checked = 'key_words,key_words_en,' if self.keywords_checked.data else ''
+            )
 
 
 class UpdateOldDataForm(FlaskForm):

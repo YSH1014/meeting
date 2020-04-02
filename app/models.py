@@ -189,6 +189,8 @@ class Meeting(db.Model):
             return self.key_words_EN if self.key_words_EN is not None else self.key_words
         else:
             return self.key_words if self.key_words is not None else self.key_words_EN
+    
+    
 
 
 class Country(db.Model):

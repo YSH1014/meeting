@@ -4,20 +4,16 @@
 {{_('会议检索')}}
 {% endblock %}
 {% block content %}
-    <div class="card meetings-card">
-        <div class="card-body ">
-
-            <form action="{{ url_for('meetings') }}" method="get" class="form" role="form">
-
-                <div class="form-group ">
-                    {{ form.key_words.label(class="control-label meeting-input-label") }}
-                    {{ form.key_words(class="form-control meeting-input") }}
-                </div>
-
-                <div style="text-align: center;">
-                    {{ form.submit(class="btn btn-primary") }}
-                </div>
-            </form>
-        </div>
+<div id="search_control">
+    <div class="card meetings-card" id="search_box">
+        {% import 'bootstrap/wtf.html' as wtf %}
+        {{ wtf.quick_form(form) }}    
     </div>
+    
+
+</div>
+
+
+</div>
+
 {% endblock %}

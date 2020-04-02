@@ -11,6 +11,7 @@ from sqlalchemy.sql import or_,desc
 from app.ModelFormRender import meeting_render
 from flask_babelex import _
 from app.index_routes import get_locale
+import requests
 
 
 @app.route('/registerMeeting', methods=['Get', 'Post'])
@@ -267,8 +268,18 @@ def search_meeting_id():
 def search_meetings():
    
     form = SearchMeetingForm()
-
-    return render_template("search_meetings.html", form=form)
+    if form.validate_on_submit():
+        url = "https://nadc.china-vo.org/essearch.dbgrid?keyword={keyword}&pageSize=20&pageNum=1&fuzziness=1&endpoint=meeting&fields={fields}"\
+            .format(
+                keyword=form.keyword.data,
+                fields=form.plain_fields()
+            )
+        response = requests.get(url).json()
+        meetings = [Meeting.query.get(meeting["_source"]["id"]) for meeting in response["rows"]]
+        meetings
+        return render_template('meetings.html',title=_('搜索结果'),meetings=meetings,show_Filter=False)
+    else:
+        return render_template("search_meetings.html", form=form)
 
 
 @app.route("/new_meeting")
