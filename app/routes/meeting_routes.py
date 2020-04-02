@@ -276,7 +276,6 @@ def search_meetings():
             )
         response = requests.get(url).json()
         meetings = [Meeting.query.get(meeting["_source"]["id"]) for meeting in response["rows"]]
-        meetings
         return render_template('meetings.html',title=_('搜索结果'),meetings=meetings,show_Filter=False)
     else:
         return render_template("search_meetings.html", form=form)

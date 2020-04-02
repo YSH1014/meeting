@@ -74,6 +74,7 @@ class SearchMeetingForm(FlaskForm):
     title_checked = BooleanField()
     country_checked = BooleanField()
     city_checked = BooleanField()
+    time_checked = BooleanField()
     theme_checked = BooleanField()
     keywords_checked = BooleanField()
 
@@ -82,10 +83,11 @@ class SearchMeetingForm(FlaskForm):
     def plain_fields(self):
         return "{title_checked}{country_checked}{city_checked}{theme_checked}{keywords_checked}"\
             .format(
-                title_checked = 'title,title_en,' if self.title_checked.data else '',
+                title_checked = 'title,title_en,short_name,' if self.title_checked.data else '',
                 country_checked = 'country,country_en,' if self.country_checked.data else '',
                 city_checked = 'city,city_en,' if self.city_checked.data else '',
-                theme_checked = 'theme,theme_en,' if self.theme_checked else '',
+                time_checked = 'staart_date,end_date' if self.time_checked.data else '',
+                theme_checked = 'theme,theme_en,' if self.theme_checked.data else '',
                 keywords_checked = 'key_words,key_words_en,' if self.keywords_checked.data else ''
             )
 
