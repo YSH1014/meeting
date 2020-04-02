@@ -71,6 +71,7 @@ class SearchMeetingForm(FlaskForm):
     # end_date = DateField('检索结束时间')
     # lang = SelectField('语言', choices=[(0, '不限'), (1, '中文'), (2, 'English')], coerce=int)
     keyword = StringField(_('关键词'))
+    page = IntegerField()
     title_checked = BooleanField()
     country_checked = BooleanField()
     city_checked = BooleanField()
@@ -78,7 +79,7 @@ class SearchMeetingForm(FlaskForm):
     theme_checked = BooleanField()
     keywords_checked = BooleanField()
 
-    submit = SubmitField(_('检索(Search)'))
+    
 
     def plain_fields(self):
         return "{title_checked}{country_checked}{city_checked}{theme_checked}{keywords_checked}"\

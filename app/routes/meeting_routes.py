@@ -12,6 +12,7 @@ from app.ModelFormRender import meeting_render
 from flask_babelex import _
 from app.index_routes import get_locale
 import requests
+import math
 
 
 @app.route('/registerMeeting', methods=['Get', 'Post'])
@@ -269,14 +270,21 @@ def search_meetings():
    
     form = SearchMeetingForm()
     if form.validate_on_submit():
-        url = "https://nadc.china-vo.org/essearch.dbgrid?keyword={keyword}&pageSize=20&pageNum=1&fuzziness=1&endpoint=meeting&fields={fields}"\
+        url = "https://nadc.china-vo.org/essearch.dbgrid?keyword={keyword}&pageSize=20&pageNum={page}&fuzziness=1&endpoint=meeting&fields={fields}"\
             .format(
                 keyword=form.keyword.data,
+                page=form.page.data,
                 fields=form.plain_fields()
             )
         response = requests.get(url).json()
-        meetings = [Meeting.query.get(meeting["_source"]["id"]) for meeting in response["rows"]]
-        return render_template('meetings.html',title=_('搜索结果'),meetings=meetings,show_Filter=False)
+        meetings = filter(
+            lambda meeting: meeting is not None,
+            [Meeting.query.get(meeting["_source"]["id"]) for meeting in response["rows"]]
+            )
+        return render_template('meetings.html',
+            title=_('搜索结果'),meetings=meetings,
+            show_Filter=False,
+            search_form=form,total_page=math.ceil(response["total"]/20))
     else:
         return render_template("search_meetings.html", form=form)
 
