@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-03-25 21:39+0800\n"
+"POT-Creation-Date: 2020-04-02 21:30+0800\n"
 "PO-Revision-Date: 2020-02-27 12:58+0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -76,34 +76,35 @@ msgid "提交"
 msgstr "Submit"
 
 #: app/forms.py:73 app/templates/meeting_detail.html:51
+#: app/templates/search_meetings.html:31
 msgid "关键词"
 msgstr "Keywords"
-
-#: app/forms.py:74
-msgid "检索(Search)"
-msgstr "Search"
 
 #: app/index_routes.py:38
 msgid "Setting updated."
 msgstr ""
 
-#: app/routes/meeting_routes.py:36
+#: app/routes/meeting_routes.py:38
 msgid "提交成功，请等待管理员审核"
 msgstr "Submit successfully,please wait for administrator's approval"
 
-#: app/routes/meeting_routes.py:39
+#: app/routes/meeting_routes.py:41
 msgid "提交失败，请检查信息是否完整"
 msgstr "Submit fail,please check information"
 
-#: app/routes/meeting_routes.py:94
+#: app/routes/meeting_routes.py:96
 msgid "修改成功，等待管理员再次审核"
 msgstr "Submit successfully,please wait for administrator's approval"
 
-#: app/routes/meeting_routes.py:174
+#: app/routes/meeting_routes.py:176
 msgid "{}年会议"
 msgstr "{} Meetings"
 
-#: app/routes/meeting_routes.py:276 app/templates/base.html:26
+#: app/routes/meeting_routes.py:285
+msgid "搜索结果"
+msgstr ""
+
+#: app/routes/meeting_routes.py:294 app/templates/base.html:26
 msgid "新收录会议"
 msgstr "New Meetings"
 
@@ -155,21 +156,21 @@ msgstr "Meeting Information"
 msgid "地点"
 msgstr "Location"
 
-#: app/templates/meeting_detail.html:27 app/templates/meetings.html:131
+#: app/templates/meeting_detail.html:27 app/templates/meetings.html:125
+#: app/templates/search_meetings.html:25
 msgid "会议时间"
 msgstr "Meeting Date"
 
-#: app/templates/meeting_detail.html:33 app/templates/meetings.html:110
-#: app/templates/meetings.html:111 app/templates/meetings.html:132
-#: app/templates/registerMeeting.html:67
+#: app/templates/meeting_detail.html:33 app/templates/meetings.html:106
+#: app/templates/meetings.html:126 app/templates/registerMeeting.html:67
 msgid "待定"
-msgstr "Undetermind"
+msgstr "To Be Determind"
 
 #: app/templates/meeting_detail.html:39 app/templates/meetings.html:86
 msgid "语言"
 msgstr "Language"
 
-#: app/templates/meeting_detail.html:42 app/templates/meetings.html:135
+#: app/templates/meeting_detail.html:42 app/templates/meetings.html:129
 msgid "网址"
 msgstr "Website"
 
@@ -177,7 +178,7 @@ msgstr "Website"
 msgid "简称"
 msgstr "Short name"
 
-#: app/templates/meeting_detail.html:48
+#: app/templates/meeting_detail.html:48 app/templates/search_meetings.html:28
 msgid "主题"
 msgstr "Theme"
 
@@ -237,11 +238,11 @@ msgstr "Year"
 msgid "月份"
 msgstr "Month"
 
-#: app/templates/meetings.html:84
+#: app/templates/meetings.html:84 app/templates/search_meetings.html:19
 msgid "国家"
 msgstr "Country"
 
-#: app/templates/meetings.html:85
+#: app/templates/meetings.html:85 app/templates/search_meetings.html:22
 msgid "城市"
 msgstr "City"
 
@@ -253,17 +254,25 @@ msgstr "Filter Meetings"
 msgid "重置条件"
 msgstr "Reset Conditions"
 
-#: app/templates/meetings.html:133 app/templates/registerMeeting.html:45
+#: app/templates/meetings.html:127 app/templates/registerMeeting.html:45
 msgid "会议地点"
 msgstr "Location"
 
-#: app/templates/meetings.html:138
+#: app/templates/meetings.html:132
 msgid "最近更新"
 msgstr "Last Update"
 
-#: app/templates/meetings.html:144
+#: app/templates/meetings.html:138
 msgid "更多详情"
 msgstr "More Details"
+
+#: app/templates/meetings.html:148
+msgid "上一页"
+msgstr ""
+
+#: app/templates/meetings.html:174
+msgid "下一页"
+msgstr ""
 
 #: app/templates/registerMeeting.html:27
 msgid "会议名称（中英文至少填一项）"
@@ -292,6 +301,14 @@ msgstr "Meeting Themes( English)"
 #: app/templates/search_meetings.html:4
 msgid "会议检索"
 msgstr "Meetings Search"
+
+#: app/templates/search_meetings.html:16
+msgid "标题"
+msgstr "Title"
+
+#: app/templates/search_meetings.html:35
+msgid "检索"
+msgstr "Search"
 
 #: app/templates/userInfo.html:3
 msgid "个人信息"
@@ -336,6 +353,344 @@ msgstr "Admin Menu"
 #: app/templates/user_menu.html:59
 msgid "查看待审核会议"
 msgstr "View Awaiting Review Meetings"
+
+#: env/Lib/site-packages/flask_admin/contrib/rediscli.py:127
+msgid "Cli: Invalid command."
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/contrib/fileadmin/__init__.py:374
+msgid "File required."
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/contrib/fileadmin/__init__.py:379
+msgid "Invalid file type."
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/contrib/fileadmin/__init__.py:404
+msgid "Invalid name"
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/contrib/fileadmin/__init__.py:774
+#, python-format
+msgid "File \"%(name)s\" already exists."
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/contrib/fileadmin/__init__.py:819
+#: env/Lib/site-packages/flask_admin/contrib/fileadmin/__init__.py:916
+#: env/Lib/site-packages/flask_admin/contrib/fileadmin/__init__.py:978
+#: env/Lib/site-packages/flask_admin/contrib/fileadmin/__init__.py:1031
+#: env/Lib/site-packages/flask_admin/contrib/fileadmin/__init__.py:1078
+#: env/Lib/site-packages/flask_admin/contrib/fileadmin/__init__.py:1130
+#: env/Lib/site-packages/flask_admin/model/base.py:2279
+msgid "Permission denied."
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/contrib/fileadmin/__init__.py:912
+msgid "File uploading is disabled."
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/contrib/fileadmin/__init__.py:923
+#, python-format
+msgid "Successfully saved file: %(name)s"
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/contrib/fileadmin/__init__.py:927
+#, python-format
+msgid "Failed to save file: %(error)s"
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/contrib/fileadmin/__init__.py:935
+msgid "Upload File"
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/contrib/fileadmin/__init__.py:974
+msgid "Directory creation is disabled."
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/contrib/fileadmin/__init__.py:987
+#, python-format
+msgid "Successfully created directory: %(directory)s"
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/contrib/fileadmin/__init__.py:991
+#, python-format
+msgid "Failed to create directory: %(error)s"
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/contrib/fileadmin/__init__.py:1001
+msgid "Create Directory"
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/contrib/fileadmin/__init__.py:1027
+msgid "Deletion is disabled."
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/contrib/fileadmin/__init__.py:1036
+msgid "Directory deletion is disabled."
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/contrib/fileadmin/__init__.py:1042
+#, python-format
+msgid "Directory \"%(path)s\" was successfully deleted."
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/contrib/fileadmin/__init__.py:1044
+#, python-format
+msgid "Failed to delete directory: %(error)s"
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/contrib/fileadmin/__init__.py:1050
+#: env/Lib/site-packages/flask_admin/contrib/fileadmin/__init__.py:1205
+#, python-format
+msgid "File \"%(name)s\" was successfully deleted."
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/contrib/fileadmin/__init__.py:1052
+#: env/Lib/site-packages/flask_admin/contrib/fileadmin/__init__.py:1207
+#, python-format
+msgid "Failed to delete file: %(name)s"
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/contrib/fileadmin/__init__.py:1074
+msgid "Renaming is disabled."
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/contrib/fileadmin/__init__.py:1082
+msgid "Path does not exist."
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/contrib/fileadmin/__init__.py:1092
+#, python-format
+msgid "Successfully renamed \"%(src)s\" to \"%(dst)s\""
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/contrib/fileadmin/__init__.py:1095
+#, python-format
+msgid "Failed to rename: %(error)s"
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/contrib/fileadmin/__init__.py:1109
+#, python-format
+msgid "Rename %(name)s"
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/contrib/fileadmin/__init__.py:1145
+#, python-format
+msgid "Error saving changes to %(name)s."
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/contrib/fileadmin/__init__.py:1149
+#, python-format
+msgid "Changes to %(name)s saved successfully."
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/contrib/fileadmin/__init__.py:1157
+#, python-format
+msgid "Error reading %(name)s."
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/contrib/fileadmin/__init__.py:1160
+#: env/Lib/site-packages/flask_admin/contrib/fileadmin/__init__.py:1169
+#, python-format
+msgid "Unexpected error while reading from %(name)s"
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/contrib/fileadmin/__init__.py:1166
+#, python-format
+msgid "Cannot edit %(name)s."
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/contrib/fileadmin/__init__.py:1184
+#, python-format
+msgid "Editing %(path)s"
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/contrib/fileadmin/__init__.py:1196
+msgid "File deletion is disabled."
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/contrib/fileadmin/s3.py:153
+msgid "Cannot operate on non empty directories"
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/contrib/mongoengine/view.py:559
+#, python-format
+msgid "Failed to get model. %(error)s"
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/contrib/mongoengine/view.py:578
+#: env/Lib/site-packages/flask_admin/contrib/peewee/view.py:462
+#: env/Lib/site-packages/flask_admin/contrib/pymongo/view.py:317
+#: env/Lib/site-packages/flask_admin/contrib/sqla/view.py:1135
+#, python-format
+msgid "Failed to create record. %(error)s"
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/contrib/mongoengine/view.py:604
+#: env/Lib/site-packages/flask_admin/contrib/peewee/view.py:481
+#: env/Lib/site-packages/flask_admin/contrib/pymongo/view.py:342
+#: env/Lib/site-packages/flask_admin/contrib/sqla/view.py:1161
+#: env/Lib/site-packages/flask_admin/model/base.py:2416
+#: env/Lib/site-packages/flask_admin/model/base.py:2424
+#: env/Lib/site-packages/flask_admin/model/base.py:2426
+#, python-format
+msgid "Failed to update record. %(error)s"
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/contrib/mongoengine/view.py:627
+#: env/Lib/site-packages/flask_admin/contrib/peewee/view.py:496
+#: env/Lib/site-packages/flask_admin/contrib/pymongo/view.py:367
+#: env/Lib/site-packages/flask_admin/contrib/sqla/view.py:1186
+#, python-format
+msgid "Failed to delete record. %(error)s"
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/contrib/mongoengine/view.py:676
+#: env/Lib/site-packages/flask_admin/contrib/peewee/view.py:532
+#: env/Lib/site-packages/flask_admin/contrib/pymongo/view.py:396
+#: env/Lib/site-packages/flask_admin/contrib/sqla/view.py:1223
+#: env/Lib/site-packages/flask_admin/model/base.py:2227
+#, python-format
+msgid "Record was successfully deleted."
+msgid_plural "%(count)s records were successfully deleted."
+msgstr[0] ""
+msgstr[1] ""
+
+#: env/Lib/site-packages/flask_admin/contrib/mongoengine/view.py:682
+#: env/Lib/site-packages/flask_admin/contrib/peewee/view.py:538
+#: env/Lib/site-packages/flask_admin/contrib/pymongo/view.py:401
+#: env/Lib/site-packages/flask_admin/contrib/sqla/view.py:1231
+#, python-format
+msgid "Failed to delete records. %(error)s"
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/contrib/sqla/fields.py:127
+#: env/Lib/site-packages/flask_admin/contrib/sqla/fields.py:177
+#: env/Lib/site-packages/flask_admin/contrib/sqla/fields.py:182
+#: env/Lib/site-packages/flask_admin/model/fields.py:177
+#: env/Lib/site-packages/flask_admin/model/fields.py:226
+#: env/Lib/site-packages/wtforms/ext/appengine/fields.py:87
+#: env/Lib/site-packages/wtforms/ext/appengine/fields.py:164
+#: env/Lib/site-packages/wtforms/ext/appengine/fields.py:166
+#: env/Lib/site-packages/wtforms/ext/django/fields.py:95
+#: env/Lib/site-packages/wtforms/ext/sqlalchemy/fields.py:125
+#: env/Lib/site-packages/wtforms/ext/sqlalchemy/fields.py:127
+#: env/Lib/site-packages/wtforms/ext/sqlalchemy/fields.py:180
+#: env/Lib/site-packages/wtforms/ext/sqlalchemy/fields.py:185
+#: env/Lib/site-packages/wtforms/fields/core.py:475
+msgid "Not a valid choice"
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/contrib/sqla/validators.py:42
+msgid "Already exists."
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/contrib/sqla/validators.py:60
+#, python-format
+msgid "At least %(num)d item is required"
+msgid_plural "At least %(num)d items are required"
+msgstr[0] ""
+msgstr[1] ""
+
+#: env/Lib/site-packages/flask_admin/contrib/sqla/validators.py:76
+msgid "Not a valid ISO currency code (e.g. USD, EUR, CNY)."
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/contrib/sqla/validators.py:84
+msgid "Not a valid color (e.g. \"red\", \"#f00\", \"#ff0000\")."
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/contrib/sqla/view.py:1109
+#, python-format
+msgid "Integrity error. %(message)s"
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/form/fields.py:98
+msgid "Invalid time format"
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/form/fields.py:144
+#: env/Lib/site-packages/wtforms/fields/core.py:468
+msgid "Invalid Choice: could not coerce"
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/form/fields.py:208
+msgid "Invalid JSON"
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/form/upload.py:208
+msgid "Invalid file extension"
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/form/upload.py:215
+#: env/Lib/site-packages/flask_admin/form/upload.py:282
+#, python-format
+msgid "File \"%s\" already exists."
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/form/validators.py:16
+msgid "This field requires at least one item."
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/model/base.py:1702
+msgid "There are no items in the table."
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/model/base.py:1711
+#, python-format
+msgid "Invalid Filter Value: %(value)s"
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/model/base.py:2091
+msgid "Record was successfully created."
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/model/base.py:2135
+#: env/Lib/site-packages/flask_admin/model/base.py:2187
+#: env/Lib/site-packages/flask_admin/model/base.py:2220
+#: env/Lib/site-packages/flask_admin/model/base.py:2408
+msgid "Record does not exist."
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/model/base.py:2144
+#: env/Lib/site-packages/flask_admin/model/base.py:2412
+msgid "Record was successfully saved."
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/model/base.py:2333
+msgid "Tablib dependency not installed."
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/model/base.py:2360
+#, python-format
+msgid "Export type \"%(type)s not supported."
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/model/template.py:81
+#: env/Lib/site-packages/flask_admin/model/template.py:88
+msgid "View Record"
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/model/template.py:95
+#: env/Lib/site-packages/flask_admin/model/template.py:102
+msgid "Edit Record"
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/model/template.py:109
+msgid "Delete Record"
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/model/widgets.py:62
+msgid "Please select model"
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/model/widgets.py:116
+msgid "No"
+msgstr ""
+
+#: env/Lib/site-packages/flask_admin/model/widgets.py:117
+msgid "Yes"
+msgstr ""
 
 #: env/Lib/site-packages/flask_wtf/file.py:50
 #: env/Lib/site-packages/wtforms/validators.py:205
@@ -478,18 +833,6 @@ msgstr ""
 msgid "CSRF token expired"
 msgstr ""
 
-#: env/Lib/site-packages/wtforms/ext/appengine/fields.py:87
-#: env/Lib/site-packages/wtforms/ext/appengine/fields.py:164
-#: env/Lib/site-packages/wtforms/ext/appengine/fields.py:166
-#: env/Lib/site-packages/wtforms/ext/django/fields.py:95
-#: env/Lib/site-packages/wtforms/ext/sqlalchemy/fields.py:125
-#: env/Lib/site-packages/wtforms/ext/sqlalchemy/fields.py:127
-#: env/Lib/site-packages/wtforms/ext/sqlalchemy/fields.py:180
-#: env/Lib/site-packages/wtforms/ext/sqlalchemy/fields.py:185
-#: env/Lib/site-packages/wtforms/fields/core.py:475
-msgid "Not a valid choice"
-msgstr ""
-
 #: env/Lib/site-packages/wtforms/ext/appengine/fields.py:185
 msgid "Not a valid list"
 msgstr ""
@@ -505,10 +848,6 @@ msgstr ""
 #: env/Lib/site-packages/wtforms/ext/dateutil/fields.py:75
 #: env/Lib/site-packages/wtforms/ext/dateutil/fields.py:83
 msgid "Invalid date/time input"
-msgstr ""
-
-#: env/Lib/site-packages/wtforms/fields/core.py:468
-msgid "Invalid Choice: could not coerce"
 msgstr ""
 
 #: env/Lib/site-packages/wtforms/fields/core.py:501
@@ -694,4 +1033,7 @@ msgstr ""
 
 #~ msgid "会议主题（英文)"
 #~ msgstr "Meeting Themes(English)"
+
+#~ msgid "检索(Search)"
+#~ msgstr "Search"
 
