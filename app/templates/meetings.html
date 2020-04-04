@@ -143,7 +143,8 @@
     {% if search_form %}
     {% import "bootstrap/wtf.html" as wtf %}
     <div hidden>{{ wtf.quick_form(search_form, id="search_form") }}</div>
-    <div class='bg-light'>
+    
+    <div class='bg-light btn-group' style="display:block;text-align:center">
         {% if search_form.page.data != 1 %}
         <button type="button" class="btn btn-link" onclick="prevPage()">{{_('上一页')}}</button>
         <script>
