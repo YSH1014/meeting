@@ -70,7 +70,7 @@ class SearchMeetingForm(FlaskForm):
     #start_date = DateField('检索开始时间')
     # end_date = DateField('检索结束时间')
     # lang = SelectField('语言', choices=[(0, '不限'), (1, '中文'), (2, 'English')], coerce=int)
-    keyword = StringField(_('关键词'))
+    keyword = StringField(_('关键词'),validators=[DataRequired()])
     page = IntegerField()
     title_checked = BooleanField()
     country_checked = BooleanField()

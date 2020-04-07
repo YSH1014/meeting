@@ -268,8 +268,8 @@ def search_meeting_id():
 @app.route("/search_meeting", methods=['get', 'post'])
 def search_meetings():
    
-    form = SearchMeetingForm()
-    if form.validate_on_submit():
+    form = SearchMeetingForm(request.args,meta={"csrf":False})
+    if form.validate():
         url = "https://nadc.china-vo.org/essearch.dbgrid?keyword={keyword}&pageSize=20&pageNum={page}&fuzziness=1&endpoint=meeting&fields={fields}"\
             .format(
                 keyword=form.keyword.data,
