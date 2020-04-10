@@ -16,3 +16,6 @@ class Config(object):
         
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     LANGUAGES = ['en', 'zh_Hans_CN']
+
+    CAL_ADMIN=os.environ.get("CAL_ADMIN")
+    #CAL_ADMIN="http://meeting:meeting@localhost:5232/meeting/"
