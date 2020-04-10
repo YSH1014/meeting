@@ -22,7 +22,8 @@ PRODID:-//Example Corp.//CalDAV Client//EN
 VERSION:2.0
 BEGIN:VEVENT
 UID:{id}
-SUMMARY:{theme}
+SUMMARY:{title_CN}({title_EN})
+DESCRIPTION:{theme}
 DTSTART:{start_date}
 DTEND:{end_date}
 LOCATION:{country}-{city}
@@ -30,7 +31,9 @@ END:VEVENT
 END:VCALENDAR
 """.format(
         id = meeting.id,
-        theme = meeting.get_theme('zh_Hans_CN'),
+        title_CN=meeting.title if meeting.title is not None or "",
+        title_EN = meeting.title_EN if meeting.title_EN is not None or "",
+        theme = meeting.get_theme('zh_Hans_CN').replace('\n',r"\n"),              #需要将转义的\n替换为纯文本的\n
         start_date = meeting.start_date.strftime("%Y%m%d"),
         end_date = meeting.end_date.strftime("%Y%m%d"),
         country = meeting.get_country('zh_Hans_CN'),
