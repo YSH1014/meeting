@@ -13,6 +13,7 @@ from flask_babelex import _
 from app.index_routes import get_locale
 import requests
 import math
+from app.cal import delete_meeting_from_calendar
 
 
 @app.route('/registerMeeting', methods=['Get', 'Post'])
@@ -93,6 +94,7 @@ def update_meeting_form():
         # meeting.update_from_form(form)
         meeting_render.f2m(meeting,form)
         db.session.commit()
+        delete_meeting_from_calendar(meeting.id)
         flash(_("修改成功，等待管理员再次审核"))
         return redirect(url_for("meeting_detail", id=meeting.id))
     else:

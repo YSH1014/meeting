@@ -6,7 +6,8 @@ from app.models import Meeting
 from app import db
 import traceback
 
-client = caldav.DAVClient(url=app.config['CAL_ADMIN'])
+url=app.config['CAL_ADMIN']
+client = caldav.DAVClient(url)
 principal = client.principal()
 calendar = principal.calendar(cal_id="meeting")
 
@@ -17,8 +18,7 @@ def add_meeting_to_calendar(meeting):
         return 
         
     id = meeting.id,
-    title_CN=meeting.title if meeting.title is not None else "",
-    title_EN = meeting.title_EN if meeting.title_EN is not None else "",
+    title_CN=meeting.title if meeting.title else meeting.title_EN
     theme = meeting.get_theme('zh_Hans_CN')
     if theme is not None and theme !="":
         theme = theme.replace('\r\n',r'\n')
@@ -32,7 +32,7 @@ PRODID:-//Example Corp.//CalDAV Client//EN
 VERSION:2.0
 BEGIN:VEVENT
 UID:{id}
-SUMMARY:{title_CN}({title_EN})
+SUMMARY:{title_CN}
 DESCRIPTION:{theme}
 DTSTART:{start_date}
 DTEND:{end_date}
@@ -42,7 +42,6 @@ END:VCALENDAR
 """.format(
         id = id,
         title_CN=title_CN,
-        title_EN = title_EN,
         theme = theme,
         start_date = start_date,
         end_date = end_date,
@@ -56,3 +55,13 @@ END:VCALENDAR
     except Exception as e:
         print(e)
         traceback.print_exc()
+
+
+def delete_meeting_from_calendar(id):
+    try:
+        event = calendar.event_by_url("{base}/({id}.ics".format(base=url,id=id))   #id前那个括号我也不知道为啥，莫名其妙。。。。
+        event.delete()
+    except Exception as e:
+        print(e)
+
+    

@@ -8,7 +8,7 @@ import sqlalchemy.exc
 from app.security import admin_required, login_redirect_required
 from app import admin
 from flask_admin.contrib.sqla import ModelView
-
+from app.cal import add_meeting_to_calendar
 # from app import bp
 
 
@@ -20,6 +20,7 @@ def approve(id):
     meeting = Meeting.query.get(id)
     meeting.status = MeetingStatusType.APPROVED
     db.session.commit()
+    add_meeting_to_calendar(meeting)
     return redirect(url_for('meeting_detail', id=id))
 
 
