@@ -1,136 +1,184 @@
 {% extends 'base.html' %}
 {% block title %}
-    <script>
-        //设置单独的样式
-        $(".meetings-mainPage-title").removeClass("meetings-mainPage-title").addClass("meetings-detailPage-title");
-    </script>
-    {% if meeting.title %}
-        <strong>{{ meeting.title }}</strong>
-    {% endif %}
-    {% if meeting.title_EN %}
-        <p>{{ meeting.title_EN }}</p>
-    {% endif %}
+<script>
+    //设置单独的样式
+    $(".meetings-mainPage-title").removeClass("meetings-mainPage-title").addClass("meetings-detailPage-title");
+</script>
+{% if meeting.title %}
+<strong>{{ meeting.title }}</strong>
+{% endif %}
+{% if meeting.title_EN %}
+<p>{{ meeting.title_EN }}</p>
+{% endif %}
 {% endblock %}
 {% block content %}
-    <div class="card meetings-card" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
-        <div class="card-body meeting-intro">
-            <blockquote class="blockquote mb-0">
-                <div class="row meetings-detail"  style="width: 90%; margin: 0px auto;">
-                  <div class="meeting-info-group-title">
+<div class="card meetings-card" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+    <div class="card-body meeting-intro">
+        <blockquote class="blockquote mb-0">
+            <div class="row meetings-detail" style="width: 90%; margin: 0px auto;">
+                <div class="meeting-info-group-title">
                     <p>{{ _('会议信息') }}</p>
-                  </div>
-					<div class="meeting-info-group">
-						<div class="row meeting-info">
-					<div class="col-sm-2 meeting-info-section" style="border-top-left-radius: 10px;">{{ _('地点') }}</div>
-					<div class="col-sm-10">{{  meeting.get_country(get_locale())}}-{{ meeting.get_city(get_locale()) }}</div></div>
-						<div class="row meeting-info">
-                    <div class="col-sm-2 meeting-info-section">{{ _('会议时间') }}</div>
-                    
-                    <div class="col-sm-10">
-                        {% if meeting.start_date and meeting.end_date %}
+                </div>
+                <div class="meeting-info-group">
+                    <div class="row meeting-info">
+                        <div class="col-sm-2 meeting-info-section" style="border-top-left-radius: 10px;">{{ _('地点') }}
+                        </div>
+                        <div class="col-sm-10">
+                            {{  meeting.get_country(get_locale())}}-{{ meeting.get_city(get_locale()) }}</div>
+                    </div>
+                    <div class="row meeting-info">
+                        <div class="col-sm-2 meeting-info-section">{{ _('会议时间') }}</div>
+
+                        <div class="col-sm-10">
+                            {% if meeting.start_date and meeting.end_date %}
                             {{ meeting.start_date }} - {{ meeting.end_date }}
-                        {% else %}
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                                {{_('订阅')}}
+                            </button>
+                            <div class="modal fade" id="myModal">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+
+                                        <!-- 模态框头部 -->
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">订阅到日历</h4>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+
+                                        <!-- 模态框主体 -->
+                                        <div class="modal-body">
+                                            <button type="button" class="btn btn-primary" >
+                                                <a href="webcals://nadc.china-vo.org/meetings/ical/({{meeting.id}}.ics">
+                                                {{_('点击订阅到日历')}}
+                                                </a>
+                                            </button>
+                                            <p>{{_('若您的设备没有自动跳转，请手动复制下面的链接并粘贴到本地日历应用（例如Thunderbird）')}}</p>
+                                            <p>webcals://nadc.china-vo.org/meetings/ical/({{meeting.id}}.ics</p>
+                                        </div>
+
+                                        <!-- 模态框底部 -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">关闭</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            {% else %}
                             {{_('待定')}}-{{_('待定')}}
-                        {% endif %}
+                            {% endif %}
+                        </div>
+
                     </div>
-                    
+                    <div class="row meeting-info">
+                        <div class="col-sm-2 meeting-info-section">{{ _('语言') }}</div>
+                        <div class="col-sm-10">{{ meeting.lang }}</div>
                     </div>
-						<div class="row meeting-info">
-					<div class="col-sm-2 meeting-info-section">{{ _('语言') }}</div>
-					<div class="col-sm-10">{{ meeting.lang }}</div></div>
-						<div class="row meeting-info">
-					<div class="col-sm-2 meeting-info-section">{{ _('网址') }}</div>
-					<div class="col-sm-10"><a href="{{meeting.url}}" target="_blank">{{ meeting.url }}</a></div></div>
-						<div class="row meeting-info">
-					<div class="col-sm-2 meeting-info-section">{{ _('简称') }}</div>
-					<div class="col-sm-10">{{ meeting.short_name }}</div></div>
-						<div class="row meeting-info">
-					<div class="col-sm-2 meeting-info-section">{{ _('主题') }}</div>
-					<div class="col-sm-10">{{ meeting.get_theme(get_locale()) }}</div></div>
-						<div class="row meeting-info">
-					<div class="col-sm-2 meeting-info-section">{{ _('关键词') }}</div>
-					<div class="col-sm-10">{{ meeting.get_keyWords(get_locale()) }}</div></div>
-						<div class="row meeting-info" style="border-bottom: 0px;">
-					<div class="col-sm-2 meeting-info-section" style="border-bottom-left-radius: 10px;">{{ _('编号') }}</div>
-					<div class="col-sm-10">{{ meeting.id }}</div></div>
-					</div>
-                  <div class="meeting-info-group-title">
+                    <div class="row meeting-info">
+                        <div class="col-sm-2 meeting-info-section">{{ _('网址') }}</div>
+                        <div class="col-sm-10"><a href="{{meeting.url}}" target="_blank">{{ meeting.url }}</a></div>
+                    </div>
+                    <div class="row meeting-info">
+                        <div class="col-sm-2 meeting-info-section">{{ _('简称') }}</div>
+                        <div class="col-sm-10">{{ meeting.short_name }}</div>
+                    </div>
+                    <div class="row meeting-info">
+                        <div class="col-sm-2 meeting-info-section">{{ _('主题') }}</div>
+                        <div class="col-sm-10">{{ meeting.get_theme(get_locale()) }}</div>
+                    </div>
+                    <div class="row meeting-info">
+                        <div class="col-sm-2 meeting-info-section">{{ _('关键词') }}</div>
+                        <div class="col-sm-10">{{ meeting.get_keyWords(get_locale()) }}</div>
+                    </div>
+                    <div class="row meeting-info" style="border-bottom: 0px;">
+                        <div class="col-sm-2 meeting-info-section" style="border-bottom-left-radius: 10px;">
+                            {{ _('编号') }}</div>
+                        <div class="col-sm-10">{{ meeting.id }}</div>
+                    </div>
+                </div>
+                <div class="meeting-info-group-title">
                     <p>{{ _('联系人信息') }}</p>
-                  </div>
-					<div class="meeting-info-group">
-						<div class="row meeting-info">
-					<div class="col-sm-2 meeting-info-section" style="border-top-left-radius: 10px;">{{ _('姓名') }}</div>
-					<div class="col-sm-10">{{ meeting.contact }}</div></div>
-						<div class="row meeting-info">
-					<div class="col-sm-2 meeting-info-section">Email</div>
-					<div class="col-sm-10">{{ meeting.email }}</div></div>
-						<div class="row meeting-info" style="border-bottom: 0px;">
-					<div class="col-sm-2 meeting-info-section" style="border-bottom-left-radius: 10px;">{{ _('电话') }}</div>
-					<div class="col-sm-10">{{ meeting.phone }}</div></div>
-					</div>
                 </div>
-
-            </blockquote>
-
-            <!-- 对已登录用户显示修改界面 -->
-            {% if current_user.is_authenticated and meeting.status.__str__()=='MeetingStatusType.APPROVED' %}
-                <div style="line-height: 50px; text-align: right; margin-right: 30px;">
-                    <a href={{ url_for('update_meeting_form',id=meeting.id) }}>
-                        <button class="btn btn-sm btn-outline-danger"> {{  _('会议信息有误？提交更新')}}</button>
-                    </a>
+                <div class="meeting-info-group">
+                    <div class="row meeting-info">
+                        <div class="col-sm-2 meeting-info-section" style="border-top-left-radius: 10px;">
+                            {{ _('姓名') }}</div>
+                        <div class="col-sm-10">{{ meeting.contact }}</div>
+                    </div>
+                    <div class="row meeting-info">
+                        <div class="col-sm-2 meeting-info-section">Email</div>
+                        <div class="col-sm-10">{{ meeting.email }}</div>
+                    </div>
+                    <div class="row meeting-info" style="border-bottom: 0px;">
+                        <div class="col-sm-2 meeting-info-section" style="border-bottom-left-radius: 10px;">
+                            {{ _('电话') }}</div>
+                        <div class="col-sm-10">{{ meeting.phone }}</div>
+                    </div>
                 </div>
-            {% endif %}
+            </div>
 
-            <!--管理员界面 -->
-            {% if current_user.is_authenticated and current_user.is_admin() %}
-                <p> {{ _('状态') }}：
-                    {% if meeting.status.__str__()=='MeetingStatusType.REGISTERED' %}
-                        <!-- 除了显示状态之外，还有通过/不通过选项 -->
-                        {{ _('待审核') }}
-                        <a href="{{ url_for('approve',id=meeting.id) }}">
-                            <button class="btn btn-sm btn-outline-info"> {{ _('通过审核') }}</button>
-                        </a>
+        </blockquote>
 
-                        <a href="{{ url_for('unapprove',id=meeting.id) }}">
-                            <button class="btn btn-sm btn-outline-danger">{{ _('不通过') }}</button>
-                        </a>
-                    {% elif meeting.status.__str__()=='MeetingStatusType.APPROVED' %}
-                        {{ _('已通过') }}
-                    {% elif meeting.status.__str__() == 'MeetingStatusType.UNAPPROVED' %}
-                        {{ _('未通过') }}
-                    {% elif meeting.status.__str__() == 'MeetingStatusType.OUTDUE' %}
-                        {{ _('已过期') }}
-                    {% else %}
-                        ...
-                    {% endif %}
-                </p>
-
-            {% endif %}
-
-
+        <!-- 对已登录用户显示修改界面 -->
+        {% if current_user.is_authenticated and meeting.status.__str__()=='MeetingStatusType.APPROVED' %}
+        <div style="line-height: 50px; text-align: right; margin-right: 30px;">
+            <a href={{ url_for('update_meeting_form',id=meeting.id) }}>
+                <button class="btn btn-sm btn-outline-danger"> {{  _('会议信息有误？提交更新')}}</button>
+            </a>
         </div>
-    </div>
-    <div class="card meetings-card">
-        <div class="card-body meetings-mainPage-title">
-            <a href="#" id="returnToList">{{_('返回列表')}}</a>
-            <script>
-                $(function () {
-                    $("strong").addClass("thick").css("font-size", "1.35em")
-                })
-                lastList = localStorage.getItem("lastList");
-                if (lastList==null){
-                    lastList = "{{ url_for('new_meeting') }}";
-                }else if(lastList.indexOf("withStoredFilter") == -1){
-                    if(lastList.indexOf("?")==-1)
-                        lastList+="?withStoredFilter=True";
-                    else
-                        lastList += "&withStoredFilter=True";
-                }
-                document.getElementById("returnToList").href=lastList;
+        {% endif %}
 
-            </script>
-        </div>
+        <!--管理员界面 -->
+        {% if current_user.is_authenticated and current_user.is_admin() %}
+        <p> {{ _('状态') }}：
+            {% if meeting.status.__str__()=='MeetingStatusType.REGISTERED' %}
+            <!-- 除了显示状态之外，还有通过/不通过选项 -->
+            {{ _('待审核') }}
+            <a href="{{ url_for('approve',id=meeting.id) }}">
+                <button class="btn btn-sm btn-outline-info"> {{ _('通过审核') }}</button>
+            </a>
+
+            <a href="{{ url_for('unapprove',id=meeting.id) }}">
+                <button class="btn btn-sm btn-outline-danger">{{ _('不通过') }}</button>
+            </a>
+            {% elif meeting.status.__str__()=='MeetingStatusType.APPROVED' %}
+            {{ _('已通过') }}
+            {% elif meeting.status.__str__() == 'MeetingStatusType.UNAPPROVED' %}
+            {{ _('未通过') }}
+            {% elif meeting.status.__str__() == 'MeetingStatusType.OUTDUE' %}
+            {{ _('已过期') }}
+            {% else %}
+            ...
+            {% endif %}
+        </p>
+
+        {% endif %}
+
+
     </div>
+</div>
+<div class="card meetings-card">
+    <div class="card-body meetings-mainPage-title">
+        <a href="#" id="returnToList">{{_('返回列表')}}</a>
+        <script>
+            $(function () {
+                $("strong").addClass("thick").css("font-size", "1.35em")
+            })
+            lastList = localStorage.getItem("lastList");
+            if (lastList == null) {
+                lastList = "{{ url_for('new_meeting') }}";
+            } else if (lastList.indexOf("withStoredFilter") == -1) {
+                if (lastList.indexOf("?") == -1)
+                    lastList += "?withStoredFilter=True";
+                else
+                    lastList += "&withStoredFilter=True";
+            }
+            document.getElementById("returnToList").href = lastList;
+
+        </script>
+    </div>
+</div>
 
 
 {% endblock %}
