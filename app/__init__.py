@@ -34,3 +34,26 @@ from app.routes import  admin_routes,meeting_routes,root_routes,user_routes
 
 from app.index_routes import get_locale
 app.jinja_env.globals['get_locale'] = get_locale
+
+# 日志记录
+from logging.config import dictConfig
+from logging.handlers import RotatingFileHandler
+import logging
+dictConfig({
+    'version': 1,
+    'formatters': {'default': {
+        'format': '[%(asctime)s] %(levelname)s in %(module)s: %(message)s',
+    }},
+    'handlers': {'wsgi': {
+        'class': 'logging.StreamHandler',
+        'stream': 'ext://flask.logging.wsgi_errors_stream',
+        'formatter': 'default'
+    }},
+    'root': {
+        'level': 'INFO',
+        'handlers': ['wsgi']
+    }
+})
+# initialize the log handler
+loggerHandler: RotatingFileHandler = RotatingFileHandler('flask.logs', maxBytes=1000, backupCount=1)
+app.logger.addHandler(loggerHandler)

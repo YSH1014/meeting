@@ -61,7 +61,11 @@ def delete_meeting_from_calendar(id):
     try:
         event = calendar.event_by_url("{base}/({id}.ics".format(base=url,id=id))   #id前那个括号我也不知道为啥，莫名其妙。。。。
         event.delete()
+        app.logger.info("%s deleteed info",id)
+
     except Exception as e:
         print(e)
+        app.logger.warn("%d delete error",id)
+        app.logger.warn(e)
 
     
