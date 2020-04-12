@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 import caldav
 from caldav.elements import dav, cdav
 from app import app
@@ -23,7 +23,7 @@ def add_meeting_to_calendar(meeting):
     if theme is not None and theme !="":
         theme = theme.replace('\r\n',r'\n')
     start_date = meeting.start_date.strftime("%Y%m%d")
-    end_date = meeting.end_date.strftime("%Y%m%d")
+    end_date = (meeting.end_date + timedelta(days=1)).strftime('%Y%m%d')   # 结束日期加上1，否则日历（thunder bird为例）不显示这一天。
     country = meeting.get_country('zh_Hans_CN')
     city = meeting.get_city('zh_Hans_CN')
     vcal = """
